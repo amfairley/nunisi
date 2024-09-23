@@ -41,11 +41,11 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
 - Security in place to stop others accessing my account and trip.
 - A secure payment method to pay for the trip.
 - Ability to search for available rooms within a given timeframe.
-- Ability to restrict or order available rooms based on ametities offered.
+- Ability to restrict or order available rooms based on amenities offered.
 - Have my data and information stored securely.
 
 ### Site Owner Goals
-- Provide the user with room options with correct details and availabilty.
+- Provide the user with room options with correct details and availability.
 - Able to track when rooms are not available.
 - Able to take payment from the users.
 - Able to receive reviews from the users.
