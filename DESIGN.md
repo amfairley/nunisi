@@ -28,6 +28,8 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
         * [account.html](#accounthtml)
         * [Error Pages](#error-pages)
         * [Information Architecture](#information-architecture)
+        * [Interactive Experience](#interactive-experience)
+    4. [Skeleton](#skeleton)
 
 ## Five Planes of UX
 Here I outline the design process of the website, ensuring that I meet accessibility guidelines, follow the principles of UX design, and create a website that meets the purpose of being a fun and intuitive online community for reviewing and recommending children's toys through user interactions.
@@ -100,8 +102,8 @@ Followed are a series of planned apps and what templates and functionality they 
     * The search results page; results.html
     * The individual rooms pages; room.html
     * Models for the room
-- bag:
-    * The shopping bag html file; bag.html
+- basket:
+    * The shopping basket html file; basket.html
 - checkout:
     * The checkout page; checkout.html
     * A checkout success page; checkout-success.html
@@ -119,6 +121,7 @@ Followed are a series of planned apps and what templates and functionality they 
  - The navigation bar will be used on every page of the website.
  - It will have a site logo that will also act as a link back to the homepage, this will help meet the requirement for the website to have a clear and obvious purpose by having the site branding on each page.
  - There will be a page link for the about-us page allowing us to meet the requirements for providing information about the hotel, an FAQ, and travel advice.
+ - There will be a page link for booking that will take the user to the room search page, meeting the requirment for being able to search and book rooms.
  - When logged out there will be options to log in or sign up. Whilst logged in there will be the option to log out. This meets the requirement for login/logout functionality.
  - When logged in there will be a link to the users profile. This meets the requirement for letting the users have full CRUD functionality over their profile.
  - On smaller screens the navigation links will be hidden in a burger menu, meeting the requirement for the website to be responsive.
@@ -157,10 +160,46 @@ Followed are a series of planned apps and what templates and functionality they 
 
 #### Information Architecture
  **Front-end**: Site map <br>
- Below is a proposed site map of the website showing links and redirections.
- ![Nunisi site map](/pathtositemap/map.png)
+ Below is a proposed site map of the website showing links and major functions.
+ ![Nunisi site map](/documentation/sitemap.png)<br>
+ The key points are:
+ - The navbar will display extra links to signup and login when the user is logged out and will show links for the account and to log out when logged in.
+ - The navbar will display links to home, about us, book, and bag.
+ - The navbar and footer logos will be a link to the homepage.
+ - The footer will have contact details and external links to the developer's GitHub, LinkedIn, and email.
+ - The signup page will direct the user to the login page when successfully signed up.
+ - The login page will have a link to sign up in case the user does not already have an account.
+ - The navigation bar and footer links will be present on every page.
+ - All error pages will have a link back to the homepage.
+ - The booking page will lead to a search results page. Each room will have a link to their individual pages. The room can be added to the basket from either the search results of individual room page.
+ - The basket page will link to the checkout page, which will display a success page when payment is complete. If the user is logged out, they will then be prompted to log in  or sign up to save the trip.
+ - The profile page will display the trips as well as letting the user change their password or delete their account. 
+ - Reviews can be added from the trips of the profile page or on the individual page for the trip.
 
  **Back-end**: Entity-relationship-diagram (ERD)<br>
  Below is a proposed ERD for the tables to be modelled for the database that is relevant to the webite purpose and contains relationships between tables.
- ![Nunisi ERD](/documentation/database_erd.png.png)
+ ![Nunisi ERD](/documentation/database_erd.png)
+ **Explanation**
+ - The relational database will consist of 5 linked tables.
+ - The allauth table will house all of the login data for the user. This will autoincrement. Allauth also contains the functionality to reset a forgotten password. Over this meets User Stories... (security, reset password)
+ - The profile table will house the data for the user profile, drawing from the allauth table in a 1 to 1 relationship and from the trip table in a 1 to many relationship through the use of foreign keys. There will also be profile specific fields such as signing up to a newsletter.
+ - The trip table will be linked to the room table in a many to 1 relationship with a foreign key and will also include data on the check in and out dates and the overall price of the trip.
+ - The room table will hold the information for each room including the room name, room amenities, number of beds, amount of people the room sleeps, availability, and price per night. 
+ - The review table will be linked to the Allauth user account through a many to one relationship and to the trip table through a many to one relationship with foreign keys. It will also have a star rating and the review content.
 
+#### Interactive Experience
+- Clickable links will have animated effects on hover or click, providing clear feedback to the user.
+- All external links will open in a new tab. 
+- Content hinting will be used where possible to influence the user to scroll down and uncover new content on the pages.
+- Invalid entries into forms will be highlighted to the user quickly and efficiently.
+
+### Skeleton
+
+[Balsamiq Wireframes](https://balsamiq.com/) was used during this section to create wireframes.
+
+#### Wireframes
+
+[Desktop Wireframes](/documentation/design/desktop_wireframes.png)
+<br>
+
+[Mobile Wireframes](/documentation/design/mobile_wireframes.png)
