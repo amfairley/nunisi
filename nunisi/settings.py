@@ -150,3 +150,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Allauth social accounts
 SOCIALACCOUNT_PROVIDERS = {}
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Allauth aignup requirements, removing username and requiring email
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTIFICATION_METHOD = "email"
