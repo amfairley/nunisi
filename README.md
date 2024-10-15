@@ -130,7 +130,19 @@ One of the security steps taken was to put all sensitive and irrelevant informat
 | venv | It has the virtual environment information including paths and configurations that won't work for other developers or environments. So it was added to .gitignore to reduce redundancy and clutter in the repository. |
 | env.py | To hide sensitive information such as… |
 
+**Django Allauth**<br>
+AllAuth is an open source Django package that I used to handle user authentication on the website. It is open source, so it is backed by millions of developers who keep it up to date and secure, providing a key part in the security of this website and data-security of the users who will create user accounts with us. The client ID and secret keys for the social sign-ins are kept in the secure admin dashboard.
+
+**Password Security**<br>
+Django AllAuth uses the password hashing algorithm PBKDF2 to hash passwords before storing them, allowing them to be stored securely and for the possibility for multiple users to have the same password without impacting site security.
+
+**Email Validation**<br>
+As a part of Django-allauth, email validation is required to prevent fake accounts, verify ownership of the email address, and to reduce phishing risks.
+
 ### Defensive Programming
+
+**Password confirmation**<br>
+The signup form requires a confirmation of the password to prevent the user from making a typo.
 
 ### Future Security Implementations
 
@@ -157,6 +169,8 @@ One of the security steps taken was to put all sensitive and irrelevant informat
 ### Libraries and Packages
 - [Pip](https://pypi.org/project/pip/)
     - The package installer for python used to install packages and libraries.
+- [Django Allauth](https://django-allauth.readthedocs.io/en/latest/)
+    - Used for user authentication along with registration and account management.
 
 ### Tools
 - [Visual Studio Code](https://code.visualstudio.com/)
@@ -165,6 +179,8 @@ One of the security steps taken was to put all sensitive and irrelevant informat
 	- Used for version control.
 - [GitHub](https://github.com/)
 	- Used to store the code in a repository.
+- [Google Developer Tools](https://console.cloud.google.com/apis/dashboard)
+    - Used to implement google login and verification
 
 ## User Feedback
 
