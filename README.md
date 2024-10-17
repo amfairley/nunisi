@@ -178,9 +178,15 @@ The signup form requires a confirmation of the password to prevent the user from
 - [Git](https://git-scm.com/)
 	- Used for version control.
 - [GitHub](https://github.com/)
-	- Used to store the code in a repository.
+	- Used to store the code in a repository
 - [Google Developer Tools](https://console.cloud.google.com/apis/dashboard)
     - Used to implement google login and verification
+- [Google Fonts](https://fonts.google.com/)
+    - Used to get different typefaces and fonts for the project
+- [Balsamiq Wireframes](https://balsamiq.com/)
+    - Used for creating wireframes for the project
+- [Logo Design AI](https://logodesign.ai/)
+    - Used for creating the site logo
 
 ## User Feedback
 
