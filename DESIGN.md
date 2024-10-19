@@ -20,6 +20,16 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
     - [Structure](#structure)
         * [base.html](#basehtml)
         * [index.html](#indexhtml)
+        * [allauth](#allauth)
+        * [search_results.html](#search_resultshtml)
+        * [trips.html](#tripshtml)
+        * [cancel_trip.html](#cancel_triphtml)
+        * [checkout.html](#checkouthtml)
+        * [account_settings.html](#account_settingshtml)
+        * [delete_account.html](#delete_accounthtml)
+        * [rooms.html](#roomshtml)
+        * [Information Architecture](#information-architecture)
+        * [Interactive Experience](#interactive-experience)
     - [Skeleton](#skeleton)
         * [wireframes](#wireframes)
     - [Surface](#surface)
@@ -98,6 +108,48 @@ The website will be built using Django, allowing for template inheritance and pa
     - Location information with a google maps widget
     - Hotel FAQs
     - A carousel of reviews if available
+- **allauth**: Django AllAuth provides a host of urls to help with user account management. These are:
+    - admin/
+    - accounts/ login/
+    - accounts/ logout/
+    - accounts/ inactive/
+    - accounts/ signup/
+    - accounts/ reauthenticate/
+    - accounts/ email/ 
+    - accounts/ confirm-email/ 
+    - accounts/ ^confirm-email/(?P<key>[-:\w]+)/$ 
+    - accounts/ password/change/ 
+    - accounts/ password/set/ 
+    - accounts/ password/reset/
+    - accounts/ password/reset/done/
+    - accounts/ ^password/reset/key/(?P<uidb36>[0-9A-Za-z]+)-(?P<key>.+)/$
+    - accounts/ password/reset/key/done/
+    - accounts/ login/code/confirm/
+    - accounts/ 3rdparty/
+    - accounts/ social/login/cancelled/
+    - accounts/ social/login/error/
+    - accounts/ social/signup/
+    - accounts/ social/connections/
+    - accounts/ google/
+    - accounts/ google/login/token/
+- **search_results.html**: This page shows the available rooms based on the search criteria. It will show:
+    - Cards of each room showing the name, amenities, description, image, price per night and total price.
+    - Each room will have a book button leading the user to the checkout.
+- **trips.html**: This page will show the users previous and upcoming trips. There will be:
+    - A card for each trip with date, room information, image, and review.
+    - If the trip is in the past and there is no review, there will be an add review button.
+    - If the trip is in the future there will be a cancel trip button.
+- **cancel_trip.html**: This page will have the form for cancelling the trip. It will have a message about cancellation fees, a space for the user to enter a reason for cancellation, a cancel button and some text inviting the user to contact us if they need to amend the trip details.
+- **checkout.html**: This page will display the trip information and allow users to input payment information.
+- **account_settings.html**: This will allow users to edit their account settings. It will have:
+    - A list of current settings
+    - A toggle to sign up to a newsletter
+    - Buttons to edit
+    - A button to delete
+- **rooms.html**: This page will be available to the admin user to add, remove, and edit room details.
+    - The room information will be shown as a table
+    - There will be an add room button
+    - Each table entry will have an edit and delete button
 
 ### Structure
 
@@ -119,10 +171,73 @@ The website will be built using Django, allowing for template inheritance and pa
 - The next section will be the FAQ section. This meets the requirement for providing FAQs. This will have a section title and an unordered list of questions and answers. This will take up 3 columns on desktop, 2 on tablet, and 1 on mobile devices.
 - The last section will be a carousel of reviews if reviews are available. This meets the requirement for showing user reviews. They will give a general name e.g. First_name from country, the review content, and a star rating.
 
+#### allauth
+- The allauth pages will have the sitewide header and footer and then their key functionality in the centre.
+- They meet the requirements for logging in/out, signing up securely, editing email address, email verification, changing/resetting password, and social logins.
+
+#### search_results.html
+- The page will consist of available rooms in cards meeting the requirement for showing results.
+- There will be a filter button letting the user sort the results by price meeting the requirement for sorting/filtering results.
+- If there are no results there will be a message alerting the user.
+
+#### trips.html
+- The page will show the users previous and upcoming trips, meeting the requirement for showing trips.
+- Each trip will be rendered in a card with a horizontal rule between each card.
+- There will be links to add a review if the trip is in the past and edit review if a review exists, meeting the requirements for users to leave reviews and for the business owner to receive reviews.
+
+#### cancel_trip.html
+- This page will allow the users to cancel an upcoming trip.
+- There will be a message detailing the cancellation fees dependent on how much time there is before the trip.
+- There will be a text input allowing users to explain their reason for cancellation.
+- There will be some text giving contact details if the user wishes to discuss the trip instead of cancelling.
+
+#### checkout.html
+- This page will display 2 columns. The left will be the stripe form for entering payment and personal details and the right column will show the order summary.
+- There will be a button for deleting the order.
+- There will be a button to confirm payment and open the payment widget.
+- All payment will be done via stripe, meeting the requirement for a secure payment method.
+
+#### account_settings.html
+- A toggle switch for signing/unsubscribing to the newsletter will be near the top, meeting the requirement for signing up to a newsletter.
+- The name/address etc from stripe will be shown and able to be edited/updated meeting the requirement for CRUD functionality of the user details.
+- The AllAuth user info will be shown including adding email addresses
+- At the bottom there will be a delete account button meeting the requirement for user ability to delete account.
+
+#### delete_account.html
+- This page will check that the user does want to delete their account and when confirmed will delete the account.
+
+#### rooms.html
+- This admin only page will allow the admin to see and edit the room details, meeting the requirement for easy room administration. 
+- The room data will be shown in a table with each entry having buttons to edit or delete the room.
+- There will be an "add room" button.
+- The add room button will take the admin to a form page for the new room.
+- The edit room will take the admin to a form page to edit the room with all fields completed.
+- The delete room button will take the admin to a confirmation page to confirm deletion.
+
+#### Information Architecture
+**Back-end**: Entity Relationship Diagram (ERD) <br>
+Below is a proposed ERD for the tables to be modelled for the database that meets the purpose and requirements of the website.
+![Nunisi entity relationship diagram](/documentation/entity_relationship_diagram.png)<br>
+**Explanation**
+- The relational database will consist of 6 linked tables.
+- The User model will use the Django user model and AllAuth to store authentication data including the email address and password.
+- The Profile model will have a foreign key to the User model set up in a way as to delete the Profile when the User is deleted. It also has a boolean field for the user to sign up to a newsletter and will have all the contact information required by stripe.
+- The Trip model will house the information for each trip. It will be linked with the Profile model and Room model via foreign keys in many to one relationships. It will have the data for the start date, end date, price, and a Boolean field to notify whether the user will cancel the trip. This will be set to False by default.
+- The Room model will have all the information for the Rooms, this includes the room name, a sanitised room name for display on the website, the amount of people the room can hold, a description of the room, a list of amentities as a list of integers referring to the ids in the Amenities model, an image of the room, the nightly price, a list of dates in which the room is unavailable.
+- The Amenities model will hold information of the amenities. It is referenced from the Room model but set up in a simple easy to understand way rather than a many to many relationship. Each amenity has an ID, name, sanitised name, and an icon which will consist of the HTML for the Font Awesome icon.
+- The Review model will hold the information for the reviews. It has a foreign key relationship to the Trip model in a one to one relationship, limiting one review per trip. It also has ratings for cleanliness, food, service, staff, and overall which will be an integer from 1-5. It will also have the written review content as a text field.
+
+#### Interactive Experience
+- Clickable links will have animated effects on hover or click, providing clear feedback to the user.
+- All external links will open in a new tab. 
+- Content hinting will be used where possible to influence the user to scroll down and uncover new content on the pages.
+
 ### Skeleton
 
 #### Wireframes
-[Balsamiq Wireframes](https://balsamiq.com/) was used to create wireframe templates for this webapp.
+[Balsamiq Wireframes](https://balsamiq.com/) was used to create wireframe templates for this webapp.<br>
+The Desktop Wireframes can be seen [here](/documentation/wireframes_desktop.png). <br>
+Where there were major differences, Mobile Wireframes were mocked up and can be seen [here](/documentation/wireframes_mobile.png).<br>
 
 ### Surface
 
