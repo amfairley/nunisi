@@ -16,3 +16,6 @@ class BookingForm(forms.Form):
         label='Check-out date',
         required=True
     )
+    adults = forms.IntegerField(
+        min_value=1
+    )
