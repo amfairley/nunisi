@@ -59,24 +59,74 @@ class BookingFormTest(TestCase):
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
-            'adults': 0
+            'adults': 0,
+            'children': 1
         })
         self.assertFalse(form.is_valid())
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
-            'adults': 1
+            'adults': 1,
+            'children': 1
         })
         self.assertTrue(form.is_valid())
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
-            'adults': 5
+            'adults': 5,
+            'children': 1
         })
         self.assertTrue(form.is_valid())
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
-            'adults': 6
+            'adults': 6,
+            'children': 1
+        })
+        self.assertFalse(form.is_valid())
+
+    def test_children_required(self):
+        '''Tests that the children selection is required'''
+        form = BookingForm({'children': ''})
+        self.assertFalse(form.is_valid())
+        self.assertIn('children', form.errors)
+
+    def test_children_label(self):
+        '''Tests the children label'''
+        form = BookingForm()
+        form_label = form['children'].label_tag()
+        self.assertEqual(
+            form_label,
+            '<label for="id_children">Children (5+):</label>'
+        )
+
+    def test_children_values(self):
+        '''Tests that valid values for children is 1-5'''
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 1,
+            'children': 0
+        })
+        self.assertFalse(form.is_valid())
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 1,
+            'children': 1
+        })
+        self.assertTrue(form.is_valid())
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 1,
+            'children': 5
+        })
+        self.assertTrue(form.is_valid())
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 1,
+            'children': 6
         })
         self.assertFalse(form.is_valid())
