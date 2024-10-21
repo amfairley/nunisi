@@ -2,4 +2,10 @@ from django import forms
 
 
 class BookingForm(forms.Form):
-    name = forms.CharField()
+    check_in_date = forms.DateField(
+        widget=forms.DateInput(
+            attrs={'type': 'date', 'class': 'form-control'}
+        ),
+        label='Check-in date',
+        required=True
+    )
