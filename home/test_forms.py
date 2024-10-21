@@ -53,3 +53,30 @@ class BookingFormTest(TestCase):
             form_label,
             '<label for="id_adults">Adults (18+):</label>'
         )
+
+    def test_adults_values(self):
+        '''Tests that valid values for adults is 1-5'''
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 0
+        })
+        self.assertFalse(form.is_valid())
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 1
+        })
+        self.assertTrue(form.is_valid())
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 5
+        })
+        self.assertTrue(form.is_valid())
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 6
+        })
+        self.assertFalse(form.is_valid())
