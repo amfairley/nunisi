@@ -60,28 +60,32 @@ class BookingFormTest(TestCase):
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 0,
-            'children': 1
+            'children': 1,
+            'infants': 1
         })
         self.assertFalse(form.is_valid())
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 1,
-            'children': 1
+            'children': 1,
+            'infants': 1
         })
         self.assertTrue(form.is_valid())
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 5,
-            'children': 1
+            'children': 1,
+            'infants': 1
         })
         self.assertTrue(form.is_valid())
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 6,
-            'children': 1
+            'children': 1,
+            'infants': 1
         })
         self.assertFalse(form.is_valid())
 
@@ -106,27 +110,81 @@ class BookingFormTest(TestCase):
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 1,
-            'children': 0
+            'children': 0,
+            'infants': 1
         })
         self.assertFalse(form.is_valid())
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 1,
-            'children': 1
+            'children': 1,
+            'infants': 1
         })
         self.assertTrue(form.is_valid())
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 1,
-            'children': 5
+            'children': 5,
+            'infants': 1
         })
         self.assertTrue(form.is_valid())
         form = BookingForm({
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 1,
-            'children': 6
+            'children': 6,
+            'infants': 1
+        })
+        self.assertFalse(form.is_valid())
+
+    def test_infants_required(self):
+        '''Tests that the infants selection is required'''
+        form = BookingForm({'infants': ''})
+        self.assertFalse(form.is_valid())
+        self.assertIn('infants', form.errors)
+
+    def test_infants_label(self):
+        '''Tests the infants label'''
+        form = BookingForm()
+        form_label = form['infants'].label_tag()
+        self.assertEqual(
+            form_label,
+            '<label for="id_infants">Infants (0-5):</label>'
+        )
+
+    def test_infants_values(self):
+        '''Tests that valid values for infants is 1-5'''
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 1,
+            'children': 1,
+            'infants': 0
+        })
+        self.assertFalse(form.is_valid())
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 1,
+            'children': 1,
+            'infants': 1
+        })
+        self.assertTrue(form.is_valid())
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 1,
+            'children': 1,
+            'infants': 5
+        })
+        self.assertTrue(form.is_valid())
+        form = BookingForm({
+            'check_in_date': '2024-10-10',
+            'check_out_date': '2024-10-11',
+            'adults': 1,
+            'children': 1,
+            'infants': 6
         })
         self.assertFalse(form.is_valid())
