@@ -15,14 +15,11 @@ class BookingFormTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('check_in_date', form.errors)
 
-    def test_check_in_widget(self):
-        '''Tests correct check in widget'''
+    def test_check_in_label(self):
+        '''Tests the check in label'''
         form = BookingForm()
+        form_label = form['check_in_date'].label_tag()
         self.assertEqual(
-            form.fields['check_in_date'].widget.attrs['type'],
-            'date'
-        )
-        self.assertEqual(
-            form.fields['check_in_date'].widget.attrs['class'],
-            'form-control'
+            form_label,
+            '<label for="id_check_in_date">Check-in date:</label>'
         )
