@@ -23,3 +23,9 @@ class BookingFormTest(TestCase):
             form_label,
             '<label for="id_check_in_date">Check-in date:</label>'
         )
+
+    def test_check_out_required(self):
+        '''Tests that the check out section is required'''
+        form = BookingForm({'check_out_date': ''})
+        self.assertFalse(form.is_valid())
+        self.assertIn('check_out_date', form.errors)
