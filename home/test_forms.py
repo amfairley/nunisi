@@ -38,3 +38,9 @@ class BookingFormTest(TestCase):
             form_label,
             '<label for="id_check_out_date">Check-out date:</label>'
         )
+
+    def test_adults_required(self):
+        '''Tests that the adults selection is required'''
+        form = BookingForm({'adults': ''})
+        self.assertFalse(form.is_valid())
+        self.assertIn('adults', form.errors)
