@@ -9,3 +9,6 @@ class BookingForm(forms.Form):
         label='Check-in date',
         required=True
     )
+    check_out_date = forms.DateField(
+        required=True
+    )
