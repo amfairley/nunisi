@@ -44,3 +44,12 @@ class BookingFormTest(TestCase):
         form = BookingForm({'adults': ''})
         self.assertFalse(form.is_valid())
         self.assertIn('adults', form.errors)
+
+    def test_adults_label(self):
+        '''Tests the adults label'''
+        form = BookingForm()
+        form_label = form['adults'].label_tag()
+        self.assertEqual(
+            form_label,
+            '<label for="id_adults">Adults (18+):</label>'
+        )
