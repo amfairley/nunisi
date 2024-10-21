@@ -22,3 +22,7 @@ class BookingFormTest(TestCase):
             form.fields['check_in_date'].widget.attrs['type'],
             'date'
         )
+        self.assertEqual(
+            form.fields['check_in_date'].widget.attrs['class'],
+            'form-control'
+        )
