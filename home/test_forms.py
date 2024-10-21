@@ -29,3 +29,12 @@ class BookingFormTest(TestCase):
         form = BookingForm({'check_out_date': ''})
         self.assertFalse(form.is_valid())
         self.assertIn('check_out_date', form.errors)
+
+    def test_check_out_label(self):
+        '''Tests the check out label'''
+        form = BookingForm()
+        form_label = form['check_out_date'].label_tag()
+        self.assertEqual(
+            form_label,
+            '<label for="id_check_out_date">Check-out date:</label>'
+        )
