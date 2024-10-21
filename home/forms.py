@@ -18,5 +18,7 @@ class BookingForm(forms.Form):
     )
     adults = forms.IntegerField(
         min_value=1,
-        label="Adults (18+)"
+        max_value=5,
+        label="Adults (18+)",
+        required=True
     )
