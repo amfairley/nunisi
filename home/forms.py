@@ -10,5 +10,9 @@ class BookingForm(forms.Form):
         required=True
     )
     check_out_date = forms.DateField(
+        widget=forms.DateInput(
+            attrs={'type': 'date', 'class': 'form-control'}
+        ),
+        label='Check-out date',
         required=True
     )
