@@ -9,7 +9,16 @@ class BookingFormTest(TestCase):
         form = BookingForm()
         self.assertIsInstance(form, BookingForm)
 
-    def test_name_form_required(self):
-        '''Tests that the name form is required'''
+    def test_check_in_required(self):
+        '''Tests that the check in section is required'''
         form = BookingForm({'check_in_date': ''})
-        self.assertTrue(form.is_valid())
+        self.assertFalse(form.is_valid())
+        self.assertIn('check_in_date', form.errors)
+
+    def test_check_in_widget(self):
+        '''Tests correct check in widget'''
+        form = BookingForm()
+        self.assertEqual(
+            form.fields['check_in_date'].widget.attrs['type'],
+            'date'
+        )
