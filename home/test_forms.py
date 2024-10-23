@@ -188,3 +188,16 @@ class BookingFormTest(TestCase):
             'infants': 6
         })
         self.assertFalse(form.is_valid())
+
+    def test_booking_meta_fields(self):
+        form = BookingForm()
+        self.assertEqual(
+            form.Meta.fields,
+            [
+                'check_in_date',
+                'check_out_date',
+                'adults',
+                'children',
+                'infants'
+            ]
+        )
