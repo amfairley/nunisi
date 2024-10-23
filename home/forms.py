@@ -34,3 +34,12 @@ class BookingForm(forms.Form):
         label="Infants (0-5)",
         required=True
     )
+
+    class Meta:
+        fields = [
+            'check_in_date',
+            'check_out_date',
+            'adults',
+            'children',
+            'infants'
+        ]
