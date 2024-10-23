@@ -23,13 +23,13 @@ class BookingForm(forms.Form):
         required=True
     )
     children = forms.IntegerField(
-        min_value=1,
+        min_value=0,
         max_value=5,
         label="Children (5+)",
         required=True
     )
     infants = forms.IntegerField(
-        min_value=1,
+        min_value=0,
         max_value=5,
         label="Infants (0-5)",
         required=True

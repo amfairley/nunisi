@@ -110,7 +110,7 @@ class BookingFormTest(TestCase):
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 1,
-            'children': 0,
+            'children': -1,
             'infants': 1
         })
         self.assertFalse(form.is_valid())
@@ -118,7 +118,7 @@ class BookingFormTest(TestCase):
             'check_in_date': '2024-10-10',
             'check_out_date': '2024-10-11',
             'adults': 1,
-            'children': 1,
+            'children': 0,
             'infants': 1
         })
         self.assertTrue(form.is_valid())
@@ -161,7 +161,7 @@ class BookingFormTest(TestCase):
             'check_out_date': '2024-10-11',
             'adults': 1,
             'children': 1,
-            'infants': 0
+            'infants': -1
         })
         self.assertFalse(form.is_valid())
         form = BookingForm({
@@ -169,7 +169,7 @@ class BookingFormTest(TestCase):
             'check_out_date': '2024-10-11',
             'adults': 1,
             'children': 1,
-            'infants': 1
+            'infants': 0
         })
         self.assertTrue(form.is_valid())
         form = BookingForm({
