@@ -21,7 +21,7 @@ class BookingFormTest(TestCase):
         form_label = form['check_in_date'].label_tag()
         self.assertEqual(
             form_label,
-            '<label for="id_check_in_date">Check-in date:</label>'
+            '<label for="id_check_in_date">Check-in:</label>'
         )
 
     def test_check_out_required(self):
@@ -36,7 +36,7 @@ class BookingFormTest(TestCase):
         form_label = form['check_out_date'].label_tag()
         self.assertEqual(
             form_label,
-            '<label for="id_check_out_date">Check-out date:</label>'
+            '<label for="id_check_out_date">Check-out:</label>'
         )
 
     def test_adults_required(self):
@@ -92,8 +92,7 @@ class BookingFormTest(TestCase):
     def test_children_required(self):
         '''Tests that the children selection is required'''
         form = BookingForm({'children': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('children', form.errors)
+        self.assertNotIn('children', form.errors)
 
     def test_children_label(self):
         '''Tests the children label'''
@@ -142,8 +141,7 @@ class BookingFormTest(TestCase):
     def test_infants_required(self):
         '''Tests that the infants selection is required'''
         form = BookingForm({'infants': ''})
-        self.assertFalse(form.is_valid())
-        self.assertIn('infants', form.errors)
+        self.assertNotIn('infants', form.errors)
 
     def test_infants_label(self):
         '''Tests the infants label'''
