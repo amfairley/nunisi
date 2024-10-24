@@ -1,0 +1,331 @@
+/* ---------- Fonts ---------- */
+/* Google font imports */
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Jost&family=Roboto:ital,wght@0,400;1,300&display=swap');
+
+.jost-font {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+.caveat-font {
+    font-family: Caveat, "Brush Script MT", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.roboto-font {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ---------- Global styling ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+.content {
+    /* 100% view height - header (168px) - footer (168px) */
+    min-height: calc(100vh - 336px);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nunisi-button {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    color: #3A6B35;
+    background-color: #FDD67C;
+    border-color: #333A3F;
+}
+
+.nunisi-button:hover {
+    border-color: #333A3F;
+    color:#FDD67C;
+}
+
+/* ---------- Navigation bar styling ---------- */
+#top-nav {
+    background-color: #3A6B35;
+    height: 168px;
+    padding: 0;
+}
+
+/* Logo */
+.site-logo-container {
+    height: 168px;
+    width: 205px;
+    top: 0;
+    padding: 0;
+}
+#navbar-brand {
+    height: 168px;
+}
+#site-logo-nav {
+    height: 168px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Booking form */
+#form-div {
+    max-width: 535px;
+}
+#search-form-title {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    margin-bottom: 0;
+    color: #FDD67C;
+    font-weight: 600;
+}
+
+.check-in-div,
+.check-out-div {
+    top: -15px;
+}
+
+.check-in-div label,
+.check-out-div label {
+    padding-top: 25px;
+    padding-left: 22px;
+    font-size: 1rem;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#3A6B35;
+    font-weight: 600;
+}
+
+#id_check_out_date,
+#id_check_in_date {
+    color: #3A6B35;
+    background-color: #FDD67C;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    border: 1px solid #333A3F;
+}
+
+.check-in-div input:hover,
+.check-out-div input:hover {
+    cursor: pointer;
+}
+
+#guest-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#guest-dropdown button{
+    background-color: #FDD67C;
+    color:#3A6B35;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    border: 1px solid #333A3F;
+}
+
+.guest-dropdown-menu.show {
+    background-color:#FDD67C;
+    color:#3A6B35;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    border: 1px solid #333A3F;
+}
+
+.guest-dropdown-menu.show li{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 170px;
+}
+
+.guest-dropdown-menu.show label {
+    margin-left: 10px;
+    font-size:1rem;
+}
+
+.guest-dropdown-menu.show input {
+    position: absolute;
+    right: 10px;
+    background-color: #3A6B35;
+    text-align: center;
+    color:#FDD67C;
+    font-weight: bolder;
+}
+
+
+/* Account menu */
+#account-dropdown-super-div{
+    display: flex;
+    align-items: center;
+    height: 168px;
+}
+
+#account-dropdown-div {
+    width: 205px !important;
+    text-align: right;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+#account-dropdown {
+    background-color: #3A6B35;
+    border: 3px solid #FDD67C;
+    color: #FDD67C;
+}
+
+#account-dropdown:hover, #account-dropdown:active, #account-dropdown:focus {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border: 4px solid #b88c26;
+    transition-duration: 0.2ms;
+}
+
+#account-nav-menu {
+    padding-right: 10px;
+}
+
+#account-nav-menu i {
+    font-size: 1.5rem;
+}
+
+#account-nav-menu .fa-bars {
+    padding-right: 10px;
+}
+
+#account-nav-menu .fa-circle-user {
+    padding-left: 10px;
+}
+
+#account-nav-menu-dropdown {
+    background-color: #3A6B35;
+    border: 1px solid #b88c26;
+}
+
+.account-link {
+    font-size: 1.2rem;
+    color:#FDD67C;
+}
+
+.account-link a {
+    padding-left: 8px;
+}
+
+/* ---------- Footer Styling ---------- */
+.footer {
+    background-color: #3A6B35;
+    color: #FDD67C;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 168px;
+    border: 1px black solid;
+    overflow: hidden;
+}
+
+.footer-container {
+    margin: 0;
+}
+
+.footer-row {
+    width: 100vw;
+}
+
+
+.footer div ul {
+    list-style-type: none;
+}
+
+.hotel-socials {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.hotel-socials i {
+    font-size: 1.2rem;
+}
+
+.facebook-link {
+    margin-right: 16px;
+}
+
+.fa-facebook:hover {
+    color: blue;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.fa-instagram:hover {
+    color: white;
+    background-color: black;
+    border-radius: 30%;
+}
+
+.email-icon-footer,
+.phone-icon-footer {
+    margin-right: 16px;
+}
+
+.hotel-email-link:hover {
+    font-weight: bolder;
+}
+
+.footer-logo-div {
+    justify-content: center;
+}
+
+.footer-logo img{
+    height: 168px;
+}
+
+.developer-info-div {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.developer-info-div p {
+    font-weight: bolder;
+}
+
+.developer-info-div i {
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.fa-github:hover {
+    color: black;
+}
+
+/* ---------- Media-queries ---------- */
+
+@media (max-width: 991px) {
+    /* Change account menu position */
+    #account-nav-menu {
+        position: absolute;
+        right: 5px;
+        top: 70px;
+    }
+    /*Change footer height */
+    .footer {
+        height: 130px;
+    }
+
+    /* Update content height with new footer height */
+    .content {
+        /* 100% view height - header (168px) - footer (130px) */
+        min-height: calc(100vh - 298px);
+    }
+}
