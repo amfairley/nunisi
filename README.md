@@ -195,6 +195,8 @@ The signup form requires a confirmation of the password to prevent the user from
     - Used for creating wireframes for the project
 - [Logo Design AI](https://logodesign.ai/)
     - Used for creating the site logo
+- [BGJar](https://bgjar.com/)
+    - Used for creating the website background
 - [W3C HTML Validator](https://validator.w3.org/)
     - For validating the HTML on each page
 - [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/)
