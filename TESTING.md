@@ -71,6 +71,13 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Developer GitHub link | Click | The developer's github profile is opened in a new tab | Y | N/A |
 | Responsivity | Reduce screen size to below 992px | Booking form disappears | Y | N/A |
 | Responsivity | Reduce screen size to below 992px | Footer logo disappears | Y | N/A |
+| **AllAuth Pages** | | | | |
+| Sign in form | Enter incorrect username | Error appears saying The username and/or password you specified are not correct | Y | N/A |
+| Sign in form | Enter incorrect password | Error appears saying The username and/or password you specified are not correct | Y | N/A |
+| Sign in form | Hover submit button | Colours invert | Y | N/A |
+| Sign in form | Successfully sign in | User redirected to home page | Y | N/A |
+| Sign in page | Click sign in with google | User redirected to Sign In Via Google Page | Y | N/A |
+
 
 ## Device and Browser Testing
 I tested the responsiveness of the website using Google Chrome Devtools to simulate 17 screen sizes; ranging from large desktops to the iPhone 5/SE and am happy to report that the website appears and functions as intended across the large screen size range. Additionally the website was tested on the Google Chrome, Mozzila Firefox, Microsoft Edge, and Brave browsers and no issues were encountered. I also tested the website on my 17.5" Laptop, 14" Laptop, and smart phone, noticing that it worked well in each case.
