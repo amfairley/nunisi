@@ -77,7 +77,8 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Sign in form | Hover submit button | Colours invert | Y | N/A |
 | Sign in form | Successfully sign in | User redirected to home page | Y | N/A |
 | Sign in page | Click sign in with google | User redirected to Sign In Via Google Page | Y | N/A |
-
+| Log out page | Hover the sign out button | Button colours invert | Y | N/A |
+| Log out page | Click the sign out button | User signed out and redirected to the home screen | Y | N/A |
 
 ## Device and Browser Testing
 I tested the responsiveness of the website using Google Chrome Devtools to simulate 17 screen sizes; ranging from large desktops to the iPhone 5/SE and am happy to report that the website appears and functions as intended across the large screen size range. Additionally the website was tested on the Google Chrome, Mozzila Firefox, Microsoft Edge, and Brave browsers and no issues were encountered. I also tested the website on my 17.5" Laptop, 14" Laptop, and smart phone, noticing that it worked well in each case.
