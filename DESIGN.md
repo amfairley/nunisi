@@ -253,11 +253,13 @@ The colour scheme started as an idea for gold and green to portray the natural a
 | Booking form labels | Title for the booking form | |
 | Account menu background | Booking form input backgrounds | |
 | Footer background | Account menu font colour | |
+| AllAuth Titles | | |
 
 **Other colours used:**
-- Off black: #333A3F for border colours on buttons
+- Off black: #333A3F for border colours on buttons, dark text throughout
 - Facebook: Blue and white are used for the Facebook logo
 - Instagram and GitHub: Black and white are used for the Instagram and GitHub logos.
+- Lava: #CF1020 for error messages
 
 #### Typography
 
@@ -316,4 +318,9 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The developer name is proudly displayed on the website along with a link the developer's GitHub profile. |
 | **User Stories Covered:** 2, 10 |
 
-
+| **Allauth: Sign In** |
+| ----- |
+| **Page: /accounts/login** |
+| <details><summary>Sign In</summary><img src="/documentation/features/allauth_sign_in.png"></details> |
+| **Details:** The AllAuth sign in form handles all user authentication and allows the user to sign in with google. |
+| **User Stories Covered:** 2, 11, 14, 16 |
