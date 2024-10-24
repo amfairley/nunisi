@@ -163,8 +163,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SOCIALACCOUNT_PROVIDERS = {}
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# Allauth aignup requirements, removing username and requiring email
+# Allauth signup requirements, removing username and requiring email
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTIFICATION_METHOD = "email"
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
