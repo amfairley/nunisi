@@ -6,9 +6,9 @@
     {% if not SOCIALACCOUNT_ONLY %}
         {% element hr %}
         {% endelement %}
-        {% element h2 %}
+        <h2 class="allauth-title">
             {% translate "Or use a third-party" %}
-        {% endelement %}
+        </h2>
     {% endif %}
     {% include "socialaccount/snippets/provider_list.html" with process="login" %}
     {% include "socialaccount/snippets/login_extra.html" %}
