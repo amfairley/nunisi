@@ -246,11 +246,18 @@ The colour scheme started as an idea for gold and green to portray the natural a
 
 ![Colour Scheme](/linktoimage.png)
 
-| Green #3A6B35 | Gold #E3B448 | Medium Spring Bud #CBD18F |
+| Green #3A6B35 | Gold #FDD67C | Gold 2 #B88C26 |
 | ----- | ----- | ----- |
+| Button font colour | Button background colour | Account menu border |
+| Navigation bar background | Button font colour on hover | |
+| Booking form labels | Title for the booking form | |
+| Account menu background | Booking form input backgrounds | |
+| Footer background | Account menu font colour | |
 
 **Other colours used:**
-- Colour 1: 
+- Off black: #333A3F for border colours on buttons
+- Facebook: Blue and white are used for the Facebook logo
+- Instagram and GitHub: Black and white are used for the Instagram and GitHub logos.
 
 #### Typography
 
@@ -270,13 +277,43 @@ This is my selection for block text across the website. Roboto is the most popul
 
 #### Images
 - The site logo was created using [Logo Design AI](https://logodesign.ai/) to create a simple and usable logo throughout the website.
-- - The icons used across the site were from [Font Awesome](https://fontawesome.com/).
+- The icons used across the site were from [Font Awesome](https://fontawesome.com/).
 
 ## Features
 
-| **Feature Name** |
+| **Site Logo** |
 | ----- |
-| **Page:** |
-| <details><summary>Feature Image</summary><img src=""></details> |
-| **Details:** |
-| **User Stories Covered:** |
+| **Page: All - Header and Footer** |
+| <details><summary>Site Logo</summary><img src="/documentation/features/site_logo.png"></details> |
+| **Details:** The site logo conveys the brand of the website and hotel, immediately conveys the website that the user is on, and acts as a link back to the homepage. |
+| **User Stories Covered:** 1, 2 |
+
+| **Booking Form** |
+| ----- |
+| **Page: All - Header / Homepage** |
+| <details><summary>Booking Form</summary><img src="/documentation/features/booking_form.png"></details> |
+| **Details:** The booking form is available on all large screens in the header, prompting the user to search for rooms. On smaller screens it appears as it's own section on the homepage. |
+| **User Stories Covered:** 2, 22 |
+
+| **Account Menu** |
+| ----- |
+| **Page: All - Header** |
+| <details><summary>Account Menu</summary><img src="/documentation/features/account_menu.png"></details> |
+| **Details:** The account menu allows the user to access their Trips, Account details and Log out functionality. When logged out it only displays links to sign up / login and when signed in as an admin, displays a link to add and edit Rooms in the database. |
+| **User Stories Covered:** 2, 11, 12, 16, 29, 36 |
+
+| **Footer Hotel Contact Information** |
+| ----- |
+| **Page: All - Footer** |
+| <details><summary>Hotel Contact Information</summary><img src="/documentation/features/footer_hotel_contact.png"></details> |
+| **Details:** The Facebook and Instagram icons open the Facebook page and Instagram page in a new tab respectively. The hotel email opens up a new email to the hotel email address in a new tab. The phone number provides an additional way to contact the hotel. |
+| **User Stories Covered:** 2, 3 |
+
+| **Footer Developer Information** |
+| ----- |
+| **Page: All - Footer** |
+| <details><summary>Developer Information</summary><img src="/documentation/features/developer_information.png"></details> |
+| **Details:** The developer name is proudly displayed on the website along with a link the developer's GitHub profile. |
+| **User Stories Covered:** 2, 10 |
+
+
