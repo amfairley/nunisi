@@ -42,7 +42,35 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Feature | Action | Expected results | Passed | Comments |
 | ----- | ----- | ----- | ----- | ----- |
 | **base.html** | | | | |
-| | | | | |
+| Site logo - header | Click | Redirected to the hompage | Y | N/A |
+| Site logo - footer | Click | Redirected to the hompage | Y | N/A |
+| Booking form | Submit with empty fields | Prompt to enter a check in date | Y | N/A |
+| Booking form | Submit with only check in date | Prompt to enter a check out date | Y | N/A |
+| Booking form | Submit with dates and no guests | Prompt to add guests | N | Ongoing bug |
+| Booking form | Click check in/check out | Calendar widget appears to select dates | Y | N/A |
+| Booking form | Click "guests" | Dropdown appears to add guests | Y | N/A |
+| Booking form | Add guests | "Guests" automatically updates to show total guests | Y | N/A |
+| Booking form | Hover the submit button | The colours invert | Y | N/A |
+| Account menu | Hover | The border becomes bolder and larger | Y | N/A |
+| Account menu | Click when logged out| Display login/signup links | Y | N/A |
+| Account menu - sign up link | Click | Redirected to the sign up page | Y | N/A |
+| Account menu - log in link | Click | Redirected to the log in page | Y | N/A |
+| Account menu | Click when logged in | Displays Trips/Account Settings/Log out links | Y | N/A |
+| Account menu - Trips link | Click | Redirected to Trips page | - | - |
+| Account menu - Account Settings link | Click | Redirected to account settings page | - | - |
+| Account menu - Logout | Redirected to log out page | Y | N/A |
+| Account menu | Click when logged in as Admin | See an extra link for Rooms | Y | N/A |
+| Account menu - Rooms link | Click | Redirected to the Rooms page | - | - |
+| Hotel Facebook icon | Hover | Icon turns to Facebook brand colours | Y | N/A |
+| Hotel Facebook icon | Click | Opens the Facebook homepage in a new tab | Y | N/A |
+| Hotel Instagram icon | Hover | Icon turns to Instagram brand colours | Y | N/A |
+| Hotel Instagram icon | Click | Opens the Instagram homepage in a new tab | Y | N/A |
+| Hotel email address | Hover | Text becomes bold | Y | N/A |
+| Hotel email address | Click | Opens a new email draft to the hotel email address | Y | N/A |
+| Developer GitHub link | Hover | Icon turns to GitHub brand colours | Y | N/A |
+| Developer GitHub link | Click | The developer's github profile is opened in a new tab | Y | N/A |
+| Responsivity | Reduce screen size to below 992px | Booking form disappears | Y | N/A |
+| Responsivity | Reduce screen size to below 992px | Footer logo disappears | Y | N/A |
 
 ## Device and Browser Testing
 I tested the responsiveness of the website using Google Chrome Devtools to simulate 17 screen sizes; ranging from large desktops to the iPhone 5/SE and am happy to report that the website appears and functions as intended across the large screen size range. Additionally the website was tested on the Google Chrome, Mozzila Firefox, Microsoft Edge, and Brave browsers and no issues were encountered. I also tested the website on my 17.5" Laptop, 14" Laptop, and smart phone, noticing that it worked well in each case.
