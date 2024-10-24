@@ -324,3 +324,10 @@ This is my selection for block text across the website. Roboto is the most popul
 | <details><summary>Sign In</summary><img src="/documentation/features/allauth_sign_in.png"></details> |
 | **Details:** The AllAuth sign in form handles all user authentication and allows the user to sign in with google. |
 | **User Stories Covered:** 2, 11, 14, 16 |
+
+| **Allauth: Log out** |
+| ----- |
+| **Page: /accounts/logout** |
+| <details><summary>Log out</summary><img src="/documentation/features/allauth_log_out.png"></details> |
+| **Details:** The AllAuth log out page allows the user to log out of their account and be redirected to the home screen. |
+| **User Stories Covered:** 2, 11, 16 |
