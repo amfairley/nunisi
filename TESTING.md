@@ -31,6 +31,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
     - [JavaScript Validation](#javascript-validation)
     - [Python Validation](#python-validation)
 5. [Bugs](#bugs)
+    - [Bug 1](#bug-1)
     - [Known Bugs](#known-bugs)
 6. [Analytics](#analytics)
 
@@ -199,6 +200,11 @@ The env.py file was also linted showing no errors but the screenshot has been om
 </details>
 
 ## Bugs
+
+### Bug 1:
+This bug occurred when creating the booking form. Initially the choice of guests was put inside a dropdown menu, making a sleek design. However upon submission of the form with invalid guest numbers; the following error happened:<br>
+![Bug 1](/documentation/bugs/bug_1_not_focussable_error.png)<br>
+The reason behind this is that since the number of e.g. adults was in a hidden dropdown when the form is submitted, the error cannot display correctly and the functionality cannot work. Multiple JavaScript functions were written to either display the error in the dropdown menu when the number is first entered (similar to the total guest update function) or to focus and open the dropdown menu when the form is submitted so that the input is not hidden. However, these did not fix the issue in a satisafactory way, so the decision was taken to have the inputs outside of a dropdown menu, removing this major bug.
 
 ### Known Bugs
 
