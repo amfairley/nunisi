@@ -27,13 +27,20 @@
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 .content {
-    /* 100% view height - header (168px) - footer (168px) */
     min-height: calc(100vh - 336px);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1030%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(214%2c 217%2c 178%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c441.213C80.976%2c431.82%2c120.653%2c338.5%2c188.466%2c293.259C254.632%2c249.116%2c346.402%2c244.044%2c392.595%2c179.292C441.636%2c110.548%2c462.039%2c18.587%2c443.127%2c-63.712C424.665%2c-144.052%2c354.749%2c-199.264%2c293.042%2c-253.923C238.087%2c-302.601%2c178.632%2c-349.44%2c106.31%2c-362.057C37.68%2c-374.03%2c-25.548%2c-332.108%2c-94.405%2c-321.514C-177.123%2c-308.787%2c-275.384%2c-348.184%2c-338.802%2c-293.573C-401.698%2c-239.412%2c-385.71%2c-139.244%2c-400.844%2c-57.633C-416.692%2c27.825%2c-465.765%2c117.158%2c-429.628%2c196.204C-393.492%2c275.249%2c-294.329%2c297.45%2c-218.83%2c340.506C-147.636%2c381.106%2c-81.411%2c450.657%2c0%2c441.213' fill='%23cfd3a5'%3e%3c/path%3e%3cpath d='M1440 1243.262C1564.445 1213.644 1626.539 1078.9859999999999 1712.862 984.582 1777.001 914.4390000000001 1841.478 847.838 1880.731 761.275 1919.901 674.896 1925.4940000000001 582.455 1937.854 488.419 1954.9859999999999 358.081 2051.5950000000003 203.969 1967.2350000000001 103.14800000000002 1883.375 2.9249999999999545 1710.412 102.89800000000002 1584.883 66.57499999999999 1460.143 30.480000000000018 1373.291-122.17399999999998 1244.445-106.00099999999998 1116.646-89.95899999999995 1045.435 47.678999999999974 960.941 144.89299999999997 876.318 242.255 742.9 332.321 751.611 461.025 760.574 593.4639999999999 946.261 639.56 1002.556 759.774 1057.943 878.049 980.972 1041.074 1068.594 1137.9189999999999 1156.716 1235.317 1312.223 1273.673 1440 1243.262' fill='%23dde0bf'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1030'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
 }
 
 a {
@@ -308,6 +315,102 @@ a {
     color: black;
 }
 
+.fa-github {
+    margin-right: 30px;
+}
+
+/* ---------- AllAuth Pages ---------- */
+.allauth-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.allauth-title {
+    text-align: center;
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #3A6B35;
+}
+
+.allauth-message {
+    text-align: center;
+    color: #333A3F;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.allauth-form {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.allauth-form ul{
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+    color: #CF1020;
+}
+
+.allauth-form span {
+    display: block;
+    padding-top: 15px;
+}
+
+.allauth-form span a:hover {
+    font-weight: bolder;
+}
+
+.allauth-button-div {
+    text-align: center;
+}
+
+.allauth-button-div button{
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    color: #3A6B35;
+    background-color: #FDD67C;
+    border-color: #333A3F;
+    border-radius: 10%;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.allauth-button-div button:hover {
+    border-color: #333A3F;
+    color:#FDD67C;
+    background-color: #3A6B35;
+}
+
+.allauth-socials {
+    text-align: center;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+.allauth-socials ul {
+    list-style-type: none;
+    font-size: 1.5rem;
+}
+
+.allauth-socials ul li a:hover{
+    font-weight: bolder;
+}
+
+.allauth-email-button {
+    margin-top: 10px;
+}
+
+#allauth-add-email {
+    margin-top: 10px;
+}
+
+#allauth-add-email-submit {
+    margin-bottom: 10px;
+}
+
+.allauth-message a:hover {
+    font-weight: bolder;
+}
 /* ---------- Media-queries ---------- */
 
 @media (max-width: 991px) {
@@ -320,11 +423,5 @@ a {
     /*Change footer height */
     .footer {
         height: 130px;
-    }
-
-    /* Update content height with new footer height */
-    .content {
-        /* 100% view height - header (168px) - footer (130px) */
-        min-height: calc(100vh - 298px);
     }
 }
