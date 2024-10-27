@@ -318,6 +318,20 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The developer name is proudly displayed on the website along with a link the developer's GitHub profile. |
 | **User Stories Covered:** 2, 10 |
 
+| **Allauth: Sign Up** |
+| ----- |
+| **Page: /accounts/signup** |
+| <details><summary>Sign Up</summary><img src="/documentation/features/allauth_sign_up.png"></details> |
+| **Details:** The AllAuth sign up form handles all user authentication and allows the user to create an account with their email or through their google account. |
+| **User Stories Covered:** 2, 11, 13, 14, 15 |
+
+| **Allauth: Email Validation** |
+| ----- |
+| **Page: /accounts/^confirm-email/(?P<key>[-:\w]+)/$** |
+| <details><summary>Email Validation</summary><img src="/documentation/features/allauth_sign_up.png"></details> |
+| **Details:** The AllAuth email validation page allows users to confirm their email. This increases the security of the website having real email addresses used for signing up and only allowing one account per email address. |
+| **User Stories Covered:** 2, 11, 15 |
+
 | **Allauth: Sign In** |
 | ----- |
 | **Page: /accounts/login** |
@@ -331,3 +345,38 @@ This is my selection for block text across the website. Roboto is the most popul
 | <details><summary>Log out</summary><img src="/documentation/features/allauth_log_out.png"></details> |
 | **Details:** The AllAuth log out page allows the user to log out of their account and be redirected to the home screen. |
 | **User Stories Covered:** 2, 11, 16 |
+
+| **Allauth: Reauthenticate** |
+| ----- |
+| **Page: /accounts/reauthenticate** |
+| <details><summary>Account Reauthenticate</summary><img src="/documentation/features/allauth_reauthenticate.png"></details> |
+| **Details:** The AllAuth reauthenticate page allows users to keep their accounts secure. |
+| **User Stories Covered:** 2, 11 |
+
+| **Allauth: Multiple Emails** |
+| ----- |
+| **Page: /accounts/email** |
+| <details><summary>Account Emails</summary><img src="/documentation/features/allauth_emails.png"></details> |
+| **Details:** The AllAuth emails page allows users to add and remove emails from their account. |
+| **User Stories Covered:** 2, 11 |
+
+| **Allauth: Change Password** |
+| ----- |
+| **Page: /accounts/password/change** |
+| <details><summary>Change password</summary><img src="/documentation/features/allauth_change_password.png"></details> |
+| **Details:** The AllAuth change password page allows users change their password to continue keeping their account secure or to access the forgotten password page. |
+| **User Stories Covered:** 2, 11, 17, 18 |
+
+| **Allauth: Reset Password** |
+| ----- |
+| **Page: /accounts/password/reset** |
+| <details><summary>Reset password</summary><img src="/documentation/features/allauth_password_reset.png"></details> |
+| **Details:** The AllAuth reset password page allows users to reset their password if they have forgotten it by enetering their email addresses and receiving a link to reset their password. |
+| **User Stories Covered:** 2, 11, 18 |
+
+| **Allauth: Google Login** |
+| ----- |
+| **Page: /accounts/google/login** |
+| <details><summary>Google Login</summary><img src="/documentation/features/allauth_google.png"></details> |
+| **Details:** The AllAuth Google login allows users to sign up or log in with their Google accounts. This is good for security, as it is a validated email address. |
+| **User Stories Covered:** 2, 11, 14 |
