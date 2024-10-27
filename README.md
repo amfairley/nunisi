@@ -155,6 +155,13 @@ The signup form requires a confirmation of the password to prevent the user from
 
 ## Future Development
 - Facebook and Instagram links will be updated with the real profiles when the website is ready to go live.
+- Allauth updates
+    * display success messages to alert the user that their actions were successful.
+    * move content block to base template to encapsulate the messages
+    * redirect user to profile page after updating password
+    * make password requirements look less like error messages
+    * password reset email input needs to be wider to show full email
+    * password/reset/done "contact us" link to contact details page
 
 ## Technologies Used
 
