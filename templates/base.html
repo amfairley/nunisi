@@ -44,12 +44,15 @@
                     const totalGuests = adults + children + infants;
                     document.getElementById('total-guests').innerText = `${totalGuests}`;
                     const errorDiv = document.getElementById('javascript-error');
-                    if (adults =0) {
-                        event.preventDefault();
+                    if (adults == 0 || adults >= 6) {
                         errorDiv.innerText = "The number of adults must be at least 1."; // Set custom error message
-                        errorDiv.style.display = 'block'; // Show the error message
+                        errorDiv.classList.remove("d-none") // Show the error message
                     }
-            
+                    else if (adults >= 1 && adults <= 5) {
+                        if (!errorDiv.classList.contains("d-none")) {
+                            errorDiv.classList.add("d-none");
+                        }
+                    }
                 }
             </script>
             <!-- Open calendar widgets -->
@@ -83,7 +86,7 @@
                     <!--Room search form-->
                     <div class="col d-none d-lg-block text-center">
                         <div id="form-div" class="mx-auto text-center">
-                            <form>
+                            <form method="POST">
                                 {% csrf_token %}
                                 <div class="col-12">
                                     <p id="search-form-title" class="jost-font">SEARCH AVAILABILITY:</p>
@@ -99,28 +102,30 @@
                                         <br>
                                         {{ booking_form.check_out_date }}
                                     </div>
-                                    <div id="guest-div" class="col-4">
-                                        <div id="guest-dropdown" class="dropdown">
-                                            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                Guests: <span id="total-guests">0</span>
-                                            </button>
-                                            <ul class="guest-dropdown-menu dropdown-menu dropdown-menu-end">
-                                                <li>
+                                    <div id="guests-div" class="col-4">
+                                        <div class="row">
+                                            <div class="col-9 guests-form">
+                                                <p class="guests-form-guests">
+                                                    Guests: <span id="total-guests">0</span>
+                                                </p>
+                                                <hr>
+                                                <p class="guests-choices">
                                                     {{ booking_form.adults.label_tag }}{{ booking_form.adults }}
-                                                </li>
-                                                <li>
+                                                </p>
+                                                <hr>
+                                                <p class="guests-choices">
                                                     {{ booking_form.children.label_tag }}{{ booking_form.children }}
-                                                </li>
-                                                <li>
+                                                </p>
+                                                <hr>
+                                                <p class="guests-choices">
                                                     {{ booking_form.infants.label_tag }}{{ booking_form.infants }}
-                                                </li>
-                                            </ul>
+                                                </p>
+                                            </div>
+                                            <div class="col-3 booking-form-submit-div">
+                                                <button type="submit" class="btn nunisi-button">Submit</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit" class="btn nunisi-button">Submit</button>
-                                    <div id="javascript-error" class="alert alert-danger" style="display: none;"></div>
                                 </div>
                             </form> 
                         </div>
