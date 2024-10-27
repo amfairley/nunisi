@@ -5,11 +5,13 @@
     {% trans "Login Cancelled" %}
 {% endblock head_title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Login Cancelled" %}
-    {% endelement %}
-    {% url 'account_login' as login_url %}
-    {% element p %}
-        {% blocktrans %}You decided to cancel logging in to our site using one of your existing accounts. If this was a mistake, please proceed to <a href="{{login_url}}">sign in</a>.{% endblocktrans %}
-    {% endelement %}
+    <div class="content allauth-content">
+        <h1 class="allauth-title">
+            {% trans "Login Cancelled" %}
+        </h1>
+        {% url 'account_login' as login_url %}
+        <p class="allauth-message">
+            {% blocktrans %}You decided to cancel logging in to our site using one of your existing accounts. If this was a mistake, please proceed to <a href="{{login_url}}">sign in</a>.{% endblocktrans %}
+        </p>
+    </div>
 {% endblock content %}

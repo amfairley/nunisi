@@ -5,10 +5,12 @@
     {% trans "Third-Party Login Failure" %}
 {% endblock head_title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Third-Party Login Failure" %}
-    {% endelement %}
-    {% element p %}
-        {% trans "An error occurred while attempting to login via your third-party account." %}
-    {% endelement %}
+    <div class="content allauth-content">
+        <h1 class="allauth-title">
+            {% trans "Third-Party Login Failure" %}
+        </h1>
+        <p class="allauth-message">
+            {% trans "An error occurred while attempting to login via your third-party account." %}
+        </p>
+    </div>
 {% endblock content %}
