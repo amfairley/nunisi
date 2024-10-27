@@ -72,13 +72,42 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Responsivity | Reduce screen size to below 992px | Booking form disappears | Y | N/A |
 | Responsivity | Reduce screen size to below 992px | Footer logo disappears | Y | N/A |
 | **AllAuth Pages** | | | | |
-| Sign in form | Enter incorrect username | Error appears saying The username and/or password you specified are not correct | Y | N/A |
-| Sign in form | Enter incorrect password | Error appears saying The username and/or password you specified are not correct | Y | N/A |
+| Sign up form | Enter an incorrect email address | Prompt appears telling the user to enter a valid email | Y | N/A |
+| Sign up form | Do not enter the password again | Prompt appears telling the user to fill out that field | Y | N/A |
+| Sign up form | Incorrectly confirm the password | Error appears informing the user that the passwords do not match | Y | N/A |
+| Sign up form | Enter invalid passwords | Errors appear informing users on why the password failed to meet specifications | Y | N/A |
+| Sign up form | Hover submit button | Button colours invert | Y | N/A |
+| Sign up form | Click sign up with google | Redirected to Sign in via Google page | Y | N/A |
+| Sign in form | Enter incorrect email | Error appears saying The email address and/or password you specified are not correct | Y | N/A |
+| Sign in form | Enter incorrect password | Error appears saying The email address and/or password you specified are not correct | Y | N/A |
 | Sign in form | Hover submit button | Colours invert | Y | N/A |
 | Sign in form | Successfully sign in | User redirected to home page | Y | N/A |
 | Sign in page | Click sign in with google | User redirected to Sign In Via Google Page | Y | N/A |
 | Log out page | Hover the sign out button | Button colours invert | Y | N/A |
 | Log out page | Click the sign out button | User signed out and redirected to the home screen | Y | N/A |
+| Reauthenticate page | Hover the confrim button | Button colours are inverted | Y | N/A |
+| Reauthenticate page | Submit an incorrect password | An incorrect password error appears | Y | N/A |
+| Reauthenticate page | Submit correct password | User is redirected to the homepage | Y | N/A |
+| Emails page | Hover buttons | Button colours invert | Y | N/A |
+| Emails page | Add a new email | New unverified email is added to the list | Y | N/A |
+| Emails page | Select unverified email and click resend verification | Verification email resent | Y | N/A |
+| Emails page | GO through email verification | Email is tagged as verfied | Y | N/A |
+| Emails page | Change primary email | Primary email tag is moved to new email | Y | N/A |
+| Emails page | Remove an email | Email is deleted | Y | N/A |
+| Email validation | Hover confirm button | Button colours invert | Y | N/A |
+| Email validation | Click confirm | Email becomes verified and redirected to sign in page | Y | N/A |
+| Email validation | Go on page when already verified and hover and click the email confirmation request | Text is boldened on hover and new verification sent and redirected to sign in page | Y | N/A |
+| Change password | Change password with invalid current password | Alert shows that the current password is incorrect | Y | N/A |
+| Change password | Change password with invalid new password | Specific alerts show the user what is wrong with the new password | Y | N/A |
+| Change password | Change password with valid password | Page refreshes and password updated | Y | N/A |
+| Change password | Click "Forgot password?" | Text bolds on hover and redirects user to reset password page on click | Y | N/A |
+| Reset Password | Enter an invalid email address (no @ sign) | Error appears informing user to use a valid email address | Y | N/A |
+| Reset Password | Hover reset password button | Button colours invert | Y | N/A |
+| Reset Password | Enter valid email address and submit | Email sent with password reset link and user redirected to /password/reset/done page | Y | N/A |
+| Google login | Hover continue button | Button colours invert | Y | N/A |
+| Google login | Click continue | Redirected to Google access page | Y | N/A |
+| Google login | Sign up with Google | Allows login with the Google account | Y | N/A |
+
 
 ## Device and Browser Testing
 I tested the responsiveness of the website using Google Chrome Devtools to simulate 17 screen sizes; ranging from large desktops to the iPhone 5/SE and am happy to report that the website appears and functions as intended across the large screen size range. Additionally the website was tested on the Google Chrome, Mozzila Firefox, Microsoft Edge, and Brave browsers and no issues were encountered. I also tested the website on my 17.5" Laptop, 14" Laptop, and smart phone, noticing that it worked well in each case.
