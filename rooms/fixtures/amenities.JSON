@@ -1,1 +1,128 @@
-[{"pk": 1, "model": "rooms.amenities", "fields": {"name": "single_bed", "sanitised_name": "Single Bed", "icon": "<i class="fa-solid fa-bed"></i>"}}, {"pk": 2, "model": "rooms.amenities", "fields": {"name": "double_bed", "sanitised_name": "Double Bed", "icon":"fa-solid fa-bed"></i>"}}, {"pk": 3, "model": "rooms.amenities", "fields": {"name": "balcony", "sanitised_name": "Balcony", "icon": "<i class="fa-regular fa-sun"></i>"}}, {"pk": 4, "model": "rooms.amenities", "fields": {"name": "view_river", "sanitised_name": "River View", "icon": "<i class="fa-solid fa-water"></i>"}}, {"pk": 5, "model": "rooms.amenities", "fields": {"name": "view_mountain" , "sanitised_name": "Mountain View", "icon": "<i class="fa-solid fa-mountain-sun"></i>"}}, {"pk": 6, "model": "rooms.amenities", "fields": {"name": "mosquito_nets", "sanitised_name": "Mosquito Nets" , "icon": "<i class="fa-solid fa-mosquito-net"></i>"}}, {"pk": 7, "model": "rooms.amenities", "fields": {"name": "water", "sanitised_name": "Complimentary Bottled Water", "icon": "<i class="fa-solid fa-bottle-water"></i>"}}, {"pk": 8, "model": "rooms.amenities", "fields": {"name": "robe", "sanitised_name": "Bathrobe and Slippers", "icon": "<i class="fa-brands fa-cotton-bureau"></i>"}}, {"pk": 9, "model": "rooms.amenities", "fields": {"name": "wifi", "sanitised_name": "WiFi", "icon": "<i class="fa-solid fa-wifi"></i>"}}, {"pk": 10, "model": "rooms.amenities", "fields": {"name": "aircon", "sanitised_name": "Air Conditioning", "icon": "<i class="fa-solid fa-snowflake"></i>"}}, {"pk": 11, "model": "rooms.amenities", "fields": {"name": "fridge", "sanitised_name": "Mini Refrigerator", "icon": "<i class="fa-solid fa-igloo"></i>"}}, {"pk": 12, "model": "rooms.amenities", "fields": {"name": "kettle", "sanitised_name": "Tea Kettle", "icon": "<i class="fa-solid fa-mug-saucer"></i>"}}, {"pk": 13, "model": "rooms.amenities", "fields": {"name": "hairdryer", "sanitised_name": "Hair Dryer", "icon": "<i class="fa-solid fa-fire-flame-simple"></i>"}}, {"pk": 14, "model": "rooms.amenities", "fields": {"name": "tv", "sanitised_name": "TV", "icon": "<i class="fa-solid fa-tv"></i>"}}}
+[
+    {
+        "pk": 1,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "single_bed",
+            "sanitised_name": "Single Bed",
+            "icon": "<i class=\"fa-solid fa-bed\"></i>"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "double_bed",
+            "sanitised_name": "Double Bed",
+            "icon": "<i class=\"fa-solid fa-bed\"></i>"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "balcony",
+            "sanitised_name": "Balcony",
+            "icon": "<i class=\"fa-regular fa-sun\"></i>"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "view_river",
+            "sanitised_name": "River View",
+            "icon": "<i class=\"fa-solid fa-water\"></i>"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "view_mountain",
+            "sanitised_name": "Mountain View",
+            "icon": "<i class=\"fa-solid fa-mountain-sun\"></i>"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "mosquito_nets",
+            "sanitised_name": "Mosquito Nets",
+            "icon": "<i class=\"fa-solid fa-mosquito-net\"></i>"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "water",
+            "sanitised_name": "Complimentary Bottled Water",
+            "icon": "<i class=\"fa-solid fa-bottle-water\"></i>"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "robe",
+            "sanitised_name": "Bathrobe and Slippers",
+            "icon": "<i class=\"fa-brands fa-cotton-bureau\"></i>"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "wifi",
+            "sanitised_name": "WiFi",
+            "icon": "<i class=\"fa-solid fa-wifi\"></i>"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "aircon",
+            "sanitised_name": "Air Conditioning",
+            "icon": "<i class=\"fa-solid fa-snowflake\"></i>"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "fridge",
+            "sanitised_name": "Mini Refrigerator",
+            "icon": "<i class=\"fa-solid fa-igloo\"></i>"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "kettle",
+            "sanitised_name": "Tea Kettle",
+            "icon": "<i class=\"fa-solid fa-mug-saucer\"></i>"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "hairdryer",
+            "sanitised_name": "Hair Dryer",
+            "icon": "<i class=\"fa-solid fa-fire-flame-simple\"></i>"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "rooms.amenities",
+        "fields": {
+            "name": "tv",
+            "sanitised_name": "TV",
+            "icon": "<i class=\"fa-solid fa-tv\"></i>"
+        }
+    }
+]
