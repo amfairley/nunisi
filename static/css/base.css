@@ -86,10 +86,11 @@ a {
 }
 
 /* Booking form */
-#form-div {
+.booking-form-div {
     max-width: 535px;
 }
-#search-form-title {
+
+.search-form-title {
     font-size: 1.2rem;
     margin-top: 15px;
     margin-bottom: 0;
@@ -127,7 +128,7 @@ a {
     cursor: pointer;
 }
 
-#guests-div {
+.guests-div {
     top: -15px;
     position: relative;
 }
@@ -421,6 +422,263 @@ a {
 .allauth-message a:hover {
     font-weight: bolder;
 }
+
+/* ---------- index.html ---------- */
+
+/* Index header */
+#index-header {
+    background-color: #FDD67C;
+    border: 1px solid #b88c26;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.index-nav-item a{
+    color: #3A6B35 !important;
+    font-weight: bolder;
+}
+
+.index-nav-item a:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#index-burger-nav {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* Index hero section */
+#index-hero {
+    width: 100%;
+    height: 65vh;
+    background-image: url('/media/hero-image.webp');
+    background-size:cover;     /* Ensures the image fits within the div */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-position: center;  /* Centers the image */
+}
+
+#hero-title {
+    text-align: center;
+    color: #F5F5F5;
+    font-size: 4rem;
+    font-family: Jost, Arial, Helvetica, sans-serif;
+}
+
+#hero-message {
+    text-align: center;
+    color: #f5f5f5;
+    font-family: Jost, Arial, Helvetica, sans-serif;
+}
+
+/* Index booking form */
+#index-booking-form {
+    margin-top: 10px;
+}
+
+#index-booking-form-body {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.index-form-title {
+    font-size: 1.5rem;
+    color:#333A3F;
+}
+
+.index-check label {
+    padding-left: 13px !important;
+}
+
+.index-guests-div {
+    margin-bottom: 10px;
+}
+
+.index-guests-div label{
+    margin-left: 25px;
+}
+
+.index-guests-div .guests-choices {
+    margin-top: 5px;
+}
+
+.index-booking-form-submit-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Index horizontal rule */
+.index-horizontal-rule {
+    color:#3A6B35;
+    width: 85%;
+    margin: 10px auto;
+}
+
+/* Index resort information */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  background-image: none;
+}
+
+#index-about-us .carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: #f5f5f5;
+}
+
+#index-about-us .carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: #f5f5f5;
+}
+
+#index-resort-image-column {
+    display: flex;
+    justify-content: center;
+}
+
+#index-resort-image-column .carousel-inner,
+#index-resort-image-column .carousel-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#index-resort-image-column .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#index-info-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color:#333A3F;
+    text-align: center;
+}
+
+.index-info-text {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#333A3F;
+}
+
+/* Index services */
+#index-services .carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: #3A6B35;
+}
+
+#index-services .carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: #3A6B35;
+}
+
+#index-services-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+    text-align: center;
+}
+
+.services-card {
+    width: 85%;
+    max-width: 1200px !important;
+    margin: 10px auto;
+    background-color: palegoldenrod;
+    border: 2px solid #b88c26;
+}
+
+.services-card-image-container {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.services-card-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+    text-align: center;
+}
+
+.services-card-text {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+}
+
+/* Index location section */
+.location-info {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.location-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/media/georgia-map.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    border: 1px solid #b88c26;
+    border-radius: 5%;
+    z-index: 1;
+}
+
+#index-location-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+    text-align: center;
+    display: block;
+}
+
+#index-location-text {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+}
+
+#location-map {
+    width: 100%;
+    min-height: 300px;
+    border-radius: 5%;
+}
+
+/* Index FAQ section */
+.faq-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+    text-align: center;
+}
+
+.faq-list {
+    list-style-type: none;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #333A3F
+}
+
+.faq-question {
+    font-weight: bolder;
+}
+
 /* ---------- Media-queries ---------- */
 
 @media (max-width: 991px) {
@@ -430,8 +688,38 @@ a {
         right: 5px;
         top: 70px;
     }
+    
     /*Change footer height */
     .footer {
         height: 130px;
+    }
+
+    /*Index: add space above about us title */
+    #index-info-title {
+        margin-top: 10px;
+    }
+
+    /*Index: gap between location info and map */
+    .location-info {
+        margin-bottom: 10px;
+    }
+
+}
+
+@media (max-width: 760px) {
+    /*Update hero text*/
+    #hero-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 410px) {
+    /*Update hero text*/
+    #hero-title {
+        font-size: 2.5rem;
+    }
+
+    #hero-message {
+        font-size: 1.5rem;
     }
 }
