@@ -29,3 +29,6 @@ class Amenities(models.Model):
     name = models.CharField(max_length=50)
     sanitised_name = models.CharField(max_length=100, default="Amenity Name")
     icon = models.CharField(max_length=150, default="Font Awesome Icon")
+
+    def __str__(self):
+        return self.name
