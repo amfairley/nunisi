@@ -153,3 +153,17 @@ class AmenitiesModelTest(TestCase):
         self.assertIn(
             'Room', [model.__name__ for model in apps.get_models()]
         )
+    
+    def test_name_field(self):
+        '''Test the name field'''
+        # Get the 'name' field from the model
+        field = Amenities._meta.get_field('name')
+        # Check that the field is a CharField
+        self.assertIsInstance(field, CharField)
+        self.assertEqual(field.get_internal_type(), 'CharField')
+        # Check the max length of the CharField
+        self.assertEqual(field.max_length, 50)
+        # Check null status
+        self.assertFalse(field.null)
+        # Check blank status
+        self.assertFalse(field.blank)
