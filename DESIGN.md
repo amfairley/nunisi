@@ -249,14 +249,19 @@ The colour scheme started as an idea for gold and green to portray the natural a
 | Green #3A6B35 | Gold #FDD67C | Gold 2 #B88C26 |
 | ----- | ----- | ----- |
 | Button font colour | Button background colour | Account menu border |
-| Navigation bar background | Button font colour on hover | |
-| Booking form labels | Title for the booking form | |
+| Navigation bar background | Button font colour on hover | Homepage header border |
+| Booking form labels | Title for the booking form | Border for services cards |
 | Account menu background | Booking form input backgrounds | |
 | Footer background | Account menu font colour | |
-| AllAuth Titles | | |
+| AllAuth Titles | Background of the homepage header | |
+| Homepage navbar font colour | | |
+| Homepage horizontal rules | | |
+| Next/Previous arrows on services carousel | | |
+
 
 **Other colours used:**
 - Off black: #333A3F for border colours on buttons, dark text throughout
+- Off white: #F5F5F5 for text colour which are on a dark image background
 - Facebook: Blue and white are used for the Facebook logo
 - Instagram and GitHub: Black and white are used for the Instagram and GitHub logos.
 - Lava: #CF1020 for error messages
@@ -380,3 +385,38 @@ This is my selection for block text across the website. Roboto is the most popul
 | <details><summary>Google Login</summary><img src="/documentation/features/allauth_google.png"></details> |
 | **Details:** The AllAuth Google login allows users to sign up or log in with their Google accounts. This is good for security, as it is a validated email address. |
 | **User Stories Covered:** 2, 11, 14 |
+
+| **Homepage: Header** |
+| ----- |
+| **Page: /** |
+| <details><summary>Homepage Header</summary><img src="/documentation/features/homepage_header.png"></details> |
+| **Details:** The homepage header allows the user to easily navigate the home page, going to different sections at a click of a button. When scrolling the homepage, the header stays at the top of the page and on smaller screens becomes a burger menu. |
+| **User Stories Covered:** 2 |
+
+| **Homepage: About Us** |
+| ----- |
+| **Page: /** |
+| <details><summary>About Us</summary><img src="/documentation/features/homepage_about_us.png"></details> |
+| **Details:** The about us feature contains a carousel of images of the hotel area and information about the Hotel. |
+| **User Stories Covered:** 2, 3 |
+
+| **Homepage: Services** |
+| ----- |
+| **Page: /** |
+| <details><summary>Services</summary><img src="/documentation/features/homepage_services.png"></details> |
+| **Details:** The services section contains cards in a carousel of each service provided and information about them. |
+| **User Stories Covered:** 2, 4 |
+
+| **Homepage: Location** |
+| ----- |
+| **Page: /** |
+| <details><summary>Location</summary><img src="/documentation/features/homepage_services.png"></details> |
+| **Details:** The location section provides travel information and an interactive Google map of the location. |
+| **User Stories Covered:** 2, 6 |
+
+| **Homepage: FAQs** |
+| ----- |
+| **Page: /** |
+| <details><summary>FAQs</summary><img src="/documentation/features/homepage_faqs.png"></details> |
+| **Details:** The FAQs section provides the user with answers to frequently asked question. |
+| **User Stories Covered:** 2, 5 |
