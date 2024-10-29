@@ -22,3 +22,5 @@ class RoomModelTest(TestCase):
         self.assertEqual(field.get_internal_type(), 'CharField')
         # Check the max length of the CharField
         self.assertEqual(field.max_length, 254)
+        # Check null status
+        self.assertFalse(field.null)
