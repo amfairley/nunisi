@@ -36,35 +36,43 @@
             <!-- Booking form guest number update -->
             <script>
                 function updateGuestCount() {
-                    const adults = parseInt(document.getElementById('id_adults').value) || 0;
-                    const children = parseInt(document.getElementById('id_children').value) || 0;
-                    const infants = parseInt(document.getElementById('id_infants').value) || 0;
-        
-                    // Update dropdown button text
-                    const totalGuests = adults + children + infants;
-                    document.getElementById('total-guests').innerText = `${totalGuests}`;
-                    const errorDiv = document.getElementById('javascript-error');
-                    if (adults == 0 || adults >= 6) {
-                        errorDiv.innerText = "The number of adults must be at least 1."; // Set custom error message
-                        errorDiv.classList.remove("d-none") // Show the error message
+                    const adultsTopNav = parseInt(document.querySelector('#top-nav #id_adults').value) || 0;
+                    const adultsIndexBookingForm = parseInt(document.querySelector('#index-booking-form #id_adults').value) || 0;
+                    const childrenTopNav = parseInt(document.querySelector('#top-nav #id_children').value) || 0;
+                    const childrenIndexBookingForm = parseInt(document.querySelector('#index-booking-form #id_children').value) || 0;
+                    const infantsTopNav = parseInt(document.querySelector('#top-nav #id_infants').value) || 0;
+                    const infantsIndexBookingForm = parseInt(document.querySelector('#index-booking-form #id_infants').value) || 0;
+                    // Update total guests
+                    const totalGuestsTop = adultsTopNav + childrenTopNav + infantsTopNav;
+                    const totalGuestsIndex = adultsIndexBookingForm + childrenIndexBookingForm + infantsIndexBookingForm;
+                    const totalGuestsTopNav = document.querySelector('#top-nav #total-guests');
+                    if (totalGuestsTopNav) {
+                        totalGuestsTopNav.innerText = `${totalGuestsTop}`;
                     }
-                    else if (adults >= 1 && adults <= 5) {
-                        if (!errorDiv.classList.contains("d-none")) {
-                            errorDiv.classList.add("d-none");
-                        }
+                    const totalGuestsIndexForm = document.querySelector('#index-booking-form #total-guests');
+                    if (totalGuestsIndexForm) {
+                        totalGuestsIndexForm.innerText = `${totalGuestsIndex}`;
                     }
                 }
             </script>
             <!-- Open calendar widgets -->
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                    const checkInInput = document.getElementById('id_check_in_date');
-                    const checkOutInput = document.getElementById('id_check_out_date');
+                    const checkInInputTop = document.querySelector('#top-nav #id_check_in_date');
+                    const checkOutInputTop = document.querySelector('#top-nav #id_check_out_date');
+                    const checkInInputIndex = document.querySelector('#index-booking-form #id_check_in_date');
+                    const checkOutInputIndex = document.querySelector('#index-booking-form #id_check_out_date');
             
-                    checkInInput.addEventListener('click', function() {
+                    checkInInputTop.addEventListener('click', function() {
                         this.showPicker();  // This will trigger the date picker
                     });
-                    checkOutInput.addEventListener('click', function() {
+                    checkOutInputTop.addEventListener('click', function() {
+                        this.showPicker();  // This will trigger the date picker
+                    });
+                    checkInInputIndex.addEventListener('click', function() {
+                        this.showPicker();  // This will trigger the date picker
+                    });
+                    checkOutInputIndex.addEventListener('click', function() {
                         this.showPicker();  // This will trigger the date picker
                     });
                 });
@@ -85,11 +93,11 @@
                     </div>
                     <!--Room search form-->
                     <div class="col d-none d-lg-block text-center">
-                        <div id="form-div" class="mx-auto text-center">
+                        <div class="mx-auto text-center booking-form-div">
                             <form method="POST">
                                 {% csrf_token %}
                                 <div class="col-12">
-                                    <p id="search-form-title" class="jost-font">SEARCH AVAILABILITY:</p>
+                                    <p class="jost-font search-form-title">SEARCH AVAILABILITY:</p>
                                 </div>
                                 <div class="row">
                                     <div class="col-4 form-floating check-in-div">
@@ -102,7 +110,7 @@
                                         <br>
                                         {{ booking_form.check_out_date }}
                                     </div>
-                                    <div id="guests-div" class="col-4">
+                                    <div class="col-4 guests-div">
                                         <div class="row">
                                             <div class="col-9 guests-form">
                                                 <p class="guests-form-guests">
