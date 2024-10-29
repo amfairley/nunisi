@@ -26,6 +26,8 @@ class Room(models.Model):
 
 
 class Amenities(models.Model):
+    class Meta:
+        verbose_name_plural = 'Amenities'
     name = models.CharField(max_length=50)
     sanitised_name = models.CharField(max_length=100, default="Amenity Name")
     icon = models.CharField(max_length=150, default="Font Awesome Icon")
