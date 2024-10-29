@@ -151,7 +151,7 @@ class AmenitiesModelTest(TestCase):
         '''Check that the app is installed and model defined'''
         self.assertTrue(apps.is_installed('rooms'))
         self.assertIn(
-            'Room', [model.__name__ for model in apps.get_models()]
+            'Amenities', [model.__name__ for model in apps.get_models()]
         )
     
     def test_name_field(self):
@@ -167,3 +167,18 @@ class AmenitiesModelTest(TestCase):
         self.assertFalse(field.null)
         # Check blank status
         self.assertFalse(field.blank)
+
+    def test_sanitised_name_field(self):
+        '''Test the sanitised name field'''
+        # Get the 'sanitised_name' field from the model
+        field = Amenities._meta.get_field('sanitised_name')
+        # Check the field is a Charfield
+        self.assertIsInstance(field, CharField)
+        # Check the max length of the CharField
+        self.assertEqual(field.max_length, 100)
+        # Check null status
+        self.assertFalse(field.null)
+        # Check blank status
+        self.assertFalse(field.blank)
+        # Check default value
+        self.assertEqual(self.instance.sanitised_name, "Amenity Name")
