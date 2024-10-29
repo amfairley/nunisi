@@ -27,3 +27,4 @@ class Room(models.Model):
 
 class Amenities(models.Model):
     name = models.CharField(max_length=50)
+    sanitised_name = models.CharField(max_length=100, default="Amenity Name")
