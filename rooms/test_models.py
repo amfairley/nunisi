@@ -8,7 +8,7 @@ from django.db.models import (
     ImageField,
     DecimalField
 )
-from .models import Room
+from .models import Room, Amenities
 
 
 class RoomModelTest(TestCase):
@@ -126,3 +126,7 @@ class RoomModelTest(TestCase):
         self.assertFalse(field.null)
         # Check blank status
         self.assertTrue(field.blank)
+
+    def test_str_method(self):
+        '''Test the string method'''
+        self.assertEqual(str(self.instance), "Test Name")
