@@ -8,3 +8,4 @@ class Room(models.Model):
     description = models.TextField(
         default='Room Description'
     )
+    image_url = models.URLField(max_length=1024, null=True, blank=True)
