@@ -20,3 +20,6 @@ class Room(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_sanitised_name(self):
+        return self.sanitised_name
