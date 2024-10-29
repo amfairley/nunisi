@@ -1,6 +1,12 @@
 from django.test import TestCase
 from django.apps import apps
-from django.db.models import CharField, JSONField, TextField, URLField
+from django.db.models import (
+    CharField,
+    JSONField,
+    TextField,
+    URLField,
+    ImageField
+)
 from .models import Room
 
 
@@ -85,3 +91,13 @@ class RoomModelTest(TestCase):
         # Check blank status
         self.assertTrue(field.blank)
 
+    def test_image_field(self):
+        '''Test the image field'''
+        # Get the 'image' field from the model
+        field = Room._meta.get_field('image')
+        # Check the field is a URLField
+        self.assertIsInstance(field, ImageField)
+        # Check null status
+        self.assertTrue(field.null)
+        # Check blank status
+        self.assertTrue(field.blank)
