@@ -153,7 +153,7 @@ class AmenitiesModelTest(TestCase):
         self.assertIn(
             'Amenities', [model.__name__ for model in apps.get_models()]
         )
-    
+
     def test_name_field(self):
         '''Test the name field'''
         # Get the 'name' field from the model
@@ -197,3 +197,7 @@ class AmenitiesModelTest(TestCase):
         self.assertFalse(field.blank)
         # Check default value
         self.assertEqual(self.instance.icon, "Font Awesome Icon")
+
+    def test_str_method(self):
+        '''Test the string method'''
+        self.assertEqual(str(self.instance), "Test Name")
