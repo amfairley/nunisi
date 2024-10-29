@@ -113,3 +113,16 @@ class RoomModelTest(TestCase):
         self.assertTrue(field.null)
         # Check blank status
         self.assertTrue(field.blank)
+
+    def test_unavailability_field(self):
+        '''Test the unavailability field'''
+        # Get the 'unavailability' field from the model
+        field = Room._meta.get_field('unavailability')
+        # Check the field is a JSONField
+        self.assertIsInstance(field, JSONField)
+        # Check the JSONField default
+        self.assertEqual(self.instance.unavailability, [])
+        # Check null status
+        self.assertFalse(field.null)
+        # Check blank status
+        self.assertTrue(field.blank)
