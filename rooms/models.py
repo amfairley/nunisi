@@ -17,3 +17,6 @@ class Room(models.Model):
         blank=True
     )
     unavailability = models.JSONField(default=list, null=False, blank=True)
+
+    def __str__(self):
+        return self.name
