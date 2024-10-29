@@ -8,7 +8,7 @@ from django.db.models import (
     ImageField,
     DecimalField
 )
-from .models import Room, Amenities
+from .models import Room
 
 
 class RoomModelTest(TestCase):
@@ -130,3 +130,7 @@ class RoomModelTest(TestCase):
     def test_str_method(self):
         '''Test the string method'''
         self.assertEqual(str(self.instance), "Test Name")
+
+    def test_get_sanitised_name_method(self):
+        '''Test the get_sanitised_name method'''
+        self.assertEqual(self.instance.get_sanitised_name(), "Sanitised Test Name")
