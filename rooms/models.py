@@ -23,3 +23,7 @@ class Room(models.Model):
 
     def get_sanitised_name(self):
         return self.sanitised_name
+
+
+class Amenities(models.Model):
+    name = models.CharField(max_length=254)
