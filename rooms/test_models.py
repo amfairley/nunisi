@@ -26,3 +26,11 @@ class RoomModelTest(TestCase):
         self.assertFalse(field.null)
         # Check blank status
         self.assertFalse(field.blank)
+    
+    def test_sanitised_name_field(self):
+        '''Test the sanitised name field'''
+        # Get the 'sanitised_name' field from the model
+        field = Room._meta.get_field('sanitised_name')
+        # Check the field is a Charfield
+        self.assertIsInstance(field, CharField)
+
