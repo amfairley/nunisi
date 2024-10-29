@@ -1,2 +1,332 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block page_header %}
+    <!--Page navbar-->
+    <header id="index-header" class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <button id="index-burger-nav" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 jost-font">
+                    <li class="nav-item d-block d-lg-none index-nav-item">
+                        <a class="nav-link active" aria-current="page" href="#index-booking-form">Book</a>
+                    </li>
+                    <li class="nav-item index-nav-item">
+                        <a class="nav-link active" aria-current="page" href="#index-about-us">About Us</a>
+                    </li>
+                    <li class="nav-item index-nav-item">
+                        <a class="nav-link active" aria-current="page" href="#index-services">Services</a>
+                    </li>
+                    <li class="nav-item index-nav-item">
+                        <a class="nav-link active" aria-current="page" href="#index-location">Location</a>
+                    </li>
+                    <li class="nav-item index-nav-item">
+                        <a class="nav-link active" aria-current="page" href="#index-faqs">FAQs</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+{% block content %}
+    <main class="content">
+        <!--Hero Image-->
+        <section id="index-hero" aria-label="Nunisi Forest and Spa Hotel Arial Photo">
+            <h1 id="hero-title">Nunisi Forest Hotel and Spa</h1>
+            <h2 id="hero-message">Where luxury is natural!</h2>
+        </section>
+        <!--Booking Form-->
+        <div id="index-booking-form">
+            <div class="d-lg-none d-block container-fluid">
+                <div class="mx-auto text-center booking-form-div row">
+                    <form method="POST" action="" id="index-booking-form-body">
+                        {% csrf_token %}
+                        <div class="col-12">
+                            <p class="jost-font index-form-title">SEARCH AVAILABILITY:</p>
+                        </div>
+                        <div class="col-12 form-floating check-in-div index-check">
+                            {{ booking_form.check_in_date.label_tag }}
+                            <br>
+                            {{ booking_form.check_in_date }}
+                        </div>
+                        <div class="col-12 form-floating check-out-div index-check">
+                            {{ booking_form.check_out_date.label_tag }}
+                            <br>
+                            {{ booking_form.check_out_date }}
+                        </div>
+                        <div class="col-12 index-guests-div">
+                            <div class="guests-form">
+                                <p class="guests-form-guests">
+                                    Guests: <span id="total-guests">0</span>
+                                </p>
+                                <hr>
+                                <p class="guests-choices">
+                                    {{ booking_form.adults.label_tag }}{{ booking_form.adults }}
+                                </p>
+                                <hr>
+                                <p class="guests-choices">
+                                    {{ booking_form.children.label_tag }}{{ booking_form.children }}
+                                </p>
+                                <hr>
+                                <p class="guests-choices">
+                                    {{ booking_form.infants.label_tag }}{{ booking_form.infants }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-12 index-booking-form-submit-div">
+                            <button type="submit" class="btn nunisi-button">Submit</button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+        <hr class="index-horizontal-rule">
+        <!--Resort Information-->
+        <div class="container" id="index-about-us">
+            <div class="row">
+                <div class="col-12 col-lg-6" id="index-resort-image-column">
+                    <div id="resortInformationCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/media/resort-information-image-1.webp" class="d-block w-100" alt="An arial view of Nunisi forest">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="/media/resort-information-image-2.webp" class="d-block w-100" alt="Another arial view of Nunisi forest">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#resortInformationCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#resortInformationCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <article class="col-12 col-lg-6">
+                    <h2 id="index-info-title">About Us</h2>
+                    <p class="index-info-text">Located in the majestic Borjomi-Kharagauli National Park 750m above sea level and on the river Nunisitskali, sits the Nunisi Forest Hotel and Spa. Here we are graced with the unique local microclimate of deciduous and coniferous forest and high alkaline mineral water, making us perfectly situated for a relaxing and rejuvenating getaway for health and wellness seekers.</p><br>
+                    <p class="index-info-text">Legend goes that the healing properties of the surrounding waters were discovered by David the Builder, when the King was returning to Tbilisi after a fearsome battle. He was forced to rest in Nunisi, as his horses could not walk any further with ulcerated backs from the exhausting campaign. Bathing in the river water of Nunisi led to their speedy recovery and allowed the King to travel onward at an expediated rate.</p>
+                </article>
+            </div>
+        </div>
+        <hr class="index-horizontal-rule">
+        <!--Services-->
+        <div id="index-services">
+            <h2 id="index-services-title">Services</h2>
+            <div id="resortServiceCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!--Services Card Water-->
+                    <div class="carousel-item active">
+                        <div class="card services-card">
+                            <div class="row g-0">
+                                <div class="col-md-4 services-card-image-container">
+                                    <img src="/media/services-water.webp" class="img-fluid rounded-start services-card-image" alt="An image of a relaxing forest river">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h2 class="card-title services-card-title">Bathing In Nunisi Waters</h2>
+                                        <p class="card-text services-card-text">Immerse yourself in nature’s healing at Nunisi with soothing river baths or refreshing showers in our unique, mineral-rich waters. Our healing water, abundant in natural salicylic acid, offers gentle relief and rejuvenation for many skin conditions, leaving your skin feeling renewed and revitalized. Discover the beauty of wellness directly from the source, where ancient springs provide a tranquil escape and restorative experience.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Services Card Massage-->
+                    <div class="carousel-item">
+                        <div class="card services-card">
+                            <div class="row g-0">
+                                <div class="col-md-4 services-card-image-container">
+                                    <img src="/media/services-massage.webp" class="img-fluid rounded-start services-card-image" alt="An image of a relaxing massage">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h2 class="card-title services-card-title">Full Body Massage</h2>
+                                        <p class="card-text services-card-text">Enhance your healing experience with a professional full-body massage, expertly designed to complement the benefits of Nunisi’s mineral-rich waters. Following your river bath or healing shower, our skilled therapists use soothing techniques to release tension, improve circulation, and deepen relaxation. This perfect pairing promotes holistic wellness, leaving you feeling completely rejuvenated—mind, body, and spirit.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Services Card Hike-->
+                    <div class="carousel-item">
+                        <div class="card services-card">
+                            <div class="row g-0">
+                                <div class="col-md-4 services-card-image-container">
+                                    <img src="/media/services-hike.webp" class="img-fluid rounded-start services-card-image" alt="An image of a forest from a cave">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h2 class="card-title services-card-title">Guided Forest Hikes</h2>
+                                        <p class="card-text services-card-text">Embark on serene hikes through the fresh, pine-scented forest air, winding through the lush hills to explore ancient caves where monks once lived and worshipped. These peaceful trails invite you to reconnect with nature, breathe deeply, and step back in time, offering a glimpse into the spiritual history of the land. Let the forest's quiet beauty and the area’s deep heritage enrich your journey and inspire a sense of tranquillity and wonder.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev services-button" type="button" data-bs-target="#resortServiceCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next services-button" type="button" data-bs-target="#resortServiceCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <hr class="index-horizontal-rule">
+        <!--Location-->
+        <div class="container" id="index-location">
+            <div class="row">
+                <div class="col-12 col-lg-6 location-info">
+                    <div class="location-background">
+                    </div>
+                    <h2 id="index-location-title">Location</h2>
+                    <p id="index-location-text">Our hotel is accessible by car following directions to the location date provided here. Alternatively, there is a train from Tbilisi that stops at a station nearby and we can arrange collection or a taxi to bring you the rest of the way. Access to the resort itself is via a cable car over the river Nunisitskali.</p>
+                </div>
+                <div class="col-12 col-lg-6 location-map-div">
+                    <!--Map-->
+                    <div>
+                        <iframe 
+                        id="location-map"
+                        title="Nunisi Forest Hotel and Spa Map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1518388.7461929556!2d42.66607699937413!3d41.987332327209145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40434975bb81cdc9%3A0xdeb6f561bb0e19e5!2sNunisi%20forest%20Hotel%26%20SPA!5e0!3m2!1sen!2sge!4v1730103298117!5m2!1sen!2sge"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="index-horizontal-rule">
+        <!--FAQs-->
+        <div class="container" id="index-faqs">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="faq-title">FAQs</h2>
+                </div>
+                <!--Desktop screens-->
+                <div class="d-none d-lg-block col-4">
+                    <ul class="faq-list">
+                        <li>
+                            <p class="faq-question">Are there meals provided?</p>
+                            <p class="faq-answer">Yes, all meals are complementary within the price of your stay. We serve breakfast at 10:00am, lunch at 14:30pm, and dinner at 19:00pm in our cantina.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">What are the check in / check out times?</p>
+                            <p class="faq-answer">You can check in with us any time after 14:00pm on the first day of your stay and check out before midday (12:00pm) on your final day.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">What makes the waters in Nunisi so special?</p>
+                            <p class="faq-answer">Our waters have high alkalinity with a pH of 8.3 with a low concentration of minerals making it highly refreshing and rejuvenating. There is also a higher than normal concentration of salicylic acid, which acts as an anti-inflammatory and a mild anti biotic, making bathing or showering here a great treatment for skin conditions such as psoriasis, eczema, or arthritis.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">When were you founded?</p>
+                            <p class="faq-answer">We have just exceeded 80 years of running the resort and introducing travellers from all over the world to the healing qualities of Nunisi’s rivers and mountain air, having been founded in 1940.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-none d-lg-block col-4">
+                    <ul class="faq-list">
+                        <li>
+                            <p class="faq-question">Is there a minimum age for getting a massage?</p>
+                            <p class="faq-answer">Our massages are child-friendly and can help your children with many things ranging from bad posture to sunken arches, though we do recommend that children be over the age of 5 years.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Are there operating times on the rope way to access the resort?</p>
+                            <p class="faq-answer">The ropeway operates between the hours of 09:00am and 23:00pm. Should you require to use it when it is on the other side of the river, please find one of our friendly members of staff and we can have it sent across for you. We ensure that the ropeway is available to guests when they arrive if an arrival time is agreed upon beforehand.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Is there any evening entertainment?</p>
+                            <p class="faq-answer">Yes, we provide an outdoor bar and relaxation area including a bonfire for the colder months. Activities including discos, movies, and games are put on daily. There is also a billiards table available to guests.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Are pets allowed at the resort?</p>
+                            <p class="faq-answer">We welcome guests with pets, however please be aware that there are resort cats and dogs in the hotel grounds so please ensure that your pet behaves well and gets along well with other pets.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-none d-lg-block col-4">
+                    <ul class="faq-list">
+                        <li>
+                            <p class="faq-question">Can infants come free of charge?</p>
+                            <p class="faq-answer">Yes, we welcome guests with young children. You can bring your infant up to the age of 2 at no extra cost.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Do you offer any special packages or deals?</p>
+                            <p class="faq-answer">Yes, we routinely offer deals to new and revisiting customers. Further details are released on our Facebook and Instagram pages. Alternatively you can sign up to our newsletter on your accounts page to never miss out on a deal.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">How can I contact the hotel for more information or assistance?</p>
+                            <p class="faq-answer">All contact details for the hotel can be found at the bottom of every page on this website.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">What is your cancellation policy?</p>
+                            <p class="faq-answer">You may cancel your reservation for a full refund up to 7 days before your stay. After that there is a 10% deposit fee up until 24 hours before your booked stay and a 20% deposit fee if you cancel within 24 hours of your booked stay.</p>
+                        </li>
+                    </ul>
+                </div>
+                <!--Mobile screens-->
+                <div class="d-lg-none col-12">
+                    <ul class="faq-list">
+                        <li>
+                            <p class="faq-question">Are there meals provided?</p>
+                            <p class="faq-answer">Yes, all meals are complementary within the price of your stay. We serve breakfast at 10:00am, lunch at 14:30pm, and dinner at 19:00pm in our cantina.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">What are the check in / check out times?</p>
+                            <p class="faq-answer">You can check in with us any time after 14:00pm on the first day of your stay and check out before midday (12:00pm) on your final day.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">What makes the waters in Nunisi so special?</p>
+                            <p class="faq-answer">Our waters have high alkalinity with a pH of 8.3 with a low concentration of minerals making it highly refreshing and rejuvenating. There is also a higher than normal concentration of salicylic acid, which acts as an anti-inflammatory and a mild anti biotic, making bathing or showering here a great treatment for skin conditions such as psoriasis, eczema, or arthritis.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">When were you founded?</p>
+                            <p class="faq-answer">We have just exceeded 80 years of running the resort and introducing travellers from all over the world to the healing qualities of Nunisi’s rivers and mountain air, having been founded in 1940.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Is there a minimum age for getting a massage?</p>
+                            <p class="faq-answer">Our massages are child-friendly and can help your children with many things ranging from bad posture to sunken arches, though we do recommend that children be over the age of 5 years.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Are there operating times on the rope way to access the resort?</p>
+                            <p class="faq-answer">The ropeway operates between the hours of 09:00am and 23:00pm. Should you require to use it when it is on the other side of the river, please find one of our friendly members of staff and we can have it sent across for you. We ensure that the ropeway is available to guests when they arrive if an arrival time is agreed upon beforehand.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Is there any evening entertainment?</p>
+                            <p class="faq-answer">Yes, we provide an outdoor bar and relaxation area including a bonfire for the colder months. Activities including discos, movies, and games are put on daily. There is also a billiards table available to guests.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Are pets allowed at the resort?</p>
+                            <p class="faq-answer">We welcome guests with pets, however please be aware that there are resort cats and dogs in the hotel grounds so please ensure that your pet behaves well and gets along well with other pets.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Can infants come free of charge?</p>
+                            <p class="faq-answer">Yes, we welcome guests with young children. You can bring your infant up to the age of 2 at no extra cost.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">Do you offer any special packages or deals?</p>
+                            <p class="faq-answer">Yes, we routinely offer deals to new and revisiting customers. Further details are released on our Facebook and Instagram pages. Alternatively you can sign up to our newsletter on your accounts page to never miss out on a deal.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">How can I contact the hotel for more information or assistance?</p>
+                            <p class="faq-answer">All contact details for the hotel can be found at the bottom of every page on this website.</p>
+                        </li>
+                        <li>
+                            <p class="faq-question">What is your cancellation policy?</p>
+                            <p class="faq-answer">You may cancel your reservation for a full refund up to 7 days before your stay. After that there is a 10% deposit fee up until 24 hours before your booked stay and a 20% deposit fee if you cancel within 24 hours of your booked stay.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
