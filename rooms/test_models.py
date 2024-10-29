@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.apps import apps
-from django.db.models import CharField, JSONField
+from django.db.models import CharField, JSONField, TextField
 from .models import Room
 
 
@@ -56,6 +56,19 @@ class RoomModelTest(TestCase):
         self.assertIsInstance(field, JSONField)
         # Check the JSONField default
         self.assertEqual(self.instance.amenities, [1, 2, 3])
+        # Check null status
+        self.assertFalse(field.null)
+        # Check blank status
+        self.assertFalse(field.blank)
+
+    def test_description_field(self):
+        '''Test the description field'''
+        # Get the 'description' field from the model
+        field = Room._meta.get_field('description')
+        # Check the field is a TextField
+        self.assertIsInstance(field, TextField)
+        # Check the TextField default
+        self.assertEqual(self.instance.description, 'Room Description')
         # Check null status
         self.assertFalse(field.null)
         # Check blank status
