@@ -8,7 +8,7 @@ from django.db.models import (
     ImageField,
     DecimalField
 )
-from .models import Room
+from .models import Room, Amenities
 
 
 class RoomModelTest(TestCase):
@@ -133,4 +133,23 @@ class RoomModelTest(TestCase):
 
     def test_get_sanitised_name_method(self):
         '''Test the get_sanitised_name method'''
-        self.assertEqual(self.instance.get_sanitised_name(), "Sanitised Test Name")
+        self.assertEqual(
+            self.instance.get_sanitised_name(),
+            "Sanitised Test Name"
+        )
+
+
+class AmenitiesModelTest(TestCase):
+    '''Tests for the Amenities model'''
+    def setUp(self):
+        '''Creates an instance of the model to test'''
+        self.instance = Amenities.objects.create(
+            name="Test Name"
+        )
+
+    def test_amenities_model_exists(self):
+        '''Check that the app is installed and model defined'''
+        self.assertTrue(apps.is_installed('rooms'))
+        self.assertIn(
+            'Room', [model.__name__ for model in apps.get_models()]
+        )
