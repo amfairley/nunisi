@@ -16,3 +16,4 @@ class Room(models.Model):
         null=True,
         blank=True
     )
+    unavailability = models.JSONField(default=list, null=False, blank=True)
