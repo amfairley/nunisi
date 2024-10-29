@@ -182,3 +182,18 @@ class AmenitiesModelTest(TestCase):
         self.assertFalse(field.blank)
         # Check default value
         self.assertEqual(self.instance.sanitised_name, "Amenity Name")
+
+    def test_icon_field(self):
+        '''Test the icon name field'''
+        # Get the 'icon' field from the model
+        field = Amenities._meta.get_field('icon')
+        # Check the field is a Charfield
+        self.assertIsInstance(field, CharField)
+        # Check the max length of the CharField
+        self.assertEqual(field.max_length, 150)
+        # Check null status
+        self.assertFalse(field.null)
+        # Check blank status
+        self.assertFalse(field.blank)
+        # Check default value
+        self.assertEqual(self.instance.icon, "Font Awesome Icon")
