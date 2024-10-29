@@ -26,4 +26,4 @@ class Room(models.Model):
 
 
 class Amenities(models.Model):
-    name = models.CharField(max_length=254)
+    name = models.CharField(max_length=50)
