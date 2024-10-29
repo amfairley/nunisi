@@ -34,6 +34,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
     4. [Tools](#tools)
 6. [User Feedback](#user-feedback)
 7. [Credits](#credits)
+    1. [Images](#images)
 8. [Acknowledgements](#acknowledgements)
 
 
@@ -162,6 +163,11 @@ The signup form requires a confirmation of the password to prevent the user from
     * make password requirements look less like error messages
     * password reset email input needs to be wider to show full email
     * password/reset/done "contact us" link to contact details page
+- Update the booking form to a new, slender design.
+- Index.html
+    * Page scroll smooth and offset to show section in it's entirity
+    * Tidy CSS rules to have one for all titles/text instead of per section
+    * Make carousel timers user friendly
 
 ## Technologies Used
 
@@ -198,12 +204,18 @@ The signup form requires a confirmation of the password to prevent the user from
     - Used to implement google login and verification
 - [Google Fonts](https://fonts.google.com/)
     - Used to get different typefaces and fonts for the project
+- [Google Maps](https://www.google.com/maps/)
+    - Used for the interactive location map
 - [Balsamiq Wireframes](https://balsamiq.com/)
     - Used for creating wireframes for the project
 - [Logo Design AI](https://logodesign.ai/)
     - Used for creating the site logo
 - [BGJar](https://bgjar.com/)
     - Used for creating the website background
+- [Pexels](https://www.pexels.com/)
+    - Used for stock images across the website
+- [CloudConvert](https://cloudconvert.com/)
+    - Used for compressing images to .webp format for better performance
 - [W3C HTML Validator](https://validator.w3.org/)
     - For validating the HTML on each page
 - [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/)
@@ -212,5 +224,12 @@ The signup form requires a confirmation of the password to prevent the user from
 ## User Feedback
 
 ## Credits
+
+### Images
+- All images of the hotel and surrounding areas were used with permission from the hotel owners
+- Homepage massage image: [Andrea Piacquadio](https://www.pexels.com/photo/topless-woman-lying-on-bed-getting-massage-3757952/)
+- Homepage cave hike image: [Roberto Lee Cortes](https://www.pexels.com/photo/trees-behind-cave-entrance-17652141/)
+- Homepage forest river: [Manuela Alder](https://www.pexels.com/photo/body-of-water-across-forest-949194/)
+- Homepage location map image: [Waldir Felix Chirinos](https://www.istockphoto.com/photo/georgia-imereti-region-map-administrative-divisions-of-georgia-3d-isometric-map-gm2175464797-595023374)
 
 ## Acknowledgements
