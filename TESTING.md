@@ -108,6 +108,16 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Google login | Hover continue button | Button colours invert | Y | N/A |
 | Google login | Click continue | Redirected to Google access page | Y | N/A |
 | Google login | Sign up with Google | Allows login with the Google account | Y | N/A |
+| **Homepage** | | | | |
+| Header | Hover links | Link background darkens | Y | N/A |
+| Header | Click links | Page scrolls to respective section | Y | N/A |
+| Header | Reduce screen size | Header collapses to a burger menu | Y | N/A |
+| Header | Scroll down the page | Header stays at top of the page view | Y | N/A |
+| About us | Click next/previous on carousel | Image changes to the next/previous image | Y | N/A |
+| Services | Click next/previous on carousel | Card changes to the next/previous service card | Y | N/A |
+| Location | Manipulate Google Map | Works as expected | Y | N/A |
+| Location | Reduce screen size | Map is put under the text | Y | N/A |
+| FAQs | Reduce screen size | Columns go from 3 to 1 | Y | N/A |
 
 
 ## Device and Browser Testing
