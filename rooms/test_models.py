@@ -24,3 +24,5 @@ class RoomModelTest(TestCase):
         self.assertEqual(field.max_length, 254)
         # Check null status
         self.assertFalse(field.null)
+        # Check blank status
+        self.assertFalse(field.blank)
