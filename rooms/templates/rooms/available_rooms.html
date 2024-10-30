@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1>Available Rooms</h1>
+
+    {% for valid_room in valid_rooms %}
+        <div class="card">
+            <div class="row">
+                <div class = "col-6">
+                    <h2>{{ valid_room.room.sanitised_name }}</h2>
+                    <h3>Amenities</h3>
+                    <ul>
+                        {% for amenity_id in valid_room.room.amenities %}
+                            {% for amenity in amenities %}
+                                {% if amenity.id == amenity_id %}
+                                    <li>{{ amenity.sanitised_name }} {{ amenity.icon|safe }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                    <article>
+                        {{ valid_room.room.description }}
+                    </article>
+                </div>
+                <div class="col-6">
+                    {% if valid_room.room.image %}
+                        <img src="{{ valid_room.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                    <div>
+                        <p>Number of days: <span>{{ total_days }}</span></p>
+                        <p>Total cost: £<span>{{ valid_room.total_cost }}</span></p>
+                    </div>
+                    <!--Have the action something like: url 'process_booking' room.id -->
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <input type="hiddedn"name="total_days" value="{{ total_days }}">
+                        <input type="hidden" name="check_in_date" value="{{ booking_form.check_in_date.value }}">
+                        <input type="hidden" name="check_out_date" value="{{ booking_form.check_out_date.value }}">
+                        <input type="hidden" name="adults" value="{{ booking_form.adults.value }}">
+                        <input type="hidden" name="children" value="{{ booking_form.children.value }}">
+                        <input type="hidden" name="infants" value="{{ booking_form.infants.value }}">
+                        <button type="submit" class="btn btn-primary">Book Now</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
