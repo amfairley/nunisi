@@ -41,7 +41,7 @@
         <div id="index-booking-form">
             <div class="d-lg-none d-block container-fluid">
                 <div class="mx-auto text-center booking-form-div row">
-                    <form method="POST" action="" id="index-booking-form-body">
+                    <form method="GET" action="{% url 'available_rooms' %}" id="index-booking-form-body">
                         {% csrf_token %}
                         <div class="col-12">
                             <p class="jost-font index-form-title">SEARCH AVAILABILITY:</p>

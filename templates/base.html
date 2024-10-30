@@ -94,7 +94,7 @@
                     <!--Room search form-->
                     <div class="col d-none d-lg-block text-center">
                         <div class="mx-auto text-center booking-form-div">
-                            <form method="POST">
+                            <form method="GET" action="{% url 'available_rooms' %}">
                                 {% csrf_token %}
                                 <div class="col-12">
                                     <p class="jost-font search-form-title">SEARCH AVAILABILITY:</p>
