@@ -209,3 +209,22 @@ class RoomModelTest(TestCase):
         order_number_2 = order2._generate_order_number()
         # Check that they are not equal
         self.assertNotEqual(order_number_1, order_number_2)
+
+    def test_add_order_number_on_save(self):
+        '''Test that an order without an order number is assigned one'''
+        # Create an instance without an order number
+        order = Order()
+        # Save the order
+        order.save()
+        # Check that it has an order number
+        self.assertIsNotNone(order.order_number)
+
+    def test_str_method(self):
+        '''Test the Order string method'''
+        # Create an instance and save it to add an order number
+        order = Order()
+        order.save()
+        # Get the order number
+        order_number = order.order_number
+        # Check that the string method returns this order number
+        self.assertEqual(order.__str__(), order_number)
