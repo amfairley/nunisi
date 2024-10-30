@@ -2,4 +2,4 @@ from django.db import models
 
 
 class Order(models.Model):
-    name = 1
+    order_number = models.CharField(max_length=32, null=False, editable=False)
