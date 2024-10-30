@@ -183,3 +183,29 @@ class RoomModelTest(TestCase):
         self.assertFalse(field.null)
         # Check default value
         self.assertEqual(field.default, 0)
+
+    def test_generate_order_number(self):
+        '''Test the generate order number method'''
+        # Create an instance to check
+        order = Order()
+        # Create an order number using the method
+        order_number = order._generate_order_number()
+        # Check that the order number is a string
+        self.assertIsInstance(order_number, str)
+        # Check the length of the order number
+        self.assertEqual(len(order_number), 32)
+        # Check that the order number is uppercase
+        self.assertTrue(order_number.isupper())
+
+    def test_order_number_uniqueness(self):
+        '''
+        Check that the same order number is not created for 2 orders
+        '''
+        # Create 2 orders
+        order1 = Order()
+        order2 = Order()
+        # Create 2 order_numbers
+        order_number_1 = order1._generate_order_number()
+        order_number_2 = order2._generate_order_number()
+        # Check that they are not equal
+        self.assertNotEqual(order_number_1, order_number_2)
