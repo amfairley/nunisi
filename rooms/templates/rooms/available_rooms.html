@@ -34,9 +34,10 @@
                         <p>Total cost: £<span>{{ valid_room.total_cost }}</span></p>
                     </div>
                     <!--Have the action something like: url 'process_booking' room.id -->
-                    <form method="POST" action="">
+                    <form method="POST" action="{% url 'checkout' %}">
                         {% csrf_token %}
-                        <input type="hiddedn"name="total_days" value="{{ total_days }}">
+                        <input type="hidden" name="room_id" value="{{ valid_room.room.id }}">
+                        <input type="hidden"name="total_days" value="{{ total_days }}">
                         <input type="hidden" name="check_in_date" value="{{ booking_form.check_in_date.value }}">
                         <input type="hidden" name="check_out_date" value="{{ booking_form.check_out_date.value }}">
                         <input type="hidden" name="adults" value="{{ booking_form.adults.value }}">
