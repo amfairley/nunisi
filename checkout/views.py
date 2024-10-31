@@ -1,4 +1,14 @@
 from django.shortcuts import render
+import json
+from django.http import JsonResponse
+from django.shortcuts import render
+import stripe
+from django.conf import settings
+
+
+# Initialize Stripe keys
+client_secret = 'Test Secret Key'
+stripe_public_key = settings.STRIPE_SECRET_KEY
 
 
 def checkout(request):
@@ -29,6 +39,8 @@ def checkout(request):
         'check_out_date': check_out_date,
         'adults': adults,
         'children': children,
-        'infants': infants
+        'infants': infants,
+        'stripe_public_key': stripe_public_key,
+        'client_secret': client_secret,
     }
     return render(request, 'checkout/checkout.html', context)
