@@ -1,14 +1,10 @@
 from django.shortcuts import render
-import json
-from django.http import JsonResponse
-from django.shortcuts import render
-import stripe
 from django.conf import settings
 
 
 # Initialize Stripe keys
 client_secret = 'Test Secret Key'
-stripe_public_key = settings.STRIPE_SECRET_KEY
+stripe_public_key = settings.STRIPE_PUBLISHABLE_KEY
 
 
 def checkout(request):
