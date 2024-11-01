@@ -1,12 +1,14 @@
 from django.test import TestCase
 from django.urls import reverse
+from rooms.models import Room
 
 
 class TestCheckoutView(TestCase):
     '''A class to test the checkout views'''
     def test_checkout_view_works(self):
         '''A test to check that the correct template is used and page loads'''
-        response = self.client.get('/checkout/')
+        url = reverse('checkout')
+        response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'checkout/checkout.html')
 
@@ -25,6 +27,12 @@ class TestCheckoutView(TestCase):
             'children': 1,
             'infants': 0,
         }
+
+        room = Room.objects.create(
+            id=1,
+            name="Sample Room",
+            price=100
+        )
 
         # Send a POST request
         response = self.client.post(url, data=sample_data)
