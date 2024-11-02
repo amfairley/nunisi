@@ -1,17 +1,38 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{{ room_id }}
-
 {% block content %}
 <h1> Checkout </h1>
-    <div id="card-element"></div>
-    <div id="card-errors" role="alert"></div>
+    <!--Checkout Form-->
+    <form method="POST" action="{% url 'checkout' %}" id="payment-form">
+        {% csrf_token %}
+        {{ checkout_form.as_p }}
+        <input type="hidden"name="total_cost" value="{{ total_cost }}">
+        <input type="hidden" name="payment_form" value="True">
+        <div id="card-element"></div>
+        <div id="card-errors" role="alert"></div>
+        <button type="submit" id="checkout-form-submit-button">Submit</button>
+    </form>
+
+    <!-- Order Summary -->
+    <h2> Order Summary </h2>
+    <p>Room Id<span>{{ room_id }}</span></p>
+    <p>Room<span>{{ room }}</span></p>
+    <p>Total days<span>{{ total_days }}</span></p>
+    <p>Check in date<span>{{ check_in_date }}</span></p>
+    <p>Check out date<span>{{ check_out_date }}</span></p>
+    <p>Adults<span>{{ adults }}</span></p>
+    <p>Children<span>{{ children}}</span></p>
+    <p>Infants<span>{{ infants }}</span></p>
+    <p>Total Cost<span>{{ total_cost }}</span></p>
+
+
+
 {% endblock %}
 
 
 {% block postloadjs %}
-    {{ stripe_public_key|json_script:"id_stripe_public_key"}}
-    {{ client_secret|json_script:"id_client_secret"}}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
 {% endblock %}
