@@ -679,6 +679,28 @@ a {
     font-weight: bolder;
 }
 
+/* ---------- Stripe CSS ---------- */
+/* Loading overlay */
+#loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(23, 162, 184, 0.85);
+    z-index: 9999;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100%;
+}
+
+
 /* ---------- Media-queries ---------- */
 
 @media (max-width: 991px) {
