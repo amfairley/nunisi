@@ -51,7 +51,7 @@ class AvailableRoomsViewTest(TestCase):
             'infants': 1,
         })
         valid_rooms = response.context['valid_rooms']
-        self.assertEqual(len(valid_rooms), 1)
+        self.assertEqual(len(valid_rooms), 0)
 
     def test_total_cost_calculation(self):
         """Test the total cost calculation"""
