@@ -1,9 +1,9 @@
 // Get stripe keys
-var stripe_public_key = document.getElementById('id_stripe_public_key').textContent.slice(1,-1);
-var client_secret = document.getElementById('id_client_secret').textContent.slice(1,-1);
+var stripePublicKey = document.getElementById('id_stripe_public_key').textContent.slice(1,-1);
+var clientSecret = document.getElementById('id_client_secret').textContent.slice(1,-1);
 
 // Set up stripe
-var Stripe = Stripe(stripe_public_key);
+var Stripe = Stripe(stripePublicKey);
 
 // Create instances of stripe elements
 var elements = Stripe.elements();
@@ -40,4 +40,44 @@ card.addEventListener('change', function(event) {
     } else {
         errorDiv.textContent = '';
     }
+});
+
+// Handle form submit
+var form = document.getElementById('payment-form');
+
+// Get form element
+form.addEventListener('submit', function(ev) {
+    // Prevent the default form action
+    ev.preventDefault();
+    // Disable the card element and submit button to prevent multiple submissions
+        card.update({ 'disabled': true});
+        document.getElementById('checkout-form-submit-button').disabled = true;
+ 
+    // Send card information securely to stripe
+    // Call confirm payment method
+    Stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+            card: card,
+        }
+    // Then execute this function on result
+    }).then(function(result) {
+        // If there is an error, display the error message in the card error div
+        if (result.error) {
+            var errorDiv = document.getElementById('card-errors');
+            var html = `
+                <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+                </span>
+                <span>${result.error.message}</span>`;
+            $(errorDiv).html(html);
+            // If there is an error enable card and submit button to fix it
+            card.update({ 'disabled': false});
+            $('#submit-button').attr('disabled', false);
+        } else {
+            // If payment intent is succsessful, submit the form
+            if (result.paymentIntent.status === 'succeeded') {
+                form.submit();
+            }
+        }
+    });
 });
