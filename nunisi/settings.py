@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'home',
     'rooms',
     'checkout',
+    'user_profile.apps.UserProfileConfig',
 ]
 
 MIDDLEWARE = [
