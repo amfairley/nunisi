@@ -101,106 +101,119 @@ form.addEventListener('submit', function(ev) {
             }
         }, 10);
     }
-        
-    // Send card information securely to stripe
-    // Call confirm payment method
-    Stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
-            billing_details: {
+    
+    // To save information or not
+    var saveInfo = Boolean(document.getElementById('id-save-info').checked);
+    var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_info': saveInfo,
+    }
+    var url = '/checkout/cache_checkout_data/';
+
+    $.post(url, postData).done(function() {
+        // Send card information securely to stripe
+        // Call confirm payment method
+        Stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: form.full_name.value.trim(),
+                    phone: form.phone_number.value.trim(),
+                    email: form.email.value.trim(),
+                    address: {
+                        line1: form.street_address1.value.trim(),
+                        line2: form.street_address2.value.trim(),
+                        city: form.town_or_city.value.trim(),
+                        country: form.country.value.trim(),
+                        state: form.county.value.trim()
+                    }
+                }
+            },
+            // In case customes have different billing and shipping addresses
+            shipping: {
                 name: form.full_name.value.trim(),
                 phone: form.phone_number.value.trim(),
-                email: form.email.value.trim(),
                 address: {
                     line1: form.street_address1.value.trim(),
                     line2: form.street_address2.value.trim(),
                     city: form.town_or_city.value.trim(),
                     country: form.country.value.trim(),
+                    postal_code: form.postcode.value.trim(),
                     state: form.county.value.trim()
                 }
-            }
-        },
-        // In case customes have different billing and shipping addresses
-        shipping: {
-            name: form.full_name.value.trim(),
-            phone: form.phone_number.value.trim(),
-            address: {
-                line1: form.street_address1.value.trim(),
-                line2: form.street_address2.value.trim(),
-                city: form.town_or_city.value.trim(),
-                country: form.country.value.trim(),
-                postal_code: form.postcode.value.trim(),
-                state: form.county.value.trim()
-            }
-        },
-    // Then execute this function on result
-    }).then(function(result) {
-        // If there is an error, display the error message in the card error div
-        if (result.error) {
-            var errorDiv = document.getElementById('card-errors');
-            var html = `
-                <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
-            $(errorDiv).html(html);
-            // Fade out the payment form
-            const paymentForm = document.getElementById('payment-form');
-            if (paymentForm.style.display === 'none' || paymentForm.style.display === '') {
-                paymentForm.style.display = 'block';
-                paymentForm.style.opacity = 0;
-                let opacity = 0;
-                const fadeIn = setInterval(() => {
-                    opacity += 0.1;
-                    paymentForm.style.opacity = opacity;
-                    if (opacity >= 1) {
-                        clearInterval(fadeIn);
-                    }
-                }, 10);
+            },
+        // Then execute this function on result
+        }).then(function(result) {
+            // If there is an error, display the error message in the card error div
+            if (result.error) {
+                var errorDiv = document.getElementById('card-errors');
+                var html = `
+                    <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
+                $(errorDiv).html(html);
+                // Fade out the payment form
+                const paymentForm = document.getElementById('payment-form');
+                if (paymentForm.style.display === 'none' || paymentForm.style.display === '') {
+                    paymentForm.style.display = 'block';
+                    paymentForm.style.opacity = 0;
+                    let opacity = 0;
+                    const fadeIn = setInterval(() => {
+                        opacity += 0.1;
+                        paymentForm.style.opacity = opacity;
+                        if (opacity >= 1) {
+                            clearInterval(fadeIn);
+                        }
+                    }, 10);
+                } else {
+                    let opacity = 1;
+                    const fadeOut = setInterval(() => {
+                        opacity -= 0.1;
+                        paymentForm.style.opacity = opacity;
+                        if (opacity <= 0) {
+                            paymentForm.style.display = 'none';
+                            clearInterval(fadeOut);
+                        }
+                    }, 10);
+                }
+                // Fade out loading overlay
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay.style.display === 'none' || loadingOverlay.style.display === '') {
+                    loadingOverlay.style.display = 'block';
+                    loadingOverlay.style.opacity = 0;
+                    let opacity = 0;
+                    const fadeIn = setInterval(() => {
+                        opacity += 0.1;
+                        loadingOverlay.style.opacity = opacity;
+                        if (opacity >= 1) {
+                            clearInterval(fadeIn);
+                        }
+                    }, 10);
+                } else {
+                    let opacity = 1;
+                    const fadeOut = setInterval(() => {
+                        opacity -= 0.1;
+                        loadingOverlay.style.opacity = opacity;
+                        if (opacity <= 0) {
+                            loadingOverlay.style.display = 'none';
+                            clearInterval(fadeOut);
+                        }
+                    }, 10);
+                }
+            
+                // If there is an error enable card and submit button to fix it
+                card.update({ 'disabled': false});
+                $('#submit-button').attr('disabled', false);
             } else {
-                let opacity = 1;
-                const fadeOut = setInterval(() => {
-                    opacity -= 0.1;
-                    paymentForm.style.opacity = opacity;
-                    if (opacity <= 0) {
-                        paymentForm.style.display = 'none';
-                        clearInterval(fadeOut);
-                    }
-                }, 10);
+                // If payment intent is succsessful, submit the form
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
             }
-            // Fade out loading overlay
-            const loadingOverlay = document.getElementById('loading-overlay');
-            if (loadingOverlay.style.display === 'none' || loadingOverlay.style.display === '') {
-                loadingOverlay.style.display = 'block';
-                loadingOverlay.style.opacity = 0;
-                let opacity = 0;
-                const fadeIn = setInterval(() => {
-                    opacity += 0.1;
-                    loadingOverlay.style.opacity = opacity;
-                    if (opacity >= 1) {
-                        clearInterval(fadeIn);
-                    }
-                }, 10);
-            } else {
-                let opacity = 1;
-                const fadeOut = setInterval(() => {
-                    opacity -= 0.1;
-                    loadingOverlay.style.opacity = opacity;
-                    if (opacity <= 0) {
-                        loadingOverlay.style.display = 'none';
-                        clearInterval(fadeOut);
-                    }
-                }, 10);
-            }
-        
-            // If there is an error enable card and submit button to fix it
-            card.update({ 'disabled': false});
-            $('#submit-button').attr('disabled', false);
-        } else {
-            // If payment intent is succsessful, submit the form
-            if (result.paymentIntent.status === 'succeeded') {
-                form.submit();
-            }
-        }
-    });
+        });
+    })
+ 
 });
