@@ -1,12 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
+from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.contrib import messages
 from rooms.models import Room
 from .forms import CheckoutForm
+from .models import Order
 import stripe
 
 
-# Initialize Stripe keys
+@require_POST
+def cache_checkout_data(request):
+    '''
+    Before calling confirm payment in JS
+    Make a post request to this view and give it the client secret
+    From the payment intent
+    '''
+    try:
+        pid = request.POST.get('clinet_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+                       processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
@@ -81,32 +101,24 @@ def checkout(request):
         elif 'payment_form' in request.POST:
             stripe_secret_key = settings.STRIPE_SECRET_KEY
             stripe_public_key = settings.STRIPE_PUBLIC_KEY
-            intent = None
-            client_secret = None
-            # Set form initial form values
-            full_name = None
-            email = None
-            phone_number = None
-            country = None
-            postcode = None
-            town_or_city = None
-            street_address1 = None
-            street_address2 = None
-            county = None
-            total_cost = None
+            # Set form values as a dictionary
+            order_form_data = {
+                'full_name': request.POST.get('full_name'),
+                'email': request.POST.get('email'),
+                'phone_number': request.POST.get('phone_number'),
+                'country': request.POST.get('country'),
+                'postcode': request.POST.get('postcode'),
+                'town_or_city': request.POST.get('town_or_city'),
+                'street_address1': request.POST.get('street_address1'),
+                'street_address2': request.POST.get('street_address2'),
+                'county': request.POST.get('county'),
+                'order_total': float(request.POST.get('total_cost'))
+            }
 
-            if request.POST:
-                # Get values from the form
-                full_name = request.POST.get('full_name')
-                email = request.POST.get('email')
-                phone_number = request.POST.get('phone number')
-                country = request.POST.get('country')
-                postcode = request.POST.get('postcode')
-                town_or_city = request.POST.get('town_or_city')
-                street_address1 = request.POST.get('street_address1')
-                street_address2 = request.POST.get('street_address2')
-                county = request.POST.get('county')
-                total_cost = float(request.POST.get('total_cost'))
+            # Create an order instance
+            order_instance = Order(**order_form_data)
+            order_instance.save()
+            order_instance.__str__()
 
             print(intent)
             # Helpful message to display if the public key has not been set
@@ -117,7 +129,8 @@ def checkout(request):
             context = {
                 'stripe_public_key': stripe_public_key,
                 'client_secret': client_secret,
+                'order_number': order_instance.order_number,
             }
 
             return render(request, 'checkout/success.html', context)
-    return render(request, 'checkout/checkout.html', context)
+    return (render(request, 'checkout/checkout.html', context))
