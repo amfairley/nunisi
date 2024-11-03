@@ -7,8 +7,19 @@
     <form method="POST" action="{% url 'checkout' %}" id="payment-form">
         {% csrf_token %}
         {{ checkout_form.as_p }}
-        <input type="hidden"name="total_cost" value="{{ total_cost }}">
+        <!-- Hidden field to identify form name -->
         <input type="hidden" name="payment_form" value="True">
+        <!-- Hidden fields for trip details -->
+        <input type="hidden" name="room_id" value="{{ room_id }}">
+        <input type="hidden" name="room" value="{{ room }}">
+        <input type="hidden" name="total_days" value="{{ total_days }}">
+        <input type="hidden" name="check_in_date" value="{{ check_in_date }}">
+        <input type="hidden" name="check_out_date" value="{{ check_out_date }}">
+        <input type="hidden" name="adults" value = "{{ adults }}">
+        <input type="hidden" name="children" value = "{{ children }}">
+        <input type="hidden" name="infants" value = "{{ infants }}">
+        <input type="hidden" name="total_cost" value="{{ total_cost }}">
+        <!-- Stripe Elements -->
         <div id="card-element"></div>
         <div id="card-errors" role="alert"></div>
         <button type="submit" id="checkout-form-submit-button">Submit</button>
