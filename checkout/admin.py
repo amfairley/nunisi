@@ -3,8 +3,15 @@ from .models import Order
 
 
 class OrderAdmin(admin.ModelAdmin):
+    readonly_fields = (
+        'order_number',
+        'date',
+        'order_total',
+        'stripe_pid'
+    )
     list_display = (
         'order_number',
+        'stripe_pid',
         'full_name',
         'email',
         'phone_number',
@@ -18,7 +25,7 @@ class OrderAdmin(admin.ModelAdmin):
         'order_total'
     )
 
-    ordering = ('date',)
+    ordering = ('-date',)
 
 
 admin.site.register(Order, OrderAdmin)
