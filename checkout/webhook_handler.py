@@ -50,6 +50,7 @@ class StripeWH_Handler:
                     street_address2__iexact=billing_details.address.line2,
                     county__iexact=billing_details.address.state,
                     order_total=grand_total,
+                    stripe_pid=pid,
                 )
 
                 # If order exists, return 200 response
@@ -80,6 +81,7 @@ class StripeWH_Handler:
                     'street_address2': billing_details.address.line2,
                     'county': billing_details.address.state,
                     'order_total': grand_total,
+                    'stripe_pid': pid,
                 }
 
                 # Create an order instance
