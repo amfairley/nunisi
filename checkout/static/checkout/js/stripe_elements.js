@@ -107,7 +107,32 @@ form.addEventListener('submit', function(ev) {
     Stripe.confirmCardPayment(clientSecret, {
         payment_method: {
             card: card,
-        }
+            billing_details: {
+                name: form.full_name.value.trim(),
+                phone: form.phone_number.value.trim(),
+                email: form.email.value.trim(),
+                address: {
+                    line1: form.street_address1.value.trim(),
+                    line2: form.street_address2.value.trim(),
+                    city: form.town_or_city.value.trim(),
+                    country: form.country.value.trim(),
+                    state: form.county.value.trim()
+                }
+            }
+        },
+        // In case customes have different billing and shipping addresses
+        shipping: {
+            name: form.full_name.value.trim(),
+            phone: form.phone_number.value.trim(),
+            address: {
+                line1: form.street_address1.value.trim(),
+                line2: form.street_address2.value.trim(),
+                city: form.town_or_city.value.trim(),
+                country: form.country.value.trim(),
+                postal_code: form.postcode.value.trim(),
+                state: form.county.value.trim()
+            }
+        },
     // Then execute this function on result
     }).then(function(result) {
         // If there is an error, display the error message in the card error div
