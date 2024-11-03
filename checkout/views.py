@@ -16,9 +16,17 @@ def cache_checkout_data(request):
     From the payment intent
     '''
     try:
-        pid = request.POST.get('clinet_secret').split('_secret')[0]
+        pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
+            'trip_data': {
+                'room': request.POST.get('room_id'),
+                'start_date': request.POST.get('check_in_date'),
+                'end_date': request.POST.get('check_out_date'),
+                'adults': request.POST.get('adults'),
+                'children': request.POST.get('children'),
+                'infants': request.POST.get('infants'),
+            },
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
