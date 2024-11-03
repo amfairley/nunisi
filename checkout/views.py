@@ -27,7 +27,7 @@ def cache_checkout_data(request):
                 'children': request.POST.get('children'),
                 'infants': request.POST.get('infants'),
             },
-            
+
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
@@ -121,7 +121,8 @@ def checkout(request):
                 'street_address1': request.POST.get('street_address1'),
                 'street_address2': request.POST.get('street_address2'),
                 'county': request.POST.get('county'),
-                'order_total': float(request.POST.get('total_cost'))
+                'order_total': float(request.POST.get('total_cost')),
+                'stripe_pid': request.POST.get('client_secret'),
             }
 
             # Create an order instance
