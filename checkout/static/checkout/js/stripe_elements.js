@@ -7,26 +7,10 @@ var Stripe = Stripe(stripePublicKey);
 
 // Create instances of stripe elements
 var elements = Stripe.elements();
-// Set style to apply to elements
-var style = {
-    base: {
-        color: '#000',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-            color: '#aab7c4'
-        }
-    },
-    invalid: {
-        color: '#dc3545',
-        iconColor: '#dc3545'
-    }
-};
 // Create a stripe card element
 var card = elements.create('card');
-// Add this element to our card-element div with the above defined style
-card.mount('#card-element', {style: style});
+// Add this element to our card-element div
+card.mount('#card-element');
 
 // Handle real-time validation errors on the card element
 card.addEventListener('change', function(event) {
