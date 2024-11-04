@@ -7,6 +7,7 @@ var Stripe = Stripe(stripePublicKey);
 
 // Create instances of stripe elements
 var elements = Stripe.elements();
+// Set style to apply to elements
 var style = {
     base: {
         color: '#000',
@@ -22,13 +23,18 @@ var style = {
         iconColor: '#dc3545'
     }
 };
+// Create a stripe card element
 var card = elements.create('card');
+// Add this element to our card-element div with the above defined style
 card.mount('#card-element', {style: style});
 
 // Handle real-time validation errors on the card element
 card.addEventListener('change', function(event) {
+    // Set my error div to a variable using id
     var errorDiv = document.getElementById('card-errors');
+    // If there is an error
     if (event.error) {
+        // Set the internal html to:
         errorDiv.innerHTML = `
             <div>
                 <span class="icon" role="alert">
@@ -37,15 +43,17 @@ card.addEventListener('change', function(event) {
                 <span>${event.error.message}</span>
             </div>
         `;
+    // Otherwise make the error div empty
     } else {
         errorDiv.textContent = '';
     }
 });
 
 // Handle form submit
+// Set the form to a variable
 var form = document.getElementById('payment-form');
 
-// Get form element
+// Add an event listener for when the form is submitted
 form.addEventListener('submit', function(ev) {
     // Prevent the default form action
     ev.preventDefault();
@@ -115,10 +123,13 @@ form.addEventListener('submit', function(ev) {
     $.post(url, postData).done(function() {
         // Send card information securely to stripe
         // Call confirm payment method
+        // Set some values in the payment intent object
+        // See full object here: https://docs.stripe.com/api/payment_intents/object
         Stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
                 billing_details: {
+                    // .trim() used to remove whitespace
                     name: form.full_name.value.trim(),
                     phone: form.phone_number.value.trim(),
                     email: form.email.value.trim(),
@@ -148,6 +159,7 @@ form.addEventListener('submit', function(ev) {
         }).then(function(result) {
             // If there is an error, display the error message in the card error div
             if (result.error) {
+                // Get the error div, define the inner html and apply it
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
                     <span class="icon" role="alert">
