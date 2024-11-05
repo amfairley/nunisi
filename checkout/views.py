@@ -6,6 +6,7 @@ from rooms.models import Room
 from .forms import CheckoutForm
 from .models import Order
 import stripe
+from datetime import datetime
 
 
 @require_POST
@@ -44,7 +45,10 @@ def checkout(request):
     room_id = None
     total_days = None
     check_in_date = None
+    sanitised_check_in_date = None
     check_out_date = None
+    sanitised_check_out_date = None
+    total_guests = None
     adults = None
     children = None
     infants = None
@@ -63,6 +67,17 @@ def checkout(request):
             total_days = request.POST.get('total_days')
             check_in_date = request.POST.get('check_in_date')
             check_out_date = request.POST.get('check_out_date')
+            # Sanitise data data
+            check_in_date_object = datetime.strptime(check_in_date, '%Y-%m-%d')
+            sanitised_check_in_date = check_in_date_object.strftime('%d-%b-%Y')
+            check_out_date_object = datetime.strptime(
+                check_out_date,
+                '%Y-%m-%d'
+            )
+            sanitised_check_out_date = check_out_date_object.strftime(
+                '%d-%b-%Y'
+            )
+            # Guest data
             adults = request.POST.get('adults')
             if request.POST.get('children') == '':
                 children = 0
@@ -72,6 +87,7 @@ def checkout(request):
                 infants = 0
             else:
                 infants = request.POST.get('infants')
+            total_guests = int(adults) + int(children) + int(infants)
             room = Room.objects.get(id=room_id)
             cost_per_night = room.price
             total_cost = cost_per_night * int(total_days)
@@ -96,7 +112,10 @@ def checkout(request):
                 'room': room,
                 'total_days': total_days,
                 'check_in_date': check_in_date,
+                'sanitised_check_in_date': sanitised_check_in_date,
                 'check_out_date': check_out_date,
+                'sanitised_check_out_date': sanitised_check_out_date,
+                'total_guests': total_guests,
                 'adults': adults,
                 'children': children,
                 'infants': infants,
