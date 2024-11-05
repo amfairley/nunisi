@@ -34,8 +34,11 @@ def cache_checkout_data(request):
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be \
-                       processed right now. Please try again later.')
+        messages.error(
+            request,
+            'Sorry, your payment cannot be processed right now. '
+            'Please try again later.'
+        )
         return HttpResponse(content=e, status=400)
 
 
@@ -59,6 +62,13 @@ def checkout(request):
     intent = None
     client_secret = None
     checkout_form = CheckoutForm()
+
+    # Base context
+    context = {
+        'checkout_form': checkout_form,
+        'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+        'client_secret': None,
+    }
 
     if request.POST:
         if 'direct_to_checkout' in request.POST:
@@ -101,13 +111,13 @@ def checkout(request):
                 currency=settings.STRIPE_CURRENCY,
 
             )
-            client_secret = intent.client_secret
+            client_secret = intent['client_secret']
             # Helpful message to display if the public key has not been set
             if not stripe_public_key:
                 messages.warning(request, 'Stripe public key is missing. \
                     Did you forget to set it in your environment?')
 
-            context = {
+            context.update({
                 'room_id': room_id,
                 'room': room,
                 'total_days': total_days,
@@ -120,10 +130,8 @@ def checkout(request):
                 'children': children,
                 'infants': infants,
                 'total_cost': total_cost,
-                'checkout_form': checkout_form,
-                'stripe_public_key': stripe_public_key,
                 'client_secret': client_secret,
-            }
+            })
             return render(request, 'checkout/checkout.html', context)
 
         elif 'payment_form' in request.POST:
@@ -155,11 +163,10 @@ def checkout(request):
                 messages.warning(request, 'Stripe public key is missing. \
                     Did you forget to set it in your environment?')
 
-            context = {
-                'stripe_public_key': stripe_public_key,
+            context.update({
                 'client_secret': client_secret,
                 'order_number': order_instance.order_number,
-            }
+            })
 
             return render(request, 'checkout/success.html', context)
     return (render(request, 'checkout/checkout.html', context))
