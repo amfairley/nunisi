@@ -1,21 +1,37 @@
 // Get stripe keys
-var stripePublicKey = document.getElementById('id_stripe_public_key').textContent.slice(1,-1);
-var clientSecret = document.getElementById('id_client_secret').textContent.slice(1,-1);
+var stripePublicKey = document
+    .getElementById("id_stripe_public_key")
+    .textContent.slice(1,-1);
+var clientSecret = document
+    .getElementById("id_client_secret")
+    .textContent.slice(1,-1);
 
 // Set up stripe
-var Stripe = Stripe(stripePublicKey);
+var Stripe = new Stripe(stripePublicKey);
+
+// Set the form to a variable
+var form = document.getElementById("payment-form");
+
+// Set up an opacity variable
+var opacity = 0;
+
+// Define a save info variables
+var saveInfo = false;
+var csrfToken;
+var postData;
+
 
 // Create instances of stripe elements
 var elements = Stripe.elements();
 // Create a stripe card element
-var card = elements.create('card');
+var card = elements.create("card");
 // Add this element to our card-element div
-card.mount('#card-element');
+card.mount("#card-element");
 
 // Handle real-time validation errors on the card element
-card.addEventListener('change', function(event) {
+card.addEventListener("change", function(event) {
     // Set my error div to a variable using id
-    var errorDiv = document.getElementById('card-errors');
+    var errorDiv = document.getElementById("card-errors");
     // If there is an error
     if (event.error) {
         // Set the internal html to:
@@ -29,29 +45,28 @@ card.addEventListener('change', function(event) {
         `;
     // Otherwise make the error div empty
     } else {
-        errorDiv.textContent = '';
+        errorDiv.textContent = "";
     }
 });
 
 // Handle form submit
-// Set the form to a variable
-var form = document.getElementById('payment-form');
-
 // Add an event listener for when the form is submitted
-form.addEventListener('submit', function(ev) {
+form.addEventListener("submit", function(ev) {
     // Prevent the default form action
     ev.preventDefault();
-    // Disable the card element and submit button to prevent multiple submissions
-    card.update({ 'disabled': true});
-    document.getElementById('checkout-form-submit-button').disabled = true;
-    document.getElementById('payment-form')
+    // Disable the card element and submit button
+    // to prevent multiple submissions
+    card.update({ "disabled": true});
+    document.getElementById("checkout-form-submit-button").disabled = true;
+    document.getElementById("payment-form");
     // Fade out the payment form
-    const paymentForm = document.getElementById('payment-form');
-    if (paymentForm.style.display === 'none' || paymentForm.style.display === '') {
-        paymentForm.style.display = 'block';
+    var paymentForm = document.getElementById("payment-form");
+    if (paymentForm.style.display === "none" ||
+        paymentForm.style.display === "") {
+        paymentForm.style.display = "block";
         paymentForm.style.opacity = 0;
-        let opacity = 0;
-        const fadeIn = setInterval(() => {
+        opacity = 0;
+        const fadeIn = setInterval(function () {
             opacity += 0.1;
             paymentForm.style.opacity = opacity;
             if (opacity >= 1) {
@@ -59,56 +74,61 @@ form.addEventListener('submit', function(ev) {
             }
         }, 10);
     } else {
-        let opacity = 1;
-        const fadeOut = setInterval(() => {
+        opacity = 1;
+        const fadeOut = setInterval(function () {
             opacity -= 0.1;
             paymentForm.style.opacity = opacity;
             if (opacity <= 0) {
-                paymentForm.style.display = 'none';
+                paymentForm.style.display = "none";
                 clearInterval(fadeOut);
             }
         }, 10);
     }
     // Fade out loading overlay
-    const loadingOverlay = document.getElementById('loading-overlay');
-    if (loadingOverlay.style.display === 'none' || loadingOverlay.style.display === '') {
-        loadingOverlay.style.display = 'block';
+    var loadingOverlay = document.
+        getElementById("loading-overlay");
+    if (loadingOverlay.style.display === "none" ||
+        loadingOverlay.style.display === "") {
+        loadingOverlay.style.display = "block";
         loadingOverlay.style.opacity = 0;
-        let opacity = 0;
-        const fadeIn = setInterval(() => {
+        opacity = 0;
+        const fadeInOverlay = setInterval(function () {
             opacity += 0.1;
-            loadingOverlay.style.opacity = opacity;
+            paymentForm.style.opacity = opacity;
             if (opacity >= 1) {
-                clearInterval(fadeIn);
+                clearInterval(fadeInOverlay);
             }
         }, 10);
     } else {
-        let opacity = 1;
-        const fadeOut = setInterval(() => {
+        opacity = 1;
+        const fadeOutOverlay = setInterval(function () {
             opacity -= 0.1;
-            loadingOverlay.style.opacity = opacity;
+            paymentForm.style.opacity = opacity;
             if (opacity <= 0) {
-                loadingOverlay.style.display = 'none';
-                clearInterval(fadeOut);
+                paymentForm.style.display = "none";
+                clearInterval(fadeOutOverlay);
             }
         }, 10);
     }
-    
+
     // To save information or not
-    var saveInfo = Boolean(document.getElementById('id-save-info').checked);
-    var csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
-    var postData = {
-        'csrfmiddlewaretoken': csrfToken,
-        'client_secret': clientSecret,
-        'save_info': saveInfo,
-    }
-    var url = '/checkout/cache_checkout_data/';
+    saveInfo = Boolean(document.getElementById("id-save-info").checked);
+    csrfToken = document
+        .querySelector("input[name='csrfmiddlewaretoken']")
+        .value;
+    postData = {
+        "client_secret": clientSecret,
+        "csrfmiddlewaretoken": csrfToken,
+        "save_info": saveInfo
+    };
+    var url = "/checkout/cache_checkout_data/";
 
     $.post(url, postData).done(function() {
         // Send card information securely to stripe
         // Call confirm payment method
         // Set some values in the payment intent object
-        // See full object here: https://docs.stripe.com/api/payment_intents/object
+        // See full object here:
+        // https://docs.stripe.com/api/payment_intents/object
         Stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -138,13 +158,14 @@ form.addEventListener('submit', function(ev) {
                     postal_code: form.postcode.value.trim(),
                     state: form.county.value.trim()
                 }
-            },
+            }
         // Then execute this function on result
         }).then(function(result) {
-            // If there is an error, display the error message in the card error div
+            // If there is an error display the error message
+            // in the card error div
             if (result.error) {
                 // Get the error div, define the inner html and apply it
-                var errorDiv = document.getElementById('card-errors');
+                var errorDiv = document.getElementById("card-errors");
                 var html = `
                     <span class="icon" role="alert">
                     <i class="fas fa-times"></i>
@@ -152,66 +173,68 @@ form.addEventListener('submit', function(ev) {
                     <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
                 // Fade out the payment form
-                const paymentForm = document.getElementById('payment-form');
-                if (paymentForm.style.display === 'none' || paymentForm.style.display === '') {
-                    paymentForm.style.display = 'block';
+                paymentForm = document.getElementById("payment-form");
+                if (paymentForm.style.display === "none" ||
+                    paymentForm.style.display === "") {
+                    paymentForm.style.display = "block";
                     paymentForm.style.opacity = 0;
-                    let opacity = 0;
-                    const fadeIn = setInterval(() => {
+                    opacity = 0;
+                    const fadeInPayment = setInterval(function () {
                         opacity += 0.1;
                         paymentForm.style.opacity = opacity;
                         if (opacity >= 1) {
-                            clearInterval(fadeIn);
+                            clearInterval(fadeInPayment);
                         }
                     }, 10);
                 } else {
-                    let opacity = 1;
-                    const fadeOut = setInterval(() => {
+                    opacity = 1;
+                    const fadeOutPayment = setInterval(function () {
                         opacity -= 0.1;
                         paymentForm.style.opacity = opacity;
                         if (opacity <= 0) {
-                            paymentForm.style.display = 'none';
-                            clearInterval(fadeOut);
+                            paymentForm.style.display = "none";
+                            clearInterval(fadeOutPayment);
                         }
                     }, 10);
                 }
                 // Fade out loading overlay
-                const loadingOverlay = document.getElementById('loading-overlay');
-                if (loadingOverlay.style.display === 'none' || loadingOverlay.style.display === '') {
-                    loadingOverlay.style.display = 'block';
+                loadingOverlay = document.getElementById("loading-overlay");
+                if (loadingOverlay.style.display === "none" ||
+                    loadingOverlay.style.display === "") {
+                    loadingOverlay.style.display = "block";
                     loadingOverlay.style.opacity = 0;
-                    let opacity = 0;
-                    const fadeIn = setInterval(() => {
+                    opacity = 0;
+                    const fadeInLoading = setInterval(function () {
                         opacity += 0.1;
-                        loadingOverlay.style.opacity = opacity;
+                        paymentForm.style.opacity = opacity;
                         if (opacity >= 1) {
-                            clearInterval(fadeIn);
+                            clearInterval(fadeInLoading);
                         }
                     }, 10);
                 } else {
-                    let opacity = 1;
-                    const fadeOut = setInterval(() => {
+                    opacity = 1;
+                    const fadeOutLoading = setInterval(function () {
                         opacity -= 0.1;
-                        loadingOverlay.style.opacity = opacity;
+                        paymentForm.style.opacity = opacity;
                         if (opacity <= 0) {
-                            loadingOverlay.style.display = 'none';
-                            clearInterval(fadeOut);
+                            paymentForm.style.display = "none";
+                            clearInterval(fadeOutLoading);
                         }
                     }, 10);
                 }
-            
+
                 // If there is an error enable card and submit button to fix it
-                card.update({ 'disabled': false});
-                $('#submit-button').attr('disabled', false);
+                card.update({ "disabled": false});
+                $("#submit-button").attr("disabled", false);
             } else {
                 // If payment intent is succsessful, submit the form
-                if (result.paymentIntent.status === 'succeeded') {
+                if (result.paymentIntent.status === "succeeded") {
                     form.submit();
                 }
             }
         });
     }).fail(function() {
         // Reload the page, the error will be in django messages
-        location.reload()
+        location.reload();
     });
 });
