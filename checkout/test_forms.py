@@ -13,7 +13,7 @@ class CheckoutFormTest(TestCase):
             'full_name': 'Test User',
             'email': 'test@gmail.com',
             'phone_number': '1234567890',
-            'country': 'United Kingdom',
+            'country': 'GB',
             'town_or_city': 'London',
             'street_address1': '123 Test Street',
         }
@@ -80,19 +80,14 @@ class CheckoutFormTest(TestCase):
 
     def test_country_field(self):
         '''Test the country field'''
-        # Test if it is required
+        # Test if the field is required
         form = CheckoutForm({'country': ''})
         self.assertFalse(form.is_valid())
         self.assertIn('country', form.errors)
-        # Test max length
-        max_length = form.fields['country'].max_length
-        self.assertEqual(max_length, 40)
-        # Test label name
-        form_label = form['country'].label_tag()
-        self.assertEqual(
-            form_label,
-            '<label for="id_country">Country:</label>'
-        )
+
+        # Test that the field has the correct label
+        form_label = form.fields['country'].label
+        self.assertEqual(form_label, "Country")
 
     def test_postcode_field(self):
         '''Test the postcode field'''
