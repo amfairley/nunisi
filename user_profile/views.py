@@ -30,9 +30,9 @@ def edit_profile(request):
             return render(request, 'user_profile/user_profile.html', context)
 
     else:
-        form = EditProfileForm()
-        context = {
-            'user_profile': user_profile,
-            'form': form,
-        }
+        form = EditProfileForm(instance=user_profile)
+    context = {
+        'user_profile': user_profile,
+        'form': form,
+    }
     return render(request, 'user_profile/edit_profile.html', context)
