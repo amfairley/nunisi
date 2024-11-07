@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from .models import Order
+from user_profile.models import UserProfile
 import stripe
 import time
 
@@ -33,6 +34,22 @@ class StripeWH_Handler:
         for field, value in shipping_details.address.items():
             if value == "":
                 shipping_details.address[field] = None
+
+        # Update profile information if save_info was checked
+        user_profile = None
+        user = intent.metadata.user
+        if user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=user)
+            if save_info:
+                user_profile.full_name = shipping_details.name
+                user_profile.phone_number = shipping_details.phone
+                user_profile.country = shipping_details.address.country
+                user_profile.postcode = shipping_details.address.postal_code
+                user_profile.town_or_city = shipping_details.address.city
+                user_profile.street_address1 = shipping_details.address.line1
+                user_profile.street_address2 = shipping_details.address.line2
+                user_profile.county = shipping_details.address.state
+                user_profile.save()
         # Check if order exists, if it does, it's fine, if not, make it
         order_exists = False
         attempt = 1
@@ -71,6 +88,7 @@ class StripeWH_Handler:
             order = None
             try:
                 order_form_data = {
+                    'user_profile': user_profile,
                     'full_name': shipping_details.name,
                     'email': billing_details.email,
                     'phone_number': shipping_details.phone,
