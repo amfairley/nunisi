@@ -5,12 +5,14 @@ from .models import Order
 class OrderAdmin(admin.ModelAdmin):
     readonly_fields = (
         'order_number',
+        'user_profile',
         'date',
         'order_total',
         'stripe_pid'
     )
     list_display = (
         'order_number',
+        'user_profile',
         'stripe_pid',
         'full_name',
         'email',
