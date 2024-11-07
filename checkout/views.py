@@ -118,6 +118,24 @@ def checkout(request):
                 messages.warning(request, 'Stripe public key is missing. \
                     Did you forget to set it in your environment?')
 
+            # Prefill the checkout form
+            if request.user.is_authenticated:
+                try:
+                    user_profile = UserProfile.objects.get(user=request.user)
+                    checkout_form = CheckoutForm(initial={
+                        'full_name': user_profile.full_name,
+                        'email': user_profile.user.email,
+                        'phone_number': user_profile.phone_number,
+                        'street_address1': user_profile.street_address1,
+                        'street_address2': user_profile.street_address2,
+                        'town_or_city': user_profile.town_or_city,
+                        'county': user_profile.county,
+                        'postcode': user_profile.postcode,
+                        'country': user_profile.country,
+                    })
+                except UserProfile.DoesNotExist:
+                    checkout_form = CheckoutForm()
+
             context.update({
                 'room_id': room_id,
                 'room': room,
@@ -132,6 +150,7 @@ def checkout(request):
                 'infants': infants,
                 'total_cost': total_cost,
                 'client_secret': client_secret,
+                'checkout_form': checkout_form,
             })
             return render(request, 'checkout/checkout.html', context)
 
