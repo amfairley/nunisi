@@ -17,21 +17,6 @@ class CheckoutForm(forms.Form):
         required=True,
         label="Phone Number"
     )
-    country = forms.CharField(
-        max_length=40,
-        required=True,
-        label="Country"
-    )
-    postcode = forms.CharField(
-        max_length=20,
-        required=False,
-        label="Postcode"
-    )
-    town_or_city = forms.CharField(
-        max_length=40,
-        required=True,
-        label="Town or City"
-    )
     street_address1 = forms.CharField(
         max_length=80,
         required=True,
@@ -42,8 +27,23 @@ class CheckoutForm(forms.Form):
         required=False,
         label="Street Address Line 2"
     )
+    town_or_city = forms.CharField(
+        max_length=40,
+        required=True,
+        label="Town or City"
+    )
     county = forms.CharField(
         max_length=80,
         required=False,
         label="County"
+    )
+    postcode = forms.CharField(
+        max_length=20,
+        required=False,
+        label="Postcode"
+    )
+    country = forms.CharField(
+        max_length=40,
+        required=True,
+        label="Country"
     )
