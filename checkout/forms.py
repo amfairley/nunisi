@@ -1,4 +1,6 @@
 from django import forms
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 
 
 class CheckoutForm(forms.Form):
@@ -42,8 +44,8 @@ class CheckoutForm(forms.Form):
         required=False,
         label="Postcode"
     )
-    country = forms.CharField(
-        max_length=40,
+    country = CountryField(blank_label='Country *').formfield(
         required=True,
+        widget=CountrySelectWidget(layout='{widget}'),
         label="Country"
     )
