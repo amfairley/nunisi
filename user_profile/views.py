@@ -13,3 +13,13 @@ def user_profile(request):
         'user_profile': user_profile,
     }
     return render(request, template, context)
+
+
+def edit_profile(request):
+    '''Divert user to the edit_profile page'''
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    template = 'user_profile/edit_profile.html'
+    context = {
+        'user_profile': user_profile,
+    }
+    return render(request, template, context)
