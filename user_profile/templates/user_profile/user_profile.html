@@ -1,1 +1,51 @@
 <h1>User Profile Page</h1>
+
+<p>Username: {{ user_profile.user }}</p>
+<p>Newsletter: {{ user_profile.newsletter }}</p>
+{% if user_profile.full_name %}
+    <p><span>Name:</span>{{ user_profile.full_name }}</p>
+{% else %}
+    <p><span>Name:</span>N/A</p>
+{% endif %}
+{% if user_profile.phone_number %}
+    <p><span>Phone Number:</span>{{ user_profile.phone_number }}</p>
+{% else %}
+    <p><span>Phone Number:</span>N/A</p>
+{% endif %}
+{% if user_profile.street_address1 %}
+    <p><span>Street Address First Line:</span>{{ user_profile.street_address1 }}</p>
+{% else %}
+    <p><span>Street Address First Line:</span>N/A</p>
+{% endif %}
+{% if user_profile.street_address2 %}
+    <p><span>Street Address Second Line:</span>{{ user_profile.street_address2 }}</p>
+{% else %}
+    <p><span>Street Address Second Line:</span>N/A</p>
+{% endif %}
+{% if user_profile.town_or_city %}
+    <p><span>Town/City:</span>{{ user_profile.town_or_city }}</p>
+{% else %}
+    <p><span>Town/City:</span>N/A</p>
+{% endif %}
+{% if user_profile.county %}
+    <p><span>County:</span>{{ user_profile.county }}</p>
+{% else %}
+    <p><span>County:</span>N/A</p>
+{% endif %}
+{% if user_profile.postcode %}
+    <p><span>Postcode:</span>{{ user_profile.postcode }}</p>
+{% else %}
+    <p><span>Postcode:</span>N/A</p>
+{% endif %}
+{% if user_profile.country %}
+    <p><span>Country:</span>{{ user_profile.country }}</p>
+{% else %}
+    <p><span>Country:</span>N/A</p>
+{% endif %}
+{% if user_profile.newsletter %}
+    <p><span>Signed up to newsletter</span></p>
+{% else %}
+    <p><span>Not signed up to newsletter</span></p>
+{% endif %}
+
+<a href="{% url 'edit_profile' %}">Edit profile</a>
