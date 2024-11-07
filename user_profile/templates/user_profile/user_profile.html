@@ -1,6 +1,7 @@
 <h1>User Profile Page</h1>
 
-<p>Username: {{ user_profile.user }}</p>
+<p>Email: {{ user_profile.user.email }}</p>
+<a href="">Update email address</a>
 <p>Newsletter: {{ user_profile.newsletter }}</p>
 {% if user_profile.full_name %}
     <p><span>Name:</span>{{ user_profile.full_name }}</p>
