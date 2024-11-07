@@ -1,1 +1,6 @@
 <h1>Edit profile page</h1>
+<form method="POST" action="{% url 'edit_profile' %}" id="edit-profile-form" class="roboto-font">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+</form>
