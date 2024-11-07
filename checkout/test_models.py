@@ -7,6 +7,7 @@ from django.db.models import (
     DateTimeField,
     DecimalField
 )
+from django_countries.fields import CountryField
 
 
 class RoomModelTest(TestCase):
@@ -78,11 +79,11 @@ class RoomModelTest(TestCase):
         '''Test the country field'''
         # Get the 'country' field from the model
         field = Order._meta.get_field('country')
-        # Check that the field is a CharField
-        self.assertIsInstance(field, CharField)
+        # Check that the field is a CountryField
+        self.assertIsInstance(field, CountryField)
         self.assertEqual(field.get_internal_type(), 'CharField')
-        # Check the max length of the CharField
-        self.assertEqual(field.max_length, 40)
+        # Check the blank label
+        self.assertEqual(field.blank_label, 'Country *')
         # Check null status
         self.assertFalse(field.null)
         # Check blank status
