@@ -3,6 +3,7 @@ from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.contrib import messages
 from rooms.models import Room
+from user_profile.models import UserProfile
 from .forms import CheckoutForm
 from .models import Order
 import stripe
@@ -137,8 +138,11 @@ def checkout(request):
         elif 'payment_form' in request.POST:
             stripe_secret_key = settings.STRIPE_SECRET_KEY
             stripe_public_key = settings.STRIPE_PUBLIC_KEY
+            # Get save info status
+            save_info = request.POST.get('save_info')
             # Set form values as a dictionary
             order_form_data = {
+                'user_profile': UserProfile.objects.get(user=request.user),
                 'full_name': request.POST.get('full_name'),
                 'email': request.POST.get('email'),
                 'phone_number': request.POST.get('phone_number'),
@@ -151,6 +155,25 @@ def checkout(request):
                 'order_total': float(request.POST.get('total_cost')),
                 'stripe_pid': request.POST.get('client_secret'),
             }
+
+            # If the save info button is ticked:
+            if save_info:
+                # Get the user profile
+                user_profile = UserProfile.objects.get(user=request.user)
+                # Update the user profile with the form data
+                user_profile.full_name = order_form_data['full_name']
+                user_profile.phone_number = order_form_data['phone_number']
+                user_profile.country = order_form_data['country']
+                user_profile.postcode = order_form_data['postcode']
+                user_profile.town_or_city = order_form_data['town_or_city']
+                user_profile.street_address1 = order_form_data[
+                    'street_address1'
+                ]
+                user_profile.street_address2 = order_form_data[
+                    'street_address2'
+                ]
+                user_profile.county = order_form_data['county']
+                user_profile.save()
 
             # Create an order instance
             order_instance = Order(**order_form_data)
