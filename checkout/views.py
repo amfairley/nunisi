@@ -28,6 +28,7 @@ def cache_checkout_data(request):
                 'adults': request.POST.get('adults'),
                 'children': request.POST.get('children'),
                 'infants': request.POST.get('infants'),
+                'cost': request.POST.get('total_cost'),
             },
 
             'save_info': request.POST.get('save_info'),
