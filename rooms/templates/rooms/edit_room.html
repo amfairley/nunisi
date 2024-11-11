@@ -1,0 +1,16 @@
+<h1>Edit Room: {{ room.name }}</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p>Amenities Key</p>
+    <ol>
+        {% for amenity in amenities %}
+            <li>
+                {{ amenity.sanitised_name }} {{ amenity.icon|safe }}
+            </li>
+        {% endfor %}
+    </ol>
+
+    <button type="submit">Save Changes</button>
+</form>
