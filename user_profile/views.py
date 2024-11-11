@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import UserProfile, Trip
 from rooms.models import Amenities
 from .forms import EditProfileForm
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 
@@ -54,3 +55,14 @@ def trips_user(request):
         'amenities': amenities,
     }
     return render(request, 'user_profile/trips.html', context)
+
+
+@staff_member_required
+def trips_superuser(request):
+    '''Display all the trips for the admin'''
+    trips = Trip.objects.all()
+
+    context = {
+        'trips': trips,
+    }
+    return render(request, 'user_profile/trips_superuser.html', context)
