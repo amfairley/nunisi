@@ -119,9 +119,15 @@ def edit_room(request, room_id):
 
 
 @staff_member_required
-def delete_room_confirmation(request, room_id):
+def delete_room(request, room_id):
     """Delete a room from the database."""
     room = get_object_or_404(Room, id=room_id)
+
+    # Delete confirmation
+    if request.method == 'POST':
+        room.delete()
+        return redirect('rooms_superuser')
+
     context = {
         'room': room
     }
@@ -129,8 +135,22 @@ def delete_room_confirmation(request, room_id):
 
 
 @staff_member_required
-def delete_room(request, room_id):
-    """Delete a room from the database."""
-    room = get_object_or_404(Room, id=room_id)
-    room.delete()
-    return redirect('rooms_superuser')
+def add_room(request):
+    '''View to enter details and add a new room'''
+    amenities = Amenities.objects.all()
+    form = EditRoomForm()
+
+    # If the form is submitted
+    if request.method == 'POST':
+        # request.FILES handles the image upload
+        form = EditRoomForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Redirect to rooms_superuser view or another page after saving
+            return redirect('rooms_superuser')
+
+    context = {
+        'form': form,
+        'amenities': amenities,
+    }
+    return render(request, 'rooms/add_room.html', context)
