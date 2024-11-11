@@ -1,0 +1,11 @@
+<h1>Trips page</h1>
+<ul>
+    {% for trip in trips %}
+        <li>{{ trip.room }}</li>
+        <li>{{ trip.start_date }}</li>
+        <li>{{ trip.end_date }}</li>
+        <li>{{ trip.adults }}</li>
+        <li>{{ trip.children }}</li>
+        <li>{{ trip.infants }}</li>
+    {% endfor %}
+</ul>
