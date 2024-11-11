@@ -32,6 +32,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
     - [Python Validation](#python-validation)
 5. [Bugs](#bugs)
     - [Bug 1](#bug-1)
+    - [Bug 2](#bug-2)
     - [Known Bugs](#known-bugs)
 6. [Analytics](#analytics)
 
@@ -145,6 +146,9 @@ Here is the the coverage report of my Django testing:
 
 Discussion of report:
 
+**Errors**:
+- When doing TDD for the available_rooms view, the commits were added at the end of the process, obscuring the order of the testing, however these were done following the TDD philosophy.
+
 ### Accessibility Testing
 Accessibility was kept in mind throughout development and the best practices were kept to across the website including, but not limited to, ensuring aria-labels and alt texts were used throughout, using semantic HTML, creating easy to see colour contrasts. Where hidden text was used, it was hidden in a way that was still accessible to screen readers.
 Accessibility testing was performed using the [Wave](https://wave.webaim.org/) validator to provide key information about the accessibility standard of the website. Pages that required login were beyond the purview of the [Wave](https://wave.webaim.org/) browser tool, so the Wave extension for Google Chrome was used, which can be found [here](https://wave.webaim.org/extension/).
@@ -171,7 +175,7 @@ The performance was tested for normal internet speed, fast 3G, and slow 3G to te
 ### HTML Validation
 The [W3C markup validation service](https://validator.w3.org/) was used to validate the HTML of each page of this website. As each page including some Django templating language that threw errors in the validator; the HTML was validated after deployment. Each page was accessed and the source code (CTRL+U or right click > View Page Source) was copied and pasted into the validator to validate by direct input.<br>
 **Warnings**:
-- Explain warnings here
+- 
 
 **Errors**
 - Explain errors here, but there should be none.
@@ -215,6 +219,11 @@ The env.py file was also linted showing no errors but the screenshot has been om
 This bug occurred when creating the booking form. Initially the choice of guests was put inside a dropdown menu, making a sleek design. However upon submission of the form with invalid guest numbers; the following error happened:<br>
 ![Bug 1](/documentation/bugs/bug_1_not_focussable_error.png)<br>
 The reason behind this is that since the number of e.g. adults was in a hidden dropdown when the form is submitted, the error cannot display correctly and the functionality cannot work. Multiple JavaScript functions were written to either display the error in the dropdown menu when the number is first entered (similar to the total guest update function) or to focus and open the dropdown menu when the form is submitted so that the input is not hidden. However, these did not fix the issue in a satisafactory way, so the decision was taken to have the inputs outside of a dropdown menu, removing this major bug.
+
+### Bug 2:
+On the homepage, the addition of the homepage header overlapped the account menu dropdown: <br>
+![Bug 2](/documentation/bugs/bug_2_header_overlap.png) <br>
+This was fixed by adding a CSS rule to the dropdown menu making the z-index 9999.
 
 ### Known Bugs
 
