@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Room, Amenities
+from .forms import EditRoomForm
 from home.forms import BookingForm
 from datetime import timedelta
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 def available_rooms(request):
@@ -76,3 +78,59 @@ def available_rooms(request):
     }
 
     return render(request, 'rooms/available_rooms.html', context)
+
+
+@staff_member_required
+def rooms_superuser(request):
+    '''Display all the rooms for the admin to view/edit/delete'''
+    rooms = Room.objects.all()
+    amenities = Amenities.objects.all()
+
+    context = {
+        'rooms': rooms,
+        'amenities': amenities,
+    }
+    return render(request, 'rooms/rooms_superuser.html', context)
+
+
+@staff_member_required
+def edit_room(request, room_id):
+    """Display and handle the room edit form for admins."""
+    # Get the room
+    room = get_object_or_404(Room, id=room_id)
+    amenities = amenities = Amenities.objects.all().order_by('id')
+    # If the form is submitted
+    if request.method == 'POST':
+        # request.FILES handles the image upload
+        form = EditRoomForm(request.POST, request.FILES, instance=room)
+        if form.is_valid():
+            form.save()
+            # Redirect to rooms_superuser view or another page after saving
+            return redirect('rooms_superuser')
+    else:
+        form = EditRoomForm(instance=room)
+
+    context = {
+        'form': form,
+        'room': room,
+        'amenities': amenities,
+    }
+    return render(request, 'rooms/edit_room.html', context)
+
+
+@staff_member_required
+def delete_room_confirmation(request, room_id):
+    """Delete a room from the database."""
+    room = get_object_or_404(Room, id=room_id)
+    context = {
+        'room': room
+    }
+    return render(request, 'rooms/delete_room.html', context)
+
+
+@staff_member_required
+def delete_room(request, room_id):
+    """Delete a room from the database."""
+    room = get_object_or_404(Room, id=room_id)
+    room.delete()
+    return redirect('rooms_superuser')
