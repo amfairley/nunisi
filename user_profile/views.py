@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import UserProfile, Trip
+from rooms.models import Amenities
 from .forms import EditProfileForm
 
 # Create your views here.
@@ -44,9 +45,12 @@ def trips_user(request):
     user_profile = get_object_or_404(UserProfile, user=request.user)
     # Get the user's trips
     trips = Trip.objects.filter(profile=user_profile)
+    # Get amenities
+    amenities = Amenities.objects.all()
 
     context = {
         'user_profile': user_profile,
         'trips': trips,
+        'amenities': amenities,
     }
     return render(request, 'user_profile/trips.html', context)
