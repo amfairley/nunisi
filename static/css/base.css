@@ -227,6 +227,7 @@ a {
 #account-nav-menu-dropdown {
     background-color: #3A6B35;
     border: 1px solid #b88c26;
+    z-index: 9999;
 }
 
 .account-link {
