@@ -24,5 +24,7 @@
         {% endfor %}
     </ul>
     <a href="{% url 'edit_room' room.id %}">Edit</a>
-    <a href="{% url 'delete_room_confirmation' room.id %}">Delete</a>
+    <a href="{% url 'delete_room' room.id %}">Delete</a>
 {% endfor %}
+
+<a href="{% url 'add_room' %}">Add new room</a>
