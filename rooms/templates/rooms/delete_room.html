@@ -1,3 +1,6 @@
 <h1>Delete Room</h1>
 <p>Room: {{ room.sanitised_name }}</p>
-<a href="{% url 'delete_room' room.id %}">Confirm</a>
+<form method="post" action="{% url 'delete_room' room.id %}">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+</form>
