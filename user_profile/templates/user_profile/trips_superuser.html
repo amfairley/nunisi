@@ -1,0 +1,35 @@
+<h1>Superuser trips</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Room</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Adults</th>
+            <th>Children</th>
+            <th>Infants</th>
+            <th>Cost</th>
+            <th>Cancelled</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for trip in trips %}
+            <tr>
+                <td>{{ trip.room.name }}</td>
+                <td>{{ trip.start_date }}</td>
+                <td>{{ trip.end_date }}</td>
+                <td>{{ trip.adults }}</td>
+                <td>{{ trip.children }}</td>
+                <td>{{ trip.infants }}</td>
+                <td>${{ trip.cost }}</td>
+                <td>
+                    {% if trip.cancelled %}
+                        Cancelled
+                    {% else %}
+                        Confirmed
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
