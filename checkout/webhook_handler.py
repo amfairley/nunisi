@@ -4,7 +4,7 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 from .models import Order
-from user_profile.models import UserProfile
+from user_profile.models import UserProfile, Trip
 import stripe
 import time
 
@@ -142,6 +142,22 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} || ERROR: {e}',
                     status=500)
+        # Create a trip instance
+        if user.is_authenticated:
+            user_profile = UserProfile.objects.get(user=user)
+            trip_form_data = {
+                'profile': user_profile,
+                'room': trip_data.room,
+                'start_date': trip_data.start_date,
+                'end_date': trip_data.end_date,
+                'adults': trip_data.adults,
+                'children': trip_data.children,
+                'infants': trip_data.infants,
+                'cost': grand_total,
+            }
+            trip_instance = Trip(**trip_form_data)
+            trip_instance.save()
+
         # Send confirmation email
         self._send_confirmation_email(order)
         return HttpResponse(
