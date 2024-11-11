@@ -1,0 +1,28 @@
+<h1>Superuser room</h1>
+
+{% for room in rooms %}
+    <p>Name: {{ room.name }}</p>
+    <p>Sanitised name: {{ room.sanitised_name }}</p>
+    <ul>
+        {% for amenity_id in room.amenities %}
+            {% for amenity in amenities %}
+                {% if amenity.id == amenity_id %}
+                    <li>{{ amenity.sanitised_name }} {{ amenity.icon|safe }}</li>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </ul>
+    <p>Description: {{ room.description }}</p>
+    <p>Image URL: {{ room.image_url }}</p>
+    <p>Image: {{ room.image }}</p>
+    <img src="{{ valid_room.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}">
+    <p>Price: £{{ room.price }}</p>
+    <p>Unavailability:</p>
+    <ul>
+        {% for date in room.unavailability %}
+            <li>{{ date }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'edit_room' room.id %}">Edit</a>
+    <a href="{% url 'delete_room_confirmation' room.id %}">Delete</a>
+{% endfor %}
