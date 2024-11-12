@@ -69,7 +69,6 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Account menu | Click when logged in as Admin | See an extra link for Rooms | Y | N/A |
 | Account menu | Click Trips when logged in as Admin | Redirected to trips super user page | Y | N/A |
 | Account meny | Click Rooms when logged in as Admin | Redirected to rooms super user page | Y | N/A |
-
 | Hotel Facebook icon | Hover | Icon turns to Facebook brand colours | Y | N/A |
 | Hotel Facebook icon | Click | Opens the Facebook homepage in a new tab | Y | N/A |
 | Hotel Instagram icon | Hover | Icon turns to Instagram brand colours | Y | N/A |
@@ -94,7 +93,7 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Sign in page | Click sign in with google | User redirected to Sign In Via Google Page | Y | N/A |
 | Log out page | Hover the sign out button | Button colours invert | Y | N/A |
 | Log out page | Click the sign out button | User signed out and redirected to the home screen | Y | N/A |
-| Reauthenticate page | Hover the confrim button | Button colours are inverted | Y | N/A |
+| Reauthenticate page | Hover the confirm button | Button colours are inverted | Y | N/A |
 | Reauthenticate page | Submit an incorrect password | An incorrect password error appears | Y | N/A |
 | Reauthenticate page | Submit correct password | User is redirected to the homepage | Y | N/A |
 | Emails page | Hover buttons | Button colours invert | Y | N/A |
@@ -160,12 +159,132 @@ Discussion of report:
 Accessibility was kept in mind throughout development and the best practices were kept to across the website including, but not limited to, ensuring aria-labels and alt texts were used throughout, using semantic HTML, creating easy to see colour contrasts. Where hidden text was used, it was hidden in a way that was still accessible to screen readers.
 Accessibility testing was performed using the [Wave](https://wave.webaim.org/) validator to provide key information about the accessibility standard of the website. Pages that required login were beyond the purview of the [Wave](https://wave.webaim.org/) browser tool, so the Wave extension for Google Chrome was used, which can be found [here](https://wave.webaim.org/extension/).
 
-**Page**<br>
-- Error explanations
+**Allauth: Login**<br>
+- Alert: Redundant text title of "Google" on the link for 3rd party login. This is required for good user experience so the alert was ignored.
 <details>
-<summary>Home results</summary>
-<img src="/documentation/testing/wave_home.png">
+<summary>Login results</summary>
+<img src="/documentation/testing/wave/allauth_login.png">
 </details><br>
+
+**Allauth: Logout**<br>
+- No errors or alerts
+<details>
+<summary>Logout results</summary>
+<img src="/documentation/testing/wave/allauth_logout.png">
+</details><br>
+
+**Allauth: Inactive**<br>
+- No errors or alerts
+<details>
+<summary>Inactive results</summary>
+<img src="/documentation/testing/wave/allauth_inactive.png">
+</details><br>
+
+**Allauth: Signup**<br>
+- Alert: Redundant link for "sign up" but it is required below the title to redirect the user if they already have an account as well as in the navigation bar so was ignored.
+- Alert: Redundant text title of "Google" on the link for 3rd party login. This is required for good user experience so the alert was ignored.
+<details>
+<summary>Signup results</summary>
+<img src="/documentation/testing/wave/allauth_signup.png">
+</details><br>
+
+**Allauth: Reauthenticate**<br>
+- No errors or alerts
+<details>
+<summary>Reauthenticate results</summary>
+<img src="/documentation/testing/wave/allauth_reauthenticate.png">
+</details><br>
+
+**Allauth: Emails**<br>
+- No errors or alerts
+<details>
+<summary>Emails results</summary>
+<img src="/documentation/testing/wave/allauth_emails.png">
+</details><br>
+
+**Allauth: Confirm Email**<br>
+- No errors or alerts
+<details>
+<summary>Confirm email results</summary>
+<img src="/documentation/testing/wave/allauth_confirm_email.png">
+</details><br>
+
+**Allauth: Change Password**<br>
+- No errors or alerts
+<details>
+<summary>Change password results</summary>
+<img src="/documentation/testing/wave/allauth_change_password.png">
+</details><br>
+
+**Allauth: Password Reset**<br>
+- No errors or alerts
+<details>
+<summary>Password reset results</summary>
+<img src="/documentation/testing/wave/allauth_password_reset.png">
+</details><br>
+
+**Allauth: Password Reset Done**<br>
+- No errors or alerts
+<details>
+<summary>Password reset done results</summary>
+<img src="/documentation/testing/wave/allauth_password_reset_done.png">
+</details><br>
+
+**Allauth: 3rd party login cancelled**<br>
+- Alert: redundant link for redirect sign up button, but this is required to explain to the user the purpose of the page and redirect them back to the sign up page.
+<details>
+<summary>3rd party login cancelled results</summary>
+<img src="/documentation/testing/wave/allauth_3rd_party_login_cancelled.png">
+</details><br>
+
+**Allauth: 3rd party login error**<br>
+- No errors or alerts
+<details>
+<summary>3rd party login results</summary>
+<img src="/documentation/testing/wave/allauth_3rd_party_login_error.png">
+</details><br>
+
+
+**Allauth: Google signup**<br>
+- No errors or alerts
+<details>
+<summary>Google signup results</summary>
+<img src="/documentation/testing/wave/allauth_google_signup.png">
+</details><br>
+
+
+**Allauth:**<br>
+- No errors or alerts
+<details>
+<summary> results</summary>
+<img src="/documentation/testing/wave">
+</details><br>
+
+
+**Allauth:**<br>
+- No errors or alerts
+<details>
+<summary> results</summary>
+<img src="/documentation/testing/wave">
+</details><br>
+
+
+**Allauth:**<br>
+- No errors or alerts
+<details>
+<summary> results</summary>
+<img src="/documentation/testing/wave">
+</details><br>
+
+
+**Allauth:**<br>
+- No errors or alerts
+<details>
+<summary> results</summary>
+<img src="/documentation/testing/wave">
+</details><br>
+
+
 
 ### Performance Testing
 The performance of the webpage was tested using Lighthouse within the Google Chrome Devtools to confirm that the site was performing well, is accessible, follows best practices, and follows basic SEO (search engine optimisation) advice. 
@@ -181,19 +300,29 @@ The performance was tested for normal internet speed, fast 3G, and slow 3G to te
 
 ### HTML Validation
 The [W3C markup validation service](https://validator.w3.org/) was used to validate the HTML of each page of this website. As each page including some Django templating language that threw errors in the validator; the HTML was validated after deployment. Each page was accessed and the source code (CTRL+U or right click > View Page Source) was copied and pasted into the validator to validate by direct input.<br>
+| Page | Warnings | Errors |
+| ----- | ------ | ------ |
+| Allauth - login | None | None |
+| Allauth - logout | None | None |
+| Allauth - inactive | None | None |
+| Allauth - signup | None | None |
+| Allauth - reauthenticate | None | None |
+| Allauth - emails | None | None |
+| Allauth - confirm-email | None | None |
+| Allauth - change password | None | None |
+| Allauth - reset password | None | None |
+| Allauth - password reset done | None | None |
+| Allauth - 3rd party login cancelled | None | None |
+| Allauth - 3rd party login error | None | None |
+| Allauth - Google signup | None | None |
+| | | |
+| | | |
 **Warnings**:
 - 
 
 **Errors**
 - Explain errors here, but there should be none.
 
-<br>
-Screenshots of the validation results are shown here:
-
-<details>
-    <summary>Page</summary>
-    <img src="/documentation/testing/html_home.png">
-</details>
 
 ### CSS Validation
 CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no errors in the CSS code. Explain any warnings.
