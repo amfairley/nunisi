@@ -1,6 +1,9 @@
 {% extends "account/base_entrance.html" %}
 {% load i18n %}
 {% load allauth account %}
+{% block extra_title %}
+    - Confirm Email
+{% endblock %}
 {% block head_title %}
     {% translate "Email Verification" %}
 {% endblock head_title %}
