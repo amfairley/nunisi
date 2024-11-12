@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_title %}
+ - Home
+{% endblock %}
+
 {% block page_header %}
     <!--Page navbar-->
-    <header id="index-header" class="navbar navbar-expand-lg">
+    <header id="index-header" class="navbar navbar-expand-lg bg-nunisi-gold border-dark-gold padding-zero">
         <div class="container-fluid">
             <button id="index-burger-nav" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,11 +35,11 @@
     </header>
 {% endblock %}
 {% block content %}
-    <main class="content">
+    <main class="content-index">
         <!--Hero Image-->
         <section id="index-hero" aria-label="Nunisi Forest and Spa Hotel Arial Photo">
-            <h1 id="hero-title">Nunisi Forest Hotel and Spa</h1>
-            <h2 id="hero-message">Where luxury is natural!</h2>
+            <h1 id="hero-title" class="jost-font">Nunisi Forest Hotel and Spa</h1>
+            <h2 id="hero-message" class="jost-font">Where luxury is natural!</h2>
         </section>
         <!--Booking Form-->
         <div id="index-booking-form">
@@ -44,7 +48,7 @@
                     <form method="GET" action="{% url 'available_rooms' %}" id="index-booking-form-body">
                         {% csrf_token %}
                         <div class="col-12">
-                            <p class="jost-font index-form-title">SEARCH AVAILABILITY:</p>
+                            <h2 class="jost-font index-form-title">SEARCH AVAILABILITY:</h2>
                         </div>
                         <div class="col-12 form-floating check-in-div index-check">
                             {{ booking_form_mobile.check_in_date.label_tag }}
@@ -87,7 +91,7 @@
         <div class="container" id="index-about-us">
             <div class="row">
                 <div class="col-12 col-lg-6" id="index-resort-image-column">
-                    <div id="resortInformationCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div id="resortInformationCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <img src="/media/resort-information-image-1.webp" class="d-block w-100" alt="An arial view of Nunisi forest">
@@ -117,7 +121,7 @@
         <!--Services-->
         <div id="index-services">
             <h2 id="index-services-title">Services</h2>
-            <div id="resortServiceCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div id="resortServiceCarousel" class="carousel slide">
                 <div class="carousel-inner">
                     <!--Services Card Water-->
                     <div class="carousel-item active">
@@ -329,4 +333,17 @@
         </div>
     </main>
 
+{% endblock %}
+{% block postloadjs %}
+<script>
+    // Script to hide the navbar menu when a link is clicked
+    document.querySelectorAll(".navbar-nav .nav-link").forEach(function(link) {
+        link.addEventListener("click", function() {
+            const navbarCollapse = new bootstrap.Collapse(document.getElementById("navbarSupportedContent"), {
+                toggle: false
+            });
+            navbarCollapse.hide();
+        });
+    });
+</script>
 {% endblock %}
