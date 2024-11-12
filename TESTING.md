@@ -33,6 +33,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
 5. [Bugs](#bugs)
     - [Bug 1](#bug-1)
     - [Bug 2](#bug-2)
+    - [Bug 3](#bug-3)
     - [Known Bugs](#known-bugs)
 6. [Analytics](#analytics)
 
@@ -360,6 +361,17 @@ The reason behind this is that since the number of e.g. adults was in a hidden d
 On the homepage, the addition of the homepage header overlapped the account menu dropdown: <br>
 ![Bug 2](/documentation/bugs/bug_2_header_overlap.png) <br>
 This was fixed by adding a CSS rule to the dropdown menu making the z-index 9999.
+
+### Bug 3:
+On the homepage, as there are two instances of the booking form (navigation bar on larger screens and body on smaller screens) there were duplicate ids for the field labels and inputs. This was rectified by creating prefixes to the form instances in the context processor for the form resulting in prefixed ids:
+```python
+def booking_form(request):
+    '''Add the booking form to the context'''
+    return {
+        'booking_form_mobile': BookingForm(prefix="mobile"),
+        'booking_form_desktop': BookingForm(prefix="desktop"),
+    }
+```
 
 ### Known Bugs
 
