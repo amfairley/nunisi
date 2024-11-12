@@ -131,6 +131,18 @@ One of the security steps taken was to put all sensitive and irrelevant informat
 | venv | It has the virtual environment information including paths and configurations that won't work for other developers or environments. So it was added to .gitignore to reduce redundancy and clutter in the repository. |
 | env.py | To hide sensitive information such as… |
 |.coverage| The coverage reports for the testing will not require hosting on the repository. Instead, final coverage reports will be added to the [TESTING.md](/TESTING.md) file|
+| htmlcov/ | This folder houses the html coverage reports which do not require hosting on the repository. |
+
+**Meta Data**<br>
+Some of the meta data included in the head element of the base template and reproduced across every page of the site add extra security to the webapp. 
+```html
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+```
+This makes internet explorer avoid compatability issues with older versions of itself that may themselves have security vulnerabilities.
+```html
+<meta charset="utf-8">
+```
+UTF-8 encoding prevents character encoding mismatches that could result in vulnerabilities with cross-site scripting or malicious user input.
 
 **Django Allauth**<br>
 AllAuth is an open source Django package that I used to handle user authentication on the website. It is open source, so it is backed by millions of developers who keep it up to date and secure, providing a key part in the security of this website and data-security of the users who will create user accounts with us. The client ID and secret keys for the social sign-ins are kept in the secure admin dashboard.
@@ -144,8 +156,10 @@ Django AllAuth uses the password hashing algorithm PBKDF2 to hash passwords befo
 **Email Validation**<br>
 As a part of Django-allauth, email validation is required to prevent fake accounts, verify ownership of the email address, and to reduce phishing risks.
 
-**rel no opener**<br>
-All external links have rel="noopener" to prevent the opened page from accessing the pages on this website, increasing security.
+**External links**<br>
+All external links open in a new tab and have rel="noopener" to prevent the opened page from accessing the pages on this website, increasing security.
+
+**amenity.icon|safe**
 
 ### Defensive Programming
 
@@ -155,7 +169,8 @@ The signup form requires a confirmation of the password to prevent the user from
 ### Future Security Implementations
 
 ## Future Development
-- Facebook and Instagram links will be updated with the real profiles when the website is ready to go live.
+- Footer
+    * Facebook and Instagram links will be updated with the real profiles when the website is ready to go live.
 - Allauth updates
     * display success messages to alert the user that their actions were successful.
     * move content block to base template to encapsulate the messages
@@ -168,6 +183,12 @@ The signup form requires a confirmation of the password to prevent the user from
     * Page scroll smooth and offset to show section in it's entirity
     * Tidy CSS rules to have one for all titles/text instead of per section
     * Make carousel timers user friendly
+- DEV.md
+    - Add section for apps and explicitly state their purpose
+- available_rooms.html
+    * Message for no rooms available
+    * Styling
+    * Add filtering to rooms
 
 ## Technologies Used
 
@@ -192,6 +213,16 @@ The signup form requires a confirmation of the password to prevent the user from
     - The package installer for python used to install packages and libraries.
 - [Django Allauth](https://django-allauth.readthedocs.io/en/latest/)
     - Used for user authentication along with registration and account management.
+- [Stripe](https://stripe.com/gb)
+    - Used for processing and handling payments securely
+- [Pillow](https://pypi.org/project/pillow/)
+    - Adds image processing to the python interpretor
+- [Django countries](https://pypi.org/project/django-countries/)
+    - Used to submit country codes to stripe
+- [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+    - Used for some styling and site functionality
+- [JQuery](https://jquery.com/)
+    - Used for some JavaScript code
 
 ### Tools
 - [Visual Studio Code](https://code.visualstudio.com/)
@@ -206,6 +237,10 @@ The signup form requires a confirmation of the password to prevent the user from
     - Used to get different typefaces and fonts for the project
 - [Google Maps](https://www.google.com/maps/)
     - Used for the interactive location map
+- [Favicon](https://favicon.io/)
+    - Used for creating an icon in the browser tab
+- [FontAwesome](https://fontawesome.com/)
+    - Used for icons throughout
 - [Balsamiq Wireframes](https://balsamiq.com/)
     - Used for creating wireframes for the project
 - [Logo Design AI](https://logodesign.ai/)
@@ -214,6 +249,8 @@ The signup form requires a confirmation of the password to prevent the user from
     - Used for creating the website background
 - [Pexels](https://www.pexels.com/)
     - Used for stock images across the website
+- [Coolers](https://coolors.co/)
+    - Used to visualise the colour palette
 - [CloudConvert](https://cloudconvert.com/)
     - Used for compressing images to .webp format for better performance
 - [W3C HTML Validator](https://validator.w3.org/)
