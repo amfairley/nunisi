@@ -119,6 +119,8 @@ You can also fork the GitHub repository to collaborate by once logged into GitHu
 ## Apps
 Each section of functionality for the website were sequestered into their own apps in order to maximise the readability and reusablity of the code. The apps are:<br>
 **Templates**: Though not technically an app, the base template of the app and core css is stored here and reused throughout the website. This includes all the formatted allauth templates to keep them in line with the site wide stylings.<br>
+**home**: The home app contains all the functionality for the homepage including the form used in the header which is shared site wide with a context processor. There are no models for the homepage and the only view and url renders the index.html page.<br>
+
 
 ## Deployment
 
