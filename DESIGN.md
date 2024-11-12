@@ -249,9 +249,10 @@ The colour scheme started as an idea for gold and green to portray the natural a
 | Fern Green #3A6B35 | Jasmine #FDD67C | Dark goldenrod #B88C26 |
 | ----- | ----- | ----- |
 | Header and footer backgrounds | Booking form title | Acount menu border when selected |
-| Booking form text | Booking form backgrounds | |
+| Booking form text | Booking form backgrounds | Allauth buttons |
 | Account menu background | Account menu text | |
-| | Footer text | |
+| Allauth page titles | Footer text | |
+| Allauth button text |
 
 
 
