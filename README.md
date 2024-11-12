@@ -184,13 +184,9 @@ When logging out the user is redirected to a page to confirm log out, preventing
     * make password requirements look less like error messages
     * password reset email input needs to be wider to show full email
     * password/reset/done "contact us" link to contact details page
+- index.html
+    * better carousel transitions
 - Update the booking form to a new, slender design.
-- Index.html
-    * Page scroll smooth and offset to show section in it's entirity
-    * Tidy CSS rules to have one for all titles/text instead of per section
-    * Make carousel timers user friendly
-- DEV.md
-    - Add section for apps and explicitly state their purpose
 - available_rooms.html
     * Message for no rooms available
     * Styling
@@ -263,6 +259,10 @@ When logging out the user is redirected to a page to confirm log out, preventing
     - For validating the HTML on each page
 - [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/)
     - For validating all CSS files
+- [JSLint](https://www.jslint.com/)
+    - For validating all JavaScript scripts
+- [CodeInstitute Pep8 Validator](https://pep8ci.herokuapp.com/)
+    - For validating python code
 
 ## User Feedback
 
