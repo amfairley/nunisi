@@ -166,6 +166,12 @@ All external links open in a new tab and have rel="noopener" to prevent the open
 **Password confirmation**<br>
 The signup form requires a confirmation of the password to prevent the user from making a typo.
 
+**Email login**<br>
+The site login requires the user's email address, since it is harder to recall a username. Since the website does not include any user to user interactions, usernames were deemed an unnecessary complication for users.
+
+**Logout page**<br>
+When logging out the user is redirected to a page to confirm log out, preventing the user from logging out accidentally.
+
 ### Future Security Implementations
 
 ## Future Development
