@@ -40,44 +40,50 @@
             <!-- Booking form guest number update -->
             <script>
                 function updateGuestCount() {
-                    const adultsTopNav = parseInt(document.querySelector('#top-nav #id_adults').value) || 0;
-                    const adultsIndexBookingForm = parseInt(document.querySelector('#index-booking-form #id_adults').value) || 0;
-                    const childrenTopNav = parseInt(document.querySelector('#top-nav #id_children').value) || 0;
-                    const childrenIndexBookingForm = parseInt(document.querySelector('#index-booking-form #id_children').value) || 0;
-                    const infantsTopNav = parseInt(document.querySelector('#top-nav #id_infants').value) || 0;
-                    const infantsIndexBookingForm = parseInt(document.querySelector('#index-booking-form #id_infants').value) || 0;
-                    // Update total guests
+                    // Get values from the form in real time (0 if no value) for both forms
+                    const adultsTopNav = parseInt(document.querySelector("#top-nav #id_adults").value) || 0;
+                    const adultsIndexBookingForm = parseInt(document.querySelector("#index-booking-form #id_adults").value) || 0;
+                    const childrenTopNav = parseInt(document.querySelector("#top-nav #id_children").value) || 0;
+                    const childrenIndexBookingForm = parseInt(document.querySelector("#index-booking-form #id_children").value) || 0;
+                    const infantsTopNav = parseInt(document.querySelector("#top-nav #id_infants").value) || 0;
+                    const infantsIndexBookingForm = parseInt(document.querySelector("#index-booking-form #id_infants").value) || 0;
+                    // Update total guests for both forms
                     const totalGuestsTop = adultsTopNav + childrenTopNav + infantsTopNav;
                     const totalGuestsIndex = adultsIndexBookingForm + childrenIndexBookingForm + infantsIndexBookingForm;
-                    const totalGuestsTopNav = document.querySelector('#top-nav #total-guests');
+                    const totalGuestsTopNav = document.querySelector("#top-nav #total-guests");
                     if (totalGuestsTopNav) {
                         totalGuestsTopNav.innerText = `${totalGuestsTop}`;
                     }
-                    const totalGuestsIndexForm = document.querySelector('#index-booking-form #total-guests');
+                    const totalGuestsIndexForm = document.querySelector("#index-booking-form #total-guests");
                     if (totalGuestsIndexForm) {
                         totalGuestsIndexForm.innerText = `${totalGuestsIndex}`;
                     }
                 }
             </script>
-            <!-- Open calendar widgets -->
+            <!-- Open calendar widgets when clicking entire input area -->
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                    const checkInInputTop = document.querySelector('#top-nav #id_check_in_date');
-                    const checkOutInputTop = document.querySelector('#top-nav #id_check_out_date');
-                    const checkInInputIndex = document.querySelector('#index-booking-form #id_check_in_date');
-                    const checkOutInputIndex = document.querySelector('#index-booking-form #id_check_out_date');
-            
+                    // Get the checkin/out inputs for both forms
+                    const checkInInputTop = document.querySelector("#top-nav #id_check_in_date");
+                    const checkOutInputTop = document.querySelector("#top-nav #id_check_out_date");
+                    const checkInInputIndex = document.querySelector("#index-booking-form #id_check_in_date");
+                    const checkOutInputIndex = document.querySelector("#index-booking-form #id_check_out_date");
+
+                    // Add event listener to navbar check in date
                     checkInInputTop.addEventListener('click', function() {
-                        this.showPicker();  // This will trigger the date picker
+                        this.showPicker();
                     });
-                    checkOutInputTop.addEventListener('click', function() {
-                        this.showPicker();  // This will trigger the date picker
+                    // Add event listener to navbar check out date
+                    checkOutInputTop.addEventListener("click", function() {
+                        this.showPicker();
                     });
-                    checkInInputIndex.addEventListener('click', function() {
-                        this.showPicker();  // This will trigger the date picker
+                    // Add event listener to homepage check in date
+                    checkInInputIndex.addEventListener("click", function() {
+                        this.showPicker();
                     });
-                    checkOutInputIndex.addEventListener('click', function() {
-                        this.showPicker();  // This will trigger the date picker
+                    // Add event listener to homepage check out date
+                    checkOutInputIndex.addEventListener("click", function() {
+                        this.showPicker();
                     });
                 });
             </script>
@@ -86,11 +92,11 @@
         {% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-light" id="top-nav">
+        <nav class="navbar navbar-light bg-nunisi-green padding-zero" id="top-nav">
             <div class="containter w-100">
                 <div class="row w-100">
                     <!--Site Logo-->
-                    <div class="col-6 col-lg-auto text-left site-logo-container">
+                    <div class="col-6 col-lg-auto text-left site-logo-container padding-zero">
                         <a class="navbar-brand" href="{% url 'home' %}">
                             <img src="/media/nunisi-site-logo.png" alt="Nunisi Forest Hotel and Spa Logo" id="site-logo-nav">
                         </a>
@@ -101,7 +107,7 @@
                             <form method="GET" action="{% url 'available_rooms' %}">
                                 {% csrf_token %}
                                 <div class="col-12">
-                                    <p class="jost-font search-form-title">SEARCH AVAILABILITY:</p>
+                                    <p class="jost-font search-form-title font-nunisi-gold">SEARCH AVAILABILITY:</p>
                                 </div>
                                 <div class="row">
                                     <div class="col-4 form-floating check-in-div">
@@ -116,20 +122,20 @@
                                     </div>
                                     <div class="col-4 guests-div">
                                         <div class="row">
-                                            <div class="col-9 guests-form">
-                                                <p class="guests-form-guests">
+                                            <div class="col-9 padding-zero bg-nunisi-gold font-nunisi-green roboto-font border-off-black-3">
+                                                <p class="margin-zero font-weight-bolder w-100">
                                                     Guests: <span id="total-guests">0</span>
                                                 </p>
-                                                <hr>
-                                                <p class="guests-choices">
+                                                <hr class="margin-zero">
+                                                <p class="guests-choices margin-zero w-100">
                                                     {{ booking_form.adults.label_tag }}{{ booking_form.adults }}
                                                 </p>
-                                                <hr>
-                                                <p class="guests-choices">
+                                                <hr class="margin-zero">
+                                                <p class="guests-choices margin-zero w-100">
                                                     {{ booking_form.children.label_tag }}{{ booking_form.children }}
                                                 </p>
-                                                <hr>
-                                                <p class="guests-choices">
+                                                <hr class="margin-zero">
+                                                <p class="guests-choices margin-zero w-100">
                                                     {{ booking_form.infants.label_tag }}{{ booking_form.infants }}
                                                 </p>
                                             </div>
@@ -146,51 +152,51 @@
                     <div id="account-dropdown-super-div" class="col-6 col-lg-auto text-right">
                         <div id="account-dropdown-div" class="ms-auto">
                             <div class="dropdown" id="account-nav-menu">
-                                <button id="account-dropdown" class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <button id="account-dropdown" class="btn dropdown-toggle bg-nunisi-green font-nunisi-gold" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Account setting tab">
                                     <i class="fa-solid fa-bars"></i><i class="fa-solid fa-circle-user"></i>
                                 </button>
-                                <ul class="dropdown-menu dropdown-menu-end" id="account-nav-menu-dropdown">
+                                <ul class="dropdown-menu dropdown-menu-end bg-nunisi-green border-dark-gold" id="account-nav-menu-dropdown">
                                     <!--Logged in links-->
                                     {% if user.is_authenticated %}
                                         {% if user.is_superuser %}
-                                            <li class="account-link jost-font">
-                                                <a href="">
+                                            <li class="account-link font-nunisi-gold jost-font">
+                                                <a href="{% url 'rooms_superuser' %}">
                                                     Rooms
                                                 </a>
                                             </li>
                                             <!--Superuser Trips link-->
-                                            <li class="account-link jost-font">
-                                                <a href="">
+                                            <li class="account-link font-nunisi-gold jost-font">
+                                                <a href="{% url 'trips_superuser' %}">
                                                     Trips
                                                 </a>
                                             </li>
                                         {% else %}
                                             <!--User Trips link-->
-                                            <li class="account-link jost-font">
+                                            <li class="account-link font-nunisi-gold jost-font">
                                                 <a href="{% url 'trips_user' %}">
                                                     Trips
                                                 </a>
                                             </li>
                                         {% endif %}
-                                        <li class="account-link jost-font">
+                                        <li class="account-link font-nunisi-gold jost-font">
                                             <a href="{% url 'user_profile' %}">
                                                  Account Settings
                                             </a>
                                         </li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li class="account-link jost-font">
+                                        <li class="account-link font-nunisi-gold jost-font">
                                             <a href="{% url 'account_logout' %}">
                                                 Logout
                                             </a>
                                         </li>
                                     <!--Logged out links-->
                                     {% else %}
-                                        <li class="account-link jost-font">
+                                        <li class="account-link font-nunisi-gold jost-font">
                                             <a href="{% url 'account_signup' %}">
                                                 Sign Up
                                             </a>
                                         </li>
-                                        <li class="account-link jost-font">
+                                        <li class="account-link font-nunisi-gold jost-font">
                                             <a href="{% url 'account_login' %}">
                                                 Login
                                             </a>
@@ -211,7 +217,7 @@
         {% endblock %}
         {% block content %}
         {% endblock %}
-        <footer class="footer roboto-font">
+        <footer class="footer roboto-font bg-nunisi-green font-nunisi-gold">
             <div class="container footer-container">
                 <div class="row footer-row">
                     <!--Hotel contact information-->
