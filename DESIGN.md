@@ -244,24 +244,21 @@ Where there were major differences, Mobile Wireframes were mocked up and can be 
 #### Colour Scheme
 The colour scheme started as an idea for gold and green to portray the natural aspects of the resort and nature, whilst also conveying sophistication and prestige.
 
-![Colour Scheme](/linktoimage.png)
+![Colour Scheme](/documentation/colour_palette.png)
 
-| Green #3A6B35 | Gold #FDD67C | Gold 2 #B88C26 |
+| Fern Green #3A6B35 | Jasmine #FDD67C | Dark goldenrod #B88C26 |
 | ----- | ----- | ----- |
-| Button font colour | Button background colour | Account menu border |
-| Navigation bar background | Button font colour on hover | Homepage header border |
-| Booking form labels | Title for the booking form | Border for services cards |
-| Account menu background | Booking form input backgrounds | |
-| Footer background | Account menu font colour | |
-| AllAuth Titles | Background of the homepage header | |
-| Homepage navbar font colour | | |
-| Homepage horizontal rules | | |
-| Next/Previous arrows on services carousel | | |
+| Header and footer backgrounds | Booking form title | Acount menu border when selected |
+| Booking form text | Booking form backgrounds | |
+| Account menu background | Account menu text | |
+| | Footer text | |
+
+
 
 
 **Other colours used:**
-- Off black: #333A3F for border colours on buttons, dark text throughout
-- Off white: #F5F5F5 for text colour which are on a dark image background
+- Gunmetal: #333A3F for border colours on buttons, dark text throughout
+- White smoke: #F5F5F5 for text colour which are on a dark image background
 - Facebook: Blue and white are used for the Facebook logo
 - Instagram and GitHub: Black and white are used for the Instagram and GitHub logos.
 - Lava: #CF1020 for error messages
@@ -306,7 +303,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | ----- |
 | **Page: All - Header** |
 | <details><summary>Account Menu</summary><img src="/documentation/features/account_menu.png"></details> |
-| **Details:** The account menu allows the user to access their Trips, Account details and Log out functionality. When logged out it only displays links to sign up / login and when signed in as an admin, displays a link to add and edit Rooms in the database. |
+| **Details:** The account menu allows the user to access their Trips, Account details and Log out functionality. When logged out it only displays links to sign up / login and when signed in as an admin, displays links view all Rooms and Trips in the database. |
 | **User Stories Covered:** 2, 11, 12, 16, 29, 36 |
 
 | **Footer Hotel Contact Information** |
