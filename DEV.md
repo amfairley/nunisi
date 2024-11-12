@@ -19,7 +19,8 @@ See [TESTING.md](/TESTING.md) for information on the test driven development of 
     - [Getting the Project up and Running](#getting-the-project-up-and-running)
     - [Coding in Python and PEP8](#coding-in-python-and-pep8)
 3. [Local Development](#local-development)
-4. [Deployment](#deployment)
+4. [Apps](#apps)
+5. [Deployment](#deployment)
 
 ## CI/CD
 The philosophy of continuous integration and continuous deployment was at the forefront of my mind during the development of this project.<br>
@@ -114,6 +115,10 @@ To install my project locally, you can follow my steps above in the [Development
 You can also fork the GitHub repository to collaborate by once logged into GitHub by:
 - Go to the repository for this project, [nunisi](https://github.com/amfairley/nunisi).
 - Click the Fork button in the top right corner and create a new fork.
+
+## Apps
+Each section of functionality for the website were sequestered into their own apps in order to maximise the readability and reusablity of the code. The apps are:<br>
+**Templates**: Though not technically an app, the base template of the app and core css is stored here and reused throughout the website.<br>
 
 ## Deployment
 
