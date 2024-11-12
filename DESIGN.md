@@ -250,9 +250,11 @@ The colour scheme started as an idea for gold and green to portray the natural a
 | ----- | ----- | ----- |
 | Header and footer backgrounds | Booking form title | Acount menu border when selected |
 | Booking form text | Booking form backgrounds | Allauth buttons |
-| Account menu background | Account menu text | |
+| Account menu background | Account menu text | Border for the location image |
 | Allauth page titles | Footer text | |
-| Allauth button text |
+| Allauth button text | Background to homepage header | |
+| Horizontal rules on homepage | | |
+| Next/previous arrows for services | | |
 
 
 
