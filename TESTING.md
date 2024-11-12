@@ -120,7 +120,9 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Header | Hover links | Link background darkens | Y | N/A |
 | Header | Click links | Page scrolls to respective section | Y | N/A |
 | Header | Reduce screen size | Header collapses to a burger menu | Y | N/A |
+| Header | Click the links in the burger menu | Page scrolls to section and burger menu closes | Y | N/A |
 | Header | Scroll down the page | Header stays at top of the page view | Y | N/A |
+| Booking form | Reduce screen size | Booking form appears as the navigation booking for vanishes | Y | N/A |
 | About us | Click next/previous on carousel | Image changes to the next/previous image | Y | N/A |
 | Services | Click next/previous on carousel | Card changes to the next/previous service card | Y | N/A |
 | Location | Manipulate Google Map | Works as expected | Y | N/A |
@@ -254,11 +256,15 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-**Allauth:**<br>
-- No errors or alerts
+**Homepage**<br>
+- Contrast error 1: Wave mistakenly takes the booking form check in label as the same colour as the background. This is not the case so has no impact on the user.
+- Contrast error 2: Wave mistakenly takes the booking form check out label as the same colour as the background. This is not the case so has no impact on the user.
+- Contrast error 3 and 4: Wave puts the Hero Image as a white background creating a contrast error with the white text. This is not the case and has no impact on the user.
+- Contrast error 5 and 6: Similar to 3 and 4 but with the next/previous arrows on the about us carousel.
+- Contrast error 7 and 8: Same as 5 and 6 but for the services carousel.
 <details>
-<summary> results</summary>
-<img src="/documentation/testing/wave">
+<summary>Homepage results</summary>
+<img src="/documentation/testing/wave/homepage.png">
 </details><br>
 
 
@@ -316,7 +322,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Allauth - 3rd party login cancelled | None | None |
 | Allauth - 3rd party login error | None | None |
 | Allauth - Google signup | None | None |
-| | | |
+| Homepage | None | None |
 | | | |
 **Warnings**:
 - 
@@ -342,7 +348,59 @@ The custom JavaScript code was testing using the JavaScript linter [JSLint](http
 ### Python Validation
 The Python code for this project was written in strict accordance with the [PEP 8](https://peps.python.org/pep-0008/) style guide for Python code. These include using correct indentations, maximum line lengths of 79 characters, and adhering to naming conventions for variables, functions, and classes. The [Code Institue python linter](https://pep8ci.herokuapp.com/) was used to validate the written code. 
 
-Explanation of errors:
+**Home: context_processor.py**<br>
+- No errors or alerts
+<details>
+<summary>Context processor results</summary>
+<img src="/documentation/testing/python/home_context_processor.png">
+</details><br>
+
+**Home: forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Froms results</summary>
+<img src="/documentation/testing/python/home_forms.png">
+</details><br>
+
+**Home: views.py**<br>
+- No errors or alerts
+<details>
+<summary>Views results</summary>
+<img src="/documentation/testing/python/home_views.png">
+</details><br>
+
+**Home: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>Urls results</summary>
+<img src="/documentation/testing/python/home_urls.png">
+</details><br>
+
+**Home: test_forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Test forms results</summary>
+<img src="/documentation/testing/python/home_test_forms.png">
+</details><br>
+
+**Home: test_views.py**<br>
+- No errors or alerts
+<details>
+<summary>Test views results</summary>
+<img src="/documentation/testing/python/home_test_views.png">
+</details><br>
+
+**Home: **<br>
+- No errors or alerts
+<details>
+<summary>results</summary>
+<img src="/documentation/testing/python">
+</details><br>
+
+
+
+
+
 
 The env.py file was also linted showing no errors but the screenshot has been omitted for security issues as it contains sensitive information.
 <details>
