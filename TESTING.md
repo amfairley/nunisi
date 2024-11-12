@@ -48,21 +48,28 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Site logo - footer | Click | Redirected to the hompage | Y | N/A |
 | Booking form | Submit with empty fields | Prompt to enter a check in date | Y | N/A |
 | Booking form | Submit with only check in date | Prompt to enter a check out date | Y | N/A |
-| Booking form | Submit with dates and no guests | Prompt to add guests | N | Ongoing bug |
+| Booking form | Submit with dates and no guests | Prompt to add guests | N | [Bug 1](#bug-1) highlighted and fixed |
+| Booking form | Submit with dates and no guests | Prompt to add guests | Y | N/A |
 | Booking form | Click check in/check out | Calendar widget appears to select dates | Y | N/A |
-| Booking form | Click "guests" | Dropdown appears to add guests | Y | N/A |
+| Booking form | Open check in/ check out calendar widgets | Dates in the past are disabled | Y | N/A |
+| Booking form | Open check in/ check out calendar widgets | Dates over a year away are disabled | Y | N/A |
 | Booking form | Add guests | "Guests" automatically updates to show total guests | Y | N/A |
 | Booking form | Hover the submit button | The colours invert | Y | N/A |
+| Booking form | Submit form with check in date after check out date | The form submits and provides the user with an error | Y | N/A |
+| Booking form | Submit correct data | The form submits and redirects the user to a page showing the available rooms | Y | N/A |
 | Account menu | Hover | The border becomes bolder and larger | Y | N/A |
 | Account menu | Click when logged out| Display login/signup links | Y | N/A |
 | Account menu - sign up link | Click | Redirected to the sign up page | Y | N/A |
 | Account menu - log in link | Click | Redirected to the log in page | Y | N/A |
 | Account menu | Click when logged in | Displays Trips/Account Settings/Log out links | Y | N/A |
-| Account menu - Trips link | Click | Redirected to Trips page | - | - |
-| Account menu - Account Settings link | Click | Redirected to account settings page | - | - |
+| Account menu - Trips link | Click | Redirected to Trips page | Y | N/A |
+| Account menu - Rooms link | Click | Redirected to the Rooms page | Y | N/A |
+| Account menu - Account Settings link | Click | Redirected to account settings page | Y | N/A |
 | Account menu - Logout | Redirected to log out page | Y | N/A |
 | Account menu | Click when logged in as Admin | See an extra link for Rooms | Y | N/A |
-| Account menu - Rooms link | Click | Redirected to the Rooms page | - | - |
+| Account menu | Click Trips when logged in as Admin | Redirected to trips super user page | Y | N/A |
+| Account meny | Click Rooms when logged in as Admin | Redirected to rooms super user page | Y | N/A |
+
 | Hotel Facebook icon | Hover | Icon turns to Facebook brand colours | Y | N/A |
 | Hotel Facebook icon | Click | Opens the Facebook homepage in a new tab | Y | N/A |
 | Hotel Instagram icon | Hover | Icon turns to Instagram brand colours | Y | N/A |
