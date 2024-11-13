@@ -14,10 +14,30 @@ def available_rooms(request):
     valid_rooms = []
     total_days = 0
 
-    if request.GET:
-        booking_form = BookingForm(request.GET or None)
+    # Initialize booking forms
+    booking_form_mobile = BookingForm(prefix="mobile")
+    booking_form_desktop = BookingForm(prefix="desktop")
+    booking_form = None
 
-        if booking_form.is_valid():
+    if request.POST:
+        # Define the mobile and desktop instances
+        booking_form_mobile = BookingForm(
+            request.POST or None,
+            prefix="mobile"
+        )
+        booking_form_desktop = BookingForm(
+            request.POST or None, prefix="desktop"
+        )
+
+        # Asign the booking form
+        booking_form = None
+        if 'mobile-check_in_date' in request.POST:
+            booking_form = booking_form_mobile
+        elif 'desktop-check_in_date' in request.POST:
+            booking_form = booking_form_desktop
+
+        # Check that the form is not None and it is valid
+        if booking_form and booking_form.is_valid():
             # Get user input data
             check_in_date = booking_form.cleaned_data['check_in_date']
             check_out_date = booking_form.cleaned_data['check_out_date']
@@ -32,6 +52,7 @@ def available_rooms(request):
                 infants = 0
             else:
                 infants = booking_form.cleaned_data['infants']
+            # Get total guests
             total_guests = int(adults) + int(children) + int(infants)
 
             # Get a list of all dates for the trip
@@ -68,15 +89,36 @@ def available_rooms(request):
                         'total_cost': total_cost,
                     })
 
-    context = {
-        'rooms': rooms,
-        'booking_form': booking_form,
-        'trip_dates': trip_dates,
-        'valid_rooms': valid_rooms,
-        'amenities': amenities,
-        'total_days': total_days,
-    }
+            context = {
+                'rooms': rooms,
+                'amenities': amenities,
+                # Booking form for iterating through errors
+                'booking_form': booking_form,
+                # Booking form desktop for populating header form
+                'booking_form_desktop': booking_form_desktop,
+                'check_in_date': check_in_date,
+                'check_out_date': check_out_date,
+                'adults': adults,
+                'children': children,
+                'infants': infants,
+                'total_guests': total_guests,
+                'trip_dates': trip_dates,
+                'total_days': total_days,
+                'total_cost': total_cost,
+                'valid_rooms': valid_rooms,
+            }
 
+            return render(request, 'rooms/available_rooms.html', context)
+
+    context = {
+        # Booking form for iterating through errors
+        'booking_form': booking_form,
+        # Booking form desktop for populating header form
+        'booking_form_desktop': booking_form_desktop,
+        'rooms': rooms,
+        'amenities': amenities,
+        'valid_rooms': valid_rooms,
+    }
     return render(request, 'rooms/available_rooms.html', context)
 
 
@@ -137,7 +179,7 @@ def delete_room(request, room_id):
 @staff_member_required
 def add_room(request):
     '''View to enter details and add a new room'''
-    amenities = Amenities.objects.all()
+    amenities = Amenities.objects.all().order_by('id')
     form = EditRoomForm()
 
     # If the form is submitted
