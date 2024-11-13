@@ -1,30 +1,66 @@
-<h1>Superuser room</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-{% for room in rooms %}
-    <p>Name: {{ room.name }}</p>
-    <p>Sanitised name: {{ room.sanitised_name }}</p>
-    <ul>
-        {% for amenity_id in room.amenities %}
-            {% for amenity in amenities %}
-                {% if amenity.id == amenity_id %}
-                    <li>{{ amenity.sanitised_name }} {{ amenity.icon|safe }}</li>
-                {% endif %}
+{% block extra_title %}
+- All Rooms
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <h1 class="font-nunisi-green jost-font font-weight-bolder" id="all-rooms-title">Room Management</h1>
+        <div id="add-room-button-div">
+            <a href="{% url 'add_room' %}" class="nunisi-button border-dark-gold" id="add-room-button">Add new room</a>
+        </div>
+        <div class="row roboto-font font-off-black" id="all-rooms-div">
+            {% for room in rooms %}
+                <div class="col-12 col-md-6 col-xl-4 all-rooms-inner-div">
+                    <div class="border-dark-gold bg-nunisi-gold all-rooms-card-div">
+                        <div class="all-rooms-card">
+                            <div class="card-organiser">
+                                <p><span class="room-detail">Room Name: </span>{{ room.name }}</p>
+                                <p><span class="room-detail">Sanitised name:</span> {{ room.sanitised_name }}</p>
+                                <p class="room-detail">Amenities</p>
+                                <ul>
+                                    {% for amenity_id in room.amenities %}
+                                        {% for amenity in amenities %}
+                                            {% if amenity.id == amenity_id %}
+                                                <li>{{ amenity.sanitised_name }} {{ amenity.icon|safe }}</li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                                <p><span class="room-detail">Description:</span> {{ room.description }}</p>
+                                <p><span class="room-detail">Image URL:</span> {{ room.image_url }}</p>
+                                <p><span class="room-detail">Image</span>: {{ room.image }}</p>
+                                {% if valid_room.room.image %}
+                                    <img class="all-rooms-image" src="{{ room.image.url }}" alt="{{ valid_room.room.sanitised.name }}">
+                                {% else %}
+                                    <p>No image available</p>
+                                {% endif %}
+                                <p><span class="room-detail">Price per night:</span> £{{ room.price }}</p>
+                                <p><span class="room-detail">Unavailability:</span></p>
+                                <ul>{% if room.unavailability %}
+                                        {% for date in room.unavailability %}
+                                            <li>{{ date }}</li>
+                                        {% endfor %}
+                                    {% else %}
+                                        <li>No dates booked yet</li>
+                                    {% endif %}
+                                </ul>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-6 room-edit-div">
+                                        <a class="room-edit-link" href="{% url 'edit_room' room.id %}">Edit Room</a>
+                                    </div>
+                                    <div class="col-6 room-delete-div">
+                                        <a class="room-delete-link" href="{% url 'delete_room' room.id %}">Delete Room</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-        {% endfor %}
-    </ul>
-    <p>Description: {{ room.description }}</p>
-    <p>Image URL: {{ room.image_url }}</p>
-    <p>Image: {{ room.image }}</p>
-    <img src="{{ valid_room.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}">
-    <p>Price: £{{ room.price }}</p>
-    <p>Unavailability:</p>
-    <ul>
-        {% for date in room.unavailability %}
-            <li>{{ date }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'edit_room' room.id %}">Edit</a>
-    <a href="{% url 'delete_room' room.id %}">Delete</a>
-{% endfor %}
-
-<a href="{% url 'add_room' %}">Add new room</a>
+        </div>
+    </div>
+{% endblock %}
