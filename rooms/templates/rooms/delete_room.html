@@ -1,6 +1,19 @@
-<h1>Delete Room</h1>
-<p>Room: {{ room.sanitised_name }}</p>
-<form method="post" action="{% url 'delete_room' room.id %}">
-    {% csrf_token %}
-    <button type="submit">Confirm</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}
+- Delete {{ room.sanitised_name }}
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div id="delete-room-div">
+            <h1 class="jost-font">Delete Room</h1>
+            <p class="roboto-font">Room: {{ room.sanitised_name }}</p>
+            <form method="post" action="{% url 'delete_room' room.id %}">
+                {% csrf_token %}
+                <button type="submit" class="nunisi-button">Confirm</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
