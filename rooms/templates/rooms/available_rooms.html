@@ -1,54 +1,87 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_title %}
+ - Available Rooms
+{% endblock %}
+
 {% block content %}
-    <h1>Available Rooms</h1>
-
-    {% for valid_room in valid_rooms %}
-        <div class="card">
-            <div class="row">
-                <div class = "col-6">
-                    <h2>{{ valid_room.room.sanitised_name }}</h2>
-                    <h3>Amenities</h3>
-                    <ul>
-                        {% for amenity_id in valid_room.room.amenities %}
-                            {% for amenity in amenities %}
-                                {% if amenity.id == amenity_id %}
-                                    <li>{{ amenity.sanitised_name }} {{ amenity.icon|safe }}</li>
-                                {% endif %}
-                            {% endfor %}
+    <div class="content">
+        <h1 class="font-nunisi-green jost-font font-weight-bolder" id="available-rooms-title">Available Rooms</h1>
+        {% if booking_form.errors %}
+            <div class="alert alert-danger roboto-font" id="available-rooms-error">
+                <p><strong>Oops!</strong> Something went wrong. Please check the form for errors.</p>
+                <ul>
+                    {% for field in booking_form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
                         {% endfor %}
-                    </ul>
-                    <article>
-                        {{ valid_room.room.description }}
-                    </article>
-                </div>
-                <div class="col-6">
-                    {% if valid_room.room.image %}
-                        <img src="{{ valid_room.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}">
-                    {% else %}
-                        <p>No image available</p>
-                    {% endif %}
-                    <div>
-                        <p>Number of days: <span>{{ total_days }}</span></p>
-                        <p>Total cost: £<span>{{ valid_room.total_cost }}</span></p>
-                    </div>
-                    <!--Have the action something like: url 'process_booking' room.id -->
-                    <form method="POST" action="{% url 'checkout' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="room_id" value="{{ valid_room.room.id }}">
-                        <input type="hidden"name="total_days" value="{{ total_days }}">
-                        <input type="hidden" name="check_in_date" value="{{ booking_form.check_in_date.value }}">
-                        <input type="hidden" name="check_out_date" value="{{ booking_form.check_out_date.value }}">
-                        <input type="hidden" name="adults" value="{{ booking_form.adults.value }}">
-                        <input type="hidden" name="children" value="{{ booking_form.children.value }}">
-                        <input type="hidden" name="infants" value="{{ booking_form.infants.value }}">
-                        <input type="hidden" name="direct_to_checkout" value = "True">
-                        <button type="submit" class="btn btn-primary">Book Now</button>
-                    </form>
-
-                </div>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
-    {% endfor %}
+        {% else %}
+            {% if valid_rooms %}
+                {% for valid_room in valid_rooms %}
+                    <div class="card available-room-card bg-nunisi-gold">
+                        <div class="row">
+                            <div class = "col-12 col-lg-6">
+                                <h2 class="caveat-font available-room-name font-nunisi-green">{{ valid_room.room.sanitised_name }}</h2>
+                                <h3 class="available-room-amenities-title roboto-font font-off-black">Amenities</h3>
+                                <ul>
+                                    {% for amenity_id in valid_room.room.amenities %}
+                                        {% for amenity in amenities %}
+                                            {% if amenity.id == amenity_id %}
+                                                <li class="available-room-amenity roboto-font font-off-black">
+                                                    <div class="row">
+                                                        <div class="col-2 col-sm-1 amenity-icon-div">
+                                                            {{ amenity.icon|safe }}
+                                                        </div>
+                                                        <div class="col-10 col-sm-11">
+                                                            {{ amenity.sanitised_name }}
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                                <article class="available-room-description roboto-font font-off-black">
+                                    <h4>Room Description:</h4>
+                                    {{ valid_room.room.description }}
+                                </article>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                {% if valid_room.room.image %}
+                                    <img src="{{ valid_room.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
+                                {% else %}
+                                    <p>No image available</p>
+                                {% endif %}
+                                <hr class="index-horizontal-rule">
+                                <div class="roboto-font font-off-black available-room-booking-div">
+                                    <p><span class="font-weight-bolder">Number of days: </span>{{ total_days }}</p>
+                                    <p><span class="font-weight-bolder">Overal cost: </span>£{{ valid_room.total_cost }}</p>
+                                </div>
+                                <!--Have the action something like: url 'process_booking' room.id -->
+                                <form method="POST" action="{% url 'checkout' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="room_id" value="{{ valid_room.room.id }}">
+                                    <input type="hidden" name="total_days" value="{{ total_days }}">
+                                    <input type="hidden" name="check_in_date" value="{{ booking_form.check_in_date.value }}">
+                                    <input type="hidden" name="check_out_date" value="{{ booking_form.check_out_date.value }}">
+                                    <input type="hidden" name="adults" value="{{ booking_form.adults.value }}">
+                                    <input type="hidden" name="children" value="{{ booking_form.children.value }}">
+                                    <input type="hidden" name="infants" value="{{ booking_form.infants.value }}">
+                                    <input type="hidden" name="direct_to_checkout" value = "True">
+                                    <button type="submit" class="btn btn-primary available-room-booking-button nunisi-button">Book Now</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p id="no-rooms" class="roboto-font font-off-black">Sorry, no rooms are available that match your search criteria. Please adjust your search and try again.</p>
+            {% endif %}
+        {% endif %}
+    </div>
 {% endblock %}
