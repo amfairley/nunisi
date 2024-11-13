@@ -4,3 +4,10 @@ This is a confirmation of your upcoming trip to Nunisi Forest Hotel and Spa. You
 
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }} 
+
+Trip details:
+Room booked: {{ trip.room.sanitised_name }}
+Check in date: {{ trip.start_date }}
+Check out date: {{ trip.end_date }}
+The trip is booked for {{ trip.adults }} adults, {{ trip.children }} children and {{ trip.infants }} infants.
+Totcal cose: {{ trip.cost }}
