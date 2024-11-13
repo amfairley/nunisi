@@ -980,6 +980,12 @@ main {
     width: 60%;
     margin-bottom: 10px;
 }
+
+/* Checkout success */
+#checkout-success-message {
+    text-align: center;
+}
+
 /* ---------- Stripe CSS ---------- */
 /* Card element */
 #card-element {
