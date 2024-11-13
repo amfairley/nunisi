@@ -5,8 +5,11 @@ from django.conf import settings
 
 from .models import Order
 from user_profile.models import UserProfile, Trip
+from rooms.models import Room
 import stripe
 import time
+import json
+from datetime import timedelta
 
 
 class StripeWH_Handler:
@@ -18,17 +21,23 @@ class StripeWH_Handler:
     def _send_confirmation_email(self, order):
         '''Send the user a confirmation email'''
         customer_email = order.email
+        # Get the trip
+        trip = Trip.objects.get(profile=order.user_profile)
         # Render the email subject as a string and pass the order
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
             # This is how we will render the various context variables
-            {'order': order}
+            {'order': order, 'trip': trip}
         )
         # Render the email body as a string and pass the order
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
             # This is how we will render the various context variables
-            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL}
+            {
+                'order': order,
+                'trip': trip,
+                'contact_email': settings.DEFAULT_FROM_EMAIL
+            }
         )
         # Send the email using subject, body, email to send from
         # and email to send to
@@ -157,6 +166,35 @@ class StripeWH_Handler:
             }
             trip_instance = Trip(**trip_form_data)
             trip_instance.save()
+
+        # Add unavailable dates to the room
+        # Get the room id from the trip_data metadata
+        room_booked_id = trip_data.room
+        room_booked = Room.objects.get(id=room_booked_id)
+        # Get all the unavailable dates
+        room_booked_unavailable_dates = json.loads(room_booked.unavailability)
+        # Get check in/out dates
+        start_date = trip_data.start_date
+        end_date = trip_data.end_date
+        # List for the new dates
+        new_dates = []
+        # < so that the check out date is not added
+        # check out date can be next guests check in date
+        # due to check in/out times
+        while start_date < end_date:
+            # String the date
+            date_str = start_date.strftime('%Y-%m-%d')
+            # Check if it's not already in unavaiable dates
+            if date_str not in room_booked_unavailable_dates:
+                # Add to new date
+                new_dates.append(date_str)
+            # Increment the date by 1 day
+            start_date += timedelta(days=1)
+        # Combine old and new dates
+        updated_dates = room_booked_unavailable_dates + new_dates
+        # Add combined to the room unavailability
+        room_booked.unavailability = json.dumps(updated_dates)
+        room_booked.save()
 
         # Send confirmation email
         self._send_confirmation_email(order)
