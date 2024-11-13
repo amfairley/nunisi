@@ -255,8 +255,8 @@ The colour scheme started as an idea for gold and green to portray the natural a
 | Allauth button text | Background to homepage header | |
 | Horizontal rules on homepage | Background to available room cards | |
 | Next/previous arrows for services | Superuser room card background | |
-| Page and room titles for available rooms | | |
-| Amenity icons for available rooms | | |
+| Page and room titles for available rooms | Checkout title | |
+| Amenity icons for available rooms | Checkout form backgrounds | |
 | Superuser rooms title | | | 
 | Add/edit/delete room title | | |
 
@@ -442,3 +442,24 @@ This is my selection for block text across the website. Roboto is the most popul
 | <details><summary>Delete room functionality</summary><img src="/documentation/features/rooms_delete_room.png"></details> |
 | **Details:** The delete room functionality allows the business owner to remove an instance of a room from the database |
 | **User Stories Covered:** 2, 36 |
+
+| **Checkout: Confirmation Email** |
+| ----- |
+| **Page: /checkout/** |
+| **Details:** Once a successful trip has been booked, the user will be emailed a confirmation email with the order and trip details |
+| **User Stories Covered:** 2, 31 |
+
+| **Checkout: Payment Form** |
+| ----- |
+| **Page: /checkout/** |
+| <details><summary>Payment form</summary><img src="/documentation/features/checkout_payment_form.png"></details> |
+| **Details:** The payment form takes the user data and uses it to charge the user, create an order and trip, and send an order confirmation email. It is handled securely via Stripe |
+| **User Stories Covered:** 2, 26, 28, 29, 31 |
+
+| **Checkout: Order Summary** |
+| ----- |
+| **Page: /checkout/** |
+| <details><summary>Order summary</summary><img src="/documentation/features/checkout_order_summary.png"></details> |
+| **Details:** The checkout order summary provides the user with a summary of their order before paying so that they can be certain of what they are paying for.  |
+| **User Stories Covered:** 2, 30 |
+
