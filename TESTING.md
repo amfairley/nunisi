@@ -154,6 +154,23 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | **delete_room.html** | | | | |
 | Delete room button | Hover | Button colours invert | Y | N/A |
 | Delete room button | Click | Room instance is deleted and redirected to superuser rooms page | Y | N/A |
+| **checkout.html** | | | | |
+| Load page | N/A | Form is pre-filled with profile data | Y | N/A |
+| Load page | N/A | Correct trip details appear on the page | Y | N/A |
+| Checkout form | Leave name input empty | Alert appears informing user to provide name | Y | N/A |
+| Checkout form | Leave email input empty | Alert appears informing user to provide email | Y | N/A |
+| Checkout form | Leave phone number input empty | Alert appears informing user to provide phone number | Y | N/A |
+| Checkout form | Leave street address 1 input empty | Alert appears informing user to provide street address | Y | N/A |
+| Checkout form | Leave town or city input empty | Alert appears informing user to provide town or city | Y | N/A |
+| Checkout form | Leave country input empty | Alert appears informing user to provide country | Y | N/A |
+| Checkout form | Provide incorrect credit card information | Alerts appear informing user to credit card errors | Y | N/A |
+| Checkout form | Provide correct data and submit | The form is submitted, order created, trip created, and confirmation email sent | | |
+| Checkout form | Hover Pay Now button | Button colour inverts | Y | N/A |
+
+
+
+
+
 
 
 ## Device and Browser Testing
@@ -332,11 +349,11 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-****<br>
-- No errors or alerts
+**Checkout: checkout.html**<br>
+- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
 <details>
-<summary> results</summary>
-<img src="/documentation/testing/wave">
+<summary>Checkout results</summary>
+<img src="/documentation/testing/wave/checkout_checkout.png">
 </details><br>
 
 
@@ -409,6 +426,8 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Add room | None | None |
 | Edit room | None | None |
 | Delete room | None | None |
+| Checkout page | None | None |
+| Checkout success page | None | None |
 
 **Warnings**:
 - 
@@ -525,12 +544,80 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/rooms_test_views.png">
 </details><br>
 
-**Home: **<br>
+**Checkout: admin.py**<br>
 - No errors or alerts
 <details>
-<summary>results</summary>
-<img src="/documentation/testing/python">
+<summary>Admin results</summary>
+<img src="/documentation/testing/python/checkout_admin.png">
 </details><br>
+
+**Checkout: forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Forms results</summary>
+<img src="/documentation/testing/python/checkout_forms.png">
+</details><br>
+
+**Checkout: models.py**<br>
+- No errors or alerts
+<details>
+<summary>Models results</summary>
+<img src="/documentation/testing/python/checkout_models.png">
+</details><br>
+
+**Checkout: views.py**<br>
+- No errors or alerts
+<details>
+<summary>Views results</summary>
+<img src="/documentation/testing/python/checkout_views.png">
+</details><br>
+
+**Checkout: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>URLs results</summary>
+<img src="/documentation/testing/python/checkout_urls.png">
+</details><br>
+
+
+**Checkout: test_forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Test forms results</summary>
+<img src="/documentation/testing/python/checkout_test_forms.png">
+</details><br>
+
+
+**Checkout: test_models.py**<br>
+- No errors or alerts
+<details>
+<summary>Test models results</summary>
+<img src="/documentation/testing/python/checkout_test_models.png">
+</details><br>
+
+
+**Checkout: test_views.py**<br>
+- No errors or alerts
+<details>
+<summary>Test views results</summary>
+<img src="/documentation/testing/python/checkout_test_views.png">
+</details><br>
+
+**Checkout: webhooks.py**<br>
+- No errors or alerts
+<details>
+<summary>Web hooks results</summary>
+<img src="/documentation/testing/python/checkout_webhooks.png">
+</details><br>
+
+**Checkout: webhook_handler.py**<br>
+- No errors or alerts
+<details>
+<summary>Webhook handler results</summary>
+<img src="/documentation/testing/python/checkout_webhook_handler.png">
+</details><br>
+
+
 
 **Home: **<br>
 - No errors or alerts
@@ -539,12 +626,7 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python">
 </details><br>
 
-**Home: **<br>
-- No errors or alerts
-<details>
-<summary>results</summary>
-<img src="/documentation/testing/python">
-</details><br>
+
 
 **Home: **<br>
 - No errors or alerts
@@ -552,6 +634,19 @@ The Python code for this project was written in strict accordance with the [PEP 
 <summary>results</summary>
 <img src="/documentation/testing/python">
 </details><br>
+
+
+
+**Home: **<br>
+- No errors or alerts
+<details>
+<summary>results</summary>
+<img src="/documentation/testing/python">
+</details><br>
+
+
+
+
 
 
 
