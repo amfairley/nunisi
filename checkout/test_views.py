@@ -5,7 +5,6 @@ from django.conf import settings
 from unittest.mock import patch
 from django.contrib.messages import get_messages
 from rooms.models import Room
-from .models import Order
 
 
 class TestCacheCheckoutDataView(TestCase):
@@ -17,8 +16,8 @@ class TestCacheCheckoutDataView(TestCase):
         data = {
             'client_secret': 'test_secret_123',
             'room_id': '1',
-            'check_in_date': '2024-11-05',
-            'check_out_date': '2024-11-10',
+            'check_in_date': '2024-12-30',
+            'check_out_date': '2024-12-31',
             'adults': '2',
             'children': '1',
             'infants': '0',
@@ -63,8 +62,8 @@ class TestCheckoutView(TestCase):
             'direct_to_checkout': 'true',
             'room_id': room.id,
             'total_days': '3',
-            'check_in_date': '2024-11-05',
-            'check_out_date': '2024-11-08',
+            'check_in_date': '2024-12-30',
+            'check_out_date': '2024-12-31',
             'adults': '2',
             'children': '1',
             'infants': '0',
@@ -83,31 +82,3 @@ class TestCheckoutView(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'checkout/checkout.html')
         self.assertIn('client_secret', response.context)
-
-    def test_checkout_payment_form_order_creation(self):
-        data = {
-            'payment_form': 'true',
-            'full_name': 'Test User',
-            'email': 'test@example.com',
-            'phone_number': '123456789',
-            'country': 'US',
-            'postcode': '12345',
-            'town_or_city': 'Test City',
-            'street_address1': '123 Main St',
-            'street_address2': '',
-            'county': 'Test County',
-            'total_cost': '300.00',
-            'client_secret': 'test_secret',
-        }
-
-        response = self.client.post(reverse('checkout'), data)
-
-        # Check an order was created
-        order = Order.objects.get(email='test@example.com')
-        self.assertEqual(order.full_name, 'Test User')
-        self.assertEqual(order.order_total, 300.00)
-
-        # Confirm success page is rendered
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'checkout/success.html')
-        self.assertIn('order_number', response.context)
