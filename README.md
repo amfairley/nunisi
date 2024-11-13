@@ -159,7 +159,8 @@ As a part of Django-allauth, email validation is required to prevent fake accoun
 **External links**<br>
 All external links open in a new tab and have rel="noopener" to prevent the opened page from accessing the pages on this website, increasing security.
 
-**amenity.icon|safe**
+**Access required**<br>
+On certain pages, the view only loads the page if the user is a superuser or is logged in depending on the requiremnet.
 
 ### Defensive Programming
 
@@ -171,6 +172,9 @@ The site login requires the user's email address, since it is harder to recall a
 
 **Logout page**<br>
 When logging out the user is redirected to a page to confirm log out, preventing the user from logging out accidentally.
+
+**Forms**<br>
+Forms throughout the site are defined with required fields when necessary. These prevent the user from submitting an incomplete form and provide a pop up alerting the user as to why the form wasn't submitted.
 
 ### Future Security Implementations
 
@@ -188,9 +192,9 @@ When logging out the user is redirected to a page to confirm log out, preventing
     * better carousel transitions
 - Update the booking form to a new, slender design.
 - available_rooms.html
-    * Message for no rooms available
-    * Styling
     * Add filtering to rooms
+- rooms_superuser.html
+    * Add carousel for multiple room images
 
 ## Technologies Used
 
@@ -225,6 +229,8 @@ When logging out the user is redirected to a page to confirm log out, preventing
     - Used for some styling and site functionality
 - [JQuery](https://jquery.com/)
     - Used for some JavaScript code
+- [DateTime](https://docs.python.org/3/library/datetime.html)
+    - Used for providing date data
 
 ### Tools
 - [Visual Studio Code](https://code.visualstudio.com/)
