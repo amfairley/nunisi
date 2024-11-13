@@ -120,7 +120,8 @@ You can also fork the GitHub repository to collaborate by once logged into GitHu
 Each section of functionality for the website were sequestered into their own apps in order to maximise the readability and reusablity of the code. The apps are:<br>
 **Templates**: Though not technically an app, the base template of the app and core css is stored here and reused throughout the website. This includes all the formatted allauth templates to keep them in line with the site wide stylings.<br>
 **home**: The home app contains all the functionality for the homepage including the form used in the header which is shared site wide with a context processor. There are no models for the homepage and the only view and url renders the index.html page.<br>
-**rooms**: The rooms app contains the functionality for the hotel rooms. It holds the models for the rooms and amenities, the views to display available rooms to the user and rooms/edit rooms/delete rooms to a superuser. It also houses the form for editing the rooms.
+**rooms**: The rooms app contains the functionality for the hotel rooms. It holds the models for the rooms and amenities, the views to display available rooms to the user and rooms/edit rooms/delete rooms to a superuser. It also houses the form for editing the rooms. <br>
+**checkout**: The checkout app handles the checkout functionality including processing the payment, creating orders, and sending the user a confirmation email. User details can be saved to their account if they choose. It holds the checkout form and the model for the order along with the webhandler to handle the logic for processing payment and order/trip creation and adding unavailble dates to the room instances. <br>
 
 ## Deployment
 
