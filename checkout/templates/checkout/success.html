@@ -1,2 +1,14 @@
-<h1>Payment success!</h1>
-<p>Oder number: <span>{{ order_number }}</span></p>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}
+- Checkout Success
+{% endblock %}
+
+{% block content %}
+{% block content %}
+    <div id="checkout-success-message">
+        <h1 class="jost-font font-nunisi-green">Payment success!</h1>
+        <p class="roboto-font font-off-black">Oder number: <span>{{ order_number }}</span></p>
+    </div>
+{% endblock %}
