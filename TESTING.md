@@ -128,6 +128,32 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Location | Manipulate Google Map | Works as expected | Y | N/A |
 | Location | Reduce screen size | Map is put under the text | Y | N/A |
 | FAQs | Reduce screen size | Columns go from 3 to 1 | Y | N/A |
+| **available_rooms.html** | | | | |
+| Page loading | Submit an availability search | The page loads with the search form prefilled with the user submitted values | Y | N/A |
+| Page loading | Submit an invalid availability search | The page loads a message informing the user of the errors in the form | Y | N/A |
+| Page loading | Submit a valid form that matches no criteria | The page loads with a message informing the user that there are no matches to their search | Y | N/A |
+| Page loading | Submit a valid search form | The page loads and displays available rooms | Y | N/A |
+| Room card | Hover book now button | Cursor changes and button colour inverts | Y | N/A |
+| Room card | Resize page | Image drops below room information on smaller screens | Y | N/A |
+| **rooms_superuser.html** | | | | |
+| Add room button | Hover | Button colours invert | Y | N/A |
+| Add room button | Click | Redirected to add room page | Y | N/A |
+| Edit room link | Hover | Text bolds | Y | N/A |
+| Edit room link | Click | Redirected to edit room page | Y | N/A |
+| Delete room link | Hover | Text bolds | Y | N/A |
+| Delete room link | Click | Redirected to edit room page | Y | N/A |
+| Rooms page | Resize page | Rooms are displayed in a row of 3 on large screens, 2 on medium, and 1 on small | Y | N/A |
+| **add_room.html** | | | | |
+| Add room button | Hover | Button colours invert | Y | N/A |
+| Add room button | Click | Room created and redirected to superuser room page | Y | N/A |
+| Add room form | Complete form and submit | Room created and redirected to superuser room page | Y | N/A |
+| **edit_room.html** | | | | |
+| Edit room button | Hover | Button colours invert | Y | N/A |
+| Edit room button | Click | Room updated and redirected to superuser room page | Y | N/A |
+| Edit room form | Complete form and submit | Room updated with new values and redirected to superuser room page | Y | N/A |
+| **delete_room.html** | | | | |
+| Delete room button | Hover | Button colours invert | Y | N/A |
+| Delete room button | Click | Room instance is deleted and redirected to superuser rooms page | Y | N/A |
 
 
 ## Device and Browser Testing
@@ -268,7 +294,45 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-**Allauth:**<br>
+**Rooms: available_rooms.html**<br>
+- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
+<details>
+<summary>Available rooms results</summary>
+<img src="/documentation/testing/wave/rooms_available_rooms.png">
+</details><br>
+
+
+**Rooms: rooms_superuser.html**<br>
+- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
+<details>
+<summary>Superuser rooms results</summary>
+<img src="/documentation/testing/wave/rooms_rooms_superuser.png">
+</details><br>
+
+
+**Rooms: add_room.html**<br>
+- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
+<details>
+<summary>Add room results</summary>
+<img src="/documentation/testing/wave/rooms_add_room.png">
+</details><br>
+
+**Rooms: edit_room.html**<br>
+- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
+<details>
+<summary>Edit room results</summary>
+<img src="/documentation/testing/wave/rooms_edit_room.png">
+</details><br>
+
+**Rooms: delete_room.html**<br>
+- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
+<details>
+<summary>Delete room results</summary>
+<img src="/documentation/testing/wave/rooms_delete_room.png">
+</details><br>
+
+
+****<br>
 - No errors or alerts
 <details>
 <summary> results</summary>
@@ -276,7 +340,7 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-**Allauth:**<br>
+****<br>
 - No errors or alerts
 <details>
 <summary> results</summary>
@@ -284,12 +348,29 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-**Allauth:**<br>
+****<br>
 - No errors or alerts
 <details>
 <summary> results</summary>
 <img src="/documentation/testing/wave">
 </details><br>
+
+
+****<br>
+- No errors or alerts
+<details>
+<summary> results</summary>
+<img src="/documentation/testing/wave">
+</details><br>
+
+
+****<br>
+- No errors or alerts
+<details>
+<summary> results</summary>
+<img src="/documentation/testing/wave">
+</details><br>
+
 
 
 
@@ -323,7 +404,12 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Allauth - 3rd party login error | None | None |
 | Allauth - Google signup | None | None |
 | Homepage | None | None |
-| | | |
+| Available Rooms | None | None |
+| All rooms - superuser | None | None |
+| Add room | None | None |
+| Edit room | None | None |
+| Delete room | None | None |
+
 **Warnings**:
 - 
 
@@ -390,6 +476,55 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/home_test_views.png">
 </details><br>
 
+**Rooms: admin.py**<br>
+- No errors or alerts
+<details>
+<summary>Admin results</summary>
+<img src="/documentation/testing/python/rooms_admin.png">
+</details><br>
+
+**Rooms: forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Forms results</summary>
+<img src="/documentation/testing/python/rooms_forms.png">
+</details><br>
+
+**Rooms: models.py**<br>
+- No errors or alerts
+<details>
+<summary>Models results</summary>
+<img src="/documentation/testing/python/rooms_models.png">
+</details><br>
+
+**Rooms: views.py**<br>
+- No errors or alerts
+<details>
+<summary>Views results</summary>
+<img src="/documentation/testing/python/rooms_views.png">
+</details><br>
+
+**Rooms: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>URLs results</summary>
+<img src="/documentation/testing/python/rooms_urls.png">
+</details><br>
+
+**Rooms: test_models.py**<br>
+- No errors or alerts
+<details>
+<summary>Test models results</summary>
+<img src="/documentation/testing/python/rooms_test_models.png">
+</details><br>
+
+**Rooms: test_views.py**<br>
+- No errors or alerts
+<details>
+<summary>Test views results</summary>
+<img src="/documentation/testing/python/rooms_test_views.png">
+</details><br>
+
 **Home: **<br>
 - No errors or alerts
 <details>
@@ -397,6 +532,26 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python">
 </details><br>
 
+**Home: **<br>
+- No errors or alerts
+<details>
+<summary>results</summary>
+<img src="/documentation/testing/python">
+</details><br>
+
+**Home: **<br>
+- No errors or alerts
+<details>
+<summary>results</summary>
+<img src="/documentation/testing/python">
+</details><br>
+
+**Home: **<br>
+- No errors or alerts
+<details>
+<summary>results</summary>
+<img src="/documentation/testing/python">
+</details><br>
 
 
 
