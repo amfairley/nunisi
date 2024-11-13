@@ -253,11 +253,12 @@ The colour scheme started as an idea for gold and green to portray the natural a
 | Account menu background | Account menu text | Border for the location image |
 | Allauth page titles | Footer text | |
 | Allauth button text | Background to homepage header | |
-| Horizontal rules on homepage | | |
-| Next/previous arrows for services | | |
-
-
-
+| Horizontal rules on homepage | Background to available room cards | |
+| Next/previous arrows for services | Superuser room card background | |
+| Page and room titles for available rooms | | |
+| Amenity icons for available rooms | | |
+| Superuser rooms title | | | 
+| Add/edit/delete room title | | |
 
 **Other colours used:**
 - Gunmetal: #333A3F for border colours on buttons, dark text throughout
@@ -414,9 +415,30 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The location section provides travel information and an interactive Google map of the location. |
 | **User Stories Covered:** 2, 6 |
 
-| **Homepage: FAQs** |
+| **Rooms: Available Room Card** |
 | ----- |
-| **Page: /** |
-| <details><summary>FAQs</summary><img src="/documentation/features/homepage_faqs.png"></details> |
-| **Details:** The FAQs section provides the user with answers to frequently asked question. |
-| **User Stories Covered:** 2, 5 |
+| **Page: /rooms/** |
+| <details><summary>Room Card</summary><img src="/documentation/features/rooms_available_room_card.png"></details> |
+| **Details:** The available room card displays the room information to the guest for a room that matches their search criteria. |
+| **User Stories Covered:** 2, 22, 24, 26 |
+
+| **Rooms: rooms_superuser.html** |
+| ----- |
+| **Page: /rooms/rooms_superuser/** |
+| <details><summary>Superuser room page</summary><img src="/documentation/features/rooms_rooms_superuser.png"></details> |
+| **Details:** The superuser rooms page allows the business owner to see the current rooms, edit and delete them, or add a new room. |
+| **User Stories Covered:** 2, 36 |
+
+| **Rooms: Add/Edit Room Form** |
+| ----- |
+| **Page: /rooms/add_room/ and /rooms/edit_room/** |
+| <details><summary>Add/Edit room form</summary><img src="/documentation/features/rooms_add_room_form.png"></details> |
+| **Details:** The add room form allows the business owner to add new rooms to the database. This feature is repeated for the edit room form where the business owner can update values to the room instances. |
+| **User Stories Covered:** 2, 36 |
+
+| **Rooms: Delete Room** |
+| ----- |
+| **Page: /rooms/delete_room/** |
+| <details><summary>Delete room functionality</summary><img src="/documentation/features/rooms_delete_room.png"></details> |
+| **Details:** The delete room functionality allows the business owner to remove an instance of a room from the database |
+| **User Stories Covered:** 2, 36 |
