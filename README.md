@@ -176,6 +176,9 @@ When logging out the user is redirected to a page to confirm log out, preventing
 **Forms**<br>
 Forms throughout the site are defined with required fields when necessary. These prevent the user from submitting an incomplete form and provide a pop up alerting the user as to why the form wasn't submitted.
 
+**Delete room/user**<br>
+The delete room/user functionality redirects the user to a confirmation page to remove the chance of accidentally deleting a room or account.
+
 ### Future Security Implementations
 
 ## Future Development
@@ -195,6 +198,9 @@ Forms throughout the site are defined with required fields when necessary. These
     * Add filtering to rooms
 - rooms_superuser.html
     * Add carousel for multiple room images
+- trips.html
+    * A way for users to add a review 
+    * A way for users to cancel the reservation
 
 ## Technologies Used
 
