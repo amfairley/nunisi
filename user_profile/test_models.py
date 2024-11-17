@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import UserProfile, Trip
 from django.apps import apps
 from django.db.models.signals import post_save
-from user_profile.signals import create_user_profile_on_signup
+from user_profile.signals import create_or_update_user_profile
 from django.db.models import (
     CharField,
     BooleanField,
@@ -20,7 +20,7 @@ class UserProfileModelTest(TestCase):
         '''Create a user so that the UserProfile can be created'''
         # Disable signal to prevent duplicate instances
         post_save.disconnect(
-            receiver=create_user_profile_on_signup,
+            receiver=create_or_update_user_profile,
             sender=User
         )
         # Create a User
@@ -29,7 +29,11 @@ class UserProfileModelTest(TestCase):
             password='password123'
         )
         # Trigger the signal to create a UserProfile
-        create_user_profile_on_signup(user=self.user, request=None)
+        create_or_update_user_profile(
+            sender=User,
+            instance=self.user,
+            created=True
+        )
 
     def test_userprofile_model_exists(self):
         '''Check that the app is installed and model defined'''
@@ -79,7 +83,7 @@ class UserProfileModelTest(TestCase):
         self.assertIsInstance(field, CharField)
         self.assertEqual(field.get_internal_type(), 'CharField')
         # Check the max length of the CharField
-        self.assertEqual(field.max_length, 56)
+        self.assertEqual(field.max_length, 2)
         # Check null status
         self.assertTrue(field.null)
         # Check blank status
@@ -170,7 +174,7 @@ class UserProfileModelTest(TestCase):
 
     def tearDown(self):
         '''Set up the signal again after the test'''
-        post_save.connect(receiver=create_user_profile_on_signup, sender=User)
+        post_save.connect(receiver=create_or_update_user_profile, sender=User)
 
 
 class TripModelTest(TestCase):
