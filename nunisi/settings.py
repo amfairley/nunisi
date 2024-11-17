@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 # If in developer mode and there is an env.py file
 if os.path.exists("env.py"):
     import env
@@ -24,14 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    'django-insecure-jkfd6%k*)7f3(m=9g1&1@vw-c#6%!h&%)jbo!dylz)^slf*(j2'
-)
+SECRET_KEY = os.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nunisi-hotel-and-spas.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -93,15 +92,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'nunisi.wsgi.application'
 
 
-# Database
+# Database management
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if 'DATABASE_URL' in os.environ:
+    # External database
+    DATABASES = {
+        'default': dj_database_url.parse(
+            'database_url'
+        )
     }
-}
+else:
+    # Local database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Authentication backends for allauth
 AUTHENTICATION_BACKENDS = [
@@ -171,7 +178,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Allauth signup requirements, removing username and requiring email
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_REQUIRED = 'none'
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
