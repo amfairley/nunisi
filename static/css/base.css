@@ -86,7 +86,7 @@ main {
     font-weight: 800;
     color: #3A6B35;
     background-color: #FDD67C;
-    border-color: #333A3F;
+    border: 1px solid #333A3F;
 }
 
 .nunisi-button:hover {
@@ -1020,6 +1020,53 @@ main {
     height: 100%;
 }
 
+/* ---------- User Profile ---------- */
+/* user_profile.html */
+#account-title {
+    text-align: center;
+}
+
+#user-profile-table {
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.profile-button-div {
+    width: 100%;
+    display: flex;
+}
+
+.profile-button {
+    margin: 5px auto 10px auto;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* edit profile */
+.edit-profile-title {
+    text-align: center;
+}
+
+.edit-profile-div {
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Delete user */
+.confirm-deletion-title,
+.account-deleted-title {
+    text-align: center;
+}
+
+.home-button-div,
+.delete-account-form {
+    display: flex;
+    justify-content: center;
+}
 
 /* ---------- Media-queries ---------- */
 @media (min-width: 992px) {
@@ -1097,5 +1144,10 @@ main {
     /* Update developer info div size */
     .developer-info-div p {
         font-size: 0.8rem;
+    }
+
+    /* Reduce text size in the user profile table */
+    #user-profile-table {
+        font-size: smaller;
     }
 }
