@@ -126,3 +126,32 @@ Each section of functionality for the website were sequestered into their own ap
 
 ## Deployment
 
+- A PostgreSQL database was created using the [CodeInstitute Database Creator](https://dbs.ci-dbs.net/)
+- Heroku was used for deployement
+    * Create new app ![new app button](/documentation/development/heroku_new_app.png)
+    * Pick a name, select region and click create app. ![new app](/documentation/development/heroku_new_app_name.png)
+    * Open settings tab ![settings tab](/documentation/development/heroku_settings_tab.png)
+    * Add the PostgreSQL database to the config vars ![PostgreSQL config vars](/documentation/development/heorku_database_url.png)
+- Install dj_database_url and psycopg2 for connection to an external database
+```bash
+pip3 install dj_database_url==0.5.0 psycopg2
+```
+- Update settings.py with: 
+```python 
+import dj_database_url
+```
+```python
+DATABASES = {
+    'default': dj_database_url.parse('your-database-url-here')
+}
+```
+- To see that you are now connected to your new database you can use ```python manage.py showmigrations``` in the terminal and see all the migrations ready to be made.
+- Then run the migrations using ```python manage.py migrate``` in the terminal.
+- Load any data e.g. ```python manage.py loaddata amenities``` in the terminal.
+- Set up a new superuser for this database using ```python manage.py createsuperuser```
+- Add if/or statement to settings.py to use an external server if the database url is in the env.py file or use the local server if not
+- Install gunicorn for the webserver with ```pip3 install gunicorn```
+- Add a Procfile informing Heroku of how to access the webserver with ```web: gunicorn app_name.wsgi:application```
+- Open up the heroku CLI with ```heroku login``` and follow the instructions to log in in browser
+- Temporarily disable collect stattic with ```heroku config:set DISABLE_COLLECTSTATIC=1 --app_name``` to stop Heroku collecting static files when we deploy, as we have not linked them yet.
+- Add host name of the Heroku app to allowed hosts in settings.py, e.g. ```ALLOWED_HOSTS = ['app-name.herokuapp.com', 'localhost']```
