@@ -1,6 +1,19 @@
-<h1>Edit profile page</h1>
-<form method="POST" action="{% url 'edit_profile' %}" id="edit-profile-form" class="roboto-font">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update</button>
-</form>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}
+ - Edit Profile
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <h1 class="edit-profile-title jost-font font-nunisi-green">Edit profile page</h1>
+        <div class="edit-profile-div">
+            <form method="POST" action="{% url 'edit_profile' %}" id="edit-profile-form" class="roboto-font">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="nunisi-button">Update</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

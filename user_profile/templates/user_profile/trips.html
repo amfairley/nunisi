@@ -1,11 +1,26 @@
 <h1>Trips page</h1>
 <ul>
     {% for trip in trips %}
-        <li>{{ trip.room }}</li>
-        <li>{{ trip.start_date }}</li>
-        <li>{{ trip.end_date }}</li>
-        <li>{{ trip.adults }}</li>
-        <li>{{ trip.children }}</li>
-        <li>{{ trip.infants }}</li>
+        <li>Room Name: {{ trip.room.sanitised_name }}</li>
+        <li>Room Description: {{ trip.room.description }}</li>
+        <!--Get amenities-->
+        <li>
+            Amenities:
+            <ul>
+                {% for amenity_id in trip.room.amenities %}
+                    {% for amenity in amenities %}
+                        {% if amenity.id == amenity_id %}
+                            <li>{{ amenity.sanitised_name }} {{ amenity.icon|safe }}</li>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </li>
+
+        <li>Check-in date: {{ trip.start_date }}</li>
+        <li>Check-out date: {{ trip.end_date }}</li>
+        <li>Adults: {{ trip.adults }}</li>
+        <li>Children: {{ trip.children }}</li>
+        <li>Infants: {{ trip.infants }}</li>
     {% endfor %}
 </ul>

@@ -1,52 +1,132 @@
-<h1>User Profile Page</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-<p>Email: {{ user_profile.user.email }}</p>
-<a href="">Update email address</a>
-<p>Newsletter: {{ user_profile.newsletter }}</p>
-{% if user_profile.full_name %}
-    <p><span>Name:</span>{{ user_profile.full_name }}</p>
-{% else %}
-    <p><span>Name:</span>N/A</p>
-{% endif %}
-{% if user_profile.phone_number %}
-    <p><span>Phone Number:</span>{{ user_profile.phone_number }}</p>
-{% else %}
-    <p><span>Phone Number:</span>N/A</p>
-{% endif %}
-{% if user_profile.street_address1 %}
-    <p><span>Street Address First Line:</span>{{ user_profile.street_address1 }}</p>
-{% else %}
-    <p><span>Street Address First Line:</span>N/A</p>
-{% endif %}
-{% if user_profile.street_address2 %}
-    <p><span>Street Address Second Line:</span>{{ user_profile.street_address2 }}</p>
-{% else %}
-    <p><span>Street Address Second Line:</span>N/A</p>
-{% endif %}
-{% if user_profile.town_or_city %}
-    <p><span>Town/City:</span>{{ user_profile.town_or_city }}</p>
-{% else %}
-    <p><span>Town/City:</span>N/A</p>
-{% endif %}
-{% if user_profile.county %}
-    <p><span>County:</span>{{ user_profile.county }}</p>
-{% else %}
-    <p><span>County:</span>N/A</p>
-{% endif %}
-{% if user_profile.postcode %}
-    <p><span>Postcode:</span>{{ user_profile.postcode }}</p>
-{% else %}
-    <p><span>Postcode:</span>N/A</p>
-{% endif %}
-{% if user_profile.country %}
-    <p><span>Country:</span>{{ user_profile.country }}</p>
-{% else %}
-    <p><span>Country:</span>N/A</p>
-{% endif %}
-{% if user_profile.newsletter %}
-    <p><span>Signed up to newsletter</span></p>
-{% else %}
-    <p><span>Not signed up to newsletter</span></p>
-{% endif %}
+{% block extra_title %}
+ - Profile
+{% endblock %}
 
-<a href="{% url 'edit_profile' %}">Edit profile</a>
+{% block content %}
+    <div class="content">
+        <h1 class="jost-font font-weight-bolder font-nunisi-green" id="account-title">My Account</h1>
+        <!--Profile Information Table-->
+        <table class="table table-striped table-hover table-borderless roboto-font" id="user-profile-table">
+            <!--Email-->
+            <tr>
+                <th class="account-detail">
+                    <!--Email management link-->
+                    <a href="{% url 'account_email' %}" aria-label="Link to email address management" title="Update email setttings"><i class="fa-solid fa-pen-to-square"></i> Email Address(es)</a>
+                </th>
+                <td class="account-detail-value">
+                    <!--Display primary email-->
+                    {% for email in email_addresses %}
+                    {% if email.primary %}
+                        <p>Primary email address: {{ email.email }}</p>
+                    {% endif %}
+                    {% endfor %}
+                    <!--Check for other email addresses and display them-->
+                    {% if email_addresses|length > 1 %}
+                        <p>Others:</p>
+                        <ul>
+                            {% for email in email_addresses %}
+                                {% if not email.primary %}
+                                    <li>{{ email.email }}</li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </td>
+            </tr>
+            <!--Name-->
+            <tr>
+                <th class="account-detail">
+                    Name
+                </th>
+                <td class="account-detail-value">
+                    {% if user_profile.full_name %}
+                        {{ user_profile.full_name }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
+            <!--Phone Number-->
+            <tr>
+                <th class="account-detail">
+                    Phone Number
+                </th>
+                <td class="account-detail-value">
+                    {% if user_profile.phone_number %}
+                        {{ user_profile.phone_number }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
+            <!--Address-->
+            <tr>
+                <th class="account-detail">
+                    Address
+                </th>
+                <td class="account-detail-value">
+                    <!--Check for street address 1 (required) else N/A-->
+                    {% if user_profile.street_address1 %}
+                        <p>{{ user_profile.street_address1 }}</p>
+                        <!--Checks for street address 2 (optional)-->
+                        {% if user_profile.street_address2 %}
+                            <p>{{ user_profile.street_address2 }}</p>
+                        {% endif %}
+                        <!--Check for town-->
+                        {% if user_profile.town_or_city %}
+                            <p>{{ user_profile.town_or_city }}</p>
+                        {% endif %}
+                        <!--Check for county-->
+                        {% if user_profile.county %}
+                            <p>{{ user_profile.county }}</p>
+                        {% endif %}
+                        <!--Check for postcode-->
+                        {% if user_profile.postcode %}
+                            <p>{{ user_profile.postcode }}</p>
+                        {% endif %}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
+            <!--Country-->
+            <tr>
+                <th class="account-detail">
+                    Country
+                </th>
+                <td class="account-detail-value">
+                    {% if user_profile.country %}
+                        {{ user_profile.country }}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            </tr>
+        <!--Newsletter-->
+            <tr>
+                <th class="account-detail">
+                    Sign up to Newsletter?
+                </th>
+                <td class="account-detail-value">
+                    {% if user_profile.newsletter %}
+                        <p>Yes</p>
+                    {% else %}
+                        <p>No</p>
+                    {% endif %}
+                </td>
+            </tr>
+        </table>
+        <div class="profile-button-div">
+            <a href="{% url 'edit_profile' %}" class="nunisi-button profile-button">Edit profile</a>
+        </div>
+        <div class="profile-button-div">
+            <a href="{% url 'account_change_password' %}" class="nunisi-button profile-button">Change password</a>
+        </div>
+        <div class="profile-button-div">
+            <a href="{% url 'delete_user' user.id %}" class="nunisi-button profile-button">Delete Account</a>
+        </div>
+    </div>
+{% endblock %}
