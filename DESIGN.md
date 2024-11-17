@@ -259,6 +259,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 | Amenity icons for available rooms | Checkout form backgrounds | |
 | Superuser rooms title | | | 
 | Add/edit/delete room title | | |
+| Edit/Delete profile titles | | |
 
 **Other colours used:**
 - Gunmetal: #333A3F for border colours on buttons, dark text throughout
@@ -462,4 +463,25 @@ This is my selection for block text across the website. Roboto is the most popul
 | <details><summary>Order summary</summary><img src="/documentation/features/checkout_order_summary.png"></details> |
 | **Details:** The checkout order summary provides the user with a summary of their order before paying so that they can be certain of what they are paying for.  |
 | **User Stories Covered:** 2, 30 |
+
+|**User_profile: User Profile Table** |
+| ----- |
+| **Page: /user_profile/** |
+| <details><summary>User Profile</summary><img src="/documentation/features/user_profile_profile.png"></details> |
+| **Details:** The user profile table displays to the user their saved data. This allows the user to see their data and make a decision on what, if anything, they need to change. |
+| **User Stories Covered:** 2, 17, 19, 20 |
+
+|**User_profile: Edit profile form** |
+| ----- |
+| **Page: /user_profile/edit_profile** |
+| <details><summary>Edit Profile</summary><img src="/documentation/features/user_profile_edit_profile_form.png"></details> |
+| **Details:** The edit profile form allows the user to update their account details and signup/un-signup for the newsletter. |
+| **User Stories Covered:** 2, 20 |
+
+|**User_profile: Delete User** |
+| ----- |
+| **Page: /user_profile/delete_user** |
+| <details><summary>Delete User</summary><img src="/documentation/features/user_profile_delete_user.png"></details> |
+| **Details:** The delete user page allows the user to confirm the deletion of their account removing the chance of them accidentally doing so. |
+| **User Stories Covered:** 2, 19 |
 
