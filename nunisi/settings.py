@@ -102,7 +102,7 @@ if 'DATABASE_URL' in os.environ:
     # External database
     DATABASES = {
         'default': dj_database_url.parse(
-            'database_url'
+            os.environ['DATABASE_URL']
         )
     }
 else:
