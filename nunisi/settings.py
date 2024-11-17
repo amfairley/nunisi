@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'nunisi-hotel-and-spas.herokuapp.com',
+    'nunisi-hotel-and-spa-39411ddf3dfa.herokuapp.com',
     'localhost',
     '127.0.0.1'
     ]
