@@ -237,6 +237,12 @@ The delete room/user functionality redirects the user to a confirmation page to 
     - Used for some JavaScript code
 - [DateTime](https://docs.python.org/3/library/datetime.html)
     - Used for providing date data
+- [dj-database-url](https://pypi.org/project/dj-database-url/)
+    - For connecting to an external database
+- [psycopg2](https://pypi.org/project/psycopg2/)
+    - For connecting to an external database
+- [gunicorn](https://gunicorn.org/)
+    - For the webserver
 
 ### Tools
 - [Visual Studio Code](https://code.visualstudio.com/)
