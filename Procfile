@@ -1,0 +1,1 @@
+web: gunicorn nunisi.wsgi:application
