@@ -166,8 +166,19 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Checkout form | Provide incorrect credit card information | Alerts appear informing user to credit card errors | Y | N/A |
 | Checkout form | Provide correct data and submit | The form is submitted, order created, trip created, and confirmation email sent | | |
 | Checkout form | Hover Pay Now button | Button colour inverts | Y | N/A |
-
-
+| **user_profile.html** | | | | |
+| Email addresses button | Hover | Text appears informing user that clicking will redirect them to the email management page | Y | N/A |
+| Email addresses button | Click | Redirected to email management page | Y | N/A |
+| Profile data table | Hover each cell | Hovered row is highlighted | Y | N/A |
+| Edit profile and change password buttons | Hover | Button colours invert | Y | N/A |
+| Edit profile button and change password buttons | Click | Redirected to edit profile page and change password page | Y | N/A |
+| **edit_profile.html** | | | | |
+| Update button | Hover | Button colours invert | Y | N/A |
+| Edit profile form | Fill and submit | Values updated and user redirected to profile page | Y | N/A |
+| **delete_user.html** | | | | |
+| Delete account | Click button | User redirected to delete_successful.html and user account deleted | Y | N/A |
+| **delete_successful.html** | | | | |
+| Homepage button | Hover and click | Colours inverted on hover and redirected to homepage on click | Y | N/A |
 
 
 
@@ -357,19 +368,19 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-****<br>
-- No errors or alerts
+**User_profile: user_profile.html**<br>
+- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
 <details>
-<summary> results</summary>
-<img src="/documentation/testing/wave">
+<summary>User profile page results</summary>
+<img src="/documentation/testing/wave/user_profile_user_profile.png">
 </details><br>
 
 
-****<br>
-- No errors or alerts
+**User_profile: edit_profile.html**<br>
+- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
 <details>
-<summary> results</summary>
-<img src="/documentation/testing/wave">
+<summary>Edit profile results</summary>
+<img src="/documentation/testing/wave/user_profile_edit_profile.png">
 </details><br>
 
 
@@ -428,6 +439,10 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Delete room | None | None |
 | Checkout page | None | None |
 | Checkout success page | None | None |
+| User profile page | None | None |
+| User edit profile page | None | None |
+| User delete profile page | None | None |
+| User delete profile successful page | None | None |
 
 **Warnings**:
 - 
@@ -617,14 +632,55 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/checkout_webhook_handler.png">
 </details><br>
 
-
-
-**Home: **<br>
+**User_profile: admin.py**<br>
 - No errors or alerts
 <details>
-<summary>results</summary>
-<img src="/documentation/testing/python">
+<summary>Admin results</summary>
+<img src="/documentation/testing/python/user_profile_admin.png">
 </details><br>
+
+**User_profile: forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Forms results</summary>
+<img src="/documentation/testing/python/user_profile_forms.png">
+</details><br>
+
+**User_profile: models.py**<br>
+- No errors or alerts
+<details>
+<summary>Models results</summary>
+<img src="/documentation/testing/python/user_profile_models.png">
+</details><br>
+
+**User_profile: signals.py**<br>
+- No errors or alerts
+<details>
+<summary>Signals results</summary>
+<img src="/documentation/testing/python/user_profile_signals.png">
+</details><br>
+
+**User_profile: test_models.py**<br>
+- No errors or alerts
+<details>
+<summary>Test models results</summary>
+<img src="/documentation/testing/python/user_profile_test_models.png">
+</details><br>
+
+**User_profile: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>Urls results</summary>
+<img src="/documentation/testing/python/user_profile_urls.png">
+</details><br>
+
+**User_profile: views.py**<br>
+- No errors or alerts
+<details>
+<summary>Viewss results</summary>
+<img src="/documentation/testing/python/user_profile_views.png">
+</details><br>
+
 
 
 
