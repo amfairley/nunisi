@@ -12,6 +12,11 @@ import time
 import json
 from datetime import timedelta, datetime
 
+# Logging
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class StripeWH_Handler:
     '''Handle Stripe Webhooks'''
@@ -74,6 +79,7 @@ class StripeWH_Handler:
         user = None
         if email:
             user = User.objects.get(email=email)
+        logger.debug(user)
 
         # Get the charge object
         stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
