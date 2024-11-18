@@ -68,13 +68,13 @@ class StripeWH_Handler:
             '%Y-%m-%d').date()
         end_date = datetime.strptime(trip_data['end_date'], '%Y-%m-%d').date()
         save_info = metadata.get('save_info')
-        username = metadata.get('username')
+        email = metadata.get('email')
 
         # Get the user if they are logged in
         user = None
-        if username:
+        if email:
             try:
-                user = User.objects.get(username=username)
+                user = User.objects.get(email=email)
             except User.DoesNotExist:
                 user = None
 
@@ -139,6 +139,22 @@ class StripeWH_Handler:
                 time.sleep(1)
                 # Create the order if it does not exist
         if order_exists:
+            # Create a trip instance
+            if user.is_authenticated:
+                user_profile = UserProfile.objects.get(user=user)
+                trip_form_data = {
+                    'profile': user_profile,
+                    'room': trip_data.get('room'),
+                    'start_date': start_date,
+                    'end_date': end_date,
+                    'adults': trip_data.get('adults'),
+                    'children': trip_data.get('children'),
+                    'infants': trip_data.get('infants'),
+                    'cost': grand_total,
+                }
+                trip_instance = Trip(**trip_form_data)
+                trip_instance.save()
+
             # Send confirmation email
             self._send_confirmation_email(order)
             return HttpResponse(
@@ -168,6 +184,29 @@ class StripeWH_Handler:
                 # Create an order instance
                 order_instance = Order(**order_form_data)
                 order_instance.save()
+                # Create a trip instance
+                if user.is_authenticated:
+                    user_profile = UserProfile.objects.get(user=user)
+                    trip_form_data = {
+                        'profile': user_profile,
+                        'room': trip_data.get('room'),
+                        'start_date': start_date,
+                        'end_date': end_date,
+                        'adults': trip_data.get('adults'),
+                        'children': trip_data.get('children'),
+                        'infants': trip_data.get('infants'),
+                        'cost': grand_total,
+                    }
+                    trip_instance = Trip(**trip_form_data)
+                    trip_instance.save()
+                    # Send confirmation email
+                    self._send_confirmation_email(order)
+                    return HttpResponse(
+                        content=(
+                            f'Webhook received: {event["type"]} | '
+                            f'SUCCESS: Created order in webhook'
+                            ),
+                        status=200)
             # If anything goes wrong, delete and 500 error
             except Exception as e:
                 if order_instance:
@@ -175,21 +214,6 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} || ERROR: {e}',
                     status=500)
-        # Create a trip instance
-        if user.is_authenticated:
-            user_profile = UserProfile.objects.get(user=user)
-            trip_form_data = {
-                'profile': user_profile,
-                'room': trip_data.get('room'),
-                'start_date': start_date,
-                'end_date': end_date,
-                'adults': trip_data.get('adults'),
-                'children': trip_data.get('children'),
-                'infants': trip_data.get('infants'),
-                'cost': grand_total,
-            }
-            trip_instance = Trip(**trip_form_data)
-            trip_instance.save()
 
         # Add unavailable dates to the room
         # Get the room id from the trip_data metadata
@@ -219,15 +243,6 @@ class StripeWH_Handler:
         # Add combined to the room unavailability
         room_booked.unavailability = json.dumps(updated_dates)
         room_booked.save()
-
-        # Send confirmation email
-        self._send_confirmation_email(order)
-        return HttpResponse(
-            content=(
-                f'Webhook received: {event["type"]} | '
-                f'SUCCESS: Created order in webhook'
-                ),
-            status=200)
 
     def handle_payment_intent_payment_failed(self, event):
         '''Handle the payment_intent.payment_failed webhook event'''
