@@ -125,6 +125,11 @@ AUTHENTICATION_BACKENDS = [
 
 # Amazon Web Services
 if 'USE_AWS' in os.environ:
+    # Allow caching to improve performance
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
     AWS_STORAGE_BUCKET_NAME = 'nunisi-hotel-and-spa'
     AWS_S3_REGION_NAME = 'eu-north-1'
     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
@@ -132,18 +137,29 @@ if 'USE_AWS' in os.environ:
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
     AWS_S3_FILE_OVERWRITE = False
 
-# File storage for AWS
-STORAGES = {
-    # Media management
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-    },
+    # Static files storage backend using S3
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
 
-    # CSS and JS
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-    },
-}
+    # Media files storage backend using S3
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+
+    # For collectstatic (optional)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# # File storage for AWS
+# STORAGES = {
+#     # Media management
+#     "default": {
+#         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+#     },
+
+#     # CSS and JS
+#     "staticfiles": {
+#         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+#     },
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

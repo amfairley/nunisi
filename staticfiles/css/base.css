@@ -1,0 +1,1153 @@
+/* ---------- Fonts ---------- */
+/* Google font imports */
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Jost&family=Roboto:ital,wght@0,400;1,300&display=swap');
+
+/* Font classes */
+.jost-font {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+.caveat-font {
+    font-family: Caveat, "Brush Script MT", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+.roboto-font {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Font colour classes */
+.font-nunisi-gold {
+    color: #FDD67C;
+}
+
+.font-nunisi-green {
+    color: #3A6B35;
+}
+
+.font-off-black {
+    color: #333A3F;
+}
+
+.font-off-white {
+    color: #F5F5F5;
+}
+
+/* Font weight classes */
+.font-weight-bolder {
+    font-weight: bolder;
+}
+
+/* ---------- Global styling ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.margin-zero {
+    margin: 0;
+}
+
+.padding-zero {
+    padding: 0;
+}
+
+/* Body size and fixed footer */
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Site background */
+.content {
+    min-height: calc(100vh - 336px);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1030%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(214%2c 217%2c 178%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c441.213C80.976%2c431.82%2c120.653%2c338.5%2c188.466%2c293.259C254.632%2c249.116%2c346.402%2c244.044%2c392.595%2c179.292C441.636%2c110.548%2c462.039%2c18.587%2c443.127%2c-63.712C424.665%2c-144.052%2c354.749%2c-199.264%2c293.042%2c-253.923C238.087%2c-302.601%2c178.632%2c-349.44%2c106.31%2c-362.057C37.68%2c-374.03%2c-25.548%2c-332.108%2c-94.405%2c-321.514C-177.123%2c-308.787%2c-275.384%2c-348.184%2c-338.802%2c-293.573C-401.698%2c-239.412%2c-385.71%2c-139.244%2c-400.844%2c-57.633C-416.692%2c27.825%2c-465.765%2c117.158%2c-429.628%2c196.204C-393.492%2c275.249%2c-294.329%2c297.45%2c-218.83%2c340.506C-147.636%2c381.106%2c-81.411%2c450.657%2c0%2c441.213' fill='%23cfd3a5'%3e%3c/path%3e%3cpath d='M1440 1243.262C1564.445 1213.644 1626.539 1078.9859999999999 1712.862 984.582 1777.001 914.4390000000001 1841.478 847.838 1880.731 761.275 1919.901 674.896 1925.4940000000001 582.455 1937.854 488.419 1954.9859999999999 358.081 2051.5950000000003 203.969 1967.2350000000001 103.14800000000002 1883.375 2.9249999999999545 1710.412 102.89800000000002 1584.883 66.57499999999999 1460.143 30.480000000000018 1373.291-122.17399999999998 1244.445-106.00099999999998 1116.646-89.95899999999995 1045.435 47.678999999999974 960.941 144.89299999999997 876.318 242.255 742.9 332.321 751.611 461.025 760.574 593.4639999999999 946.261 639.56 1002.556 759.774 1057.943 878.049 980.972 1041.074 1068.594 1137.9189999999999 1156.716 1235.317 1312.223 1273.673 1440 1243.262' fill='%23dde0bf'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1030'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+}
+
+/* Site buttons */
+.nunisi-button {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    color: #3A6B35;
+    background-color: #FDD67C;
+    border: 1px solid #333A3F;
+}
+
+.nunisi-button:hover {
+    border-color: #333A3F;
+    color:#FDD67C;
+    background-color: #3A6B35;
+}
+
+/* Background colours */
+.bg-nunisi-green {
+    background-color: #3A6B35;
+}
+
+.bg-nunisi-gold {
+    background-color: #FDD67C;
+}
+
+.bg-nunisi-dark-gold {
+    background-color: #b88c26;
+}
+
+/* Borders */
+.border-off-black-3 {
+    border: 1px solid #333A3F;
+    border-radius: 3%;
+}
+
+.border-dark-gold {
+    border: 1px solid #b88c26;
+}
+
+/* ---------- Navigation bar styling ---------- */
+#top-nav {
+    height: 168px;
+}
+
+/* Logo */
+.site-logo-container {
+    height: 168px;
+    width: 205px;
+    top: 0;
+}
+
+#navbar-brand {
+    height: 168px;
+}
+
+#site-logo-nav {
+    height: 168px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Booking form */
+.booking-form-div {
+    max-width: 535px;
+}
+
+.search-form-title {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    margin-bottom: 0;
+    margin-left: 75px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.check-in-div,
+.check-out-div {
+    top: -15px;
+}
+
+.check-in-div label,
+.check-out-div label {
+    padding: 25px 0 0 22px;
+    font-size: 1rem;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#3A6B35;
+    font-weight: 600;
+}
+
+#id_mobile-check_out_date,
+#id_mobile-check_in_date,
+#id_desktop-check_out_date,
+#id_desktop-check_in_date {
+    color: #3A6B35;
+    background-color: #FDD67C;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    border: 1px solid #333A3F;
+}
+
+.check-in-div input:hover,
+.check-out-div input:hover {
+    cursor: pointer;
+}
+
+.guests-div {
+    top: -15px;
+    position: relative;
+}
+
+.guests-choices label{
+    text-align: left;
+}
+
+.guests-choices {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px !important;
+}
+
+.guests-choices input {
+    width: 35px;
+    margin-right: 5px;
+    background-color: #3A6B35;
+    color: #FDD67C;
+}
+
+.booking-form-submit-div {
+    display: flex;
+    align-items: center;
+}
+
+/* Account menu */
+#account-dropdown-super-div{
+    display: flex;
+    align-items: center;
+    height: 168px;
+}
+
+#account-dropdown-div {
+    width: 205px !important;
+    text-align: right;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+#account-dropdown {
+    border: 3px solid #FDD67C;
+}
+
+#account-dropdown:hover, #account-dropdown:active, #account-dropdown:focus {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border: 4px solid #b88c26;
+    transition-duration: 0.2ms;
+    background-color: #3A6B35;
+    color: #FDD67C;
+}
+
+#account-nav-menu {
+    padding-right: 10px;
+}
+
+#account-nav-menu i {
+    font-size: 1.5rem;
+}
+
+#account-nav-menu .fa-bars {
+    padding-right: 10px;
+}
+
+#account-nav-menu .fa-circle-user {
+    padding-left: 10px;
+}
+
+#account-nav-menu-dropdown {
+    border: 1px solid #b88c26;
+    z-index: 9999;
+}
+
+.account-link {
+    font-size: 1.2rem;
+}
+
+.account-link a {
+    padding-left: 8px;
+}
+
+/* ---------- Footer Styling ---------- */
+.footer {
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 168px;
+    overflow: hidden;
+}
+
+.footer-container {
+    margin: 0;
+}
+
+.footer-row {
+    width: 100vw;
+}
+
+.footer div ul {
+    list-style-type: none;
+}
+
+.hotel-socials {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.hotel-socials i {
+    font-size: 1.2rem;
+}
+
+.facebook-link {
+    margin-right: 16px;
+}
+
+.fa-facebook:hover {
+    color: blue;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.fa-instagram:hover {
+    color: white;
+    background-color: black;
+    border-radius: 30%;
+}
+
+.email-icon-footer,
+.phone-icon-footer {
+    margin-right: 16px;
+}
+
+.hotel-email-link:hover {
+    font-weight: bolder;
+}
+
+.footer-logo-div {
+    justify-content: center;
+}
+
+.footer-logo img{
+    height: 168px;
+}
+
+.developer-info-div {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.developer-info-div p {
+    font-weight: bolder;
+}
+
+.developer-info-div i {
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+.fa-github:hover {
+    color: black;
+}
+
+.fa-github {
+    margin-right: 30px;
+}
+
+/* ---------- AllAuth Pages ---------- */
+.allauth-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.allauth-title {
+    text-align: center;
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #3A6B35;
+}
+
+.allauth-message {
+    text-align: center;
+    color: #333A3F;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.allauth-form {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.allauth-form ul{
+    list-style-type: none;
+    text-align: center;
+    padding: 0;
+    color: #CF1020;
+}
+
+.allauth-form span {
+    display: block;
+    padding-top: 15px;
+}
+
+.allauth-form span a:hover {
+    font-weight: bolder;
+}
+
+.allauth-button-div {
+    text-align: center;
+}
+
+.allauth-button-div button{
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    color: #3A6B35;
+    background-color: #FDD67C;
+    border-color: #333A3F;
+    border-radius: 10%;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+
+.allauth-button-div button:hover {
+    border-color: #333A3F;
+    color:#FDD67C;
+    background-color: #3A6B35;
+}
+
+.allauth-socials {
+    text-align: center;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+.allauth-socials ul {
+    list-style-type: none;
+    font-size: 1.5rem;
+}
+
+.allauth-socials ul li a:hover{
+    font-weight: bolder;
+}
+
+.allauth-email-button {
+    margin-top: 10px;
+}
+
+#allauth-add-email {
+    margin-top: 10px;
+}
+
+#allauth-add-email-submit {
+    margin-bottom: 10px;
+}
+
+.allauth-message a:hover {
+    font-weight: bolder;
+}
+
+/* ---------- index.html ---------- */
+/* Index site content */
+.content-index {
+    min-height: calc(100vh - 376px);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1030%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(214%2c 217%2c 178%2c 1)'%3e%3c/rect%3e%3cpath d='M0%2c441.213C80.976%2c431.82%2c120.653%2c338.5%2c188.466%2c293.259C254.632%2c249.116%2c346.402%2c244.044%2c392.595%2c179.292C441.636%2c110.548%2c462.039%2c18.587%2c443.127%2c-63.712C424.665%2c-144.052%2c354.749%2c-199.264%2c293.042%2c-253.923C238.087%2c-302.601%2c178.632%2c-349.44%2c106.31%2c-362.057C37.68%2c-374.03%2c-25.548%2c-332.108%2c-94.405%2c-321.514C-177.123%2c-308.787%2c-275.384%2c-348.184%2c-338.802%2c-293.573C-401.698%2c-239.412%2c-385.71%2c-139.244%2c-400.844%2c-57.633C-416.692%2c27.825%2c-465.765%2c117.158%2c-429.628%2c196.204C-393.492%2c275.249%2c-294.329%2c297.45%2c-218.83%2c340.506C-147.636%2c381.106%2c-81.411%2c450.657%2c0%2c441.213' fill='%23cfd3a5'%3e%3c/path%3e%3cpath d='M1440 1243.262C1564.445 1213.644 1626.539 1078.9859999999999 1712.862 984.582 1777.001 914.4390000000001 1841.478 847.838 1880.731 761.275 1919.901 674.896 1925.4940000000001 582.455 1937.854 488.419 1954.9859999999999 358.081 2051.5950000000003 203.969 1967.2350000000001 103.14800000000002 1883.375 2.9249999999999545 1710.412 102.89800000000002 1584.883 66.57499999999999 1460.143 30.480000000000018 1373.291-122.17399999999998 1244.445-106.00099999999998 1116.646-89.95899999999995 1045.435 47.678999999999974 960.941 144.89299999999997 876.318 242.255 742.9 332.321 751.611 461.025 760.574 593.4639999999999 946.261 639.56 1002.556 759.774 1057.943 878.049 980.972 1041.074 1068.594 1137.9189999999999 1156.716 1235.317 1312.223 1273.673 1440 1243.262' fill='%23dde0bf'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1030'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+}
+
+/* Index header */
+#index-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.index-nav-item a{
+    color: #3A6B35 !important;
+    font-weight: bolder;
+}
+
+.index-nav-item a:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#index-burger-nav {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* Index hero section */
+#index-hero {
+    width: 100%;
+    height: 65vh;
+    background-image: url('/media/hero-image.webp');
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#hero-title {
+    text-align: center;
+    color: #F5F5F5;
+    font-size: 4rem;
+}
+
+#hero-message {
+    text-align: center;
+    color: #f5f5f5;
+}
+
+/* Index booking form */
+#index-booking-form {
+    margin-top: 10px;
+}
+
+#index-booking-form-body {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.index-form-title {
+    font-size: 1.5rem;
+    color:#333A3F;
+}
+
+.index-check label {
+    padding-left: 13px !important;
+}
+
+.index-guests-div {
+    margin-bottom: 10px;
+}
+
+.index-guests-div label{
+    margin-left: 25px;
+}
+
+.index-guests-div .guests-choices {
+    margin-top: 5px;
+}
+
+.index-booking-form-submit-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Index horizontal rule */
+.index-horizontal-rule {
+    color:#3A6B35;
+    width: 85%;
+    margin: 10px auto;
+}
+
+/* Index resort information */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+  outline: black;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  background-image: none;
+}
+
+#resortInformationCarousel .carousel-item {
+    transition: transform 5s ease-in-out;
+}
+
+#index-about-us .carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: #f5f5f5;
+}
+
+#index-about-us .carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: #f5f5f5;
+}
+
+#index-resort-image-column {
+    display: flex;
+    justify-content: center;
+}
+
+#index-resort-image-column .carousel-inner,
+#index-resort-image-column .carousel-item {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#index-resort-image-column .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#index-info-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color:#333A3F;
+    text-align: center;
+}
+
+.index-info-text {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#333A3F;
+}
+
+/* Index services */
+#index-services .carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  color: #3A6B35;
+}
+
+#index-services .carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  color: #3A6B35;
+}
+
+#index-services-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+    text-align: center;
+}
+
+.services-card {
+    width: 85%;
+    max-width: 1200px !important;
+    margin: 10px auto;
+    background-color: palegoldenrod;
+    border: 2px solid #b88c26;
+}
+
+.services-card-image-container {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.services-card-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+    text-align: center;
+}
+
+.services-card-text {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+}
+
+/* Index location section */
+.location-info {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.location-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/media/georgia-map.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    border: 1px solid #b88c26;
+    border-radius: 5%;
+    z-index: 1;
+}
+
+#index-location-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+    text-align: center;
+    display: block;
+}
+
+#index-location-text {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+}
+
+#location-map {
+    width: 100%;
+    min-height: 300px;
+    border-radius: 5%;
+}
+
+/* Index FAQ section */
+.faq-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #333A3F;
+    text-align: center;
+}
+
+.faq-list {
+    list-style-type: none;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #333A3F
+}
+
+.faq-question {
+    font-weight: bolder;
+}
+
+/* ---------- Available Rooms ---------- */
+#available-rooms-title,
+#all-rooms-title {
+    text-align: center;
+    padding: 10px 0;
+}
+
+#available-rooms-error {
+    width: 85%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#available-rooms-error p {
+    text-align: center;
+}
+
+.available-room-card {
+    width: 90%;
+    max-width: 1000px;
+    margin: 10px auto 20px auto;
+}
+
+.available-room-name {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 3rem;
+}
+
+.available-room-amenities-title {
+    padding-left: 2rem;
+}
+
+.available-room-card ul {
+    list-style-type: none;
+}
+
+.amenity-icon-div {
+    text-align: center;
+}
+
+.available-room-amenity i{
+    color: #3A6B35;
+}
+
+.available-room-description {
+    width: 90%;
+    margin: 5px auto;
+}
+
+.available-room-image {
+    width: 95%;
+    margin: 5px auto;
+    display: flex;
+}
+
+.available-room-booking-div {
+    padding-left: 1.5rem;
+}
+
+.available-room-booking-button {
+    margin: 5px auto 20px auto;
+    display: flex;
+}
+
+#no-rooms {
+    text-align: center;
+    max-width: 95%;
+}
+
+/* ---------- All Rooms ---------- */
+#all-rooms-div {
+    width: 95%;
+    max-width: 1800px;
+    margin: 10px auto;
+}
+
+.all-rooms-inner-div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.all-rooms-card-div {
+    margin: 20px 20px 20px 20px;
+}
+
+.card-organiser {
+    margin: 0 10px;
+}
+
+.room-detail {
+    font-weight: bolder;
+}
+
+.all-rooms-image {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.room-edit-div {
+    padding-left: 20px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.room-delete-div {
+    padding-right: 20px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.room-edit-link:hover,
+.room-delete-link:hover {
+    font-weight: bolder;
+}
+
+#add-room-button-div {
+    display: flex;
+    justify-content: center;
+}
+
+#add-room-button {
+    margin: 20px auto;
+    padding: 5px;
+}
+
+/* ---------- Add/Edit Room ---------- */
+.add-edit-room-title {
+    text-align: center;
+    color: #3A6B35;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.add-edit-room-row {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.add-edit-room-form p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em; /* Add space between form rows */
+  }
+  
+.add-edit-room-form p label {
+    flex: 1;
+    text-align: left;
+    margin-right: 1em;
+  }
+  
+.add-edit-room-form p input,
+.add-edit-room-form p select,
+.add-edit-room-form p textarea {
+    flex: 2;
+    padding: 0.5em;
+  }
+
+.add-edit-room-submit-div {
+    display: flex;
+    justify-content: center;
+}
+
+.add-edit-room-submit {
+    margin: 20px auto;
+    padding: 5px;
+}
+
+/* ---------- Delete Room ---------- */
+#delete-room-div {
+    width: 95%;
+    max-width: 600px;
+    margin: 10px auto;
+    text-align: center;
+}
+
+#delete-room-div h1 {
+    color: #3A6B35;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+/* ---------- Checkout ---------- */
+#booking-page-title {
+    text-align: center;
+    color:#b88c26;
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.checkout-page-block {
+    border: 5px double #b88c26;
+    max-width: 95%;
+    margin: 20px auto;
+}
+
+.checkout-page-block h2 {
+    text-align: center;
+    color: #b88c26;
+}
+
+/* Payment form */
+#payment-text {
+    color:#333A3F;
+}
+
+#payment-form label {
+    color: #333A3F;
+    text-align: left;
+    width: 30%;
+    font-weight: bolder;
+}
+
+#payment-form input {
+    background-color: #FDD67C;
+    width: 65%;
+    color: #3A6B35;
+    font-weight: bolder;
+}
+
+#save-info-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    margin-top: 5px;
+}
+
+#save-info-label {
+    width: 70% !important;
+}
+
+#save-info {
+    width: 25% !important;
+}
+
+#checkout-form-submit-button-div {
+    width: 100%;
+    display: flex;
+}
+
+#checkout-form-submit-button {
+    margin: 5px auto 10px auto;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Order summary */
+.order-summary-p {
+    font-weight: bolder;
+}
+
+.order-summary-data {
+    font-weight: 400;
+}
+
+.order-summary-image-div {
+    display: flex;
+    justify-content: center;
+}
+
+.order-summary-image {
+    width: 60%;
+    margin-bottom: 10px;
+}
+
+/* Checkout success */
+#checkout-success-message {
+    text-align: center;
+}
+
+/* ---------- Stripe CSS ---------- */
+/* Card element */
+#card-element {
+    background-color: #FDD67C;
+    color: #3A6B35;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    border: 1px solid #333A3F;
+    border-radius: 3%;
+    padding: 0;
+    max-width: 90%;
+    margin: 10px auto;
+    height: 1.5rem;
+}
+
+/* Loading overlay */
+#loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(23, 162, 184, 0.85);
+    z-index: 9999;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100%;
+}
+
+/* ---------- User Profile ---------- */
+/* user_profile.html */
+#account-title {
+    text-align: center;
+}
+
+#user-profile-table {
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.profile-button-div {
+    width: 100%;
+    display: flex;
+}
+
+.profile-button {
+    margin: 5px auto 10px auto;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* edit profile */
+.edit-profile-title {
+    text-align: center;
+}
+
+.edit-profile-div {
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Delete user */
+.confirm-deletion-title,
+.account-deleted-title {
+    text-align: center;
+}
+
+.home-button-div,
+.delete-account-form {
+    display: flex;
+    justify-content: center;
+}
+
+/* ---------- Media-queries ---------- */
+@media (min-width: 992px) {
+    /* Scroll offset for index header: desktop */
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 40px;
+    }
+}
+
+@media (max-width: 991px) {
+    /* Change account menu position */
+    #account-nav-menu {
+        position: absolute;
+        right: 5px;
+        top: 70px;
+    }
+
+    /* Scroll offsex for index header: mobile */
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 270px;
+    }
+    
+    
+    /*Change footer height */
+    .footer {
+        height: 130px;
+    }
+
+    /* Update content height */
+    .content {
+        min-height: calc(100vh - 298px);
+    }
+
+    /*Index: add space above about us title */
+    #index-info-title {
+        margin-top: 10px;
+    }
+
+    /*Index: gap between location info and map */
+    .location-info {
+        margin-bottom: 10px;
+    }
+
+}
+
+@media (max-width: 760px) {
+    /*Update hero text*/
+    #hero-title {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 768px) {
+    /*Checkout page border between payment and order summary*/
+    #checkout-page-payment-block {
+        border-right: none;
+    }
+    #checkout-page-order-summary-block {
+        border-left: none;
+    }
+}
+
+@media (max-width: 410px) {
+    /*Update hero text*/
+    #hero-title {
+        font-size: 2.5rem;
+    }
+
+    #hero-message {
+        font-size: 1.5rem;
+    }
+
+    /* Update developer info div size */
+    .developer-info-div p {
+        font-size: 0.8rem;
+    }
+
+    /* Reduce text size in the user profile table */
+    #user-profile-table {
+        font-size: smaller;
+    }
+}
