@@ -123,7 +123,7 @@ class StripeWH_Handler:
         self.logger.info(f"Received Stripe webhook: {self.request.body}")
         # Get the payment intent and all meta data
         intent = event.data.object
-        metadata = intent.get('metadata', {})
+        metadata = intent.get('metadata')
         pid = intent.id
         trip_data_json = metadata.get('trip_data', '{}')
         trip_data = json.loads(trip_data_json)
