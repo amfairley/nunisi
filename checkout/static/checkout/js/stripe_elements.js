@@ -111,8 +111,17 @@ form.addEventListener("submit", function(ev) {
         }, 10);
     }
 
-    // To save information or not
+    // Getting form post information for the cache_checkout_data view
     saveInfo = Boolean(document.getElementById("id-save-info").checked);
+    room_id = document.querySelector('input[name="room_id"]').value;
+    room = document.querySelector('input[name="room"]').value;
+    total_days = document.querySelector('input[name="total_days"]').value;
+    check_in_date = document.querySelector('input[name="check_in_date"]').value;
+    check_out_date = document.querySelector('input[name="check_out_date"]').value;
+    adults = document.querySelector('input[name="adults"]').value;
+    children = document.querySelector('input[name="children"]').value;
+    infants = document.querySelector('input[name="infants"]').value;
+    total_cost = document.querySelector('input[name="total_cost"]').value;
     csrfToken = document
         .querySelector("input[name='csrfmiddlewaretoken']")
         .value;
@@ -123,7 +132,7 @@ form.addEventListener("submit", function(ev) {
         "room_id": room_id,
         "room": room,
         "total_days": total_days,
-        "checK_in_date": check_in_date,
+        "check_in_date": check_in_date,
         "check_out_date": check_out_date,
         "adults": adults,
         "children": children,
