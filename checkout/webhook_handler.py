@@ -54,6 +54,60 @@ class StripeWH_Handler:
             [customer_email]
         )
 
+    def create_trip(
+            self,
+            user,
+            profile,
+            room,
+            start_date,
+            end_date,
+            adults,
+            children,
+            infants,
+            cost):
+        '''Create a trip instance'''
+        trip_form_data = {
+            'profile': profile,
+            'room': room,
+            'start_date': start_date,
+            'end_date': end_date,
+            'adults': adults,
+            'children': children,
+            'infants': infants,
+            'cost': cost,
+        }
+        trip_instance = Trip(**trip_form_data)
+        trip_instance.save()
+
+    def update_room(self, room_id, start_date, end_date):
+        '''Update the room unavailability upon order'''
+        # Get the room
+        room_booked = Room.objects.get(id=room_id)
+        # Get all the unavailable dates
+        room_booked_unavailable_dates = json.loads(room_booked.unavailability)
+        # Get check in/out dates
+        start_date = start_date
+        end_date = end_date
+        # List for the new dates
+        new_dates = []
+        # < so that the check out date is not added
+        # check out date can be next guests check in date
+        # due to check in/out times
+        while start_date < end_date:
+            # String the date
+            date_str = start_date.strftime('%Y-%m-%d')
+            # Check if it's not already in unavaiable dates
+            if date_str not in room_booked_unavailable_dates:
+                # Add to new date
+                new_dates.append(date_str)
+            # Increment the date by 1 day
+            start_date += timedelta(days=1)
+        # Combine old and new dates
+        updated_dates = room_booked_unavailable_dates + new_dates
+        # Add combined to the room unavailability
+        room_booked.unavailability = json.dumps(updated_dates)
+        room_booked.save()
+
     def handle_event(self, event):
         '''Handle a generic/unknown/unexpected webhook event'''
         return HttpResponse(
@@ -143,23 +197,25 @@ class StripeWH_Handler:
                 # Create the order if it does not exist
         if order_exists:
             # Create a trip instance
-            if user.is_authenticated:
+            if user:
                 user_profile = UserProfile.objects.get(user=user)
-                trip_form_data = {
-                    'profile': user_profile,
-                    'room': trip_data.get('room'),
-                    'start_date': start_date,
-                    'end_date': end_date,
-                    'adults': trip_data.get('adults'),
-                    'children': trip_data.get('children'),
-                    'infants': trip_data.get('infants'),
-                    'cost': grand_total,
-                }
-                trip_instance = Trip(**trip_form_data)
-                trip_instance.save()
-
+            else:
+                user_profile = None
+            self.create_trip(
+                user_profile,
+                trip_data.get('room'),
+                start_date,
+                end_date,
+                trip_data.get('adults'),
+                trip_data.get('children'),
+                trip_data.get('infants'),
+                grand_total
+            )
             # Send confirmation email
             self._send_confirmation_email(order)
+            # Update room
+            room_id = trip_data.get('room').id
+            self.update_room(room_id, start_date, end_date)
             return HttpResponse(
                     content=(
                         f'Webhook received: {event["type"]} || '
@@ -188,28 +244,32 @@ class StripeWH_Handler:
                 order_instance = Order(**order_form_data)
                 order_instance.save()
                 # Create a trip instance
-                if user.is_authenticated:
+                if user:
                     user_profile = UserProfile.objects.get(user=user)
-                    trip_form_data = {
-                        'profile': user_profile,
-                        'room': trip_data.get('room'),
-                        'start_date': start_date,
-                        'end_date': end_date,
-                        'adults': trip_data.get('adults'),
-                        'children': trip_data.get('children'),
-                        'infants': trip_data.get('infants'),
-                        'cost': grand_total,
-                    }
-                    trip_instance = Trip(**trip_form_data)
-                    trip_instance.save()
-                    # Send confirmation email
-                    self._send_confirmation_email(order)
-                    return HttpResponse(
-                        content=(
-                            f'Webhook received: {event["type"]} | '
-                            f'SUCCESS: Created order in webhook'
-                            ),
-                        status=200)
+                else:
+                    user_profile = None
+                self.create_trip(
+                    user_profile,
+                    trip_data.get('room'),
+                    start_date,
+                    end_date,
+                    trip_data.get('adults'),
+                    trip_data.get('children'),
+                    trip_data.get('infants'),
+                    grand_total
+                )
+                # Send confirmation email
+                self._send_confirmation_email(order)
+                # Update room
+                room_id = trip_data.get('room').id
+                self.update_room(room_id, start_date, end_date)
+                return HttpResponse(
+                    content=(
+                        f'Webhook received: {event["type"]} | '
+                        f'SUCCESS: Created order in webhook'
+                        ),
+                    status=200)
+
             # If anything goes wrong, delete and 500 error
             except Exception as e:
                 if order_instance:
@@ -217,35 +277,6 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} || ERROR: {e}',
                     status=500)
-
-        # Add unavailable dates to the room
-        # Get the room id from the trip_data metadata
-        room_booked_id = trip_data.get('room')
-        room_booked = Room.objects.get(id=room_booked_id)
-        # Get all the unavailable dates
-        room_booked_unavailable_dates = json.loads(room_booked.unavailability)
-        # Get check in/out dates
-        start_date = start_date
-        end_date = end_date
-        # List for the new dates
-        new_dates = []
-        # < so that the check out date is not added
-        # check out date can be next guests check in date
-        # due to check in/out times
-        while start_date < end_date:
-            # String the date
-            date_str = start_date.strftime('%Y-%m-%d')
-            # Check if it's not already in unavaiable dates
-            if date_str not in room_booked_unavailable_dates:
-                # Add to new date
-                new_dates.append(date_str)
-            # Increment the date by 1 day
-            start_date += timedelta(days=1)
-        # Combine old and new dates
-        updated_dates = room_booked_unavailable_dates + new_dates
-        # Add combined to the room unavailability
-        room_booked.unavailability = json.dumps(updated_dates)
-        room_booked.save()
 
     def handle_payment_intent_payment_failed(self, event):
         '''Handle the payment_intent.payment_failed webhook event'''
