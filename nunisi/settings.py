@@ -28,7 +28,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
+if 'DEVELOPMENT' in os.environ:
+    DEBUG = True
 
 ALLOWED_HOSTS = [
     'nunisi-hotel-and-spa-39411ddf3dfa.herokuapp.com',
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'rooms',
     'checkout',
     'user_profile.apps.UserProfileConfig',
+    # Storage
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -119,6 +122,28 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+# Amazon Web Services
+if 'USE_AWS' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'nunisi-hotel-and-spa'
+    AWS_S3_REGION_NAME = 'eu-north-1'
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AWS_S3_FILE_OVERWRITE = False
+
+# File storage for AWS
+STORAGES = {
+    # Media management
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+
+    # CSS and JS
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
