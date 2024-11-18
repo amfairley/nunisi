@@ -73,10 +73,7 @@ class StripeWH_Handler:
         # Get the user if they are logged in
         user = None
         if email:
-            try:
-                user = User.objects.get(email=email)
-            except User.DoesNotExist:
-                user = None
+            user = User.objects.get(email=email)
 
         # Get the charge object
         stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
