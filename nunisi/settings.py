@@ -284,5 +284,10 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
+        'stripe_webhook': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
     },
 }

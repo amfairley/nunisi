@@ -23,6 +23,7 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
+        self.logger = logging.getLogger('stripe_webhook')
 
     def _send_confirmation_email(self, order):
         '''Send the user a confirmation email'''
