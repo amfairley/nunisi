@@ -135,15 +135,25 @@ if 'USE_AWS' in os.environ:
     AWS_S3_FILE_OVERWRITE = False
 
 # File storage for AWS
+# Custom locations for media and static files
+AWS_MEDIA_LOCATION = 'media'
+AWS_STATIC_LOCATION = 'static'
+
 STORAGES = {
-    # Media management
-    "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    # Media files
+    'default': {
+        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+        'OPTIONS': {
+            'location': AWS_MEDIA_LOCATION,
+        },
     },
 
-    # CSS and JS
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    # Static files
+    'staticfiles': {
+        'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
+        'OPTIONS': {
+            'location': AWS_STATIC_LOCATION,
+        },
     },
 }
 
