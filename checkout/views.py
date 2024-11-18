@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from rooms.models import Room
 from user_profile.models import UserProfile
+from django.contrib.auth.models import User
 from .forms import CheckoutForm
 from .models import Order
 import stripe
@@ -21,6 +22,9 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
+        user = request.user
+        if user:
+            user_email = user.email
         stripe.PaymentIntent.modify(
             pid,
             metadata={
@@ -34,7 +38,7 @@ def cache_checkout_data(request):
                     'cost': request.POST.get('total_cost'),
                 }),
                 'save_info': request.POST.get('save_info'),
-                'user_email': request.POST.get('email'),
+                'user_email': user_email,
             }
         )
         return HttpResponse(status=200)
