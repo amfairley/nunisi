@@ -47,12 +47,14 @@ class StripeWH_Handler:
         )
         # Send the email using subject, body, email to send from
         # and email to send to
+        logger.debug("Sending confirmation email to: " + customer_email)
         send_mail(
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
             [customer_email]
         )
+        logger.debug("Confirmation email sent to: " + customer_email)
 
     def create_trip(
             self,
