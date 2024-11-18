@@ -119,7 +119,16 @@ form.addEventListener("submit", function(ev) {
     postData = {
         "client_secret": clientSecret,
         "csrfmiddlewaretoken": csrfToken,
-        "save_info": saveInfo
+        "save_info": saveInfo,
+        "room_id": room_id,
+        "room": room,
+        "total_days": total_days,
+        "checK_in_date": check_in_date,
+        "check_out_date": check_out_date,
+        "adults": adults,
+        "children": children,
+        "infants": infants,
+        "total_cost": total_cost,
     };
     var url = "/checkout/cache_checkout_data/";
 
