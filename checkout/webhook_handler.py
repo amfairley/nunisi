@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.contrib.auth.models import User
 
 from .models import Order
 from user_profile.models import UserProfile, Trip
@@ -9,7 +10,7 @@ from rooms.models import Room
 import stripe
 import time
 import json
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 
 class StripeWH_Handler:
@@ -56,10 +57,26 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
         '''Handle the payment_intent.succeeded webhook event'''
+        # Get the payment intent and all meta data
         intent = event.data.object
+        metadata = intent.get('metadata', {})
         pid = intent.id
-        trip_data = intent.metadata.trip_data
-        save_info = intent.metadata.save_info
+        trip_data_json = metadata.get('trip_data', '{}')
+        trip_data = json.loads(trip_data_json)
+        start_date = datetime.strptime(
+            trip_data['start_date'],
+            '%Y-%m-%d').date()
+        end_date = datetime.strptime(trip_data['end_date'], '%Y-%m-%d').date()
+        save_info = metadata.get('save_info')
+        username = metadata.get('username')
+
+        # Get the user if they are logged in
+        user = None
+        if username:
+            try:
+                user = User.objects.get(username=username)
+            except User.DoesNotExist:
+                user = None
 
         # Get the charge object
         stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
@@ -73,20 +90,26 @@ class StripeWH_Handler:
                 shipping_details.address[field] = None
 
         # Update profile information if save_info was checked
-        user_profile = None
-        user = intent.metadata.user
-        if user.is_authenticated:
-            user_profile = UserProfile.objects.get(user=user)
-            if save_info:
-                user_profile.full_name = shipping_details.name
-                user_profile.phone_number = shipping_details.phone
-                user_profile.country = shipping_details.address.country
-                user_profile.postcode = shipping_details.address.postal_code
-                user_profile.town_or_city = shipping_details.address.city
-                user_profile.street_address1 = shipping_details.address.line1
-                user_profile.street_address2 = shipping_details.address.line2
-                user_profile.county = shipping_details.address.state
-                user_profile.save()
+        if user:
+            user_profile = None
+            if user.is_authenticated:
+                user_profile = UserProfile.objects.get(user=user)
+                if save_info:
+                    user_profile.full_name = shipping_details.name
+                    user_profile.phone_number = shipping_details.phone
+                    user_profile.country = shipping_details.address.country
+                    user_profile.postcode = (
+                        shipping_details.address.postal_code
+                    )
+                    user_profile.town_or_city = shipping_details.address.city
+                    user_profile.street_address1 = (
+                        shipping_details.address.line1
+                    )
+                    user_profile.street_address2 = (
+                        shipping_details.address.line2
+                    )
+                    user_profile.county = shipping_details.address.state
+                    user_profile.save()
         # Check if order exists, if it does, it's fine, if not, make it
         order_exists = False
         attempt = 1
@@ -108,6 +131,7 @@ class StripeWH_Handler:
                 )
 
                 # If order exists, return 200 response
+                # Or wait 1 second and try again (max 5 times)
                 order_exists = True
                 break
             except Order.DoesNotExist:
@@ -156,12 +180,12 @@ class StripeWH_Handler:
             user_profile = UserProfile.objects.get(user=user)
             trip_form_data = {
                 'profile': user_profile,
-                'room': trip_data.room,
-                'start_date': trip_data.start_date,
-                'end_date': trip_data.end_date,
-                'adults': trip_data.adults,
-                'children': trip_data.children,
-                'infants': trip_data.infants,
+                'room': trip_data.get('room'),
+                'start_date': start_date,
+                'end_date': end_date,
+                'adults': trip_data.get('adults'),
+                'children': trip_data.get('children'),
+                'infants': trip_data.get('infants'),
                 'cost': grand_total,
             }
             trip_instance = Trip(**trip_form_data)
@@ -169,13 +193,13 @@ class StripeWH_Handler:
 
         # Add unavailable dates to the room
         # Get the room id from the trip_data metadata
-        room_booked_id = trip_data.room
+        room_booked_id = trip_data.get('room')
         room_booked = Room.objects.get(id=room_booked_id)
         # Get all the unavailable dates
         room_booked_unavailable_dates = json.loads(room_booked.unavailability)
         # Get check in/out dates
-        start_date = trip_data.start_date
-        end_date = trip_data.end_date
+        start_date = start_date
+        end_date = end_date
         # List for the new dates
         new_dates = []
         # < so that the check out date is not added
