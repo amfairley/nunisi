@@ -68,7 +68,7 @@ class StripeWH_Handler:
             '%Y-%m-%d').date()
         end_date = datetime.strptime(trip_data['end_date'], '%Y-%m-%d').date()
         save_info = metadata.get('save_info')
-        email = metadata.get('email')
+        email = metadata.get('user_email')
 
         # Get the user if they are logged in
         user = None

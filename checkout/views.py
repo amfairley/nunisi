@@ -34,7 +34,7 @@ def cache_checkout_data(request):
                     'cost': request.POST.get('total_cost'),
                 }),
                 'save_info': request.POST.get('save_info'),
-                'email': request.POST.get('email'),
+                'user_email': request.POST.get('email'),
             }
         )
         return HttpResponse(status=200)
