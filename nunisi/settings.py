@@ -134,28 +134,32 @@ if 'USE_AWS' in os.environ:
     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
     AWS_S3_FILE_OVERWRITE = False
 
-# File storage for AWS
-# Custom locations for media and static files
-AWS_MEDIA_LOCATION = 'media'
-AWS_STATIC_LOCATION = 'static'
+    # File storage for AWS
+    # Custom locations for media and static files
+    AWS_MEDIA_LOCATION = 'media'
+    AWS_STATIC_LOCATION = 'static'
 
-STORAGES = {
-    # Media files
-    'default': {
-        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
-        'OPTIONS': {
-            'location': AWS_MEDIA_LOCATION,
+    STORAGES = {
+        # Media files
+        'default': {
+            'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+            'OPTIONS': {
+                'location': AWS_MEDIA_LOCATION,
+            },
         },
-    },
 
-    # Static files
-    'staticfiles': {
-        'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
-        'OPTIONS': {
-            'location': AWS_STATIC_LOCATION,
+        # Static files
+        'staticfiles': {
+            'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
+            'OPTIONS': {
+                'location': AWS_STATIC_LOCATION,
+            },
         },
-    },
-}
+    }
+
+    # Override static and media URLs in production
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
