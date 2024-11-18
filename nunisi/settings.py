@@ -91,6 +91,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # Booking form context processor
                 'home.context_processor.booking_form',
+                # Media context processor
+                'django.template.context_processors.media',
             ],
         },
     },
