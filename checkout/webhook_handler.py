@@ -47,13 +47,16 @@ class StripeWH_Handler:
         # Send the email using subject, body, email to send from
         # and email to send to
         self.logger.debug("Sending confirmation email to: " + customer_email)
-        send_mail(
-            subject,
-            body,
-            settings.DEFAULT_FROM_EMAIL,
-            [customer_email]
-        )
-        self.logger.debug("Confirmation email sent to: " + customer_email)
+        try:
+            send_mail(
+                subject,
+                body,
+                settings.DEFAULT_FROM_EMAIL,
+                [customer_email]
+            )
+            self.logger.debug("Confirmation email sent to: " + customer_email)
+        except Exception as e:
+            self.logger.error(f"Error sending email: {str(e)}")
 
     def create_trip(
             self,
@@ -117,6 +120,7 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
         '''Handle the payment_intent.succeeded webhook event'''
+        self.logger.info(f"Received Stripe webhook: {self.request.body}")
         # Get the payment intent and all meta data
         intent = event.data.object
         metadata = intent.get('metadata', {})
@@ -134,7 +138,7 @@ class StripeWH_Handler:
         user = None
         if email:
             user = User.objects.get(email=email)
-        logger.debug(user)
+        self.logger.debug(user)
 
         # Get the charge object
         stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
