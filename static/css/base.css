@@ -1068,6 +1068,36 @@ main {
     justify-content: center;
 }
 
+/* Trips */
+.trips-title {
+    text-align: center;
+}
+
+#no-trips-message {
+    text-align: center;
+}
+
+#all-trips-div {
+    width: 95%;
+    max-width: 800px;
+    margin: 10px auto 30px auto;
+}
+
+#trip-card-organiser {
+    border: 3px solid #333A3F;
+    margin-bottom: 10px;
+}
+
+.master-trips-table {
+    width: 95%;
+    margin: 0 auto;
+    max-width: 1500px;
+}
+
+.table-title {
+    text-align: center;
+}
+
 /* ---------- Media-queries ---------- */
 @media (min-width: 992px) {
     /* Scroll offset for index header: desktop */
