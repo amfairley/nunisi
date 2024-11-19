@@ -159,6 +159,13 @@ if 'USE_AWS' in os.environ:
     # Override static and media URLs in production
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
+else:
+    # For local development - remove for deployment:
+    STATIC_URL = 'static/'
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
