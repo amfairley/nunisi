@@ -155,3 +155,53 @@ DATABASES = {
 - Open up the heroku CLI with ```heroku login``` and follow the instructions to log in in browser
 - Temporarily disable collect stattic with ```heroku config:set DISABLE_COLLECTSTATIC=1 --app_name``` to stop Heroku collecting static files when we deploy, as we have not linked them yet.
 - Add host name of the Heroku app to allowed hosts in settings.py, e.g. ```ALLOWED_HOSTS = ['app-name.herokuapp.com', 'localhost']```
+- In the deploy tab in Heroku, I linked up my GitHub repository by selecting github as the deployment method and selecting my respository. I enabled automatic deploys so that any changes I push to GitHub are automatically push to Heroku.  ![Heroku deployment method](/documentation/development/heroku_deployment_method.png)
+- Back in config vars, I added the Django SECRET_KEY to allow the website to work.
+- Use Amazon web services to create an S3 bucket to store the static files in
+- Install boto3 and django-storages with ```pip3 install boto3``` and ```pip3 install django-storages``` in the terminal and add 'storages' to the installed apps in settings.py
+- Add AWS settings to settings.py:
+```python
+if 'USE_AWS' in os.environ:
+    AWS_STORAGE_BUCKET_NAME = 'nunisi-hotel-and-spa'
+    AWS_S3_REGION_NAME = 'eu-north-1'
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+    AWS_S3_FILE_OVERWRITE = False
+```
+- Add the 2 secret keys and USE_AWS to Heroku config vars
+- Remove the DISABLE_COLLECT_STATIC from Heroku config vars
+- Set up storage locations in settings.py like:
+```python
+STORAGES = {
+    # Media management
+    "default": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+
+    # CSS and JS
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    },
+}
+```
+- In the terminal run ```python manage.py collectstatic``` and click yes to overwrite files
+- On AWS in the bucket, I added a media folder and manually uploaded all of my media files
+- To set up emails, I went to my GMail account and ensured that I had 2 factor authentication set up
+    * This will allow us to create an app password specific to our Django app to let it use our GMail account
+    * Then in Google account I searched "app passwords"
+    * Created one and copied it, adding it to Heroku config vars as EMAIL_HOST_PASS along with my email account as EMAIL_HOST_USER
+    * I then updated the email settings in my settings.py file to:
+```python
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
+```
