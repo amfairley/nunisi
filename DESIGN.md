@@ -1,4 +1,4 @@
-![Website logo](/linktologoimage.png)
+![Website logo](/documentation/site_logo.png)
 
 ---
 
@@ -219,13 +219,13 @@ The website will be built using Django, allowing for template inheritance and pa
 Below is a proposed ERD for the tables to be modelled for the database that meets the purpose and requirements of the website.
 ![Nunisi entity relationship diagram](/documentation/entity_relationship_diagram.png)<br>
 **Explanation**
-- The relational database will consist of 6 linked tables.
+- The relational database will consist of 6 relationally linked tables.
 - The User model will use the Django user model and AllAuth to store authentication data including the email address and password.
-- The Profile model will have a foreign key to the User model set up in a way as to delete the Profile when the User is deleted. It also has a boolean field for the user to sign up to a newsletter and will have all the contact information required by stripe.
-- The Trip model will house the information for each trip. It will be linked with the Profile model and Room model via foreign keys in many to one relationships. It will have the data for the start date, end date, price, and a Boolean field to notify whether the user will cancel the trip. This will be set to False by default.
-- The Room model will have all the information for the Rooms, this includes the room name, a sanitised room name for display on the website, the amount of people the room can hold, a description of the room, a list of amentities as a list of integers referring to the ids in the Amenities model, an image of the room, the nightly price, a list of dates in which the room is unavailable.
-- The Amenities model will hold information of the amenities. It is referenced from the Room model but set up in a simple easy to understand way rather than a many to many relationship. Each amenity has an ID, name, sanitised name, and an icon which will consist of the HTML for the Font Awesome icon.
-- The Review model will hold the information for the reviews. It has a foreign key relationship to the Trip model in a one to one relationship, limiting one review per trip. It also has ratings for cleanliness, food, service, staff, and overall which will be an integer from 1-5. It will also have the written review content as a text field.
+- The UserProfile model will have a foreign key to the User model set up in a way as to delete the Profile when the User is deleted. It also has a boolean field for the user to sign up to a newsletter and will have all the contact information required by stripe to complete the booking reservation form.
+- The Trip model will house the information for each trip. It will be linked with the UserProfile model and Room model via foreign keys in many to one relationships. It will have the data for the start date, end date, number of each guest type, cost, and a Boolean field to notify whether the user will cancel the trip. This will be set to False by default.
+- The Room model will have all the information for the Rooms, this includes the room name, a sanitised room name for display on the website, a description of the room, a list of amentities as a list of integers referring to the ids in the Amenities model, an image of the room, the nightly price, a list of dates in which the room is unavailable.
+- The Amenities model will hold information of the amenities. It is referenced from the Room model but set up in a simple easy to understand way rather than a many to many relationship. Each amenity has an ID, name, sanitised name, and an icon which will consist of the HTML for the Font Awesome icon. These amenities can be accessed by looping through the is numbers in the Room model amenities field.
+- The Order model will hold the information for the orders. It has a foreign key relationship to the UserProfile model in a one to many relationship, allowing multiple orders by the same user. It houses all the information required by stripe to process the order including address information and a stripe payment ID. 
 
 #### Interactive Experience
 - Clickable links will have animated effects on hover or click, providing clear feedback to the user.

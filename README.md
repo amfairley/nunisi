@@ -1,4 +1,4 @@
-![Website logo](/linktologoimage.png)
+![Website logo](/documentation/site_logo.png)
 
 ---
 
@@ -6,10 +6,9 @@
 
 *A hotel management system for a forest retreat hotel*
 
-This full stack hotel management system is built for use of taking bookings and payment for a forest retreat hotel in the region of Nunisi in Georgia. The business audience is the hotel owners and the target audience for the site are travellers who are seeking a relaxing getaway, either travelling domestically or internationally. The website was created using custom code written in HTML, CSS, Python, and JavaScript , utilising the full stack framework Django. It is hosted on Heroku with a connected PostgreSQL relational database and provides the users full CRUD functionality.
+This full stack hotel management system is built for use of taking bookings and payment for a forest retreat hotel in the region of Nunisi in Georgia. The business audience is the hotel owners and the target audience for the site are travellers who are seeking a relaxing getaway, either travelling domestically or internationally. The website was created using custom code written in HTML, CSS, Python, and JavaScript , utilising the full stack framework Django. It is hosted on Heroku with static files hosted by Amazon Web Services (AWS), has a connected PostgreSQL relational database and provides the users full CRUD functionality.
 
-
-![A mock-up image of the website](/linktomockupimage.png)
+The live site can be viewed [here](https://nunisi-hotel-and-spa-39411ddf3dfa.herokuapp.com/)
 
 See [DESIGN.md](/DESIGN.md) for information on the five planes of UX design, site map, database schema, and features. <br>
 See [TESTING.md](/TESTING.md) for information on the test driven development of the website, manual and automated testing of the site, bugs encountered, and website analytics. <br>
@@ -25,17 +24,15 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
 2. [User Stories](#user-stories)
 3. [Security](#security)
     1. [Defensive Programming](#defensive-programming)
-    2. [Future Security Implementations](#future-security-implementations)
 4. [Future Development](#future-development)
 5. [Technologies Used](#technologies-used)
     1. [Languages](#languages)
     2. [Frameworks](#frameworks)
     3. [Libraries and Packages](#libraries-and-packages)
     4. [Tools](#tools)
-6. [User Feedback](#user-feedback)
-7. [Credits](#credits)
+6. [Credits](#credits)
     1. [Images](#images)
-8. [Acknowledgements](#acknowledgements)
+
 
 
 ## Project Goals
@@ -179,8 +176,6 @@ Forms throughout the site are defined with required fields when necessary. These
 **Delete room/user**<br>
 The delete room/user functionality redirects the user to a confirmation page to remove the chance of accidentally deleting a room or account.
 
-### Future Security Implementations
-
 ## Future Development
 - Footer
     * Facebook and Instagram links will be updated with the real profiles when the website is ready to go live.
@@ -191,6 +186,7 @@ The delete room/user functionality redirects the user to a confirmation page to 
     * make password requirements look less like error messages
     * password reset email input needs to be wider to show full email
     * password/reset/done "contact us" link to contact details page
+    * sign up with google correction
 - index.html
     * better carousel transitions
 - Update the booking form to a new, slender design.
@@ -201,6 +197,10 @@ The delete room/user functionality redirects the user to a confirmation page to 
 - trips.html
     * A way for users to add a review 
     * A way for users to cancel the reservation
+- trips_superuser.html
+    * Add column filtering
+- documentation
+    * fix multi mock up bug
 
 ## Technologies Used
 
@@ -243,6 +243,10 @@ The delete room/user functionality redirects the user to a confirmation page to 
     - For connecting to an external database
 - [gunicorn](https://gunicorn.org/)
     - For the webserver
+- [django-storages](https://django-storages.readthedocs.io/en/latest/)
+    - Provides support for storage backend
+- [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
+    - To create a pythonic link between the django application and the S3 bucket
 
 ### Tools
 - [Visual Studio Code](https://code.visualstudio.com/)
@@ -251,6 +255,12 @@ The delete room/user functionality redirects the user to a confirmation page to 
 	- Used for version control.
 - [GitHub](https://github.com/)
 	- Used to store the code in a repository
+- [Heroku](https://dashboard.heroku.com/login)
+    - For deploying the live website
+- [Amazon Web Servives (AWS)](https://aws.amazon.com/)
+    - For hosting the static files
+- [Gmail](/https://gmail.com/)
+    - For sending emails
 - [Google Developer Tools](https://console.cloud.google.com/apis/dashboard)
     - Used to implement google login and verification
 - [Google Fonts](https://fonts.google.com/)
@@ -282,9 +292,8 @@ The delete room/user functionality redirects the user to a confirmation page to 
 - [CodeInstitute Pep8 Validator](https://pep8ci.herokuapp.com/)
     - For validating python code
 
-## User Feedback
-
 ## Credits
+[Cloud With Django](https://www.youtube.com/watch?v=JQVQcNN0cXE) for correct syntax and setup for linking AWS static files to a deployed django project.
 
 ### Images
 - All images of the hotel and surrounding areas were used with permission from the hotel owners
@@ -292,5 +301,3 @@ The delete room/user functionality redirects the user to a confirmation page to 
 - Homepage cave hike image: [Roberto Lee Cortes](https://www.pexels.com/photo/trees-behind-cave-entrance-17652141/)
 - Homepage forest river: [Manuela Alder](https://www.pexels.com/photo/body-of-water-across-forest-949194/)
 - Homepage location map image: [Waldir Felix Chirinos](https://www.istockphoto.com/photo/georgia-imereti-region-map-administrative-divisions-of-georgia-3d-isometric-map-gm2175464797-595023374)
-
-## Acknowledgements
