@@ -1,0 +1,27 @@
+# A note of superuser details
+
+import os
+
+os.environ['SECRET_KEY'] = (
+    ''
+)
+
+os.environ['STRIPE_SECRET_KEY'] = (
+    ''
+)
+
+os.environ['STRIPE_PUBLIC_KEY'] = (
+    ''
+)
+
+os.environ['STRIPE_WH_SECRET'] = ('')
+
+os.environ['DEFAULT_FROM_EMAIL'] = ''
+
+os.environ['DEVELOPMENT'] = "1"
+
+os.environ['AWS_ACCESS_KEY_ID'] = ('')
+
+os.environ['AWS_SECRET_ACCESS_KEY'] = (
+    ''
+)

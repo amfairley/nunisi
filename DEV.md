@@ -1,4 +1,4 @@
-![Website logo](/documentation/screenshots/site_logo.png)
+![Website logo](/documentation/site_logo.png)
 
 ---
 
@@ -205,3 +205,4 @@ else:
     EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
 ```
+All these steps resulted in the website being deployed successfully.

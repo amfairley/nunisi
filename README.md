@@ -159,6 +159,9 @@ All external links open in a new tab and have rel="noopener" to prevent the open
 **Access required**<br>
 On certain pages, the view only loads the page if the user is a superuser or is logged in depending on the requiremnet.
 
+**env.py**<br>
+All sensitive values such as passcodes and secret keys were kept in an env.py file and added to the .gitignore in order to prevent them being posted online. An example of the setup of my env.py can be found [here](/env_example.txt) to help set up yours.
+
 ### Defensive Programming
 
 **Password confirmation**<br>

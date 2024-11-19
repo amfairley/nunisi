@@ -1,4 +1,4 @@
-![Website logo](/linktologoimage.png)
+![Website logo](/documentation/site_logo.png)
 
 ---
 
@@ -38,7 +38,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
 6. [Analytics](#analytics)
 
 ## Testing User Stories
-The [user stories](/README.md#user-stories) have been a driving force for the development of this project. More information on each user story and how the features implemented in this web app meet their criteria can be seen [here](/DESIGN.md#features). All user story criteria were met, creating a website that the target audience of the hotel owners and travellers will find usable, intuitive, and fit for purpose.
+The [user stories](/README.md#user-stories) have been a driving force for the development of this project. More information on each user story and how the features implemented in this web app meet their criteria can be seen [here](/DESIGN.md#features). Most user stories were met to create a MVP, however future development will address the user stories to leave reviews and cancel bookings.
 
 ## Manual Testing
 
@@ -66,7 +66,7 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Account menu - Trips link | Click | Redirected to Trips page | Y | N/A |
 | Account menu - Rooms link | Click | Redirected to the Rooms page | Y | N/A |
 | Account menu - Account Settings link | Click | Redirected to account settings page | Y | N/A |
-| Account menu - Logout | Redirected to log out page | Y | N/A |
+| Account menu - Logout | Click | Redirected to log out page | Y | N/A |
 | Account menu | Click when logged in as Admin | See an extra link for Rooms | Y | N/A |
 | Account menu | Click Trips when logged in as Admin | Redirected to trips super user page | Y | N/A |
 | Account meny | Click Rooms when logged in as Admin | Redirected to rooms super user page | Y | N/A |
@@ -165,6 +165,8 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Checkout form | Leave country input empty | Alert appears informing user to provide country | Y | N/A |
 | Checkout form | Provide incorrect credit card information | Alerts appear informing user to credit card errors | Y | N/A |
 | Checkout form | Provide correct data and submit | The form is submitted, order created, trip created, and confirmation email sent | | |
+| **checkout_success.html** | | | | |
+| Page | Submit a booking request | Page loads and displays order number | Y | Y | Y | Y |
 | Checkout form | Hover Pay Now button | Button colour inverts | Y | N/A |
 | **user_profile.html** | | | | |
 | Email addresses button | Hover | Text appears informing user that clicking will redirect them to the email management page | Y | N/A |
@@ -197,17 +199,14 @@ pip install coverage
 ```
 The test can then be run with:
 ```sh
-coverage run --source-project_name manage.py test
+coverage run manage.py test
 ```
 A report can be compiled with:
 ```sh
 coverage report
 ```
 
-Here is the the coverage report of my Django testing:
-![Coverage Report](/linktoreport)
-
-Discussion of report:
+The coverage report can be seen [here](/documentation/testing/coverage_report.txt). Overall a coverage of 80% was achieved with all automated tests passing. The number was reduced from 100 due to the complexity of the webhook_handler and webook files and the Django project files such as manage.py and the settings.py file which did not require TDD.
 
 **Errors**:
 - When doing TDD for the available_rooms view, the commits were added at the end of the process, obscuring the order of the testing, however these were done following the TDD philosophy.
@@ -399,20 +398,15 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave">
 </details><br>
 
-
-
-
 ### Performance Testing
 The performance of the webpage was tested using Lighthouse within the Google Chrome Devtools to confirm that the site was performing well, is accessible, follows best practices, and follows basic SEO (search engine optimisation) advice. 
 During development, care was taking to provide the best performing website that could be provided. These efforts include:
 - Image optimisation: [Cloud Convert](https://cloudconvert.com/png-to-webp) was used to convert site images to smaller file formats for faster load times. .PNG files were only used where the file size was already very small, for example the bubble text on page titles. Otherwise, .WEBP and .SVG files to reduce file sizes and optimise them for web application usage.
 - Code minification: Complete code minification was avoided in this project to allow easier assessment upon submission. That being said, code has been written to meet the highest standards, repetition had been removed, and short, elegant solutions have been used wherever possible in order to reduce the code size. In future minification will be used. For example [Python Minifier](https://python-minifier.com/) reduces the size of the python files from X to Y.
+- Caching files. AWS will cache the media files, as they do not update often, allowing better performance on repeat visits to the website.
 
+The performance was tested for normal internet speed, fast 3G, and slow 3G to test the performance in a majority of scenarios and locations. This was done by setting the performance network throttling in Google Chrome Devtools. The testing was also run on Google Chrome incognito mode to avoid any complications with plugins or extensions. On normal internet speed, the perfomance never dropped below 87%, that being on the homepage with the majority of the site content.
 
-The performance was tested for normal internet speed, fast 3G, and slow 3G to test the performance in a majority of scenarios and locations. This was done by setting the performance network throttling in Google Chrome Devtools. The testing was also run on Google Chrome incognito mode to avoid any complications with plugins or extensions.
-
-**Results**: The resulting screenshots are provided in [PERFORMANCE.md](/PERFORMANCE.md) but the results are discussed here.
-- Errors and low value discussion
 
 ### HTML Validation
 The [W3C markup validation service](https://validator.w3.org/) was used to validate the HTML of each page of this website. As each page including some Django templating language that threw errors in the validator; the HTML was validated after deployment. Each page was accessed and the source code (CTRL+U or right click > View Page Source) was copied and pasted into the validator to validate by direct input.<br>
@@ -443,27 +437,14 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | User edit profile page | None | None |
 | User delete profile page | None | None |
 | User delete profile successful page | None | None |
-
-**Warnings**:
-- 
-
-**Errors**
-- Explain errors here, but there should be none.
-
+| Trips | None | None |
+| Trips superuser | None | None |
 
 ### CSS Validation
-CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no errors in the CSS code. Explain any warnings.
-<details>
-    <summary>CSS validation results</summary>
-    <img src="/documentation/testing/css_validation.png">
-</details>
+CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no errors in the CSS code.
 
 ### JavaScript Validation
 The custom JavaScript code was testing using the JavaScript linter [JSLint](https://www.jslint.com/). The settings were set for browser, so that the linter recognised the "document" variable. The code passed through with no errors.
-<details>
-    <summary>JavaScript validation results</summary>
-    <img src="/documentation/testing/js_validation.png">
-</details>
 
 ### Python Validation
 The Python code for this project was written in strict accordance with the [PEP 8](https://peps.python.org/pep-0008/) style guide for Python code. These include using correct indentations, maximum line lengths of 79 characters, and adhering to naming conventions for variables, functions, and classes. The [Code Institue python linter](https://pep8ci.herokuapp.com/) was used to validate the written code. 
@@ -681,38 +662,7 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/user_profile_views.png">
 </details><br>
 
-
-
-
-**Home: **<br>
-- No errors or alerts
-<details>
-<summary>results</summary>
-<img src="/documentation/testing/python">
-</details><br>
-
-
-
-**Home: **<br>
-- No errors or alerts
-<details>
-<summary>results</summary>
-<img src="/documentation/testing/python">
-</details><br>
-
-
-
-
-
-
-
-
-
 The env.py file was also linted showing no errors but the screenshot has been omitted for security issues as it contains sensitive information.
-<details>
-    <summary>File 1 results</summary>
-    <img src="/documentation/testing/python_init.png">
-</details>
 
 ## Bugs
 
@@ -736,9 +686,6 @@ def booking_form(request):
         'booking_form_desktop': BookingForm(prefix="desktop"),
     }
 ```
-
-### Known Bugs
-
 ## Analytics
 
 [Google Analytics](https://marketingplatform.google.com/about/analytics/) has been used to provide real time analytics about how users use my webpage. This includes how many page views, how many users scroll to the bottom of the page, indicating that content hinting is working, and how many users sign up. The data received from this will be used to inform the future updates to the webpage. This required the following code to be added to the base.html template at the bottom of the head element as directed:
