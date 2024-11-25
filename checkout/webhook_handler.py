@@ -127,9 +127,21 @@ class StripeWH_Handler:
         pid = intent.id
         trip_data_json = metadata.get('trip_data', '{}')
         trip_data = json.loads(trip_data_json)
-        print("Hello World")
+
+        # DEBUGNOTE
+        print("TRIP DATA JSON:")
+        print(trip_data_json)
+        print("TRIP DATA:")
+        print(trip_data)
+
         start_date = trip_data['start_date']
         end_date = trip_data['end_date']
+
+        print("START DATE:")
+        print(start_date)
+        print("END DATE:")
+        print(end_date)
+
         # start_date = datetime.strptime(
         #     trip_data['start_date'],
         #     '%Y-%m-%d').date()
@@ -147,7 +159,7 @@ class StripeWH_Handler:
         stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
         billing_details = stripe_charge.billing_details
         shipping_details = stripe_charge.shipping
-        grand_total = round(intent.stripe_charge.amount / 100, 2)
+        grand_total = round(stripe_charge.amount / 100, 2)
 
         # Replace empty data in shipping details with None
         for field, value in shipping_details.address.items():
@@ -198,6 +210,7 @@ class StripeWH_Handler:
                 # If order exists, return 200 response
                 # Or wait 1 second and try again (max 5 times)
                 order_exists = True
+                print("DEBUG: ORDER EXISTS")
                 break
             except Order.DoesNotExist:
                 attempt += 1

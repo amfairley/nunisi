@@ -118,7 +118,6 @@ def checkout(request):
             intent = stripe.PaymentIntent.create(
                 amount=stripe_total,
                 currency=settings.STRIPE_CURRENCY,
-
             )
             client_secret = intent['client_secret']
             # Helpful message to display if the public key has not been set
