@@ -127,6 +127,7 @@ class StripeWH_Handler:
         pid = intent.id
         trip_data_json = metadata.get('trip_data', '{}')
         trip_data = json.loads(trip_data_json)
+        print("Hello World")
         start_date = trip_data['start_date']
         end_date = trip_data['end_date']
         # start_date = datetime.strptime(
