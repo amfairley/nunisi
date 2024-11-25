@@ -27,6 +27,7 @@ class StripeWH_Handler:
         '''Send the user a confirmation email'''
         customer_email = order.email
         # Get the trip
+        print("TRYING TO GET TRIP")
         trip = Trip.objects.get(profile=order.user_profile)
         # Render the email subject as a string and pass the order
         subject = render_to_string(
@@ -156,7 +157,8 @@ class StripeWH_Handler:
         self.logger.debug(user)
 
         # Get the charge object
-        stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
+        intent_id = intent.get('id')
+        stripe_charge = stripe.Charge.retrieve(intent_id)
         billing_details = stripe_charge.billing_details
         shipping_details = stripe_charge.shipping
         grand_total = round(stripe_charge.amount / 100, 2)
@@ -222,6 +224,7 @@ class StripeWH_Handler:
                 user_profile = UserProfile.objects.get(user=user)
             else:
                 user_profile = None
+            print("ATTEMPTING TO CREATE TRIP    ")
             self.create_trip(
                 user_profile,
                 trip_data.get('room'),
@@ -232,6 +235,7 @@ class StripeWH_Handler:
                 trip_data.get('infants'),
                 grand_total
             )
+            print("DEBUG: TRIP CREATED")
             # Send confirmation email
             self._send_confirmation_email(order)
             # Update room
@@ -264,11 +268,13 @@ class StripeWH_Handler:
                 # Create an order instance
                 order_instance = Order(**order_form_data)
                 order_instance.save()
+                print("DEBUG: ORDER NOT ALREADY EXISTING")
                 # Create a trip instance
                 if user:
                     user_profile = UserProfile.objects.get(user=user)
                 else:
                     user_profile = None
+                print("ATTEMPTING TO CREATE TRIP")
                 self.create_trip(
                     user_profile,
                     trip_data.get('room'),
@@ -279,6 +285,7 @@ class StripeWH_Handler:
                     trip_data.get('infants'),
                     grand_total
                 )
+                print("DEBUG: TRIP CREATED")
                 # Send confirmation email
                 self._send_confirmation_email(order)
                 # Update room
