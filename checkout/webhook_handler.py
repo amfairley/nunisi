@@ -130,8 +130,7 @@ class StripeWH_Handler:
         trip_data = json.loads(trip_data_json)
 
         # DEBUGNOTE
-        print("TRIP DATA JSON:")
-        print(trip_data_json)
+        print("TRIP DATA JSON:", trip_data_json)
         print("TRIP DATA:")
         print(trip_data)
 
@@ -148,17 +147,24 @@ class StripeWH_Handler:
         #     '%Y-%m-%d').date()
         # end_date = datetime.strptime(trip_data['end_date'], '%Y-%m-%d').date()
         save_info = metadata.get('save_info')
+        print("SAVE INFO:")
+        print(save_info)
         email = metadata.get('user_email')
+        print("EMAIL:")
+        print(email)
 
         # Get the user if they are logged in
         user = None
+        print("User none:")
+        print(user)
         if email:
             user = User.objects.get(email=email)
-        self.logger.debug(user)
+            print("User:")
+            print(user)
 
         # Get the charge object
-        intent_id = intent.get('id')
-        stripe_charge = stripe.Charge.retrieve(intent_id)
+        stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
+        print("STRIPE CHARGE:", stripe_charge)
         billing_details = stripe_charge.billing_details
         shipping_details = stripe_charge.shipping
         grand_total = round(stripe_charge.amount / 100, 2)
