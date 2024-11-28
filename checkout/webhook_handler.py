@@ -327,7 +327,7 @@ class StripeWH_Handler:
                 print("DEBUG: TRIP CREATED")
                 # Send confirmation email
                 print("DEBUG: ATTEMPTING TO SEND EMAIL")
-                self._send_confirmation_email(order)
+                self._send_confirmation_email(order_instance)
                 print("DEBUG: EMAIL SENT")
                 # Update room
                 print("DEBUG: UPDATING ROOM")
