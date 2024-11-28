@@ -102,7 +102,7 @@ class StripeWH_Handler:
         room_booked = Room.objects.get(id=room_id)
         print("DEBUG: ROOM BOOKED:", room_booked)
         # Get all the unavailable dates
-        room_booked_unavailable_dates = json.loads(room_booked.unavailability)
+        room_booked_unavailable_dates = room_booked.unavailability
         print("DEBUG: ROOM BOOKED UNAVAILABLE DATES:", room_booked_unavailable_dates)
         # Get check in/out dates
         start_date = start_date
