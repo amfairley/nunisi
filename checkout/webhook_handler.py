@@ -23,15 +23,12 @@ class StripeWH_Handler:
         self.request = request
         self.logger = logging.getLogger('stripe_webhook')
 
-    def _send_confirmation_email(self, order):
+    def _send_confirmation_email(self, order, trip):
         '''Send the user a confirmation email'''
         print("DEBUG: SENDING EMAIL ORDER:", order)
         customer_email = order.email
         print("DEBUG: SENDING CUSTOMER EMAIL")
         print("DEBUG: CUSTOMER EMAIL:", customer_email)
-        # Get the trip
-        print("TRYING TO GET TRIP")
-        trip = Trip.objects.get(profile=order.user_profile)
         print("DEBUG: TRIP:", trip)
         # Render the email subject as a string and pass the order
         subject = render_to_string(
@@ -96,6 +93,7 @@ class StripeWH_Handler:
         print("DEBUG: TRIP INSTANCE:", trip_instance)
         trip_instance.save()
         print("DEBUG: TRIP SAVED")
+        return trip_instance
 
     def update_room(self, room_id, start_date, end_date):
         '''Update the room unavailability upon order'''
@@ -268,12 +266,12 @@ class StripeWH_Handler:
                 trip_data.get('infants'),
                 grand_total
             )
-
+            print("DEBUG: CHECK TRIP_INSTANCE IS RETURNED", trip_instance)
             
             print("DEBUG: TRIP CREATED")
             # Send confirmation email
             print("DEBUG: ATTEMPTING TO SEND EMAIL")
-            self._send_confirmation_email(order)
+            self._send_confirmation_email(order, trip_instance)
             # Update room
             print("DEBUG: UPDATING ROOM")
             room_id = trip_data.get('room').id
@@ -325,9 +323,11 @@ class StripeWH_Handler:
                     grand_total
                 )
                 print("DEBUG: TRIP CREATED")
+                print("DEBUG: CHECK TRIP_INSTANCE IS RETURNED", trip_instance)
+            
                 # Send confirmation email
                 print("DEBUG: ATTEMPTING TO SEND EMAIL")
-                self._send_confirmation_email(order_instance)
+                self._send_confirmation_email(order_instance, trip_instance)
                 print("DEBUG: EMAIL SENT")
                 # Update room
                 print("DEBUG: UPDATING ROOM")
