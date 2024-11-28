@@ -698,7 +698,7 @@ print("Debug message:", variable)
 - The next error occurred because the email tried to access all trips from the user instead of the most recent. This was fixed by returning the trip_instance from the create_trip function and then passing this into the _send_confirmation_email function.
 - This solved the issue but the room failed to update with an error of "ERROR OCCURRED: 'str' object has no attribute 'id'". I updated room_id = trip_data.get('room').id to room_id = trip_data.get('room').
 - The next error occured when retrieving the unavailability dates in the update_room function using room_booked_unavailable_dates = json.loads(room_booked.unavailability). This is because it was already saved as a python list, so I updated this to room_booked_unavailable_dates = room_booked.unavailability.
-- The next error in the update_room function came about from interacting with the dates as they retrieved as a string and I tried to string them using strftime(). I commented out this step and retried the code.
+- The next error in the update_room function came about from interacting with the dates as they retrieved as a string and I tried to string them using strftime(). I commented out this step and retried the code. This created an error as the date needs to be in a date format. I added an extra step to turn the date into a date format, then string it later.
 
 ## Analytics
 

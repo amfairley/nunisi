@@ -109,6 +109,10 @@ class StripeWH_Handler:
         end_date = end_date
         print("DEBUG: START DATE:", start_date)
         print("DEBUG: END DATE:", end_date)
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        print("DEBUG: START DATE DATE OBJECT:", start_date)
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        print("DEBUG: END DATE DATE OBJECT:", end_date)
         # List for the new dates
         new_dates = []
         print("DEBUG: NEW DATES:", new_dates)
@@ -117,14 +121,19 @@ class StripeWH_Handler:
         # due to check in/out times
         while start_date < end_date:
             # String the date
-            # date_str = start_date.strftime('%Y-%m-%d')
+            print("DEBUG: STRING THE DATE")
+            date_str = start_date.strftime('%Y-%m-%d')
             # Check if it's not already in unavaiable dates
-            if start_date not in room_booked_unavailable_dates:
+            print("DEBUG: CHECK IF IT'S IN LIST")
+            if date_str not in room_booked_unavailable_dates:
                 # Add to new date
-                new_dates.append(start_date)
+                print("DEBUG: ADDING TO NEW DATES")
+                new_dates.append(date_str)
+            print("DEBUG: INCREMENT DATE")
             # Increment the date by 1 day
             start_date += timedelta(days=1)
         # Combine old and new dates
+        print("DEBUG: COMBINING OLD AND NEW DATES")
         updated_dates = room_booked_unavailable_dates + new_dates
         print("DEBUG: UPDATED DATES:", updated_dates)
         # Add combined to the room unavailability
