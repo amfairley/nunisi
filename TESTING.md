@@ -693,6 +693,7 @@ Separate print statements were littered throughout the webhook handler to help d
 ```python
 print("Debug message:", variable)
 ```
+This led me to an issue that the trip was trying to create an instance with the room as the room id, rather than a room instance. I updated the code to take the input room_id in the create_trip() function and use it to get the correct room, then pass that into the trip_form_data. 
 ## Analytics
 
 [Google Analytics](https://marketingplatform.google.com/about/analytics/) has been used to provide real time analytics about how users use my webpage. This includes how many page views, how many users scroll to the bottom of the page, indicating that content hinting is working, and how many users sign up. The data received from this will be used to inform the future updates to the webpage. This required the following code to be added to the base.html template at the bottom of the head element as directed:

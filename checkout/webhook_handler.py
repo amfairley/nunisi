@@ -69,7 +69,7 @@ class StripeWH_Handler:
             self,
             user,
             profile,
-            room,
+            room_id,
             start_date,
             end_date,
             adults,
@@ -78,6 +78,8 @@ class StripeWH_Handler:
             cost):
         '''Create a trip instance'''
         print("DEBUG: CREATING TRIP FUNCTION")
+        room = Room.objects.get(id=room_id)
+        print("DEBUG: GETTING ROOM:", room)
         trip_form_data = {
             'profile': profile,
             'room': room,
@@ -157,6 +159,8 @@ class StripeWH_Handler:
         end_date = trip_data['end_date']
         print("DEBUG: START DATE:", start_date)
         print("DEBUG: END DATE:", end_date)
+        print("DEBUG: ROOM:", trip_data['room'])
+        print("DEBUG: ROOM_ID:", trip_data['room'].id)
 
         # start_date = datetime.strptime(
         #     trip_data['start_date'],
