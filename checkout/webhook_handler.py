@@ -160,7 +160,6 @@ class StripeWH_Handler:
         print("DEBUG: START DATE:", start_date)
         print("DEBUG: END DATE:", end_date)
         print("DEBUG: ROOM:", trip_data['room'])
-        print("DEBUG: ROOM_ID:", trip_data['room'].id)
 
         # start_date = datetime.strptime(
         #     trip_data['start_date'],
