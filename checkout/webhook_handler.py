@@ -275,7 +275,7 @@ class StripeWH_Handler:
             # Update room
             print("DEBUG: UPDATING ROOM")
             room_id = trip_data.get('room')
-            print("DEBUG: ROOM": room_id)
+            print("DEBUG: ROOM:", room_id)
             self.update_room(room_id, start_date, end_date)
             return HttpResponse(
                     content=(
@@ -333,7 +333,7 @@ class StripeWH_Handler:
                 # Update room
                 print("DEBUG: UPDATING ROOM")
                 room_id = trip_data.get('room')
-                print("DEBUG: ROOM": room_id)
+                print("DEBUG: ROOM:", room_id)
                 self.update_room(room_id, start_date, end_date)
                 print("DEBUG: ROOM UPDATED")
 
