@@ -274,7 +274,8 @@ class StripeWH_Handler:
             self._send_confirmation_email(order, trip_instance)
             # Update room
             print("DEBUG: UPDATING ROOM")
-            room_id = trip_data.get('room').id
+            room_id = trip_data.get('room')
+            print("DEBUG: ROOM": room_id)
             self.update_room(room_id, start_date, end_date)
             return HttpResponse(
                     content=(
@@ -331,7 +332,8 @@ class StripeWH_Handler:
                 print("DEBUG: EMAIL SENT")
                 # Update room
                 print("DEBUG: UPDATING ROOM")
-                room_id = trip_data.get('room').id
+                room_id = trip_data.get('room')
+                print("DEBUG: ROOM": room_id)
                 self.update_room(room_id, start_date, end_date)
                 print("DEBUG: ROOM UPDATED")
 
