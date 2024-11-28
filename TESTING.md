@@ -688,12 +688,14 @@ def booking_form(request):
 ```
 
 ### Bug 4:
-Upon successful reservation, the trip instance was not being created, the room instance was not updated with unavailable dates, and the confirmation email was not being sent. The issue with the confirmation email is assumed to be the inability to find a trip instance, so will be explored in a separate bug if it is still not sent when a trip is created.
+- Upon successful reservation, the trip instance was not being created, the room instance was not updated with unavailable dates, and the confirmation email was not being sent. The issue with the confirmation email is assumed to be the inability to find a trip instance, so will be explored after trips are successfully created.
 Separate print statements were littered throughout the webhook handler to help debug in the format of:
 ```python
 print("Debug message:", variable)
 ```
-This led me to an issue that the trip was trying to create an instance with the room as the room id, rather than a room instance. I updated the code to take the input room_id in the create_trip() function and use it to get the correct room, then pass that into the trip_form_data. 
+- This led me to an issue that the trip was trying to create an instance with the room as the room id, rather than a room instance. I updated the code to take the input room_id in the create_trip() function and use it to get the correct room, then pass that into the trip_form_data.
+- Now a trip was successfully created, but this error occurred when trying to send an email: "DEBUG: ERROR OCCURRED: 'NoneType' object has no attribute 'email'". This occurred within the _send_confirmation_email function, so a debug print statment of printing the order instance was added to the start to check how the email should be retrieved.
+
 ## Analytics
 
 [Google Analytics](https://marketingplatform.google.com/about/analytics/) has been used to provide real time analytics about how users use my webpage. This includes how many page views, how many users scroll to the bottom of the page, indicating that content hinting is working, and how many users sign up. The data received from this will be used to inform the future updates to the webpage. This required the following code to be added to the base.html template at the bottom of the head element as directed:

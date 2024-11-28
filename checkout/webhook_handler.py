@@ -25,6 +25,7 @@ class StripeWH_Handler:
 
     def _send_confirmation_email(self, order):
         '''Send the user a confirmation email'''
+        print("DEBUG: SENDING EMAIL ORDER:", order)
         customer_email = order.email
         print("DEBUG: SENDING CUSTOMER EMAIL")
         print("DEBUG: CUSTOMER EMAIL:", customer_email)
@@ -271,7 +272,7 @@ class StripeWH_Handler:
             
             print("DEBUG: TRIP CREATED")
             # Send confirmation email
-            print("DEBUG: SENDING CONFIRMATION EMAIL")
+            print("DEBUG: ATTEMPTING TO SEND EMAIL")
             self._send_confirmation_email(order)
             # Update room
             print("DEBUG: UPDATING ROOM")
