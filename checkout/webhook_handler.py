@@ -25,11 +25,8 @@ class StripeWH_Handler:
 
     def _send_confirmation_email(self, order, trip):
         '''Send the user a confirmation email'''
-        print("DEBUG: SENDING EMAIL ORDER:", order)
+        # Get the customer email from the order
         customer_email = order.email
-        print("DEBUG: SENDING CUSTOMER EMAIL")
-        print("DEBUG: CUSTOMER EMAIL:", customer_email)
-        print("DEBUG: TRIP:", trip)
         # Render the email subject as a string and pass the order
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
@@ -48,7 +45,7 @@ class StripeWH_Handler:
         )
         # Send the email using subject, body, email to send from
         # and email to send to
-        print("DEBUG: SENDING EMAIL")
+        # Log attempting email
         self.logger.debug("Sending confirmation email to: " + customer_email)
         try:
             send_mail(
@@ -57,11 +54,11 @@ class StripeWH_Handler:
                 settings.DEFAULT_FROM_EMAIL,
                 [customer_email]
             )
+            # Log email sent
             self.logger.debug("Confirmation email sent to: " + customer_email)
-            print("DEBUG: EMAIL SENT")
         except Exception as e:
+            # Log error if email fails
             self.logger.error(f"Error sending email: {str(e)}")
-            print("DEBUG: EMAIL ERROR")
 
     def create_trip(
             self,
@@ -75,9 +72,9 @@ class StripeWH_Handler:
             infants,
             cost):
         '''Create a trip instance'''
-        print("DEBUG: CREATING TRIP FUNCTION")
+        # Get the room instance
         room = Room.objects.get(id=room_id)
-        print("DEBUG: GETTING ROOM:", room)
+        # Set the trip data as a dictionary
         trip_form_data = {
             'profile': profile,
             'room': room,
@@ -88,59 +85,45 @@ class StripeWH_Handler:
             'infants': infants,
             'cost': cost,
         }
-        print("DEBUG: TRIP FORM DATA:", trip_form_data)
+        # Create a trip instance
         trip_instance = Trip(**trip_form_data)
-        print("DEBUG: TRIP INSTANCE:", trip_instance)
+        # Save the trip instance
         trip_instance.save()
-        print("DEBUG: TRIP SAVED")
+        # Return the trip instance
         return trip_instance
 
     def update_room(self, room_id, start_date, end_date):
         '''Update the room unavailability upon order'''
-        print("DEBUG: UPDATING ROOM FUNCTION")
-        # Get the room
+        # Get the room instance
         room_booked = Room.objects.get(id=room_id)
-        print("DEBUG: ROOM BOOKED:", room_booked)
         # Get all the unavailable dates
         room_booked_unavailable_dates = room_booked.unavailability
-        print("DEBUG: ROOM BOOKED UNAVAILABLE DATES:", room_booked_unavailable_dates)
         # Get check in/out dates
         start_date = start_date
         end_date = end_date
-        print("DEBUG: START DATE:", start_date)
-        print("DEBUG: END DATE:", end_date)
+        # Convert dates to date objects
         start_date = datetime.strptime(start_date, '%Y-%m-%d')
-        print("DEBUG: START DATE DATE OBJECT:", start_date)
         end_date = datetime.strptime(end_date, '%Y-%m-%d')
-        print("DEBUG: END DATE DATE OBJECT:", end_date)
         # List for the new dates
         new_dates = []
-        print("DEBUG: NEW DATES:", new_dates)
         # < so that the check out date is not added
         # check out date can be next guests check in date
         # due to check in/out times
         while start_date < end_date:
             # String the date
-            print("DEBUG: STRING THE DATE")
             date_str = start_date.strftime('%Y-%m-%d')
             # Check if it's not already in unavaiable dates
-            print("DEBUG: CHECK IF IT'S IN LIST")
             if date_str not in room_booked_unavailable_dates:
                 # Add to new date
-                print("DEBUG: ADDING TO NEW DATES")
                 new_dates.append(date_str)
-            print("DEBUG: INCREMENT DATE")
             # Increment the date by 1 day
             start_date += timedelta(days=1)
         # Combine old and new dates
-        print("DEBUG: COMBINING OLD AND NEW DATES")
         updated_dates = room_booked_unavailable_dates + new_dates
-        print("DEBUG: UPDATED DATES:", updated_dates)
         # Add combined to the room unavailability
         room_booked.unavailability = json.dumps(updated_dates)
-        print("DEBUG: ROOM BOOKED UNAVAILABILITY:", room_booked.unavailability)
+        # Save the room
         room_booked.save()
-        print("DEBUG: ROOM BOOKED SAVED")
 
     def handle_event(self, event):
         '''Handle a generic/unknown/unexpected webhook event'''
@@ -150,50 +133,29 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
         '''Handle the payment_intent.succeeded webhook event'''
+        # Log the event
         self.logger.info(f"Received Stripe webhook: {self.request.body}")
-        print("DEBUG: PAYMENT INTENT SUCCEEDED")
         # Get the payment intent and all meta data
         intent = event.data.object
-        print("DEBUG: INTENT:", intent)
         metadata = intent.get('metadata', {})
-        print("DEBUG: METADATA:", metadata)
         pid = intent.id
-        print("DEBUG: PID:", pid)
         trip_data_json = metadata.get('trip_data', '{}')
         trip_data = json.loads(trip_data_json)
-        print("DEBUG: TRIP DATA JSON:", trip_data_json)
-        print("DEBUG: TRIP DATA:", trip_data)
         start_date = trip_data['start_date']
         end_date = trip_data['end_date']
-        print("DEBUG: START DATE:", start_date)
-        print("DEBUG: END DATE:", end_date)
-        print("DEBUG: ROOM:", trip_data['room'])
-
-        # start_date = datetime.strptime(
-        #     trip_data['start_date'],
-        #     '%Y-%m-%d').date()
-        # end_date = datetime.strptime(trip_data['end_date'], '%Y-%m-%d').date()
         save_info = metadata.get('save_info')
-        print("DEBUG: SAVE INFO:", save_info)
         email = metadata.get('user_email')
-        print("DEBUG: EMAIL:", email)
 
         # Get the user if they are logged in
         user = None
-        print("DEBUG: User none:", user)
         if email:
             user = User.objects.get(email=email)
-            print("DEBUG: User:", user)
 
         # Get the charge object
         stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
-        print("DEBUG: STRIPE CHARGE:", stripe_charge)
         billing_details = stripe_charge.billing_details
-        print("DEBUG: BILLING DETAILS:", billing_details)
         shipping_details = stripe_charge.shipping
-        print("DEBUG: SHIPPING DETAILS:", shipping_details)
         grand_total = round(stripe_charge.amount / 100, 2)
-        print("DEBUG: GRAND TOTAL:", grand_total)
 
         # Replace empty data in shipping details with None
         for field, value in shipping_details.address.items():
@@ -202,11 +164,9 @@ class StripeWH_Handler:
 
         # Update profile information if save_info was checked
         if user:
-            print("DEBUG: UPDATING USER INFO")
             user_profile = None
             if user.is_authenticated:
                 user_profile = UserProfile.objects.get(user=user)
-                print("DEBUG: USER", user_profile)
                 if save_info:
                     user_profile.full_name = shipping_details.name
                     user_profile.phone_number = shipping_details.phone
@@ -223,9 +183,7 @@ class StripeWH_Handler:
                     )
                     user_profile.county = shipping_details.address.state
                     user_profile.save()
-                    print("DEBUG: USER UPDATED")
         # Check if order exists, if it does, it's fine, if not, make it
-        print("DEBUG: CHECKING IF ORDER EXISTS")
         order_exists = False
         attempt = 1
         while attempt <= 5:
@@ -248,22 +206,18 @@ class StripeWH_Handler:
                 # If order exists, return 200 response
                 # Or wait 1 second and try again (max 5 times)
                 order_exists = True
-                print("DEBUG: ORDER EXISTS, attempt:", attempt)
                 break
             except Order.DoesNotExist:
-                print("DEBUG: ORDER DOES NOT EXIST, attempt:", attempt)
                 attempt += 1
                 time.sleep(1)
                 # Create the order if it does not exist
         if order_exists:
-            # Create a trip instance
+            # Check if there is a user profile
             if user:
                 user_profile = UserProfile.objects.get(user=user)
             else:
                 user_profile = None
-            
-
-            print("DEBUG: ATTEMPTING TO CREATE TRIP")
+            # Create a trip instance
             trip_instance = self.create_trip(
                 user,
                 user_profile,
@@ -275,16 +229,10 @@ class StripeWH_Handler:
                 trip_data.get('infants'),
                 grand_total
             )
-            print("DEBUG: CHECK TRIP_INSTANCE IS RETURNED", trip_instance)
-            
-            print("DEBUG: TRIP CREATED")
             # Send confirmation email
-            print("DEBUG: ATTEMPTING TO SEND EMAIL")
             self._send_confirmation_email(order, trip_instance)
             # Update room
-            print("DEBUG: UPDATING ROOM")
             room_id = trip_data.get('room')
-            print("DEBUG: ROOM:", room_id)
             self.update_room(room_id, start_date, end_date)
             return HttpResponse(
                     content=(
@@ -293,7 +241,7 @@ class StripeWH_Handler:
                     ), status=200
                 )
         else:
-            print("ORDER DID NOT EXIST, CREATING ORDER")
+            # Create an order if one was not found
             order = None
             try:
                 order_form_data = {
@@ -314,13 +262,12 @@ class StripeWH_Handler:
                 # Create an order instance
                 order_instance = Order(**order_form_data)
                 order_instance.save()
-                print("DEBUG: ORDER CREATED", order_instance)
-                # Create a trip instance
-                print("DEBUG: ATTEMPTING TO CREATE TRIP")
+                # Check if the user is logged in
                 if user:
                     user_profile = UserProfile.objects.get(user=user)
                 else:
                     user_profile = None
+                # Create a trip instance
                 trip_instance = self.create_trip(
                     user,
                     user_profile,
@@ -332,19 +279,11 @@ class StripeWH_Handler:
                     trip_data.get('infants'),
                     grand_total
                 )
-                print("DEBUG: TRIP CREATED")
-                print("DEBUG: CHECK TRIP_INSTANCE IS RETURNED", trip_instance)
-            
                 # Send confirmation email
-                print("DEBUG: ATTEMPTING TO SEND EMAIL")
                 self._send_confirmation_email(order_instance, trip_instance)
-                print("DEBUG: EMAIL SENT")
                 # Update room
-                print("DEBUG: UPDATING ROOM")
                 room_id = trip_data.get('room')
-                print("DEBUG: ROOM:", room_id)
                 self.update_room(room_id, start_date, end_date)
-                print("DEBUG: ROOM UPDATED")
 
                 return HttpResponse(
                     content=(
@@ -357,7 +296,6 @@ class StripeWH_Handler:
             except Exception as e:
                 if order_instance:
                     order_instance.delete()
-                print("DEBUG: ERROR OCCURRED:", e)
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} || ERROR: {e}',
                     status=500)
