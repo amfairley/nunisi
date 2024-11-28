@@ -250,8 +250,11 @@ class StripeWH_Handler:
                 user_profile = UserProfile.objects.get(user=user)
             else:
                 user_profile = None
+            
+
             print("DEBUG: ATTEMPTING TO CREATE TRIP")
             self.create_trip(
+                user,
                 user_profile,
                 trip_data.get('room'),
                 start_date,
@@ -261,6 +264,8 @@ class StripeWH_Handler:
                 trip_data.get('infants'),
                 grand_total
             )
+
+            
             print("DEBUG: TRIP CREATED")
             # Send confirmation email
             print("DEBUG: SENDING CONFIRMATION EMAIL")
@@ -305,6 +310,7 @@ class StripeWH_Handler:
                 else:
                     user_profile = None
                 self.create_trip(
+                    user,
                     user_profile,
                     trip_data.get('room'),
                     start_date,
