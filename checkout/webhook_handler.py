@@ -117,11 +117,11 @@ class StripeWH_Handler:
         # due to check in/out times
         while start_date < end_date:
             # String the date
-            date_str = start_date.strftime('%Y-%m-%d')
+            # date_str = start_date.strftime('%Y-%m-%d')
             # Check if it's not already in unavaiable dates
-            if date_str not in room_booked_unavailable_dates:
+            if start_date not in room_booked_unavailable_dates:
                 # Add to new date
-                new_dates.append(date_str)
+                new_dates.append(start_date)
             # Increment the date by 1 day
             start_date += timedelta(days=1)
         # Combine old and new dates
