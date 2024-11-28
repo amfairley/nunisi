@@ -255,7 +255,7 @@ class StripeWH_Handler:
             
 
             print("DEBUG: ATTEMPTING TO CREATE TRIP")
-            self.create_trip(
+            trip_instance = self.create_trip(
                 user,
                 user_profile,
                 trip_data.get('room'),
@@ -311,7 +311,7 @@ class StripeWH_Handler:
                     user_profile = UserProfile.objects.get(user=user)
                 else:
                     user_profile = None
-                self.create_trip(
+                trip_instance = self.create_trip(
                     user,
                     user_profile,
                     trip_data.get('room'),
