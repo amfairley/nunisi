@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Room, Amenities
 from .forms import EditRoomForm
 from home.forms import BookingForm
-from datetime import timedelta
+from datetime import timedelta, datetime
 from django.contrib.admin.views.decorators import staff_member_required
 
 
@@ -68,7 +68,7 @@ def available_rooms(request):
             # Find suitable rooms
             for room in rooms:
                 # Check if any trip_dates are in the room's unavailability list
-                if any(date in room.unavailability for date in trip_dates):
+                if any(date.strftime('%Y-%m-%d') in room.unavailability for date in trip_dates):
                     continue
 
                 # Calculate amount of people the room sleeps based on amenities
