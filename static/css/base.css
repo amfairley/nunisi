@@ -143,21 +143,76 @@ main {
 
 /* Booking form */
 .booking-form-div {
-    max-width: 535px;
+    width: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
-.search-form-title {
-    font-size: 1.2rem;
-    margin-top: 15px;
-    margin-bottom: 0;
-    margin-left: 75px;
-    font-weight: 600;
-    text-align: left;
+.booking-form-div form {
+    width:100%;
 }
+
+.guest-selection-row-container {
+    padding:0;
+}
+
+.guest-selection-row {
+    margin-top: 15px;
+    height: 60px;
+    border: 1px solid #333A3F;
+    border-radius: 8px;
+    background-color: #FDD67C;
+    margin: 0 12px;
+    padding: 0;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+.guest-selection {
+    text-align: center;
+}
+.guests-choices label{
+    font-weight: bolder;
+    color:#3A6B35;
+}
+
+.guests-choices input {
+    width: 50px;
+    background-color: #3A6B35;
+    color: #FDD67C;
+    border: 1px solid #FDD67C;
+    text-align: center;
+}
+
+.guest-counter-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.guest-counter {
+    background: #FDD67C;
+    border: 1px solid #333A3F;
+    border-radius: 8px;
+    width:fit-content;
+    text-align: center;
+    height: 58.4px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    color:#3A6B35;
+}
+
+.guest-counter p {
+    margin: 0;
+}
+
 
 .check-in-div,
 .check-out-div {
-    top: -15px;
+    top: -10px;
 }
 
 .check-in-div label,
@@ -184,31 +239,21 @@ main {
     cursor: pointer;
 }
 
-.guests-div {
-    top: -15px;
-    position: relative;
-}
-
-.guests-choices label{
-    text-align: left;
-}
-
-.guests-choices {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px !important;
-}
-
-.guests-choices input {
-    width: 35px;
-    margin-right: 5px;
-    background-color: #3A6B35;
-    color: #FDD67C;
+.check-in-div input:focus,
+.check-out-div input:focus {
+    box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
+    border: 1px solid #333A3F;
 }
 
 .booking-form-submit-div {
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.form-submit-button:hover {
+    box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
+    border: 1px solid #333A3F;
 }
 
 /* Account menu */
@@ -216,6 +261,7 @@ main {
     display: flex;
     align-items: center;
     height: 168px;
+    width: 120px;
 }
 
 #account-dropdown-div {
