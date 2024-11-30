@@ -105,47 +105,68 @@
                         </a>
                     </div>
                     <!--Room search form-->
-                    <div class="col d-none d-lg-block text-center">
-                        <div class="mx-auto text-center booking-form-div">
+                    <div class="col d-none d-lg-block">
+                        <div class="mx-auto booking-form-div">
                             <form method="POST" action="{% url 'available_rooms' %}">
                                 {% csrf_token %}
-                                <div class="col-12">
-                                    <p class="jost-font search-form-title font-nunisi-gold">SEARCH AVAILABILITY:</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-4 form-floating check-in-div">
-                                        {{ booking_form_desktop.check_in_date.label_tag }}
-                                        <br>
-                                        {{ booking_form_desktop.check_in_date }}
-                                    </div>
-                                    <div class="col-4 form-floating check-out-div">
-                                        {{ booking_form_desktop.check_out_date.label_tag }}
-                                        <br>
-                                        {{ booking_form_desktop.check_out_date }}
-                                    </div>
-                                    <div class="col-4 guests-div">
-                                        <div class="row">
-                                            <div class="col-9 padding-zero bg-nunisi-gold font-nunisi-green roboto-font border-off-black-3">
-                                                <p class="margin-zero font-weight-bolder w-100">
-                                                    Guests: <span id="desktop-total-guests">0</span>
-                                                </p>
-                                                <hr class="margin-zero">
+                                <div class="row guest-row">
+                                    <!--Guest selection-->
+                                    <div class="col-9 guest-selection-row-container">
+                                        <div class="row guest-selection-row">
+                                            <!--Adults-->
+                                            <div class="col-4 guest-selection">
                                                 <p class="guests-choices margin-zero w-100">
-                                                    {{ booking_form_desktop.adults.label_tag }}{{ booking_form_desktop.adults }}
-                                                </p>
-                                                <hr class="margin-zero">
-                                                <p class="guests-choices margin-zero w-100">
-                                                    {{ booking_form_desktop.children.label_tag }}{{ booking_form_desktop.children }}
-                                                </p>
-                                                <hr class="margin-zero">
-                                                <p class="guests-choices margin-zero w-100">
-                                                    {{ booking_form_desktop.infants.label_tag }}{{ booking_form_desktop.infants }}
+                                                    {{ booking_form_desktop.adults.label_tag }}
+                                                    {{ booking_form_desktop.adults }}
                                                 </p>
                                             </div>
-                                            <div class="col-3 booking-form-submit-div">
-                                                <button type="submit" class="btn nunisi-button">Submit</button>
+                                            <!--Children-->
+                                            <div class="col-4 guest-selection">
+                                                <p class="guests-choices margin-zero w-100">
+                                                    {{ booking_form_desktop.children.label_tag }}
+                                                    {{ booking_form_desktop.children }}
+                                                </p>
+                                            </div>
+                                            <!--Infants-->
+                                            <div class="col-4 guest-selection">
+                                                <p class="guests-choices margin-zero w-100">
+                                                    {{ booking_form_desktop.infants.label_tag }}
+                                                    {{ booking_form_desktop.infants }}
+                                                </p>
                                             </div>
                                         </div>
+                                    </div>
+                                    <!--Guest counter-->
+                                    <div class="col-3 guest-counter-container">
+                                        <div class="guest-counter">
+                                            <p class="margin-zero w-100">
+                                                Guests: 
+                                            </p>
+                                            <p id="desktop-total-guests">
+                                                0
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!--Date selection-->
+                                    <div class="col-9">
+                                        <div class="row">
+                                            <div class=" col-6 form-floating check-in-div">
+                                                {{ booking_form_desktop.check_in_date.label_tag }}
+                                                <br>
+                                                {{ booking_form_desktop.check_in_date }}
+                                            </div>
+                                            <div class="col-6 form-floating check-out-div">
+                                                {{ booking_form_desktop.check_out_date.label_tag }}
+                                                <br>
+                                                {{ booking_form_desktop.check_out_date }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Search button-->
+                                    <div class="col-3 booking-form-submit-div">
+                                        <button type="submit" class="btn nunisi-button form-submit-button">Search <i class="fa-solid fa-magnifying-glass"></i></button>
                                     </div>
                                 </div>
                             </form> 
