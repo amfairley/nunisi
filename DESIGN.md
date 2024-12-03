@@ -246,27 +246,40 @@ The colour scheme started as an idea for gold and green to portray the natural a
 
 ![Colour Scheme](/documentation/colour_palette.png)
 
-| Fern Green #3A6B35 | Jasmine #FDD67C | Dark goldenrod #B88C26 |
-| ----- | ----- | ----- |
-| Header and footer backgrounds | Booking form title | Acount menu border when selected |
-| Booking form text | Booking form backgrounds | Allauth buttons |
-| Account menu background | Account menu text | Border for the location image |
-| Allauth page titles | Footer text | |
-| Allauth button text | Background to homepage header | |
-| Horizontal rules on homepage | Background to available room cards | |
-| Next/previous arrows for services | Superuser room card background | |
-| Page and room titles for available rooms | Checkout title | |
-| Amenity icons for available rooms | Checkout form backgrounds | |
-| Superuser rooms title | | | 
-| Add/edit/delete room title | | |
-| Edit/Delete profile titles | | |
+**Jasmine #FDD67C**
+- Font colour on Fern Green backgrounds
+- Background to the navigation bar form inputs
+- Button backgrounds (normal)
+- Button text (hover)
+- Golden halo for button hover animations
+- Account menu background (normal)
+- Account menu background (hover)
+- Account dropdown menu text
+- Account dropdown menu underline hover animation
+- Footer text
+
+**Fern Green #3A6B35**
+- Font colour on Jasmine backgrounds
+- Background to the navigation guest amount inputs
+- Button backgrounds (hover)
+- Button text (normal)
+- Account menu text (normal)
+- Account menu background (hover)
+- Account dropdown menu background
+
+**Gun Metal #333A3F**
+- Border for the account menu
+
+**White Smoke #F5F5F5**
+- 
+
+**Dark Goldenrod #B88C26**
+- Account dropdown border
 
 **Other colours used:**
-- Gunmetal: #333A3F for border colours on buttons, dark text throughout
-- White smoke: #F5F5F5 for text colour which are on a dark image background
 - Facebook: Blue and white are used for the Facebook logo
 - Instagram and GitHub: Black and white are used for the Instagram and GitHub logos.
-- Lava: #CF1020 for error messages
+- Toasts other than success messages use the bootstrap default colours for debugging, information, warning and danger.
 
 #### Typography
 
@@ -304,11 +317,19 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The booking form is available on all large screens in the header, prompting the user to search for rooms. On smaller screens it appears as it's own section on the homepage. |
 | **User Stories Covered:** 2, 22 |
 
+| **Buttons** |
+| ----- |
+| **Page: All-header** |
+| <details><summary>Booking Form Button</summary><img src="/documentation/features/search_button.png"></details> |
+| <details><summary>Booking Form Button Hover</summary><img src="/documentation/features/search_button_hover.png"></details> |
+| **Details:** The buttons on the website have a hover animation that inverts the background and text colour scheme and adds a golden halo around the element to indicate functionality to the user and prompt them to press the button. |
+| **User Stories Covered:** 1, 2, 8 |
+
 | **Account Menu** |
 | ----- |
 | **Page: All - Header** |
 | <details><summary>Account Menu</summary><img src="/documentation/features/account_menu.png"></details> |
-| **Details:** The account menu allows the user to access their Trips, Account details and Log out functionality. When logged out it only displays links to sign up / login and when signed in as an admin, displays links view all Rooms and Trips in the database. |
+| **Details:** The account menu allows the user to access their Trips, Account details and Log out functionality. When logged out it only displays links to sign up / login and when signed in as an admin, displays links to view all Rooms and Trips in the database. Hovering over the links in the menu illicits a hover animation that elegantly draws a line under the hovered item from left to right. |
 | **User Stories Covered:** 2, 11, 12, 16, 29, 36 |
 
 | **Footer Hotel Contact Information** |
@@ -324,6 +345,24 @@ This is my selection for block text across the website. Roboto is the most popul
 | <details><summary>Developer Information</summary><img src="/documentation/features/developer_information.png"></details> |
 | **Details:** The developer name is proudly displayed on the website along with a link the developer's GitHub profile. |
 | **User Stories Covered:** 2, 10 |
+
+| **Back Button** |
+| ----- |
+| **Page: ** |
+| <details><summary>Back Button</summary><img src="/documentation/features/back_button.png"></details> |
+| <details><summary>Back Button Hover</summary><img src="/documentation/features/back_button_hover.png"></details> |
+| **Details:** The back button is used on pages to allow the user to go back to the previous page without using the browser back button such as if they find themselves on the delete user page and they do not wish to delete the user. If there is no previous page, it directs the user to a 404 page. |
+| **User Stories Covered:** 2, 8 |
+
+
+
+
+
+
+
+
+
+
 
 | **Allauth: Sign Up** |
 | ----- |
