@@ -26,4 +26,5 @@ urlpatterns = [
     path('rooms/', include('rooms.urls')),
     path('checkout/', include('checkout.urls')),
     path('user_profile/', include('user_profile.urls')),
+    path('back-button/', include('back_button.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
