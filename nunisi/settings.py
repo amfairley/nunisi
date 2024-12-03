@@ -16,6 +16,8 @@ import dj_database_url
 # If in developer mode and there is an env.py file
 if os.path.exists("env.py"):
     import env
+# Import django messages to edit
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -99,6 +101,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'nunisi.wsgi.application'
 
+# Messages for toasts to match bootstrap classes
+MESSAGE_TAGS = {
+    messages.DEBUG: 'secondary',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}
 
 # Database management
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
