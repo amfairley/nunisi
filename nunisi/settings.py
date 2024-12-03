@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'rooms',
     'checkout',
     'user_profile.apps.UserProfileConfig',
+    'back_button',
     # Storage
     'storages',
 ]
