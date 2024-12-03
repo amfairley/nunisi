@@ -52,14 +52,13 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Booking form | Submit with only check in date | Prompt to enter a check out date | Y | N/A |
 | Booking form | Submit with dates and no guests | Prompt to add guests | N | [Bug 1](#bug-1) highlighted and fixed |
 | Booking form | Submit with dates and no guests | Prompt to add guests | Y | N/A |
-| Booking form | Click check in/check out | Calendar widget appears to select dates | Y | N/A |
+| Booking form | Click check in/check out | Calendar widget appears to select dates with a golden halo on the widgets | Y | N/A |
 | Booking form | Open check in/ check out calendar widgets | Dates in the past are disabled | Y | N/A |
 | Booking form | Open check in/ check out calendar widgets | Dates over a year away are disabled | Y | N/A |
 | Booking form | Add guests | "Guests" automatically updates to show total guests | Y | N/A |
-| Booking form | Hover the submit button | The colours invert | Y | N/A |
-| Booking form | Submit form with check in date after check out date | The form submits and provides the user with an error | Y | N/A |
-| Booking form | Submit correct data | The form submits and redirects the user to a page showing the available rooms | Y | N/A |
-| Account menu | Hover | The border becomes bolder and larger | Y | N/A |
+| Booking form | Hover the submit button | The colours invert and gold halo appears | Y | N/A |
+| Account menu | Hover | The button hover effect occurs | Y | N/A |
+| Account menu items | Hover | Elegant underline effect occurs | Y | N/A |
 | Account menu | Click when logged out| Display login/signup links | Y | N/A |
 | Account menu - sign up link | Click | Redirected to the sign up page | Y | N/A |
 | Account menu - log in link | Click | Redirected to the log in page | Y | N/A |
@@ -81,6 +80,8 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Developer GitHub link | Click | The developer's github profile is opened in a new tab | Y | N/A |
 | Responsivity | Reduce screen size to below 992px | Booking form disappears | Y | N/A |
 | Responsivity | Reduce screen size to below 992px | Footer logo disappears | Y | N/A |
+| **Back Button** | | | | |
+| Back button | Hover | Colours invert and gold halo appears | Y | N/A |
 | **AllAuth Pages** | | | | |
 | Sign up form | Enter an incorrect email address | Prompt appears telling the user to enter a valid email | Y | N/A |
 | Sign up form | Do not enter the password again | Prompt appears telling the user to fill out that field | Y | N/A |
@@ -130,6 +131,8 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Location | Reduce screen size | Map is put under the text | Y | N/A |
 | FAQs | Reduce screen size | Columns go from 3 to 1 | Y | N/A |
 | **available_rooms.html** | | | | |
+| Booking form | Submit form with check in date after check out date | The form submits and provides the user with an error | Y | N/A |
+| Booking form | Submit correct data | The form submits and redirects the user to a page showing the available rooms | Y | N/A |
 | Page loading | Submit an availability search | The page loads with the search form prefilled with the user submitted values | Y | N/A |
 | Page loading | Submit an invalid availability search | The page loads a message informing the user of the errors in the form | Y | N/A |
 | Page loading | Submit a valid form that matches no criteria | The page loads with a message informing the user that there are no matches to their search | Y | N/A |
@@ -215,6 +218,19 @@ The coverage report can be seen [here](/documentation/testing/coverage_report.tx
 ### Accessibility Testing
 Accessibility was kept in mind throughout development and the best practices were kept to across the website including, but not limited to, ensuring aria-labels and alt texts were used throughout, using semantic HTML, creating easy to see colour contrasts. Where hidden text was used, it was hidden in a way that was still accessible to screen readers.
 Accessibility testing was performed using the [Wave](https://wave.webaim.org/) validator to provide key information about the accessibility standard of the website. Pages that required login were beyond the purview of the [Wave](https://wave.webaim.org/) browser tool, so the Wave extension for Google Chrome was used, which can be found [here](https://wave.webaim.org/extension/).
+
+**Base Template**<br>
+- 2 Low contrast errors: These appear because wave does not recognise the position of the check in/ check out labels being as being form-floating inside the inputs so incorrectly computes the contrast against the header background, not the input background. This error in the wave validation is carried over to every page of the website as they all extend from this base template. These errors do not affect the usability of the website and are ignored when they appear.
+- 1 alert for no heading structure. This is because a H1 element is not used within the base template. As each page inherits from this template, they will have their own H1 headings, so this alert only occurs when testing the base template in isolation and thus is ignored going forward.
+<details>
+<summary>Base template results</summary>
+<img src="/documentation/testing/wave/base.png">
+</details><br>
+
+
+
+
+
 
 **Allauth: Login**<br>
 - Alert: Redundant text title of "Google" on the link for 3rd party login. This is required for good user experience so the alert was ignored.
@@ -413,6 +429,8 @@ The performance was tested for normal internet speed, fast 3G, and slow 3G to te
 The [W3C markup validation service](https://validator.w3.org/) was used to validate the HTML of each page of this website. As each page including some Django templating language that threw errors in the validator; the HTML was validated after deployment. Each page was accessed and the source code (CTRL+U or right click > View Page Source) was copied and pasted into the validator to validate by direct input.<br>
 | Page | Warnings | Errors |
 | ----- | ------ | ------ |
+| Base template | None | None |
+| Back button | None | None |
 | Allauth - login | None | None |
 | Allauth - logout | None | None |
 | Allauth - inactive | None | None |
@@ -445,10 +463,39 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no errors in the CSS code.
 
 ### JavaScript Validation
-The custom JavaScript code was testing using the JavaScript linter [JSLint](https://www.jslint.com/). The settings were set for browser, so that the linter recognised the "document" variable. The code passed through with no errors.
+The custom JavaScript code was testing using the JavaScript linter [JSLint](https://www.jslint.com/).
+
+**Base template**<br>
+- The base.js file was copied into the linter and the postload JavaScript at the bottom of base.html was added to this for the purpose of validation. 
+- The following linter settings were selected: browser, this. 
+- The following variables were added: bootstrap.
+- Full results can be seen [here](/documentation/testing/jslint/base_template.pdf)
+
 
 ### Python Validation
-The Python code for this project was written in strict accordance with the [PEP 8](https://peps.python.org/pep-0008/) style guide for Python code. These include using correct indentations, maximum line lengths of 79 characters, and adhering to naming conventions for variables, functions, and classes. The [Code Institue python linter](https://pep8ci.herokuapp.com/) was used to validate the written code. 
+The Python code for this project was written in strict accordance with the [PEP 8](https://peps.python.org/pep-0008/) style guide for Python code. These include using correct indentations, maximum line lengths of 79 characters, and adhering to naming conventions for variables, functions, and classes. The [Code Institue python linter](https://pep8ci.herokuapp.com/) was used to validate the written code.
+
+**Back Button: views.py**<br>
+- No errors or alerts
+<details>
+<summary>Back button views results</summary>
+<img src="/documentation/testing/python/back_button_views.png">
+</details><br>
+
+**Back Button: test_views.py**<br>
+- No errors or alerts
+<details>
+<summary>Back button test views results</summary>
+<img src="/documentation/testing/python/back_button_test_views.png">
+</details><br>
+
+**Back Button: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>Back button urls results</summary>
+<img src="/documentation/testing/python/back_button_urls.png">
+</details><br>
+
 
 **Home: context_processor.py**<br>
 - No errors or alerts
