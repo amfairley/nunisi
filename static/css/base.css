@@ -168,6 +168,7 @@ main {
     width:100%;
 }
 
+/* Booking form - Guests */
 .guest-selection-row-container {
     padding:0;
 }
@@ -222,6 +223,7 @@ main {
     justify-content: center;
     height: 100%;
 }
+
 .guest-counter {
     background: #FDD67C;
     border: 1px solid #333A3F;
@@ -240,6 +242,7 @@ main {
     margin: 0;
 }
 
+/* Booking form - dates */
 .check-in-div,
 .check-out-div {
     top: -10px;
@@ -274,6 +277,8 @@ main {
     box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
     border: 1px solid #333A3F;
 }
+
+/* Booking form - submit */
 
 .booking-form-submit-div {
     display: flex;
