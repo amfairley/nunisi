@@ -81,7 +81,8 @@ main {
 }
 
 /* Site buttons */
-.nunisi-button {
+.nunisi-button,
+.back-button {
     font-family: Roboto, Arial, Helvetica, sans-serif;
     font-weight: 800;
     color: #3A6B35;
@@ -89,10 +90,26 @@ main {
     border: 1px solid #333A3F;
 }
 
-.nunisi-button:hover {
+.nunisi-button:hover,
+.back-button:hover {
     border-color: #333A3F;
     color:#FDD67C;
     background-color: #3A6B35;
+    box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
+    border: 1px solid #333A3F;
+}
+
+.back-button {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.back-button-container {
+    width: fit-content;
+    height: fit-content;
+    overflow: visible;
+    z-index: 500;
 }
 
 /* Background colours */
@@ -284,11 +301,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.form-submit-button:hover {
-    box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
-    border: 1px solid #333A3F;
 }
 
 /* Account menu */
