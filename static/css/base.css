@@ -118,6 +118,20 @@ main {
     border: 1px solid #b88c26;
 }
 
+/* Toast styling */
+.toast {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.toast.text-bg-success {
+    background-color: #3A6B35 !important;
+    color: #FDD67C !important;
+    box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
+    border-radius: 8px;
+}
+
 /* ---------- Navigation bar styling ---------- */
 #top-nav {
     height: 168px;
