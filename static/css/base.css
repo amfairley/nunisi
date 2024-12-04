@@ -296,7 +296,6 @@ main {
 }
 
 /* Booking form - submit */
-
 .booking-form-submit-div {
     display: flex;
     align-items: center;
@@ -578,18 +577,44 @@ main {
     z-index: 1000;
 }
 
+.navbar-links {
+    font-family: Caveat, "Brush Script MT", cursive;
+    font-size: 1.5rem;
+}
+
 .index-nav-item a{
     color: #3A6B35 !important;
     font-weight: bolder;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.index-nav-item a:hover {
-    background: rgba(0, 0, 0, 0.3);
+.index-nav-item a::after {
+    content: ''; 
+    position: absolute;
+    bottom: 12px;
+    left: 8px;
+    width: 0;
+    height: 1px;
+    background-color: #3A6B35;
+    transition: width 0.3s ease;
+    height: 3px;
+}
+
+.index-nav-item a:hover::after {
+    width: 80%; 
 }
 
 #index-burger-nav {
     margin-top: 8px;
     margin-bottom: 8px;
+    color: #3A6B35;
+    border: solid 2px #3A6B35;
+}
+
+.navbar-toggler-icon {
+    color: #3A6B35;
 }
 
 /* Index hero section */
@@ -605,15 +630,48 @@ main {
 #hero-title {
     text-align: center;
     color: #F5F5F5;
-    font-size: 4rem;
+    font-size: 6rem;
+    text-shadow: 
+        2px 2px 0px #333A3F,
+        -1px -1px 0px #333A3F,
+        -1px 1px 0px #333A3F,
+        1px 1px 0px #333A3F;
 }
 
 #hero-message {
     text-align: center;
     color: #f5f5f5;
+    text-shadow: 
+        2px 2px 0px #333A3F,
+        -1px -1px 0px #333A3F,
+        -1px 1px 0px #333A3F,
+        1px 1px 0px #333A3F;
+}
+
+/* Sections */
+.section-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color: #3A6B35;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.section-text {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#333A3F;
 }
 
 /* Index booking form */
+.index-booking-form-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.index-booking-form-div form {
+    width:100%;
+}
 #index-booking-form {
     margin-top: 10px;
 }
@@ -621,11 +679,10 @@ main {
 #index-booking-form-body {
     max-width: 300px;
     margin: 0 auto;
-}
-
-.index-form-title {
-    font-size: 1.5rem;
-    color:#333A3F;
+    border: 1px solid #FDD67C;
+    border-radius: 8px;
+    background-color: #3A6B35;
+    padding-bottom: 10px;
 }
 
 .index-check label {
@@ -634,14 +691,43 @@ main {
 
 .index-guests-div {
     margin-bottom: 10px;
+    background-color: #FDD67C;
+    border-radius: 8px;
+    width: fit-content;
+    justify-content: center;
+    display: flex;
+}
+
+.guests-form-guests {
+    font-weight: bolder;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #3A6B35;
+    padding-top: 5px;
+    margin-bottom: 0;
+}
+.index-guests-choices {
+    font-weight: bolder;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #3A6B35;
 }
 
 .index-guests-div label{
-    margin-left: 25px;
+    text-align: center;
 }
 
-.index-guests-div .guests-choices {
+.index-guests-choices input {
+    background-color: #3A6B35;
+    color: #FDD67C;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.index-guests-div {
     margin-top: 5px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
 .index-booking-form-submit-div {
@@ -657,34 +743,32 @@ main {
     margin: 10px auto;
 }
 
-/* Index resort information */
+/* Carousels */
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  outline: black;
-  background-size: 100%, 100%;
+  height: 60px;
+  width: 60px;
   border-radius: 50%;
-  background-image: none;
+  background-size: 50%, 50%;
+  background-color: #3A6B35;
+  display:none;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
+}
+
+.carousel:hover .carousel-control-prev-icon,
+.carousel:hover .carousel-control-next-icon {
+    display: inline-block;
 }
 
 #resortInformationCarousel .carousel-item {
     transition: transform 5s ease-in-out;
 }
 
-#index-about-us .carousel-control-next-icon:after
-{
-  content: '>';
-  font-size: 55px;
-  color: #f5f5f5;
-}
-
-#index-about-us .carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 55px;
-  color: #f5f5f5;
-}
-
+/* Resort information section */
 #index-resort-image-column {
     display: flex;
     justify-content: center;
@@ -704,37 +788,7 @@ main {
     object-position: center;
 }
 
-#index-info-title {
-    font-family: Jost, Arial, Helvetica, sans-serif;
-    color:#333A3F;
-    text-align: center;
-}
-
-.index-info-text {
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-    color:#333A3F;
-}
-
 /* Index services */
-#index-services .carousel-control-next-icon:after
-{
-  content: '>';
-  font-size: 55px;
-  color: #3A6B35;
-}
-
-#index-services .carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 55px;
-  color: #3A6B35;
-}
-
-#index-services-title {
-    font-family: Jost, Arial, Helvetica, sans-serif;
-    color: #333A3F;
-    text-align: center;
-}
-
 .services-card {
     width: 85%;
     max-width: 1200px !important;
@@ -789,18 +843,6 @@ main {
     z-index: 1;
 }
 
-#index-location-title {
-    font-family: Jost, Arial, Helvetica, sans-serif;
-    color: #333A3F;
-    text-align: center;
-    display: block;
-}
-
-#index-location-text {
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-    color: #333A3F;
-}
-
 #location-map {
     width: 100%;
     min-height: 300px;
@@ -808,16 +850,8 @@ main {
 }
 
 /* Index FAQ section */
-.faq-title {
-    font-family: Jost, Arial, Helvetica, sans-serif;
-    color: #333A3F;
-    text-align: center;
-}
-
 .faq-list {
     list-style-type: none;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-    color: #333A3F
 }
 
 .faq-question {
@@ -1216,11 +1250,11 @@ main {
     /* Scroll offset for index header: desktop */
     html {
         scroll-behavior: smooth;
-        scroll-padding-top: 40px;
+        scroll-padding-top: 60px;
     }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 992px) {
     /* Change account menu position */
     #account-nav-menu {
         position: absolute;
@@ -1233,7 +1267,29 @@ main {
         scroll-behavior: smooth;
         scroll-padding-top: 270px;
     }
+
+    /*Index page nav bar links*/
+    .navbar-links {
+        font-family: Jost, Arial, Helvetica, sans-serif;
+        font-size: 1rem;
+    }
+
     
+    .index-nav-item a::after {
+        content: ''; 
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background-color: #3A6B35;
+        transition: width 0.3s ease;
+        height: 2px;
+    }
+
+    .index-nav-item a:hover::after {
+        width: 100%; 
+    }
     
     /*Change footer height */
     .footer {
@@ -1271,6 +1327,14 @@ main {
     }
     #checkout-page-order-summary-block {
         border-left: none;
+    }
+}
+
+@media (max-width: 767px) {
+    /*Index page service card */
+    .services-card-image-container {
+        width: 95%;
+        margin: 0 auto;
     }
 }
 
