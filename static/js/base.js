@@ -9,19 +9,18 @@ function updateGuestCount() {
         document.querySelector("#top-nav #id_desktop-adults").value
     ) || 0;
     const adultsIndexBookingForm = parseInt(
-        document.querySelector("#index-booking-form #id_mobile-adults").value
+        document.querySelector("#index-booking-form #id_mobile-adults")?.value
     ) || 0;
     const childrenTopNav = parseInt(
-        document.querySelector("#top-nav #id_desktop-children").value
-    ) || 0;
+        document.querySelector("#top-nav #id_desktop-children").value) || 0;
     const childrenIndexBookingForm = parseInt(
-        document.querySelector("#index-booking-form #id_mobile-children").value
+        document.querySelector("#index-booking-form #id_mobile-children")?.value
     ) || 0;
     const infantsTopNav = parseInt(
         document.querySelector("#top-nav #id_desktop-infants").value
     ) || 0;
     const infantsIndexBookingForm = parseInt(
-        document.querySelector("#index-booking-form #id_mobile-infants").value
+        document.querySelector("#index-booking-form #id_mobile-infants")?.value
     ) || 0;
     // Update total guests for both forms
     const totalGuestsTop = (
