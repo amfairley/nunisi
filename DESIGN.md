@@ -257,6 +257,10 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Account dropdown menu text
 - Account dropdown menu underline hover animation
 - Footer text
+- Home: Navigation background
+- Home: Carousel arrow gold halo when hovered
+- Home: Service carousel background
+
 
 **Fern Green #3A6B35**
 - Font colour on Jasmine backgrounds
@@ -266,15 +270,24 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Account menu text (normal)
 - Account menu background (hover)
 - Account dropdown menu background
+- Home: Navigation text
+- Home: Navigation hover underline
+- Home: Navigation burger menu outline
+- Home: Horizontal rules between sections
+- Home: Carousel arrow backgrounds
+- Home: Section title font colour
 
 **Gun Metal #333A3F**
 - Border for the account menu
+- Home: Hero text shadow colour
+- Home: Section text font colour
 
 **White Smoke #F5F5F5**
-- 
+- Home: Hero text colour
 
 **Dark Goldenrod #B88C26**
 - Account dropdown border
+- Home: Service carousel border
 
 **Other colours used:**
 - Facebook: Blue and white are used for the Facebook logo
@@ -354,6 +367,70 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The back button is used on pages to allow the user to go back to the previous page without using the browser back button such as if they find themselves on the delete user page and they do not wish to delete the user. If there is no previous page, it directs the user to a 404 page. |
 | **User Stories Covered:** 2, 8 |
 
+| **Homepage: Header** |
+| ----- |
+| **Page: /** |
+| <details><summary>Homepage Header</summary><img src="/documentation/features/homepage_header.png"></details> |
+| <details><summary>Homepage Header Mobile</summary><img src="/documentation/features/homepage_header_mobile.png"></details> |
+| **Details:** The homepage header allows the user to easily navigate the home page, going to different sections at a click of a button. When scrolling the homepage, the header stays at the top of the page and on smaller screens becomes a burger menu. Hovering the links creates an underline effect helping the user know what link they are hovering. Clicking the link scrolls the page smoothly to the corresponding section. On smaller screens, JavaScript code is implemented to close the burger menu when a link is clocked to free up room on the page. |
+| **User Stories Covered:** 2, 8 |
+
+| **Homepage: Booking form** |
+| ----- |
+| **Page: /** |
+| <details><summary>Booking Form</summary><img src="/documentation/features/homepage_booking_form.png"></details> |
+| **Details:** On smaller screens the booking form is removed from the header as there is not enough space to display it properly and is embed into the body of the homepage instead. |
+| **User Stories Covered:** 2, 22 |
+
+| **Homepage: About Us** |
+| ----- |
+| **Page: /** |
+| <details><summary>About Us</summary><img src="/documentation/features/homepage_about_us.png"></details> |
+| **Details:** The about us feature contains a carousel of images of the hotel area and information about the Hotel. |
+| **User Stories Covered:** 2, 3 |
+
+| **Homepage: Services** |
+| ----- |
+| **Page: /** |
+| <details><summary>Services</summary><img src="/documentation/features/homepage_services.png"></details> |
+| **Details:** The services section contains cards in a carousel of each service provided and information about them. |
+| **User Stories Covered:** 2, 4 |
+
+| **Homepage: Carousels** |
+| ----- |
+| **Page: /** |
+| <details><summary>Carousel- unhovered</summary><img src="/documentation/features/homepage_carousel_unhovered.png"></details> |
+| <details><summary>Carousel- hovered</summary><img src="/documentation/features/homepage_carousel_hovered.png"></details> |
+| <details><summary>Carousel- buttons hovered</summary><img src="/documentation/features/homepage_carousel_button_hovered.png"></details> |
+| **Details:** Bootstrap carousels are used to display images of the resort and information on the services available one by one in a pleasing manner to the user. The next/previous arrows on the carousel only appear when the carousel is hovered to keep the images clear and when the buttons are hovered, animations occur to indicate to the user that they are clickable but wrapping it in the site branded golden halo. |
+| **User Stories Covered:** 2, 8 |
+
+| **Homepage: Location** |
+| ----- |
+| **Page: /** |
+| <details><summary>Location</summary><img src="/documentation/features/homepage_location.png"></details> |
+| **Details:** The location section provides travel information and an interactive Google map of the location. |
+| **User Stories Covered:** 2, 6 |
+
+| **Homepage: FAQs** |
+| ----- |
+| **Page: /** |
+| <details><summary>FAQs 3 columns</summary><img src="/documentation/features/homepage_faqs_3.png"></details> |
+| <details><summary>FAQs 1 column</summary><img src="/documentation/features/homepage_faqs.png"></details> |
+| **Details:** The FAQ section provides the user with answers to frequently asked questions, hopefully answering them clearly and reducing the need of the user to reach out for clarification. On larger screens this is split into three columns and on smaller screens; one column. |
+| **User Stories Covered:** 2, 5 |
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -426,34 +503,6 @@ This is my selection for block text across the website. Roboto is the most popul
 | <details><summary>Google Login</summary><img src="/documentation/features/allauth_google.png"></details> |
 | **Details:** The AllAuth Google login allows users to sign up or log in with their Google accounts. This is good for security, as it is a validated email address. |
 | **User Stories Covered:** 2, 11, 14 |
-
-| **Homepage: Header** |
-| ----- |
-| **Page: /** |
-| <details><summary>Homepage Header</summary><img src="/documentation/features/homepage_header.png"></details> |
-| **Details:** The homepage header allows the user to easily navigate the home page, going to different sections at a click of a button. When scrolling the homepage, the header stays at the top of the page and on smaller screens becomes a burger menu. |
-| **User Stories Covered:** 2 |
-
-| **Homepage: About Us** |
-| ----- |
-| **Page: /** |
-| <details><summary>About Us</summary><img src="/documentation/features/homepage_about_us.png"></details> |
-| **Details:** The about us feature contains a carousel of images of the hotel area and information about the Hotel. |
-| **User Stories Covered:** 2, 3 |
-
-| **Homepage: Services** |
-| ----- |
-| **Page: /** |
-| <details><summary>Services</summary><img src="/documentation/features/homepage_services.png"></details> |
-| **Details:** The services section contains cards in a carousel of each service provided and information about them. |
-| **User Stories Covered:** 2, 4 |
-
-| **Homepage: Location** |
-| ----- |
-| **Page: /** |
-| <details><summary>Location</summary><img src="/documentation/features/homepage_services.png"></details> |
-| **Details:** The location section provides travel information and an interactive Google map of the location. |
-| **User Stories Covered:** 2, 6 |
 
 | **Rooms: Available Room Card** |
 | ----- |
