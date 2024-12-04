@@ -67,7 +67,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
 - A responsive website where the functionality is not impacted by screen size.
 - Easy navigation that is intuitive and responsive.
 - A website designed with accessibility in mind.
-- A back end that will handle user details, toy details, and review details.
+- A back end that will handle user details, room details, and trip details.
 - A finished product that will proudly be displayed within the developer's portfolio.
 
 ## User Stories
