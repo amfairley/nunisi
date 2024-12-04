@@ -82,6 +82,32 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Responsivity | Reduce screen size to below 992px | Footer logo disappears | Y | N/A |
 | **Back Button** | | | | |
 | Back button | Hover | Colours invert and gold halo appears | Y | N/A |
+| **Homepage** | | | | |
+| Header- Desktop | Hover links | Underline effect occurs | Y | N/A |
+| Header- Desktop | Click links | Page scrolls to respective section | Y | N/A |
+| Header | Reduce screen size | Header collapses to a burger menu and font changes | Y | N/A |
+| Header- Mobile | Click burger menu | Burger menu is highlighted and links are displayed | Y | N/A |
+| Header- Mobile | Hover links | Underline effect occurs | Y | N/A |
+| Header- Mobile | Click links | Page scrolls to respective section and menu closes | Y | N/A |
+| Header | Scroll down the page | Header stays at top of the page view | Y | N/A |
+| Booking form | Reduce screen size | Booking form appears as the navigation booking form vanishes | Y | N/A |
+| About us | Hover carousel | Next/Previous buttons appear | Y | N/A |
+| About us | Hover carousel buttons | Next/Previous buttons become bold with a golden halo | Y | N/A |
+| About us | Click next/previous on carousel | Image changes to the next/previous image | Y | N/A |
+| About us | Reduce screen size | Image carousel goes above the text | Y | N/A |
+| Services | Hover carousel | Next/Previous buttons appear | Y | N/A |
+| Services | Hover carousel buttons | Next/Previous buttons become bold with a golden halo | Y | N/A |
+| Services | Click next/previous on carousel | Card changes to the next/previous service card | Y | N/A |
+| Services | Reduce screen size | Image goes above the text in the carousel cards | Y | N/A |
+| Location | Manipulate Google Map | Works as expected | Y | N/A |
+| Location | Reduce screen size | Map is put under the text | Y | N/A |
+| FAQs | Reduce screen size | Columns go from 3 to 1 | Y | N/A |
+
+
+
+
+
+
 | **AllAuth Pages** | | | | |
 | Sign up form | Enter an incorrect email address | Prompt appears telling the user to enter a valid email | Y | N/A |
 | Sign up form | Do not enter the password again | Prompt appears telling the user to fill out that field | Y | N/A |
@@ -118,18 +144,7 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Google login | Hover continue button | Button colours invert | Y | N/A |
 | Google login | Click continue | Redirected to Google access page | Y | N/A |
 | Google login | Sign up with Google | Allows login with the Google account | Y | N/A |
-| **Homepage** | | | | |
-| Header | Hover links | Link background darkens | Y | N/A |
-| Header | Click links | Page scrolls to respective section | Y | N/A |
-| Header | Reduce screen size | Header collapses to a burger menu | Y | N/A |
-| Header | Click the links in the burger menu | Page scrolls to section and burger menu closes | Y | N/A |
-| Header | Scroll down the page | Header stays at top of the page view | Y | N/A |
-| Booking form | Reduce screen size | Booking form appears as the navigation booking for vanishes | Y | N/A |
-| About us | Click next/previous on carousel | Image changes to the next/previous image | Y | N/A |
-| Services | Click next/previous on carousel | Card changes to the next/previous service card | Y | N/A |
-| Location | Manipulate Google Map | Works as expected | Y | N/A |
-| Location | Reduce screen size | Map is put under the text | Y | N/A |
-| FAQs | Reduce screen size | Columns go from 3 to 1 | Y | N/A |
+
 | **available_rooms.html** | | | | |
 | Booking form | Submit form with check in date after check out date | The form submits and provides the user with an error | Y | N/A |
 | Booking form | Submit correct data | The form submits and redirects the user to a page showing the available rooms | Y | N/A |
@@ -225,6 +240,15 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <details>
 <summary>Base template results</summary>
 <img src="/documentation/testing/wave/base.png">
+</details><br>
+
+**Homepage**<br>
+- Contrast error 1 and 2: From the date widgets in the base template.
+- Contrast error 3 and 4: Wave reads the Hero Image as a white background creating a contrast error with the white text despite the black shadow effect added to the text. This is not the case and has no impact on the user.
+- Contrast error 5, 6, 7, 8: From the bootstrap carousel buttons. Bootstrap has "next" or "previous" as text the same colour as the background. This has no effect on the website usability, as the arrows use colours shown to have good contrast.
+<details>
+<summary>Homepage results</summary>
+<img src="/documentation/testing/wave/homepage.png">
 </details><br>
 
 
@@ -326,16 +350,6 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-**Homepage**<br>
-- Contrast error 1: Wave mistakenly takes the booking form check in label as the same colour as the background. This is not the case so has no impact on the user.
-- Contrast error 2: Wave mistakenly takes the booking form check out label as the same colour as the background. This is not the case so has no impact on the user.
-- Contrast error 3 and 4: Wave puts the Hero Image as a white background creating a contrast error with the white text. This is not the case and has no impact on the user.
-- Contrast error 5 and 6: Similar to 3 and 4 but with the next/previous arrows on the about us carousel.
-- Contrast error 7 and 8: Same as 5 and 6 but for the services carousel.
-<details>
-<summary>Homepage results</summary>
-<img src="/documentation/testing/wave/homepage.png">
-</details><br>
 
 
 **Rooms: available_rooms.html**<br>
@@ -431,6 +445,9 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | ----- | ------ | ------ |
 | Base template | None | None |
 | Back button | None | None |
+| Homepage | None | None |
+
+
 | Allauth - login | None | None |
 | Allauth - logout | None | None |
 | Allauth - inactive | None | None |
@@ -444,7 +461,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Allauth - 3rd party login cancelled | None | None |
 | Allauth - 3rd party login error | None | None |
 | Allauth - Google signup | None | None |
-| Homepage | None | None |
+
 | Available Rooms | None | None |
 | All rooms - superuser | None | None |
 | Add room | None | None |
@@ -471,6 +488,12 @@ The custom JavaScript code was testing using the JavaScript linter [JSLint](http
 - The following variables were added: bootstrap.
 - Full results can be seen [here](/documentation/testing/jslint/base_template.pdf)
 
+**Homepage template**<br>
+- The script at the bottom of the home template index.html was copied into the linter.
+- The following linter settings were selected: browser. 
+- The following variables were added: bootstrap.
+- Full results can be seen [here](/documentation/testing/jslint/index.pdf)
+
 
 ### Python Validation
 The Python code for this project was written in strict accordance with the [PEP 8](https://peps.python.org/pep-0008/) style guide for Python code. These include using correct indentations, maximum line lengths of 79 characters, and adhering to naming conventions for variables, functions, and classes. The [Code Institue python linter](https://pep8ci.herokuapp.com/) was used to validate the written code.
@@ -496,33 +519,11 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/back_button_urls.png">
 </details><br>
 
-
-**Home: context_processor.py**<br>
-- No errors or alerts
-<details>
-<summary>Context processor results</summary>
-<img src="/documentation/testing/python/home_context_processor.png">
-</details><br>
-
 **Home: forms.py**<br>
 - No errors or alerts
 <details>
 <summary>Froms results</summary>
 <img src="/documentation/testing/python/home_forms.png">
-</details><br>
-
-**Home: views.py**<br>
-- No errors or alerts
-<details>
-<summary>Views results</summary>
-<img src="/documentation/testing/python/home_views.png">
-</details><br>
-
-**Home: urls.py**<br>
-- No errors or alerts
-<details>
-<summary>Urls results</summary>
-<img src="/documentation/testing/python/home_urls.png">
 </details><br>
 
 **Home: test_forms.py**<br>
@@ -532,12 +533,42 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/home_test_forms.png">
 </details><br>
 
+**Home: views.py**<br>
+- No errors or alerts
+<details>
+<summary>Views results</summary>
+<img src="/documentation/testing/python/home_views.png">
+</details><br>
+
 **Home: test_views.py**<br>
 - No errors or alerts
 <details>
 <summary>Test views results</summary>
 <img src="/documentation/testing/python/home_test_views.png">
 </details><br>
+
+**Home: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>Urls results</summary>
+<img src="/documentation/testing/python/home_urls.png">
+</details><br>
+
+**Home: context_processor.py**<br>
+- No errors or alerts
+<details>
+<summary>Context processor results</summary>
+<img src="/documentation/testing/python/home_context_processor.png">
+</details><br>
+
+
+
+
+
+
+
+
+
 
 **Rooms: admin.py**<br>
 - No errors or alerts
