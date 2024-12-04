@@ -4,6 +4,7 @@ from datetime import date, timedelta
 
 
 class BookingForm(forms.Form):
+    '''Search form for available rooms'''
     check_in_date = forms.DateField(
         widget=forms.DateInput(
             attrs={
@@ -69,12 +70,14 @@ class BookingForm(forms.Form):
         ]
 
     def clean_check_in_date(self):
+        '''Check if the check-in date is tomorrow at the earliest'''
         check_in_date = self.cleaned_data['check_in_date']
         if check_in_date < date.today() + timedelta(days=1):
             raise ValidationError("Check-in date must be tomorrow or later.")
         return check_in_date
 
     def clean_check_out_date(self):
+        '''Check if the check out date is later than check in date'''
         check_in_date = self.cleaned_data.get('check_in_date')
         check_out_date = self.cleaned_data['check_out_date']
 
