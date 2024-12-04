@@ -13,7 +13,7 @@
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 jost-font">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-links">
                     <li class="nav-item d-block d-lg-none index-nav-item">
                         <a class="nav-link active" aria-current="page" href="#index-booking-form">Book</a>
                     </li>
@@ -39,17 +39,14 @@
         <!--Hero Image-->
         <section id="index-hero" aria-label="Nunisi Forest and Spa Hotel Arial Photo">
             <h1 id="hero-title" class="jost-font">Nunisi Forest Hotel and Spa</h1>
-            <h2 id="hero-message" class="jost-font">Where luxury is natural!</h2>
+            <h2 id="hero-message" class="caveat-font">Where luxury is natural!</h2>
         </section>
         <!--Booking Form-->
         <div id="index-booking-form">
             <div class="d-lg-none d-block container-fluid">
-                <div class="mx-auto text-center booking-form-div row">
+                <div class="mx-auto text-center index-booking-form-div row">
                     <form method="POST" action="{% url 'available_rooms' %}" id="index-booking-form-body">
                         {% csrf_token %}
-                        <div class="col-12">
-                            <h2 class="jost-font index-form-title">SEARCH AVAILABILITY:</h2>
-                        </div>
                         <div class="col-12 form-floating check-in-div index-check">
                             {{ booking_form_mobile.check_in_date.label_tag }}
                             <br>
@@ -66,15 +63,15 @@
                                     Guests: <span id="mobile-total-guests">0</span>
                                 </p>
                                 <hr>
-                                <p class="guests-choices">
+                                <p class="index-guests-choices">
                                     {{ booking_form_mobile.adults.label_tag }}{{ booking_form_mobile.adults }}
                                 </p>
                                 <hr>
-                                <p class="guests-choices">
+                                <p class="index-guests-choices">
                                     {{ booking_form_mobile.children.label_tag }}{{ booking_form_mobile.children }}
                                 </p>
                                 <hr>
-                                <p class="guests-choices">
+                                <p class="index-guests-choices">
                                     {{ booking_form_mobile.infants.label_tag }}{{ booking_form_mobile.infants }}
                                 </p>
                             </div>
@@ -111,16 +108,16 @@
                     </div>
                 </div>
                 <article class="col-12 col-lg-6">
-                    <h2 id="index-info-title">About Us</h2>
-                    <p class="index-info-text">Located in the majestic Borjomi-Kharagauli National Park 750m above sea level and on the river Nunisitskali, sits the Nunisi Forest Hotel and Spa. Here we are graced with the unique local microclimate of deciduous and coniferous forest and high alkaline mineral water, making us perfectly situated for a relaxing and rejuvenating getaway for health and wellness seekers.</p><br>
-                    <p class="index-info-text">Legend goes that the healing properties of the surrounding waters were discovered by David the Builder, when the King was returning to Tbilisi after a fearsome battle. He was forced to rest in Nunisi, as his horses could not walk any further with ulcerated backs from the exhausting campaign. Bathing in the river water of Nunisi led to their speedy recovery and allowed the King to travel onward at an expediated rate.</p>
+                    <h2 class="section-title">About Us</h2>
+                    <p class="section-text">Located in the majestic Borjomi-Kharagauli National Park 750m above sea level and on the river Nunisitskali, sits the Nunisi Forest Hotel and Spa. Here we are graced with the unique local microclimate of deciduous and coniferous forest and high alkaline mineral water, making us perfectly situated for a relaxing and rejuvenating getaway for health and wellness seekers.</p><br>
+                    <p class="section-text">Legend goes that the healing properties of the surrounding waters were discovered by David the Builder, when the King was returning to Tbilisi after a fearsome battle. He was forced to rest in Nunisi, as his horses could not walk any further with ulcerated backs from the exhausting campaign. Bathing in the river water of Nunisi led to their speedy recovery and allowed the King to travel onward at an expediated rate.</p>
                 </article>
             </div>
         </div>
         <hr class="index-horizontal-rule">
         <!--Services-->
         <div id="index-services">
-            <h2 id="index-services-title">Services</h2>
+            <h2 class="section-title">Services</h2>
             <div id="resortServiceCarousel" class="carousel slide">
                 <div class="carousel-inner">
                     <!--Services Card Water-->
@@ -189,8 +186,8 @@
                 <div class="col-12 col-lg-6 location-info">
                     <div class="location-background">
                     </div>
-                    <h2 id="index-location-title">Location</h2>
-                    <p id="index-location-text">Our hotel is accessible by car following directions to the location date provided here. Alternatively, there is a train from Tbilisi that stops at a station nearby and we can arrange collection or a taxi to bring you the rest of the way. Access to the resort itself is via a cable car over the river Nunisitskali.</p>
+                    <h2 class="section-title">Location</h2>
+                    <p class="section-text">Our hotel is accessible by car following directions to the location date provided here. Alternatively, there is a train from Tbilisi that stops at a station nearby and we can arrange collection or a taxi to bring you the rest of the way. Access to the resort itself is via a cable car over the river Nunisitskali.</p>
                 </div>
                 <div class="col-12 col-lg-6 location-map-div">
                     <!--Map-->
@@ -213,11 +210,11 @@
         <div class="container" id="index-faqs">
             <div class="row">
                 <div class="col-12">
-                    <h2 class="faq-title">FAQs</h2>
+                    <h2 class="section-title">FAQs</h2>
                 </div>
-                <!--Desktop screens-->
+                <!--FAQs: Desktop screens-->
                 <div class="d-none d-lg-block col-4">
-                    <ul class="faq-list">
+                    <ul class="section-text faq-list">
                         <li>
                             <p class="faq-question">Are there meals provided?</p>
                             <p class="faq-answer">Yes, all meals are complementary within the price of your stay. We serve breakfast at 10:00am, lunch at 14:30pm, and dinner at 19:00pm in our cantina.</p>
@@ -276,7 +273,7 @@
                         </li>
                     </ul>
                 </div>
-                <!--Mobile screens-->
+                <!--FAQs: Mobile screens-->
                 <div class="d-lg-none col-12">
                     <ul class="faq-list">
                         <li>
@@ -336,12 +333,15 @@
 {% endblock %}
 {% block postloadjs %}
 <script>
-    // Script to hide the navbar menu when a link is clicked
-    document.querySelectorAll(".navbar-nav .nav-link").forEach(function(link) {
-        link.addEventListener("click", function() {
-            const navbarCollapse = new bootstrap.Collapse(document.getElementById("navbarSupportedContent"), {
-                toggle: false
-            });
+    document.querySelectorAll(".navbar-nav .nav-link").forEach(function (link) {
+        /**
+         * Script to hide the homepage navbar burger menu when a link is clicked
+         */
+        link.addEventListener("click", function () {
+            const navbarCollapse = new bootstrap.Collapse(
+                document.getElementById("navbarSupportedContent"),
+                {toggle: false}
+            );
             navbarCollapse.hide();
         });
     });
