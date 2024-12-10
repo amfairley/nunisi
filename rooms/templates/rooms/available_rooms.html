@@ -21,6 +21,15 @@
             </div>
         {% else %}
             {% if valid_rooms %}
+                <!--Sorting block-->
+                <div>
+                    <label for="sort-selector">Sort By:</label>
+                    <select id="sort-selector" onchange="submitBookingFormWithSort(this.value)">
+                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                    </select>
+                </div>
                 {% for valid_room in valid_rooms %}
                     <div class="card available-room-card bg-nunisi-gold">
                         <div class="row">
@@ -84,4 +93,38 @@
             {% endif %}
         {% endif %}
     </div>
+{% endblock %}
+{% block postloadjs %}
+<script>
+    function submitBookingFormWithSort(sortValue) {
+        // Do nothing if sort by... is selected
+        if (sortValue === "reset") {
+            return;
+        }
+
+        // Get the header booking form
+        const bookingForm = document.querySelector(".booking-form-div form");
+
+        // Log an error to the console if the booking form is not found
+        if (!bookingForm) {
+            console.log("Booking form not found!");
+            return;
+        }
+
+        // Check if the sort option has been added to the booking form
+        let sortInput = bookingForm.querySelector("input[name='sort']");
+        // Add the sort option to the booking form
+        if (!sortInput) {
+            sortInput = document.createElement("input");
+            sortInput.type = "hidden";
+            sortInput.name = "sort";
+            bookingForm.appendChild(sortInput);
+        }
+        // Add the value selected (sortValue) to the booking form sortInput
+        sortInput.value = sortValue;
+        
+        // Submit the form
+        bookingForm.submit();
+    }
+</script>
 {% endblock %}

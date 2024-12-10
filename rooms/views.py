@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Room, Amenities
 from .forms import EditRoomForm
 from home.forms import BookingForm
-from datetime import timedelta, datetime
+from datetime import timedelta
 from django.contrib.admin.views.decorators import staff_member_required
 
 
@@ -68,7 +68,10 @@ def available_rooms(request):
             # Find suitable rooms
             for room in rooms:
                 # Check if any trip_dates are in the room's unavailability list
-                if any(date.strftime('%Y-%m-%d') in room.unavailability for date in trip_dates):
+                if any(
+                    date.strftime('%Y-%m-%d') in room.unavailability
+                    for date in trip_dates
+                ):
                     continue
 
                 # Calculate amount of people the room sleeps based on amenities
@@ -89,13 +92,29 @@ def available_rooms(request):
                         'total_cost': total_cost,
                     })
 
+            # Handle the sorting
+            current_sorting = 'None_None'
+            sort = request.POST.get('sort')
+            # If it is price_asc, order the rooms by price
+            # and update current_sorting to display correctly
+            if sort == 'price_asc':
+                valid_rooms.sort(key=lambda x: x['room'].price)
+                current_sorting = 'price_asc'
+            # If it is price_desc, reverse order the rooms by price
+            # and update current_sorting to display correctly
+            elif sort == 'price_desc':
+                valid_rooms.sort(key=lambda x: x['room'].price, reverse=True)
+                current_sorting = 'price_desc'
+
             context = {
                 'rooms': rooms,
                 'amenities': amenities,
+                # Get the sort option
+                'current_sorting': current_sorting,
                 # Booking form for iterating through errors
                 'booking_form': booking_form,
-                # Booking form desktop for populating header form
-                'booking_form_desktop': booking_form_desktop,
+                # Populate the header form with the booking form data
+                'booking_form_desktop': booking_form,
                 'check_in_date': check_in_date,
                 'check_out_date': check_out_date,
                 'adults': adults,
