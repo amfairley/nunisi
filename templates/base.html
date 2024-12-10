@@ -99,7 +99,11 @@
                                                 Guests: 
                                             </p>
                                             <p id="desktop-total-guests">
-                                                0
+                                                {% if total_guests %}
+                                                    {{total_guests}}
+                                                {% else %}
+                                                    0
+                                                {% endif %}
                                             </p>
                                         </div>
                                     </div>
