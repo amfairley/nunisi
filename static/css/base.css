@@ -1051,7 +1051,8 @@ main {
 .page-link {
     color: #FDD67C;
     background-color: #3A6B35;
-    opacity: 0.8;
+    display: inline-block;
+    transition: transform 0.3s ease;
 }
 
 .page-link:focus {
@@ -1063,7 +1064,7 @@ main {
 .page-link:hover {
     background-color: #3A6B35 !important;
     color: #FDD67C !important;
-    opacity: 1;
+    transform: scale(1.1);
 }
 
 .page-item.active {
@@ -1075,18 +1076,13 @@ main {
     background-color: #FDD67C !important;
     color: #3A6B35 !important;
     font-weight: normal !important;
-    opacity: 0.8 !important;
 }
-
-
 
 .disabled .page-link {
     color: #3A6B35;
     background-color: rgba(253, 214, 124, 0.2);
     
 }
-
-
 
 #no-rooms {
     text-align: center;
@@ -1168,20 +1164,20 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1em; /* Add space between form rows */
-  }
+}
   
 .add-edit-room-form p label {
     flex: 1;
     text-align: left;
     margin-right: 1em;
-  }
+}
   
 .add-edit-room-form p input,
 .add-edit-room-form p select,
 .add-edit-room-form p textarea {
     flex: 2;
     padding: 0.5em;
-  }
+}
 
 .add-edit-room-submit-div {
     display: flex;
