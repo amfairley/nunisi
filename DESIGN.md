@@ -260,6 +260,10 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Home: Navigation background
 - Home: Carousel arrow gold halo when hovered
 - Home: Service carousel background
+- Available rooms: Text colour of sort options
+- Available rooms: Amenity filter title text, body background, title focus shadow
+- Available rooms: Room card background, summary text
+- Available rooms: Pagination background of current page, text of other options, faded background of disabled options
 
 
 **Fern Green #3A6B35**
@@ -270,24 +274,35 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Account menu text (normal)
 - Account menu background (hover)
 - Account dropdown menu background
+- Page titles
 - Home: Navigation text
 - Home: Navigation hover underline
 - Home: Navigation burger menu outline
 - Home: Horizontal rules between sections
 - Home: Carousel arrow backgrounds
 - Home: Section title font colour
+- Available rooms: Background colour of the sort options
+- Available rooms: Amenity filter title background, body text, button background
+- Available rooms: Room name text, amenitiy symbols, summary background, image border
+- Available rooms: Pagination text of disabled and active pages, background of other options
 
 **Gun Metal #333A3F**
 - Border for the account menu
 - Home: Hero text shadow colour
 - Home: Section text font colour
+- Available rooms: Outline of room cards
+- Available rooms: Amenity and room description text
+- Available rooms: Text of no matches
 
 **White Smoke #F5F5F5**
 - Home: Hero text colour
+- Available rooms: Background of amenity filter accordion symbol
 
 **Dark Goldenrod #B88C26**
 - Account dropdown border
 - Home: Service carousel border
+- Available rooms: Room card middle border
+- Available rooms: Pagination outline of current page
 
 **Other colours used:**
 - Facebook: Blue and white are used for the Facebook logo
@@ -420,13 +435,41 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The FAQ section provides the user with answers to frequently asked questions, hopefully answering them clearly and reducing the need of the user to reach out for clarification. On larger screens this is split into three columns and on smaller screens; one column. |
 | **User Stories Covered:** 2, 5 |
 
+| **Rooms: form errors** |
+| ----- |
+| **Page: /rooms/** |
+| <details><summary>Form Error 1</summary><img src="/documentation/features/rooms_form_error1.png"></details> |
+| <details><summary>Form Error 2</summary><img src="/documentation/features/rooms_form_error2.png"></details> |
+| **Details:** The available rooms page loads with errors if the start date is the current date or the end date occurs before the start date. These validations of the form are done on the back-end for robust security and thus cannot be shown prior to form submission. They highlight the errors in the form and prompt the user to check their input data. |
+| **User Stories Covered:** 1, 2, 8, 11 |
 
+| **Rooms: Sorting functionality** |
+| ----- |
+| **Page: /rooms/** |
+| <details><summary>Sort rooms</summary><img src="/documentation/features/rooms_sort.png"></details> |
+| **Details:** The sort box allows users to sort their results by price and submit their choice with the sort button. The decision to use a button was to align the website with accessibility criteria, as originally a dropdown with submission on change was opted for but this rendered choosing other options using only a keyboard impossible. |
+| **User Stories Covered:** 2, 23|
 
+| **Rooms: Amenity filter** |
+| ----- |
+| **Page: /rooms/** |
+| <details><summary>Amenity Filter</summary><img src="/documentation/features/rooms_amenity_filter.png.png"></details> |
+| **Details:** The amenity filter allows users to filter the available rooms by amenity to find the one that suits their requirements. These choices are saved when a user sorts by price after selecting them, allowing further functionality and a good user experience. On large screens the choices are spread over 4 columns, on medium screens they are spread over 3 columns, on small screens; 2 columns, and on mobile screens; 1 column. |
+| **User Stories Covered:** 2, 23|
 
+| **Rooms: Available Room Card** |
+| ----- |
+| **Page: /rooms/** |
+| <details><summary>Room Card</summary><img src="/documentation/features/rooms_available_room_card.png"></details> |
+| **Details:** The available room card displays the room information to the guest for a room that matches their search criteria. It clearly displays the amenities available in the room and provides a summary of their trip containing the total cost and number of days of the trip. There is also a button to pick the room that directs users to the checkout page. |
+| **User Stories Covered:** 2, 22, 24, 26 |
 
-
-
-
+| **Rooms: Pagination** |
+| ----- |
+| **Page: /rooms/** |
+| <details><summary>Rooms Pagination</summary><img src="/documentation/features/rooms_pagination.png"></details> |
+| **Details:** The available room cards are split over many pages. This is not as useful currently but will provide good user experience when more rooms are added for a live website and will decrease page load times. Selecting the page number keeps the amenity and sort filter choices. The current page is displayed as larger than the others with an inverse colour. The disabled pages (e.g previous on page 1 and next on the lage page) have a lower opacity to show their status. Hovering over clickable options increases their size. |
+| **User Stories Covered:** 2. 22 |
 
 
 
@@ -504,12 +547,6 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The AllAuth Google login allows users to sign up or log in with their Google accounts. This is good for security, as it is a validated email address. |
 | **User Stories Covered:** 2, 11, 14 |
 
-| **Rooms: Available Room Card** |
-| ----- |
-| **Page: /rooms/** |
-| <details><summary>Room Card</summary><img src="/documentation/features/rooms_available_room_card.png"></details> |
-| **Details:** The available room card displays the room information to the guest for a room that matches their search criteria. |
-| **User Stories Covered:** 2, 22, 24, 26 |
 
 | **Rooms: rooms_superuser.html** |
 | ----- |
