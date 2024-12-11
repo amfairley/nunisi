@@ -1,9 +1,9 @@
+/**
+ * Gets the number of adults, children, and infants and calculates
+ * total guests, displaying it on the screen.
+ * Works for both the navigation bar search form and index page form
+ */
 function updateGuestCount() {
-    /**
-     * Gets the number of adults, children, and infants and calculates
-     * total guests, displaying it on the screen.
-     * Works for both the navigation bar search form and index page form
-     */
     // Get values from the form in real time (0 if no value) for both forms
     const adultsTopNav = parseInt(
         document.querySelector("#top-nav #id_desktop-adults").value
@@ -47,11 +47,11 @@ function updateGuestCount() {
     }
 }
 
+/**
+ * Allows the user to open the calendar widgets by clicking anywhere
+ * inside the check in/out date input areas.
+ */
 document.addEventListener("DOMContentLoaded", function () {
-    /**
-     * Allows the user to open the calendar widgets by clicking anywhere
-     * inside the check in/out date input areas.
-     */
     // Get the checkin/out inputs for both forms
     const checkInInputTop = document.querySelector(
         "#top-nav #id_desktop-check_in_date"
