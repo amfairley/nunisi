@@ -35,6 +35,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
     - [Bug 2](#bug-2)
     - [Bug 3](#bug-3)
     - [Bug 4](#bug-4)
+    - [Bug 5](#bug-5)
     - [Known Bugs](#known-bugs)
 6. [Analytics](#analytics)
 
@@ -102,7 +103,33 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Location | Manipulate Google Map | Works as expected | Y | N/A |
 | Location | Reduce screen size | Map is put under the text | Y | N/A |
 | FAQs | Reduce screen size | Columns go from 3 to 1 | Y | N/A |
-
+| **available_rooms.html** | | | | |
+| Booking form - header | Submit form with values | The available rooms page loads with the header booking form pre-filled with the user choices | Y | N/A |
+| Booking form - header | Submit form with check in date after check out date | The form submits and provides the user with the correct error message | Y | N/A |
+| Booking form - header | Submit form with a check in date of today | The form submits and provides the user with the correct error message | Y | N/A |
+| Booking form - header | Submit correct data | The form submits and redirects the user to a page showing the available rooms | Y | N/A |
+| Booking form - homepage body | Submit form with values | The available rooms page loads with the header booking form pre-filled with the user choices | Y | N/A |
+| Booking form - homepage body | Submit form with check in date after check out date | The form submits and provides the user with the correct error message | Y | N/A |
+| Booking form - homepage body | Submit form with a check in date of today | The form submits and provides the user with the correct error message | Y | N/A |
+| Booking form - homepage body | Submit correct data | The form submits and redirects the user to a page showing the available rooms | Y | N/A |
+| Amenity filter accordion | Click the accordion title when closed | Accordion opens, the title gets a gold focus halo and the accordion icon becomes an up arrow. | Y | N/A |
+| Amenity filter accordion | Resize the screen | The number of columns go from 4 to 3 to 2 to 1 as screen size is reduced | Y | N/A |
+| Amenity filter accordion | Click the accordion title when open | Accordion closes and the accordion icon becomes a down arrow | Y | N/A |
+| Amenity filter accordion | Make some selections | Selection inputs get a blue tick | Y | N/A |
+| Amenity filter accordion | Hover the apply filters button | Site button branding occurs | Y | N/A |
+| Amenity filter accordion | Multiple submissions of various selections | The page reloads only with options that match the choices | Y | N/A |
+| Sort by | Hover the sort by button | Sitewide button effect occurs, gold halo around the options | Y | N/A |
+| Sort by | Click the options | Dropdown menu opens with choices | Y | N/A |
+| Sort by | Select and submit "Sort by..." | Nothing happens | Y | N/A |
+| Sort by | Select and submit "Price (low to high)" | Page refreshes with rooms ordered from low to high price keeping the previously chosen amenity filter | Y | N/A |
+| Sort by | Select and submit "Price (high to low)" | Page refreshes with rooms ordered from high to low price keeping the previously chosen amenity filter | Y | N/A |
+| Pagination | Hover clickable choices | Choices become larger | Y | N/A |
+| Pagination | Go to another page | The amenity filter choices and sort choices are kept and correct page appears |
+| Pagination | Go to the first page | "Previous" button becomes disabled | Y | N/A |
+| Pagination | Go to the last page | "Next" button becomes disabled | Y | N/A |
+| Room card | Hover book now button | Cursor changes and button colour inverts | Y | N/A |
+| Room card | Resize page | Image drops below room information on smaller screens | Y | N/A |
+| Room card | Click "Book Now" | User is redirect to checkout page with correct order summary | Y | N/A |
 
 
 
@@ -145,15 +172,7 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Google login | Click continue | Redirected to Google access page | Y | N/A |
 | Google login | Sign up with Google | Allows login with the Google account | Y | N/A |
 
-| **available_rooms.html** | | | | |
-| Booking form | Submit form with check in date after check out date | The form submits and provides the user with an error | Y | N/A |
-| Booking form | Submit correct data | The form submits and redirects the user to a page showing the available rooms | Y | N/A |
-| Page loading | Submit an availability search | The page loads with the search form prefilled with the user submitted values | Y | N/A |
-| Page loading | Submit an invalid availability search | The page loads a message informing the user of the errors in the form | Y | N/A |
-| Page loading | Submit a valid form that matches no criteria | The page loads with a message informing the user that there are no matches to their search | Y | N/A |
-| Page loading | Submit a valid search form | The page loads and displays available rooms | Y | N/A |
-| Room card | Hover book now button | Cursor changes and button colour inverts | Y | N/A |
-| Room card | Resize page | Image drops below room information on smaller screens | Y | N/A |
+
 | **rooms_superuser.html** | | | | |
 | Add room button | Hover | Button colours invert | Y | N/A |
 | Add room button | Click | Redirected to add room page | Y | N/A |
@@ -250,6 +269,22 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <summary>Homepage results</summary>
 <img src="/documentation/testing/wave/homepage.png">
 </details><br>
+
+**Rooms: available_rooms.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+- 1 alert for a missing fieldset. This relates to the checkboxes in the amenity filter, however these do not require a legend to explain so this alert was ignored.
+<details>
+<summary>Available rooms results</summary>
+<img src="/documentation/testing/wave/rooms_available_rooms.png">
+</details><br>
+
+
+
+
+
+
+
+
 
 
 
@@ -352,12 +387,7 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 
 
 
-**Rooms: available_rooms.html**<br>
-- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
-<details>
-<summary>Available rooms results</summary>
-<img src="/documentation/testing/wave/rooms_available_rooms.png">
-</details><br>
+
 
 
 **Rooms: rooms_superuser.html**<br>
@@ -446,6 +476,9 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Base template | None | None |
 | Back button | None | None |
 | Homepage | None | None |
+| Rooms: available_rooms | None | None |
+
+
 
 
 | Allauth - login | None | None |
@@ -462,7 +495,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Allauth - 3rd party login error | None | None |
 | Allauth - Google signup | None | None |
 
-| Available Rooms | None | None |
+
 | All rooms - superuser | None | None |
 | Add room | None | None |
 | Edit room | None | None |
@@ -480,7 +513,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no errors in the CSS code.
 
 ### JavaScript Validation
-The custom JavaScript code was testing using the JavaScript linter [JSLint](https://www.jslint.com/).
+The custom JavaScript code was testing using the JavaScript linter [JSLint](https://www.jslint.com/) with no errors across the entirity of the written JavaScript code.
 
 **Base template**<br>
 - The base.js file was copied into the linter and the postload JavaScript at the bottom of base.html was added to this for the purpose of validation. 
@@ -493,6 +526,11 @@ The custom JavaScript code was testing using the JavaScript linter [JSLint](http
 - The following linter settings were selected: browser. 
 - The following variables were added: bootstrap.
 - Full results can be seen [here](/documentation/testing/jslint/index.pdf)
+
+**Available Rooms**<br>
+- The script at the bottom of the home template index.html was copied into the linter.
+- The following linter settings were selected: browser, this (this was used in the code), white (to oversome an alert for parentheses but putting in parentheses created an alert to remove said parentheses), fart (to use more complicated arrow function)
+- Full results can be seen [here](/documentation/testing/jslint/available_rooms.pdf)
 
 
 ### Python Validation
@@ -779,6 +817,13 @@ print("Debug message:", variable)
 - The next error occured when retrieving the unavailability dates in the update_room function using room_booked_unavailable_dates = json.loads(room_booked.unavailability). This is because it was already saved as a python list, so I updated this to room_booked_unavailable_dates = room_booked.unavailability.
 - The next error in the update_room function came about from interacting with the dates as they retrieved as a string and I tried to string them using strftime(). I commented out this step and retried the code. This created an error as the date needs to be in a date format. I added an extra step to turn the date into a date format, then string it later. This solved the bug.
 
+### Bug 5:
+Bug 5 involved the filtering and sorting of the available room results. The usual way using GET was not working because the submitted search values were accessed through a POST check. This was overcome by using JavaScript to add a sort / filter / pagination hidden input to the populated form in the header and resubmitting the form. However this introduced a further complication when having multiple sort / filter / pagination functions running concurrently as each of them submitted the form individually. A workaround was conceived where:
+- The filter function will add a hidden filter input to form and not submit it
+- The sort function will run the filter function and then add a hidden sort input to the form and not submit it
+- The pagination function will run the sort function (adding the hidden filter and sort inputs to the form) and then add a hidden page input to the form and not submit it
+- The onchange for the sort dropdown and the onclick for the filter and pagination buttons were given event listeners to submit the form by accessing their given data-action attributes
+The only downside of this is that when applying a new filter, the pagination resets to page 1 which works as intended for a good user experience, however the sort is also reset. For now this is deemed acceptable due to the time and effort put in to achieving the current functionality.
 ## Analytics
 
 [Google Analytics](https://marketingplatform.google.com/about/analytics/) has been used to provide real time analytics about how users use my webpage. This includes how many page views, how many users scroll to the bottom of the page, indicating that content hinting is working, and how many users sign up. The data received from this will be used to inform the future updates to the webpage. This required the following code to be added to the base.html template at the bottom of the head element as directed:
