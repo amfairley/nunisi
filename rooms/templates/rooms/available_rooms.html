@@ -25,6 +25,7 @@
                 <div class="room-sort-container">
                     <label for="sort-selector" class="nunisi-button" data-action="sort">Sort By:</label>
                     <select id="sort-selector" class="nunisi-dropdown">
+                        <!--Sorting choices-->
                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                         <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                         <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
@@ -177,7 +178,9 @@
                     <div class="card available-room-card bg-nunisi-gold">
                         <div class="row">
                             <div class = "col-12 col-lg-6">
+                                <!--Room Name-->
                                 <h2 class="caveat-font available-room-name font-nunisi-green">{{ valid_room.room.sanitised_name }}</h2>
+                                <!--Amenities-->
                                 <h3 class="available-room-amenities-title roboto-font font-off-black">Amenities</h3>
                                 <ul>
                                     {% for amenity_id in valid_room.room.amenities %}
@@ -197,24 +200,26 @@
                                         {% endfor %}
                                     {% endfor %}
                                 </ul>
+                                <!--Room Description-->
                                 <article class="available-room-description roboto-font font-off-black">
                                     <h4>Room Description:</h4>
                                     {{ valid_room.room.description }}
                                 </article>
                             </div>
                             <div class="col-12 col-lg-6 room-image-booking-column">
+                                <!--Room image-->
                                 {% if valid_room.room.image %}
                                     <img src="{{ valid_room.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
                                 {% else %}
                                     <p>No image available</p>
                                 {% endif %}
+                                <!--Summary info-->
                                 <div class="room-trip-info-div">
                                     <div class="roboto-font font-nunisi-gold available-room-booking-div">
                                         <p><span class="font-weight-bolder">Number of days: </span>{{ total_days }}</p>
                                         <p><span class="font-weight-bolder">Overal cost: </span>£{{ valid_room.total_cost }}</p>
                                     </div>
-
-                                    <!--Have the action something like: url 'process_booking' room.id -->
+                                    <!--Booking button-->
                                     <form method="POST" action="{% url 'checkout' %}">
                                         {% csrf_token %}
                                         <input type="hidden" name="room_id" value="{{ valid_room.room.id }}">
@@ -234,8 +239,9 @@
                     </div>
                 {% endfor %}
                 <!--Pagination block-->
-                <nav aria-label="Page navigation">
+                <nav aria-label="Page navigation" id="rooms-pagination">
                     <ul class="pagination justify-content-center" data-action="pagination">
+                        <!--Previous and disable if on first page-->
                         {% if page_obj.has_previous %}
                             <li class="page-item">
                                 <a class="page-link" href="#" data-action="pagination" data-page="{{ page_obj.previous_page_number }}">Previous</a>
@@ -245,13 +251,15 @@
                                 <a class="page-link" href="#" tabindex="-1">Previous</a>
                             </li>
                         {% endif %}
-                
+                        
+                        <!--Numbered pages-->
                         {% for num in page_obj.paginator.page_range %}
                             <li class="page-item {% if page_obj.number == num %}active{% endif %}">
                                 <a class="page-link" href="#" data-action="pagination" data-page="{{ num }}">{{ num }}</a>
                             </li>
                         {% endfor %}
-                
+                        
+                        <!--Next and disable if on last page-->
                         {% if page_obj.has_next %}
                             <li class="page-item">
                                 <a class="page-link" href="#" data-action="pagination" data-page="{{ page_obj.next_page_number }}">Next</a>
@@ -264,6 +272,7 @@
                     </ul>
                 </nav>
             {% else %}
+                <!--No matches message-->
                 <p id="no-rooms" class="roboto-font font-off-black">Sorry, no rooms are available that match your search criteria. Please adjust your search and try again.</p>
                 <div class="back-button-container">
                     {% include "back_button/back_button.html" %}
@@ -305,7 +314,10 @@
     function addSortFilterToBookingForm() {
         const sortElement = document.getElementById("sort-selector");
         // Get the selected value of the select element
-        const sortValue = sortElement ? sortElement.value : "reset";
+        const sortValue = (sortElement
+            ? sortElement.value
+            : "reset");
+
         // Do nothing if sort by... is selected
         if (sortValue === "reset") {
             // Keep the amenity filter
@@ -371,10 +383,19 @@
     document.querySelectorAll("[data-action]").forEach((element) => {
         const action = element.getAttribute("data-action");
         const bookingForm = document.querySelector(".booking-form-div form");
-
         if (action === "sort") {
             // Handle the 'sort' action on change
             element.addEventListener("click", () => {
+                // Check if a selection is made
+                const sortElement = document.getElementById("sort-selector");
+                // Put it to default if there is no value
+                const sortValue = (sortElement
+                    ? sortElement.value
+                    : "reset");
+                // If no value, do nothing
+                if (sortValue === "reset") {
+                    return;
+                }
                 addSortFilterToBookingForm();
                 bookingForm.submit();
             });
@@ -394,7 +415,7 @@
                     return;
                 }
                 // If not, submit the form
-                bookingForm.submit()
+                bookingForm.submit();
             });
         }
     });
