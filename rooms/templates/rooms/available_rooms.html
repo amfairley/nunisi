@@ -232,6 +232,7 @@
                 {% endfor %}
             {% else %}
                 <p id="no-rooms" class="roboto-font font-off-black">Sorry, no rooms are available that match your search criteria. Please adjust your search and try again.</p>
+                {% include "back_button/back_button.html" %}
             {% endif %}
         {% endif %}
     </div>
