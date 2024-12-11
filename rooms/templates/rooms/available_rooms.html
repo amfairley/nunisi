@@ -30,6 +30,148 @@
                         <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
                     </select>
                 </div>
+                <!--Filter block-->
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <!--Accordion title-->
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Filter by Amenity
+                            </button>
+                        </h2>
+                        <!--Accordion content-->
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <form method="POST" action="{% url 'available_rooms' %}">
+                                    {% csrf_token %}
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="1" 
+                                                                {% if 1 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-bed"></i> Single Bed
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="2" 
+                                                                {% if 2 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-bed"></i>Double Bed
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="3" 
+                                                                {% if 3 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-regular fa-sun"></i>Balcony
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="4" 
+                                                                {% if 4 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-water"></i>River View
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="5" 
+                                                                {% if 5 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-mountain-sun"></i>Mountain View
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="6" 
+                                                                {% if 6 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-mosquito-net"></i>Mosquito Nets
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="7" 
+                                                                {% if 7 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-bottle-water"></i>Complimentary Bottled Water
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="8" 
+                                                                {% if 8 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-brands fa-cotton-bureau"></i>Bathrobe and Slippers
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="9" 
+                                                                {% if 9 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-wifi"></i>WiFi
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="10" 
+                                                                {% if 10 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-snowflake"></i>Air Conditioning
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="11" 
+                                                                {% if 11 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-igloo"></i>Mini Refrigerator
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="12" 
+                                                                {% if 12 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-mug-saucer"></i>Tea Kettle
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="13" 
+                                                                {% if 13 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-fire-flame-simple"></i>Hair Dryer
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" name="amenities" value="14" 
+                                                                {% if 14 in selected_amenities %}checked{% endif %}>
+                                                            <i class="fa-solid fa-tv"></i>TV
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button type="button" onclick="submitBookingFormWithAmenityFilter()">Apply Filters</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% for valid_room in valid_rooms %}
                     <div class="card available-room-card bg-nunisi-gold">
                         <div class="row">
@@ -122,7 +264,31 @@
         }
         // Add the value selected (sortValue) to the booking form sortInput
         sortInput.value = sortValue;
-        
+
+        // Submit the form
+        bookingForm.submit();
+    }
+
+    function submitBookingFormWithAmenityFilter() {
+        // Get all checked checkboxes
+        const selectedAmenities = Array.from(document.querySelectorAll('input[name="amenities"]:checked'))
+                                       .map(checkbox => checkbox.value);
+
+        // Get the booking form
+        const bookingForm = document.querySelector('.booking-form-div form');
+
+        // Remove any existing amenities input
+        let amenityInput = bookingForm.querySelector('input[name="amenities"]');
+        if (!amenityInput) {
+            amenityInput = document.createElement('input');
+            amenityInput.type = 'hidden';
+            amenityInput.name = 'amenities';
+            bookingForm.appendChild(amenityInput);
+        }
+
+        // Set the value of the amenity input as a JSON string of selected amenities
+        amenityInput.value = JSON.stringify(selectedAmenities);
+
         // Submit the form
         bookingForm.submit();
     }

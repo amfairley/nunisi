@@ -4,6 +4,7 @@ from .forms import EditRoomForm
 from home.forms import BookingForm
 from datetime import timedelta
 from django.contrib.admin.views.decorators import staff_member_required
+import json
 
 
 def available_rooms(request):
@@ -13,6 +14,7 @@ def available_rooms(request):
     trip_dates = []
     valid_rooms = []
     total_days = 0
+    total_cost = 0
 
     # Initialize booking forms
     booking_form_mobile = BookingForm(prefix="mobile")
@@ -65,32 +67,48 @@ def available_rooms(request):
             # Get the length of the trip
             total_days = (check_out_date - check_in_date).days
 
+            # Check if there is a filter on amenities
+            selected_amenities_str = request.POST.get('amenities')
+            selected_amenities_list = []
+            if selected_amenities_str:
+                selected_amenities_list = json.loads(selected_amenities_str)
+            selected_amenities = []
+            for amenity in selected_amenities_list:
+                amenity = int(amenity)
+                selected_amenities.append(amenity)
+
             # Find suitable rooms
             for room in rooms:
-                # Check if any trip_dates are in the room's unavailability list
+                # Skip if trip_dates are in the room's unavailability list
                 if any(
                     date.strftime('%Y-%m-%d') in room.unavailability
                     for date in trip_dates
                 ):
                     continue
 
-                # Calculate amount of people the room sleeps based on amenities
-                sleeps = 0
-                for amenity in room.amenities:
-                    if amenity == 1:
-                        sleeps += 1
-                    elif amenity == 2:
-                        sleeps += 2
+                # Skip if amenities list doesn't match the filter
+                print(room.amenities)
+                for amenity in selected_amenities:
+                    if amenity not in room.amenities:
+                        break
+                else:
+                    # Calculate amount of people the room sleeps based on amenities
+                    sleeps = 0
+                    for amenity in room.amenities:
+                        if amenity == 1:
+                            sleeps += 1
+                        elif amenity == 2:
+                            sleeps += 2
 
-                # Get the total cost of the room
-                total_cost = total_days * room.price
+                    # Get the total cost of the room
+                    total_cost = total_days * room.price
 
-                # Check if the room can accommodate the total guests
-                if sleeps >= total_guests:
-                    valid_rooms.append({
-                        'room': room,
-                        'total_cost': total_cost,
-                    })
+                    # Check if the room can accommodate the total guests
+                    if sleeps >= total_guests:
+                        valid_rooms.append({
+                            'room': room,
+                            'total_cost': total_cost,
+                        })
 
             # Handle the sorting
             current_sorting = 'None_None'
@@ -111,6 +129,8 @@ def available_rooms(request):
                 'amenities': amenities,
                 # Get the sort option
                 'current_sorting': current_sorting,
+                # Get the current amenity filer
+                'selected_amenities': selected_amenities,
                 # Booking form for iterating through errors
                 'booking_form': booking_form,
                 # Populate the header form with the booking form data
