@@ -4,6 +4,7 @@ from .forms import EditRoomForm
 from home.forms import BookingForm
 from datetime import timedelta
 from django.contrib.admin.views.decorators import staff_member_required
+from django.core.paginator import Paginator
 import json
 
 
@@ -20,6 +21,9 @@ def available_rooms(request):
     booking_form_mobile = BookingForm(prefix="mobile")
     booking_form_desktop = BookingForm(prefix="desktop")
     booking_form = None
+
+    # Initialise the pagination
+    page_obj = None
 
     if request.POST:
         # Define the mobile and desktop instances
@@ -87,12 +91,12 @@ def available_rooms(request):
                     continue
 
                 # Skip if amenities list doesn't match the filter
-                print(room.amenities)
                 for amenity in selected_amenities:
                     if amenity not in room.amenities:
                         break
                 else:
-                    # Calculate amount of people the room sleeps based on amenities
+                    # Calculate amount of people the room sleeps
+                    # based on amenities
                     sleeps = 0
                     for amenity in room.amenities:
                         if amenity == 1:
@@ -124,6 +128,11 @@ def available_rooms(request):
                 valid_rooms.sort(key=lambda x: x['room'].price, reverse=True)
                 current_sorting = 'price_desc'
 
+            # Handle pagination
+            paginator = Paginator(valid_rooms, 3)
+            page_number = request.POST.get('page')
+            page_obj = paginator.get_page(page_number)
+
             context = {
                 'rooms': rooms,
                 'amenities': amenities,
@@ -131,6 +140,8 @@ def available_rooms(request):
                 'current_sorting': current_sorting,
                 # Get the current amenity filer
                 'selected_amenities': selected_amenities,
+                # Get the pagination information
+                'page_obj': page_obj,
                 # Booking form for iterating through errors
                 'booking_form': booking_form,
                 # Populate the header form with the booking form data
