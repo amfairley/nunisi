@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="content">
-        <h1 class="font-nunisi-green jost-font font-weight-bolder" id="available-rooms-title">Available Rooms</h1>
+        <h1 class="page-title">Available Rooms</h1>
         {% if booking_form.errors %}
             <div class="alert alert-danger roboto-font" id="available-rooms-error">
                 <p><strong>Oops!</strong> Something went wrong. Please check the form for errors.</p>
@@ -22,30 +22,30 @@
         {% else %}
             {% if valid_rooms %}
                 <!--Sorting block-->
-                <div>
-                    <label for="sort-selector">Sort By:</label>
-                    <select id="sort-selector" data-action="sort" onchange="addSortFilterToBookingForm(this.value)">
+                <div class="room-sort-container">
+                    <label for="sort-selector" class="nunisi-button" data-action="sort">Sort By:</label>
+                    <select id="sort-selector" class="nunisi-dropdown">
                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                         <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                         <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
                     </select>
                 </div>
                 <!--Filter block-->
-                <div class="accordion" id="accordionExample">
+                <div class="accordion" id="amenity-accordion">
                     <div class="accordion-item">
                         <!--Accordion title-->
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h2 class="accordion-header" id="amenity-accordion-title">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#amenity-filter-body" aria-expanded="true" aria-controls="amenity-filter-body">
                                 Filter by Amenity
                             </button>
                         </h2>
                         <!--Accordion content-->
-                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div id="amenity-filter-body" class="accordion-collapse collapse" aria-labelledby="amenity-accordion-title" data-bs-parent="#amenity-accordion">
                             <div class="accordion-body">
                                 <form method="POST" action="{% url 'available_rooms' %}">
                                     {% csrf_token %}
                                     <div class="container">
-                                        <div class="row">
+                                        <div class="row" id="amenity-choices">
                                             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                                                 <ul class="list-unstyled">
                                                     <li>
@@ -98,7 +98,7 @@
                                                         <label>
                                                             <input type="checkbox" name="amenities" value="7" 
                                                                 {% if 7 in selected_amenities %}checked{% endif %}>
-                                                            <i class="fa-solid fa-bottle-water"></i>Complimentary Bottled Water
+                                                            <i class="fa-solid fa-bottle-water"></i>Bottled Water
                                                         </label>
                                                     </li>
                                                     <li>
@@ -161,10 +161,10 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <button type="button" data-action="filter" onclick="addAmenityFilterToBookingForm()">Apply Filters</button>
-                                            </div>
+                                    </div>
+                                    <div class="container" id="amenity-filter-button-container">
+                                        <div id="amenity-filter-button-div">
+                                            <button id="amenity-filter-button" class="nunisi-button" type="button" data-action="filter" onclick="addAmenityFilterToBookingForm()">Apply Filters</button>
                                         </div>
                                     </div>
                                 </form>
@@ -172,6 +172,7 @@
                         </div>
                     </div>
                 </div>
+                <!--Room cards-->
                 {% for valid_room in page_obj %}
                     <div class="card available-room-card bg-nunisi-gold">
                         <div class="row">
@@ -201,35 +202,38 @@
                                     {{ valid_room.room.description }}
                                 </article>
                             </div>
-                            <div class="col-12 col-lg-6">
+                            <div class="col-12 col-lg-6 room-image-booking-column">
                                 {% if valid_room.room.image %}
                                     <img src="{{ valid_room.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
                                 {% else %}
                                     <p>No image available</p>
                                 {% endif %}
-                                <hr class="index-horizontal-rule">
-                                <div class="roboto-font font-off-black available-room-booking-div">
-                                    <p><span class="font-weight-bolder">Number of days: </span>{{ total_days }}</p>
-                                    <p><span class="font-weight-bolder">Overal cost: </span>£{{ valid_room.total_cost }}</p>
+                                <div class="room-trip-info-div">
+                                    <div class="roboto-font font-nunisi-gold available-room-booking-div">
+                                        <p><span class="font-weight-bolder">Number of days: </span>{{ total_days }}</p>
+                                        <p><span class="font-weight-bolder">Overal cost: </span>£{{ valid_room.total_cost }}</p>
+                                    </div>
+
+                                    <!--Have the action something like: url 'process_booking' room.id -->
+                                    <form method="POST" action="{% url 'checkout' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="room_id" value="{{ valid_room.room.id }}">
+                                        <input type="hidden" name="total_days" value="{{ total_days }}">
+                                        <input type="hidden" name="check_in_date" value="{{ booking_form.check_in_date.value }}">
+                                        <input type="hidden" name="check_out_date" value="{{ booking_form.check_out_date.value }}">
+                                        <input type="hidden" name="adults" value="{{ booking_form.adults.value }}">
+                                        <input type="hidden" name="children" value="{{ booking_form.children.value }}">
+                                        <input type="hidden" name="infants" value="{{ booking_form.infants.value }}">
+                                        <input type="hidden" name="direct_to_checkout" value = "True">
+                                        <button type="submit" class="btn btn-primary available-room-booking-button nunisi-button">Book Now</button>
+                                    </form>
                                 </div>
-                                <!--Have the action something like: url 'process_booking' room.id -->
-                                <form method="POST" action="{% url 'checkout' %}">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="room_id" value="{{ valid_room.room.id }}">
-                                    <input type="hidden" name="total_days" value="{{ total_days }}">
-                                    <input type="hidden" name="check_in_date" value="{{ booking_form.check_in_date.value }}">
-                                    <input type="hidden" name="check_out_date" value="{{ booking_form.check_out_date.value }}">
-                                    <input type="hidden" name="adults" value="{{ booking_form.adults.value }}">
-                                    <input type="hidden" name="children" value="{{ booking_form.children.value }}">
-                                    <input type="hidden" name="infants" value="{{ booking_form.infants.value }}">
-                                    <input type="hidden" name="direct_to_checkout" value = "True">
-                                    <button type="submit" class="btn btn-primary available-room-booking-button nunisi-button">Book Now</button>
-                                </form>
 
                             </div>
                         </div>
                     </div>
                 {% endfor %}
+                <!--Pagination block-->
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center" data-action="pagination">
                         {% if page_obj.has_previous %}
@@ -261,7 +265,9 @@
                 </nav>
             {% else %}
                 <p id="no-rooms" class="roboto-font font-off-black">Sorry, no rooms are available that match your search criteria. Please adjust your search and try again.</p>
-                {% include "back_button/back_button.html" %}
+                <div class="back-button-container">
+                    {% include "back_button/back_button.html" %}
+                </div>
             {% endif %}
         {% endif %}
     </div>
@@ -296,7 +302,10 @@
      * Adds the hidden sort filter to the booking for
      * Including the amenity filter
     */
-    function addSortFilterToBookingForm(sortValue) {
+    function addSortFilterToBookingForm() {
+        const sortElement = document.getElementById("sort-selector");
+        // Get the selected value of the select element
+        const sortValue = sortElement ? sortElement.value : "reset";
         // Do nothing if sort by... is selected
         if (sortValue === "reset") {
             // Keep the amenity filter
@@ -307,7 +316,7 @@
         // Get the header booking form
         const bookingForm = document.querySelector(".booking-form-div form");
 
-        // Add the current filter
+        // Add the current amenity filter
         addAmenityFilterToBookingForm();
         // Check if the sort option has been added to the booking form
         let sortInput = bookingForm.querySelector("input[name='sort']");
@@ -342,14 +351,7 @@
         pageInput.value = pageNumber;
         
         // Add sort (which includes the amenity filter)
-        const sortElement = document.querySelector("select[name='sort']");
-        // Set a default value of 'reset' if no sort has been chosen
-        const sortValue = (
-            sortElement
-            ? sortElement.value
-            : "reset"
-        );
-        addSortFilterToBookingForm(sortValue);
+        addSortFilterToBookingForm();
     }
 
     /**
@@ -372,12 +374,8 @@
 
         if (action === "sort") {
             // Handle the 'sort' action on change
-            element.addEventListener("change", () => {
-                const selectedValue = element.value;
-                // If the value is "reset", do nothing
-                if (selectedValue === "reset") {
-                    return; // Exit early
-                }
+            element.addEventListener("click", () => {
+                addSortFilterToBookingForm();
                 bookingForm.submit();
             });
         } else if (action === "filter") {
@@ -387,8 +385,16 @@
             });
         } else if (action === "pagination") {
             // Handle the 'pagination' action on click
-            element.addEventListener("click", () => {
-                bookingForm.submit();
+            element.addEventListener("click", (event) => {
+                // Prevent default behavior for all pagination links
+                // To stop diabled previous/next links working
+                event.preventDefault();
+                // Check if the element has the "disabled" class
+                if (event.target.classList.contains("disabled")) {
+                    return;
+                }
+                // If not, submit the form
+                bookingForm.submit()
             });
         }
     });

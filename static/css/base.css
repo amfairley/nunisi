@@ -88,6 +88,7 @@ main {
     color: #3A6B35;
     background-color: #FDD67C;
     border: 1px solid #333A3F;
+    border-radius: 8px;
 }
 
 .nunisi-button:hover,
@@ -109,7 +110,23 @@ main {
     width: fit-content;
     height: fit-content;
     overflow: visible;
-    z-index: 500;
+    margin: 0 auto;
+}
+
+/* Site dropdown boxes */
+.nunisi-dropdown {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #FDD67C;
+    background-color: #3A6B35;
+    border-color: #333A3F;
+
+}
+
+.nunisi-dropdown:hover, .nunisi-drop-down:active, .nunisi-drop-down:focus {
+    transition-duration: 0.2ms;
+    box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
+    color: #FDD67C;
+    background-color: #3A6B35;
 }
 
 /* Background colours */
@@ -147,6 +164,15 @@ main {
     color: #FDD67C !important;
     box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
     border-radius: 8px;
+}
+
+/* Page text */
+.page-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color:#3A6B35;
+    text-align: center;
+    font-weight: bolder;
+    padding-top: 15px;
 }
 
 /* ---------- Navigation bar styling ---------- */
@@ -859,12 +885,7 @@ main {
 }
 
 /* ---------- Available Rooms ---------- */
-#available-rooms-title,
-#all-rooms-title {
-    text-align: center;
-    padding: 10px 0;
-}
-
+/* Errors */
 #available-rooms-error {
     width: 85%;
     max-width: 600px;
@@ -875,10 +896,96 @@ main {
     text-align: center;
 }
 
+/* Sort dropdown box */
+.room-sort-container {
+    position: absolute;
+    right: 15px;
+    display: flex;
+    gap: 5px;
+    top: 178px;
+    width: fit-content;
+}
+
+.room-sort-container label {
+    padding: 0 5px;
+}
+
+/* Amenity Filter */
+#amenity-accordion {
+    width: 90%;
+    max-width: 1000px;
+    margin: 10px auto 20px auto;
+}
+
+#amenity-accordion-title button {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #FDD67C !important;
+    background-color: #3A6B35 !important;
+    border: 1px solid #333A3F;
+}
+
+.accordion-button::after {
+    background-color: #F5F5F5;
+    border-radius: 50%;
+}
+
+#amenity-accordion-title button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(253, 214, 142, .75);
+}
+
+.accordion-body {
+    padding: 0;
+}
+
+#amenity-filter-body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #3A6B35;
+    background-color: #FDD67C;
+    border: 1px solid #333A3F;
+}
+
+#amenity-filter-body i {
+    margin-right: 0.5rem;
+}
+
+#amenity-filter-body ul {
+    margin-bottom: 0;
+}
+
+#amenity-choices {
+    margin-bottom: 1rem;
+    padding: 16px 20px 0 20px;
+}
+
+#amenity-filter-button-container {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    max-width: 1000px;
+}
+
+#amenity-filter-button-div {
+    display: flex;
+    justify-content: center;
+    background-color: #3A6B35;
+    border: 1px solid #333A3F;
+    border-radius: 0 0 5px 5px;
+    width: 100%;
+    height: 100%;
+}
+
+#amenity-filter-button {
+    padding: 0 50px;
+    margin: 0.5rem 0;
+}
+
+/* Room cards */
 .available-room-card {
     width: 90%;
     max-width: 1000px;
     margin: 10px auto 20px auto;
+    border: 1px solid #333A3F;
+    border-radius: 8px;
 }
 
 .available-room-name {
@@ -908,20 +1015,78 @@ main {
     margin: 5px auto;
 }
 
+.room-image-booking-column {
+    display: flex;
+    flex-direction: column;
+    height: auto; 
+    padding-left: 0;
+    border-left: 1px solid #b88c26;
+}
+
 .available-room-image {
     width: 95%;
     margin: 5px auto;
     display: flex;
+    border-radius: 8px;
+    border: 2px solid #3A6B35;
+}
+
+.room-trip-info-div {
+    margin-top: auto;
+    background-color: #3A6B35;
+    border-radius: 8px 8px 8px 0;
 }
 
 .available-room-booking-div {
     padding-left: 1.5rem;
+    padding-top: 1rem;
 }
 
 .available-room-booking-button {
     margin: 5px auto 20px auto;
     display: flex;
 }
+
+/*Pagination*/
+.page-link {
+    color: #FDD67C;
+    background-color: #3A6B35;
+    opacity: 0.8;
+}
+
+.page-link:focus {
+    --bs-pagination-focus-box-shadow: none;
+    --bs-pagination-focus-color:#FDD67C;
+    --bs-pagination-focus-bg: #3A6B35;
+}
+
+.page-link:hover {
+    background-color: #3A6B35 !important;
+    color: #FDD67C !important;
+    opacity: 1;
+}
+
+.page-item.active {
+    --bs-pagination-active-bg: #FDD67C;
+    --bs-pagination-active-border-color: #b88c26;
+    --bs-pagination-active-color:#3A6B35;
+}
+.page-item.active .page-link:hover {
+    background-color: #FDD67C !important;
+    color: #3A6B35 !important;
+    font-weight: normal !important;
+    opacity: 0.8 !important;
+}
+
+
+
+.disabled .page-link {
+    color: #3A6B35;
+    background-color: rgba(253, 214, 124, 0.2);
+    
+}
+
+
 
 #no-rooms {
     text-align: center;
@@ -1311,6 +1476,32 @@ main {
         margin-bottom: 10px;
     }
 
+    /*Update border for available room cards */
+    .room-image-booking-column {
+        padding-left: 12px;
+        border-left: none;
+    }
+
+    .room-trip-info-div {
+        border-radius: 0 0 8px 8px;
+    }
+
+    .available-room-image {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 800px) {
+    /*Move sort box below title on available rooms*/
+    /*2.15rem is the size of the h1 text*/
+    .room-sort-container {
+        top: calc(190px + 2.15rem);
+    }
+
+    /*Move the amenity filter down*/
+    #amenity-accordion {
+        margin-top: calc(22px + 2.15rem)
+    }
 }
 
 @media (max-width: 760px) {
