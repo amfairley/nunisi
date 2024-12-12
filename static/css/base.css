@@ -108,6 +108,10 @@ main {
     border: 1px solid #333A3F;
 }
 
+.delete-button:hover {
+    background-color: red;
+    color:#F5F5F5;
+}
 .back-button-container {
     width: fit-content;
     height: fit-content;
@@ -1092,7 +1096,17 @@ main {
     max-width: 95%;
 }
 
-/* ---------- All Rooms ---------- */
+/* ---------- Rooms: Superuser ---------- */
+#add-room-button-div {
+    display: flex;
+    justify-content: center;
+}
+
+#add-room-button {
+    margin: 20px auto;
+    padding: 5px;
+}
+
 #all-rooms-div {
     width: 95%;
     max-width: 1800px;
@@ -1105,48 +1119,49 @@ main {
 }
 
 .all-rooms-card-div {
-    margin: 20px 20px 20px 20px;
+    border: 1px solid #333A3F;
+    background-color: #FDD67C;
+    border-radius: 8px;
 }
 
-.card-organiser {
-    margin: 0 10px;
+.all-rooms-card-title {
+    background-color: #3A6B35;
+    color:#FDD67C;
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    border-radius: 8px 8px 0 0;
+    border: 1px solid #3A6B35;
+    text-align: center;
+    padding-top: 0.5rem;
+}
+
+.all-rooms-card-body {
+    padding: 10px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#333A3F;
 }
 
 .room-detail {
     font-weight: bolder;
 }
 
+.all-rooms-image-container {
+    text-align: center;
+}
+
 .all-rooms-image {
-    width: 95%;
+    max-width: 90%;
+    border: 2px solid #b88c26;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.all-rooms-button-container {
+    background-color: #3A6B35;
+    width: 100%;
     margin: 0 auto;
-    display: flex;
-}
-
-.room-edit-div {
-    padding-left: 20px;
-    text-align: left;
-    margin-bottom: 10px;
-}
-
-.room-delete-div {
-    padding-right: 20px;
-    text-align: right;
-    margin-bottom: 10px;
-}
-
-.room-edit-link:hover,
-.room-delete-link:hover {
-    font-weight: bolder;
-}
-
-#add-room-button-div {
-    display: flex;
-    justify-content: center;
-}
-
-#add-room-button {
-    margin: 20px auto;
-    padding: 5px;
+    border: 1px solid #3A6B35;
+    border-radius: 0 0 8px 8px;
+    padding: 1rem 0;
 }
 
 /* ---------- Add/Edit Room ---------- */
