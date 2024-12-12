@@ -139,6 +139,14 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Add room form | Submit a full form | A toast appears indicating success and user is redirected to all rooms where the new room has been added | Y | N/A |
 | Add a new room | Search availability to see if it appears | It appears in available rooms | Y | N/A |
 | Add a new room with unavailability | Search availability to see if it does not appear | It does not appear in available rooms | Y | N/A |
+| **edit_room.html** | | | | |
+| Edit room form | Submit the form without a price | An alert indicates to the user to fill this field | Y | N/A |
+| Edit room form | Submit the form without amenities | A toast appears indicating an error and the error is listed below the form | Y | N/A |
+| Edit room form | Submit the form with an incorrect date format for unavailability | A toast appears indicating an error and the error is listed below the form | Y | N/A |
+| Edit room form | Submit a full form | A toast appears indicating success and user is redirected to all rooms where the room has been updated | Y | N/A |
+| Edit a new room | Search availability to see if it appears | It appears in available rooms | Y | N/A |
+| Edit a new room with unavailability | Search availability to see if it does not appear | It does not appear in available rooms | Y | N/A |
+
 
 
 
@@ -192,10 +200,7 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Delete room link | Click | Redirected to edit room page | Y | N/A |
 | Rooms page | Resize page | Rooms are displayed in a row of 3 on large screens, 2 on medium, and 1 on small | Y | N/A |
 
-| **edit_room.html** | | | | |
-| Edit room button | Hover | Button colours invert | Y | N/A |
-| Edit room button | Click | Room updated and redirected to superuser room page | Y | N/A |
-| Edit room form | Complete form and submit | Room updated with new values and redirected to superuser room page | Y | N/A |
+
 | **delete_room.html** | | | | |
 | Delete room button | Hover | Button colours invert | Y | N/A |
 | Delete room button | Click | Room instance is deleted and redirected to superuser rooms page | Y | N/A |
@@ -290,6 +295,13 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <details>
 <summary>Add room results</summary>
 <img src="/documentation/testing/wave/rooms_add_room.png">
+</details><br>
+
+**Rooms: edit_room.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Edit room results</summary>
+<img src="/documentation/testing/wave/rooms_edit_room.png">
 </details><br>
 
 
@@ -414,12 +426,7 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 
 
 
-**Rooms: edit_room.html**<br>
-- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
-<details>
-<summary>Edit room results</summary>
-<img src="/documentation/testing/wave/rooms_edit_room.png">
-</details><br>
+
 
 **Rooms: delete_room.html**<br>
 - 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
@@ -487,6 +494,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Homepage | None | None |
 | Rooms: available_rooms | None | None |
 | Rooms: add_room | None | None |
+| Rooms: edit_room | None | None |
 
 
 
