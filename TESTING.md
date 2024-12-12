@@ -130,6 +130,16 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Room card | Hover book now button | Cursor changes and button colour inverts | Y | N/A |
 | Room card | Resize page | Image drops below room information on smaller screens | Y | N/A |
 | Room card | Click "Book Now" | User is redirect to checkout page with correct order summary | Y | N/A |
+| **add_room.html** | | | | |
+| Add room form | Submit the form without a name | Form scrolls up and the name section is focused | Y | N/A |
+| Add room form | Submit the form without a sanitised name | Form scrolls up and the sanitised name section is focused | Y | N/A |
+| Add room form | Submit the form without a price | An alert indicates to the user to fill this field | Y | N/A |
+| Add room form | Submit the form without amenities | A toast appears indicating an error and the error is listed below the form | Y | N/A |
+| Add room form | Submit the form with an incorrect date format for unavailability | A toast appears indicating an error and the error is listed below the form | Y | N/A |
+| Add room form | Submit a full form | A toast appears indicating success and user is redirected to all rooms where the new room has been added | Y | N/A |
+| Add a new room | Search availability to see if it appears | It appears in available rooms | Y | N/A |
+| Add a new room with unavailability | Search availability to see if it does not appear | It does not appear in available rooms | Y | N/A |
+
 
 
 
@@ -181,10 +191,7 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Delete room link | Hover | Text bolds | Y | N/A |
 | Delete room link | Click | Redirected to edit room page | Y | N/A |
 | Rooms page | Resize page | Rooms are displayed in a row of 3 on large screens, 2 on medium, and 1 on small | Y | N/A |
-| **add_room.html** | | | | |
-| Add room button | Hover | Button colours invert | Y | N/A |
-| Add room button | Click | Room created and redirected to superuser room page | Y | N/A |
-| Add room form | Complete form and submit | Room created and redirected to superuser room page | Y | N/A |
+
 | **edit_room.html** | | | | |
 | Edit room button | Hover | Button colours invert | Y | N/A |
 | Edit room button | Click | Room updated and redirected to superuser room page | Y | N/A |
@@ -276,6 +283,13 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <details>
 <summary>Available rooms results</summary>
 <img src="/documentation/testing/wave/rooms_available_rooms.png">
+</details><br>
+
+**Rooms: add_room.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Add room results</summary>
+<img src="/documentation/testing/wave/rooms_add_room.png">
 </details><br>
 
 
@@ -398,12 +412,7 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-**Rooms: add_room.html**<br>
-- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
-<details>
-<summary>Add room results</summary>
-<img src="/documentation/testing/wave/rooms_add_room.png">
-</details><br>
+
 
 **Rooms: edit_room.html**<br>
 - 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
@@ -477,6 +486,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Back button | None | None |
 | Homepage | None | None |
 | Rooms: available_rooms | None | None |
+| Rooms: add_room | None | None |
 
 
 
@@ -531,6 +541,10 @@ The custom JavaScript code was testing using the JavaScript linter [JSLint](http
 - The script at the bottom of the home template index.html was copied into the linter.
 - The following linter settings were selected: browser, this (this was used in the code), white (to oversome an alert for parentheses but putting in parentheses created an alert to remove said parentheses), fart (to use more complicated arrow function)
 - Full results can be seen [here](/documentation/testing/jslint/available_rooms.pdf)
+
+
+
+
 
 
 ### Python Validation
@@ -824,6 +838,10 @@ Bug 5 involved the filtering and sorting of the available room results. The usua
 - The pagination function will run the sort function (adding the hidden filter and sort inputs to the form) and then add a hidden page input to the form and not submit it
 - The onchange for the sort dropdown and the onclick for the filter and pagination buttons were given event listeners to submit the form by accessing their given data-action attributes
 The only downside of this is that when applying a new filter, the pagination resets to page 1 which works as intended for a good user experience, however the sort is also reset. For now this is deemed acceptable due to the time and effort put in to achieving the current functionality.
+
+### Known Bugs
+- edit_room.html: The styling for changing the image when editing a room that already has an image is cramped but repeated attempts to access the styling have not been fruitful.
+
 ## Analytics
 
 [Google Analytics](https://marketingplatform.google.com/about/analytics/) has been used to provide real time analytics about how users use my webpage. This includes how many page views, how many users scroll to the bottom of the page, indicating that content hinting is working, and how many users sign up. The data received from this will be used to inform the future updates to the webpage. This required the following code to be added to the base.html template at the bottom of the head element as directed:
