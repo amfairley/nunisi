@@ -614,21 +614,21 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/home_context_processor.png">
 </details><br>
 
-
-
-
-
-
-
-
-
-
 **Rooms: admin.py**<br>
 - No errors or alerts
 <details>
 <summary>Admin results</summary>
 <img src="/documentation/testing/python/rooms_admin.png">
 </details><br>
+
+
+
+
+
+
+
+
+
 
 **Rooms: forms.py**<br>
 - No errors or alerts
