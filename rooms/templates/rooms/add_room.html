@@ -17,10 +17,10 @@
                     {{ form.as_p }}
                     <div class="add-edit-room-button-div row">
                         <div class="col-6">
-                            <button type="submit" class="nunisi-button">Add room</button>
+                            {% include "back_button/back_button.html" %}
                         </div>
                         <div class="col-6">
-                            {% include "back_button/back_button.html" %}
+                            <button type="submit" class="nunisi-button">Add room</button>
                         </div>
                     </div>
                 </form>

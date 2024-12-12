@@ -7,21 +7,24 @@
 
 {% block content %}
     <div class="content">
+        <!--Page title-->
         <h1 class="page-title">Edit Room: {{ room.sanitised_name }}</h1>
         <div class="row w-100 g-3 px-3 add-edit-room-row">
+            <!--Form column-->
             <div class="col-12 col-md-6 add-edit-left-column">
                 <form method="POST" enctype="multipart/form-data" class="add-edit-room-form">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <div class="add-edit-room-button-div row">
                         <div class="col-6">
-                            <button type="submit" class="nunisi-button">Confirm Changes</button>
+                            {% include "back_button/back_button.html" %}
                         </div>
                         <div class="col-6">
-                            {% include "back_button/back_button.html" %}
+                            <button type="submit" class="nunisi-button">Confirm Changes</button>
                         </div>
                     </div>
                 </form>
+                <!--Form errors-->
                 {% if form.errors %}
                     <div class="alert alert-danger">
                         <ul>
