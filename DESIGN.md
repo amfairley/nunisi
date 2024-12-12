@@ -264,7 +264,8 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Amenity filter title text, body background, title focus shadow
 - Available rooms: Room card background, summary text
 - Available rooms: Pagination background of current page, text of other options, faded background of disabled options
-
+- Add room/edit room: Content text
+- Add room/edit room: Input background
 
 **Fern Green #3A6B35**
 - Font colour on Jasmine backgrounds
@@ -285,6 +286,9 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Amenity filter title background, body text, button background
 - Available rooms: Room name text, amenitiy symbols, summary background, image border
 - Available rooms: Pagination text of disabled and active pages, background of other options
+- Add room/edit room: Page title
+- Add room/edit room: Content background
+- Add room/edit room: Input text
 
 **Gun Metal #333A3F**
 - Border for the account menu
@@ -303,6 +307,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Home: Service carousel border
 - Available rooms: Room card middle border
 - Available rooms: Pagination outline of current page
+- Add room/edit room: Input border
 
 **Other colours used:**
 - Facebook: Blue and white are used for the Facebook logo
@@ -471,7 +476,19 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The available room cards are split over many pages. This is not as useful currently but will provide good user experience when more rooms are added for a live website and will decrease page load times. Selecting the page number keeps the amenity and sort filter choices. The current page is displayed as larger than the others with an inverse colour. The disabled pages (e.g previous on page 1 and next on the lage page) have a lower opacity to show their status. Hovering over clickable options increases their size. |
 | **User Stories Covered:** 2. 22 |
 
+| **Rooms: add/edit room form** |
+| ----- |
+| **Page: /rooms/add_room/ and rooms/edit_room/room_id/** |
+| <details><summary>Sign Up</summary><img src="/documentation/features/rooms_add_room_form.png"></details> |
+| **Details:** The add/edit room form allows the site owner or anyone with admin privilages to add a new room to the database or update existing room instances. The format is more user friendly than uploading a JSON file allowing employees without much technical knowledge to complete the task. Alert toasts appear if any fields are incorrectly completed along with a list of the errors that appears below the form. Upon successful form submission a success toast indicates the success and the user is redirected back to the all rooms page. |
+| **User Stories Covered:** 36 |
 
+| **Rooms: add/edit room form how-to** |
+| ----- |
+| **Page: /rooms/add_room/ and rooms/edit_room/room_id/** |
+| <details><summary>Sign Up</summary><img src="/documentation/features/rooms_add_room_how_to.png"></details> |
+| **Details:** The add/edit room how to informs the user of how to update the non trivial sections of the form such as correct syntax for applying amenities and what date format to use for the unavailability field. |
+| **User Stories Covered:** 36 |
 
 
 
