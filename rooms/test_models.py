@@ -18,7 +18,8 @@ class RoomModelTest(TestCase):
         self.instance = Room.objects.create(
             name="Test Name",
             sanitised_name="Sanitised Test Name",
-            amenities=[1, 2, 3]
+            amenities=[1, 2, 3],
+            price=10.00
         )
 
     def test_room_model_exists(self):
@@ -109,10 +110,14 @@ class RoomModelTest(TestCase):
         field = Room._meta.get_field('price')
         # Check the field is a DecimalField
         self.assertIsInstance(field, DecimalField)
+        # Check maximum digits
+        self.assertEqual(field.max_digits, 6)
+        # Check decimal places
+        self.assertEqual(field.decimal_places, 2)
         # Check null status
-        self.assertTrue(field.null)
+        self.assertFalse(field.null)
         # Check blank status
-        self.assertTrue(field.blank)
+        self.assertFalse(field.blank)
 
     def test_unavailability_field(self):
         '''Test the unavailability field'''
