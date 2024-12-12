@@ -146,6 +146,8 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Edit room form | Submit a full form | A toast appears indicating success and user is redirected to all rooms where the room has been updated | Y | N/A |
 | Edit a new room | Search availability to see if it appears | It appears in available rooms | Y | N/A |
 | Edit a new room with unavailability | Search availability to see if it does not appear | It does not appear in available rooms | Y | N/A |
+| **delete_room.html** | | | | |
+| Delete room | Confirm deleteion | Room instance is deleted, success toast alerts the user, and user is redirected to superuser rooms page | Y | N/A |
 
 
 
@@ -201,9 +203,7 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Rooms page | Resize page | Rooms are displayed in a row of 3 on large screens, 2 on medium, and 1 on small | Y | N/A |
 
 
-| **delete_room.html** | | | | |
-| Delete room button | Hover | Button colours invert | Y | N/A |
-| Delete room button | Click | Room instance is deleted and redirected to superuser rooms page | Y | N/A |
+
 | **checkout.html** | | | | |
 | Load page | N/A | Form is pre-filled with profile data | Y | N/A |
 | Load page | N/A | Correct trip details appear on the page | Y | N/A |
@@ -302,6 +302,14 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <details>
 <summary>Edit room results</summary>
 <img src="/documentation/testing/wave/rooms_edit_room.png">
+</details><br>
+
+**Rooms: delete_room.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+- 1 possible heading alert for the confimation message, but as this is a paragraph appearing below a h1 heading, this alert was ignored.
+<details>
+<summary>Delete room results</summary>
+<img src="/documentation/testing/wave/rooms_delete_room.png">
 </details><br>
 
 
@@ -427,15 +435,6 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 
 
 
-
-**Rooms: delete_room.html**<br>
-- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
-<details>
-<summary>Delete room results</summary>
-<img src="/documentation/testing/wave/rooms_delete_room.png">
-</details><br>
-
-
 **Checkout: checkout.html**<br>
 - 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
 <details>
@@ -495,6 +494,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Rooms: available_rooms | None | None |
 | Rooms: add_room | None | None |
 | Rooms: edit_room | None | None |
+| Rooms: delete_room | None | None |
 
 
 

@@ -289,6 +289,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Add room/edit room: Page title
 - Add room/edit room: Content background
 - Add room/edit room: Input text
+- Delete room: Page title
 
 **Gun Metal #333A3F**
 - Border for the account menu
@@ -297,6 +298,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Outline of room cards
 - Available rooms: Amenity and room description text
 - Available rooms: Text of no matches
+- Delete room: Page text
 
 **White Smoke #F5F5F5**
 - Home: Hero text colour
@@ -490,6 +492,13 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The add/edit room how to informs the user of how to update the non trivial sections of the form such as correct syntax for applying amenities and what date format to use for the unavailability field. |
 | **User Stories Covered:** 36 |
 
+| **Rooms: Delete Room** |
+| ----- |
+| **Page: /rooms/delete_room/** |
+| <details><summary>Delete room functionality</summary><img src="/documentation/features/rooms_delete_room.png"></details> |
+| **Details:** The delete room functionality allows the business owner to remove an instance of a room from the database. It acts as a step of defensive programming to prevent the business owner from accidentally deleting a room by providing a new page and a confirmation check prior to deletion. |
+| **User Stories Covered:** 2, 36 |
+
 
 
 
@@ -579,12 +588,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The add room form allows the business owner to add new rooms to the database. This feature is repeated for the edit room form where the business owner can update values to the room instances. |
 | **User Stories Covered:** 2, 36 |
 
-| **Rooms: Delete Room** |
-| ----- |
-| **Page: /rooms/delete_room/** |
-| <details><summary>Delete room functionality</summary><img src="/documentation/features/rooms_delete_room.png"></details> |
-| **Details:** The delete room functionality allows the business owner to remove an instance of a room from the database |
-| **User Stories Covered:** 2, 36 |
+
 
 | **Checkout: Confirmation Email** |
 | ----- |
