@@ -4,6 +4,7 @@ from .forms import EditRoomForm
 from home.forms import BookingForm
 from datetime import timedelta
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib import messages
 from django.core.paginator import Paginator
 import json
 
@@ -186,6 +187,37 @@ def rooms_superuser(request):
 
 
 @staff_member_required
+def add_room(request):
+    '''View to enter details and add a new room'''
+    amenities = Amenities.objects.all().order_by('id')
+    form = EditRoomForm()
+
+    # If the form is submitted
+    if request.method == 'POST':
+        # request.FILES handles the image upload
+        form = EditRoomForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # Redirect to rooms_superuser view or another page after saving
+            messages.success(
+                request,
+                "Room added."
+            )
+            return redirect('rooms_superuser')
+        else:
+            messages.error(
+                request,
+                "Please correct the errors listed below the form."
+            )
+
+    context = {
+        'form': form,
+        'amenities': amenities,
+    }
+    return render(request, 'rooms/add_room.html', context)
+
+
+@staff_member_required
 def edit_room(request, room_id):
     """Display and handle the room edit form for admins."""
     # Get the room
@@ -197,10 +229,22 @@ def edit_room(request, room_id):
         form = EditRoomForm(request.POST, request.FILES, instance=room)
         if form.is_valid():
             form.save()
+            messages.success(
+                request,
+                "Room updated."
+            )
             # Redirect to rooms_superuser view or another page after saving
             return redirect('rooms_superuser')
+        else:
+            messages.error(
+                request,
+                "Please correct the errors listed below the form."
+            )
     else:
-        form = EditRoomForm(instance=room)
+        form = EditRoomForm(
+            instance=room,
+            initial={'unavailability_input': ', '.join(room.unavailability)}
+        )
 
     context = {
         'form': form,
@@ -218,31 +262,13 @@ def delete_room(request, room_id):
     # Delete confirmation
     if request.method == 'POST':
         room.delete()
+        messages.success(
+            request,
+            "Room deleted."
+        )
         return redirect('rooms_superuser')
 
     context = {
         'room': room
     }
     return render(request, 'rooms/delete_room.html', context)
-
-
-@staff_member_required
-def add_room(request):
-    '''View to enter details and add a new room'''
-    amenities = Amenities.objects.all().order_by('id')
-    form = EditRoomForm()
-
-    # If the form is submitted
-    if request.method == 'POST':
-        # request.FILES handles the image upload
-        form = EditRoomForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            # Redirect to rooms_superuser view or another page after saving
-            return redirect('rooms_superuser')
-
-    context = {
-        'form': form,
-        'amenities': amenities,
-    }
-    return render(request, 'rooms/add_room.html', context)
