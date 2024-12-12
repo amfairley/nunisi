@@ -649,18 +649,25 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/rooms_test_forms.png">
 </details><br>
 
-
-
-
-
-
-
 **Rooms: views.py**<br>
 - No errors or alerts
 <details>
 <summary>Views results</summary>
 <img src="/documentation/testing/python/rooms_views.png">
 </details><br>
+
+**Rooms: test_views.py**<br>
+- No errors or alerts
+<details>
+<summary>Test views results</summary>
+<img src="/documentation/testing/python/rooms_test_views.png">
+</details><br>
+
+
+
+
+
+
 
 **Rooms: urls.py**<br>
 - No errors or alerts
@@ -671,12 +678,7 @@ The Python code for this project was written in strict accordance with the [PEP 
 
 
 
-**Rooms: test_views.py**<br>
-- No errors or alerts
-<details>
-<summary>Test views results</summary>
-<img src="/documentation/testing/python/rooms_test_views.png">
-</details><br>
+
 
 **Checkout: admin.py**<br>
 - No errors or alerts
@@ -848,6 +850,7 @@ The only downside of this is that when applying a new filter, the pagination res
 
 ### Known Bugs
 - edit_room.html: The styling for changing the image when editing a room that already has an image is cramped but repeated attempts to access the styling have not been fruitful.
+- rooms/test_views.py: The room instance will not update when testing the edit room view. However this does work through manual testing, so this test is omitted in the automated tests.
 
 ## Analytics
 
