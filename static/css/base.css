@@ -1232,10 +1232,21 @@ main {
     text-align: center;
 }
 
-#delete-room-div h1 {
-    color: #3A6B35;
-    font-weight: bolder;
-    margin-top: 10px;
+.delete-message {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#333A3F;
+    font-size: 1.5rem;
+}
+
+.delete-room-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    margin-bottom: 1rem;
+    max-width: 300px;
+    margin: 0 auto;   
 }
 
 /* ---------- Checkout ---------- */
