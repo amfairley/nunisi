@@ -89,6 +89,14 @@ main {
     background-color: #FDD67C;
     border: 1px solid #333A3F;
     border-radius: 8px;
+    padding: 5px 10px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .nunisi-button:hover,
@@ -98,12 +106,6 @@ main {
     background-color: #3A6B35;
     box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
     border: 1px solid #333A3F;
-}
-
-.back-button {
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-    border-radius: 8px;
-    padding: 5px 10px;
 }
 
 .back-button-container {
@@ -326,6 +328,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px 0;
 }
 
 /* Account menu */
@@ -1147,23 +1150,48 @@ main {
 }
 
 /* ---------- Add/Edit Room ---------- */
-.add-edit-room-title {
+.add-edit-room-button-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    color: #3A6B35;
-    font-weight: bolder;
-    margin-top: 10px;
+    height: 100%;
+    margin-bottom: 1rem;
+}
+
+.add-edit-room-submit {
+    margin: 20px auto;
+    padding: 5px;
 }
 
 .add-edit-room-row {
-    max-width: 1200px;
+    background-color: #3A6B35;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#FDD67C;
+    max-width: min(95%, 1200px);
     margin: 0 auto;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.add-edit-left-column {
+    position: relative;
+}
+
+.add-edit-left-column::after {
+    content: "";
+    position: absolute;
+    top: 8%;
+    right: 0;
+    height: 80%;
+    border-right: 2px solid #b88c26;
 }
 
 .add-edit-room-form p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1em; /* Add space between form rows */
+    margin-bottom: 1em;
 }
   
 .add-edit-room-form p label {
@@ -1175,19 +1203,26 @@ main {
 .add-edit-room-form p input,
 .add-edit-room-form p select,
 .add-edit-room-form p textarea {
+    width: 100%;
     flex: 2;
     padding: 0.5em;
+    background-color: #FDD67C;
+    color: #3A6B35;
+    border: 1px solid #b88c26;
 }
 
-.add-edit-room-submit-div {
-    display: flex;
-    justify-content: center;
+.add-edit-room-hr {
+    background-color: #b88c26;
+    opacity: 1;
+    border: none;
+    height: 3px;
+    display: none;
 }
 
-.add-edit-room-submit {
-    margin: 20px auto;
-    padding: 5px;
+#how-to-title {
+    text-align: center;
 }
+
 
 /* ---------- Delete Room ---------- */
 #delete-room-div {
@@ -1522,6 +1557,17 @@ main {
     .services-card-image-container {
         width: 95%;
         margin: 0 auto;
+    }
+    
+    /*Add edit room middle border*/
+    .add-edit-left-column::after {
+        border-right: none;
+        border-bottom: 1px solid #b88c26;
+    }
+
+    /* Add edit room show horizontal rule */
+    .add-edit-room-hr {
+        display: inline-block;
     }
 }
 
