@@ -7,19 +7,45 @@
 
 {% block content %}
     <div class="content">
-        <h1 class="add-edit-room-title">Add room</h1>
+        <!--Page title-->
+        <h1 class="page-title">Add room</h1>
         <div class="row w-100 g-3 px-3 add-edit-room-row">
-            <div class="col-12 col-md-6 add-edit[room-form-div">
+            <!--Form column-->
+            <div class="col-12 col-md-6 add-edit-left-column">
                 <form method="POST" enctype="multipart/form-data" class="add-edit-room-form">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <div class="add-edit-room-submit-div">
-                        <button type="submit" class="add-edit-room-submit nunisi-button">Add room</button>
+                    <div class="add-edit-room-button-div row">
+                        <div class="col-6">
+                            <button type="submit" class="nunisi-button">Add room</button>
+                        </div>
+                        <div class="col-6">
+                            {% include "back_button/back_button.html" %}
+                        </div>
                     </div>
                 </form>
+                <!--Errors-->
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for field, errors in form.errors.items %}
+                                {% for error in errors %}
+                                    <li>{{ field }}: {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
+            <hr class="add-edit-room-hr">
+            <!--How to column-->
             <div class="col-12 col-md-6 add-edit-room-amenities-div">
-                <h2>Amenities Key</h2>
+                <h2 id="how-to-title">How to:</h2>
+                <h3 class="how-to-section-title">Name</h3>
+                <p>The name field should be all lowercase and one word. Any spaces should be replaced with underscore (_). This field is for the database to name to room. E.g. example_room</p>
+                <h3 class="how-to-section-title">Sanitised Name</h3>
+                <p>The sanitided name is the name that is shown on the website so should be written as normal e.g. Example Room</p>
+                <h3 class="how-to-section-title">Amenities</h3>
                 <p>Example of adding amenities for a single bed, double bed, and wifi: [1, 2, 9]</p>
                 <ol>
                     {% for amenity in amenities %}
@@ -28,6 +54,15 @@
                         </li>
                     {% endfor %}
                 </ol>
+                <h3 class="how-to-section-title">Image upload</h3>
+                <ul>
+                    <li>Click the choose file and select a file</li>
+                    <li><strong>Ensure that the filename is one word long with underscores instead of spaces e.g. file_one</strong></li>
+                </ul>
+                <h3 class="how-to-section-title">Price</h3>
+                <p>The price is per night and in USD and should include 2 decimal places e.g. 20.00</p>
+                <h3 class="how-to-section-title">Unavailability</h3>
+                <p>Here put the nights already booked in the format YYYY-MM-DD separated by commas. E.g. 2024-12-13, 2024-12-14</p>
             </div>
         </div>
     </div>
