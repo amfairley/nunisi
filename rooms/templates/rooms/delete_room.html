@@ -8,11 +8,21 @@
 {% block content %}
     <div class="content">
         <div id="delete-room-div">
-            <h1 class="jost-font">Delete Room</h1>
-            <p class="roboto-font">Room: {{ room.sanitised_name }}</p>
+            <!--Page title-->
+            <h1 class="page-title">Delete Room: {{ room.sanitised_name }}</h1>
+            <p class="delete-message">Are you sure you want to delete this room?</p>
             <form method="post" action="{% url 'delete_room' room.id %}">
                 {% csrf_token %}
-                <button type="submit" class="nunisi-button">Confirm</button>
+                <div class="row delete-room-button-div">
+                    <!--Back button-->
+                    <div class="col-6">
+                        {% include "back_button/back_button.html" %}
+                    </div>
+                    <!--Delete button-->
+                    <div class="col-6">
+                        <button type="submit" class="nunisi-button">Confirm</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
