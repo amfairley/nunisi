@@ -663,18 +663,18 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/rooms_test_views.png">
 </details><br>
 
-
-
-
-
-
-
 **Rooms: urls.py**<br>
 - No errors or alerts
 <details>
 <summary>URLs results</summary>
 <img src="/documentation/testing/python/rooms_urls.png">
 </details><br>
+
+
+
+
+
+
 
 
 
