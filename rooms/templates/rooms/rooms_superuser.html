@@ -7,18 +7,30 @@
 
 {% block content %}
     <div class="content">
-        <h1 class="font-nunisi-green jost-font font-weight-bolder" id="all-rooms-title">Room Management</h1>
+        <!--Page title-->
+        <h1 class="page-title">Room Management</h1>
+        <!--Add room button-->
         <div id="add-room-button-div">
-            <a href="{% url 'add_room' %}" class="nunisi-button border-dark-gold" id="add-room-button">Add new room</a>
+            <a href="{% url 'add_room' %}" class="nunisi-button" id="add-room-button">Add new room</a>
         </div>
-        <div class="row roboto-font font-off-black" id="all-rooms-div">
+        <!--All rooms-->
+        <div class="row" id="all-rooms-div">
             {% for room in rooms %}
+                <!--Room cards-->
                 <div class="col-12 col-md-6 col-xl-4 all-rooms-inner-div">
                     <div class="border-dark-gold bg-nunisi-gold all-rooms-card-div">
-                        <div class="all-rooms-card">
+                        <!--Room title-->
+                        <div class = "all-rooms-card-title">
+                            <h2>Room: {{room.sanitised_name}}</h2>
+                        </div>
+                        <!--Room body-->
+                        <div class="all-rooms-card-body">
                             <div class="card-organiser">
+                                <!--Room name-->
                                 <p><span class="room-detail">Room Name: </span>{{ room.name }}</p>
+                                <!--Room sanitised name-->
                                 <p><span class="room-detail">Sanitised name:</span> {{ room.sanitised_name }}</p>
+                                <!--Amenities-->
                                 <p class="room-detail">Amenities</p>
                                 <ul>
                                     {% for amenity_id in room.amenities %}
@@ -29,15 +41,24 @@
                                         {% endfor %}
                                     {% endfor %}
                                 </ul>
+                                <!--Room description-->
                                 <p><span class="room-detail">Description:</span> {{ room.description }}</p>
+                                <!--Room image url-->
                                 <p><span class="room-detail">Image URL:</span> {{ room.image_url }}</p>
-                                <p><span class="room-detail">Image</span>: {{ room.image }}</p>
-                                {% if valid_room.room.image %}
-                                    <img class="all-rooms-image" src="{{ room.image.url }}" alt="{{ valid_room.room.sanitised.name }}">
+                                <!--Room image filename-->
+                                <p><span class="room-detail">Image Filename:</span>: {{ room.image }}</p>
+                                {% if room.image %}
+                                    <!--Display room image if available-->
+                                    <div class="all-rooms-image-container">
+                                        <img class="all-rooms-image" src="{{ room.image.url }}" alt="{{ room.sanitised.name }}">
+                                    </div>
                                 {% else %}
+                                    <!--Message for no available image-->
                                     <p>No image available</p>
                                 {% endif %}
+                                <!--Room price-->
                                 <p><span class="room-detail">Price per night:</span> £{{ room.price }}</p>
+                                <!--Room unavailability-->
                                 <p><span class="room-detail">Unavailability:</span></p>
                                 <ul>{% if room.unavailability %}
                                         {% for date in room.unavailability %}
@@ -47,15 +68,17 @@
                                         <li>No dates booked yet</li>
                                     {% endif %}
                                 </ul>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-6 room-edit-div">
-                                        <a class="room-edit-link" href="{% url 'edit_room' room.id %}">Edit Room</a>
-                                    </div>
-                                    <div class="col-6 room-delete-div">
-                                        <a class="room-delete-link" href="{% url 'delete_room' room.id %}">Delete Room</a>
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
+                        <!--Room buttons-->
+                        <div class="row all-rooms-button-container">
+                            <!--Edit room button-->
+                            <div class="col-6">
+                                <a class="nunisi-button" href="{% url 'edit_room' room.id %}">Edit Room</a>
+                            </div>
+                            <!--Delete room button-->
+                            <div class="col-6">
+                                <a class="nunisi-button delete-button" href="{% url 'delete_room' room.id %}">Delete Room</a>
                             </div>
                         </div>
                     </div>
