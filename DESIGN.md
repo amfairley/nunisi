@@ -264,6 +264,8 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Amenity filter title text, body background, title focus shadow
 - Available rooms: Room card background, summary text
 - Available rooms: Pagination background of current page, text of other options, faded background of disabled options
+- Super user all rooms: Room card title text
+- Super user all rooms: Room card background
 - Add room/edit room: Content text
 - Add room/edit room: Input background
 
@@ -286,6 +288,9 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Amenity filter title background, body text, button background
 - Available rooms: Room name text, amenitiy symbols, summary background, image border
 - Available rooms: Pagination text of disabled and active pages, background of other options
+- Super user all rooms: Page title
+- Super user all rooms: Room card title background
+- Super user all rooms: Room card buttons background
 - Add room/edit room: Page title
 - Add room/edit room: Content background
 - Add room/edit room: Input text
@@ -298,23 +303,28 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Outline of room cards
 - Available rooms: Amenity and room description text
 - Available rooms: Text of no matches
+- Super user all rooms: Room card text
 - Delete room: Page text
 
 **White Smoke #F5F5F5**
 - Home: Hero text colour
 - Available rooms: Background of amenity filter accordion symbol
+- Super user all rooms: Delete button text on hover
+- Delete room: Delete button text on hover
 
 **Dark Goldenrod #B88C26**
 - Account dropdown border
 - Home: Service carousel border
 - Available rooms: Room card middle border
 - Available rooms: Pagination outline of current page
+- Super user all rooms: Room card image border
 - Add room/edit room: Input border
 
 **Other colours used:**
+- Red: The delete button and confirm delete buttons become red on hover to highlight their severity
 - Facebook: Blue and white are used for the Facebook logo
-- Instagram and GitHub: Black and white are used for the Instagram and GitHub logos.
-- Toasts other than success messages use the bootstrap default colours for debugging, information, warning and danger.
+- Instagram and GitHub: Black and white are used for the Instagram and GitHub logos
+- Toasts other than success messages use the bootstrap default colours for debugging, information, warning and danger
 
 #### Typography
 
@@ -478,6 +488,20 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The available room cards are split over many pages. This is not as useful currently but will provide good user experience when more rooms are added for a live website and will decrease page load times. Selecting the page number keeps the amenity and sort filter choices. The current page is displayed as larger than the others with an inverse colour. The disabled pages (e.g previous on page 1 and next on the lage page) have a lower opacity to show their status. Hovering over clickable options increases their size. |
 | **User Stories Covered:** 2. 22 |
 
+| **Rooms: All rooms cards** |
+| ----- |
+| **Page: /rooms/rooms_superuser/** |
+| <details><summary>All Rooms Cards</summary><img src="/documentation/features/rooms_rooms_superuser.png"></details> |
+| **Details:** Cards for all the rooms can be seen on the superuser room page. This allows easy and intuitive checking of room data and also contains buttons that allow the user to edit or delete the room instance. The delete room button when hovered becomes red with white font highlighting the seriousness of the action. |
+| **User Stories Covered:** 2, 36 |
+
+| **Rooms: Add room** |
+| ----- |
+| **Page: /rooms/rooms_superuser/** |
+| <details><summary>All Rooms Cards</summary><img src="/documentation/features/rooms_rooms_superuser_add_room.png"></details> |
+| **Details:** The add room button on the superuser rooms page allows the business owner to easily and intuitively add a new room instance to the database with little knowledge of front/back end structure and functionality. |
+| **User Stories Covered:** 2, 36 |
+
 | **Rooms: add/edit room form** |
 | ----- |
 | **Page: /rooms/add_room/ and rooms/edit_room/room_id/** |
@@ -496,12 +520,8 @@ This is my selection for block text across the website. Roboto is the most popul
 | ----- |
 | **Page: /rooms/delete_room/** |
 | <details><summary>Delete room functionality</summary><img src="/documentation/features/rooms_delete_room.png"></details> |
-| **Details:** The delete room functionality allows the business owner to remove an instance of a room from the database. It acts as a step of defensive programming to prevent the business owner from accidentally deleting a room by providing a new page and a confirmation check prior to deletion. |
+| **Details:** The delete room functionality allows the business owner to remove an instance of a room from the database. It acts as a step of defensive programming to prevent the business owner from accidentally deleting a room by providing a new page and a confirmation check prior to deletion. The confirm button becomes red with white font on hover highlighting the seriousness of the action. |
 | **User Stories Covered:** 2, 36 |
-
-
-
-
 
 
 

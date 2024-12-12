@@ -130,6 +130,12 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Room card | Hover book now button | Cursor changes and button colour inverts | Y | N/A |
 | Room card | Resize page | Image drops below room information on smaller screens | Y | N/A |
 | Room card | Click "Book Now" | User is redirect to checkout page with correct order summary | Y | N/A |
+| **rooms_superuser.html** | | | | |
+| Room cards | Resize the page | Rows go from 3 cards, to 2 cards, to 1 card as the screen size decreases | Y | N/A |
+| Add room button | Click | Redirected to add room page | Y | N/A |
+| Edit room link | Click | Redirected to edit room page | Y | N/A |
+| Delete room link | Hover | Button shows a red background with white font as opposed to the site-wide button hover effect | Y | N/A |
+| Delete room link | Click | Redirected to edit room page | Y | N/A |
 | **add_room.html** | | | | |
 | Add room form | Submit the form without a name | Form scrolls up and the name section is focused | Y | N/A |
 | Add room form | Submit the form without a sanitised name | Form scrolls up and the sanitised name section is focused | Y | N/A |
@@ -193,14 +199,6 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Google login | Sign up with Google | Allows login with the Google account | Y | N/A |
 
 
-| **rooms_superuser.html** | | | | |
-| Add room button | Hover | Button colours invert | Y | N/A |
-| Add room button | Click | Redirected to add room page | Y | N/A |
-| Edit room link | Hover | Text bolds | Y | N/A |
-| Edit room link | Click | Redirected to edit room page | Y | N/A |
-| Delete room link | Hover | Text bolds | Y | N/A |
-| Delete room link | Click | Redirected to edit room page | Y | N/A |
-| Rooms page | Resize page | Rooms are displayed in a row of 3 on large screens, 2 on medium, and 1 on small | Y | N/A |
 
 
 
@@ -288,6 +286,13 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <details>
 <summary>Available rooms results</summary>
 <img src="/documentation/testing/wave/rooms_available_rooms.png">
+</details><br>
+
+**Rooms: rooms_superuser.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Superuser rooms results</summary>
+<img src="/documentation/testing/wave/rooms_rooms_superuser.png">
 </details><br>
 
 **Rooms: add_room.html**<br>
@@ -422,19 +427,6 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 
 
 
-
-
-**Rooms: rooms_superuser.html**<br>
-- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
-<details>
-<summary>Superuser rooms results</summary>
-<img src="/documentation/testing/wave/rooms_rooms_superuser.png">
-</details><br>
-
-
-
-
-
 **Checkout: checkout.html**<br>
 - 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
 <details>
@@ -492,6 +484,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Back button | None | None |
 | Homepage | None | None |
 | Rooms: available_rooms | None | None |
+| Rooms: rooms_superuser | None | None |
 | Rooms: add_room | None | None |
 | Rooms: edit_room | None | None |
 | Rooms: delete_room | None | None |
