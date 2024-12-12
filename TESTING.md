@@ -621,8 +621,19 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/rooms_admin.png">
 </details><br>
 
+**Rooms: models.py**<br>
+- No errors or alerts
+<details>
+<summary>Models results</summary>
+<img src="/documentation/testing/python/rooms_models.png">
+</details><br>
 
-
+**Rooms: test_models.py**<br>
+- No errors or alerts
+<details>
+<summary>Test models results</summary>
+<img src="/documentation/testing/python/rooms_test_models.png">
+</details><br>
 
 
 
@@ -637,12 +648,7 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/rooms_forms.png">
 </details><br>
 
-**Rooms: models.py**<br>
-- No errors or alerts
-<details>
-<summary>Models results</summary>
-<img src="/documentation/testing/python/rooms_models.png">
-</details><br>
+
 
 **Rooms: views.py**<br>
 - No errors or alerts
@@ -658,12 +664,7 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/rooms_urls.png">
 </details><br>
 
-**Rooms: test_models.py**<br>
-- No errors or alerts
-<details>
-<summary>Test models results</summary>
-<img src="/documentation/testing/python/rooms_test_models.png">
-</details><br>
+
 
 **Rooms: test_views.py**<br>
 - No errors or alerts
