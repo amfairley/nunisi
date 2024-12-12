@@ -3,7 +3,9 @@ from .models import Room, Amenities
 
 
 class RoomAdmin(admin.ModelAdmin):
+    '''Display options for the room instances in Dhango admin'''
     list_display = (
+        'id',
         'name',
         'sanitised_name',
         'amenities',
@@ -14,17 +16,19 @@ class RoomAdmin(admin.ModelAdmin):
         'unavailability'
     )
 
-    ordering = ('name',)
+    ordering = ('id',)
 
 
 class AmenitiesAdmin(admin.ModelAdmin):
+    '''Display options for the amenities instances in Dhango admin'''
     list_display = (
+        'id',
         'name',
         'sanitised_name',
         'icon'
     )
 
-    ordering = ('name',)
+    ordering = ('id',)
 
 
 # Register your models here.
