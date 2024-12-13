@@ -3,6 +3,7 @@ from .models import Order
 
 
 class OrderAdmin(admin.ModelAdmin):
+    '''Define how the orders are displayed in Admin'''
     readonly_fields = (
         'order_number',
         'user_profile',
