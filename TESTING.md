@@ -531,26 +531,34 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no errors in the CSS code.
 
 ### JavaScript Validation
-The custom JavaScript code was testing using the JavaScript linter [JSLint](https://www.jslint.com/) with no errors across the entirity of the written JavaScript code.
+The custom JavaScript code was testing using the JavaScript linter [JSLint](https://www.jslint.com/) with no errors across the entirity of the written JavaScript code. Any warnings are discussed above the results.
 
 **Base template**<br>
 - The base.js file was copied into the linter and the postload JavaScript at the bottom of base.html was added to this for the purpose of validation. 
 - The following linter settings were selected: browser, this. 
 - The following variables were added: bootstrap.
+- No warnings.
 - Full results can be seen [here](/documentation/testing/jslint/base_template.pdf)
 
 **Homepage template**<br>
 - The script at the bottom of the home template index.html was copied into the linter.
 - The following linter settings were selected: browser. 
 - The following variables were added: bootstrap.
+- No warnings.
 - Full results can be seen [here](/documentation/testing/jslint/index.pdf)
 
 **Available Rooms**<br>
 - The script at the bottom of the home template index.html was copied into the linter.
-- The following linter settings were selected: browser, this (this was used in the code), white (to oversome an alert for parentheses but putting in parentheses created an alert to remove said parentheses), fart (to use more complicated arrow function)
+- The following linter settings were selected: browser, this (this was used in the code), white (to oversome an alert for parentheses but putting in parentheses created an alert to remove said parentheses), fart (to use more complicated arrow function).
+- No warnings.
 - Full results can be seen [here](/documentation/testing/jslint/available_rooms.pdf)
 
-
+**Checkout: stripe_elements.js**
+- This script handles the function associated with the stripe elements and the data cache from the checkout
+- The following linter settings were selected: browser, unordered(to remove warnings for the ordering of defining room_id, room etc.)
+- The following variables were added: $ (for JQuery)
+- 1 warning: Unexpected ':card' when defining the card for confirming the card payment. The code works as expected with no errors, so this was left in.
+- Full results can be seen [here](/documentation/testing/jslint/available_rooms.pdf)
 
 
 
