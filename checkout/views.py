@@ -214,7 +214,7 @@ def checkout(request):
 
             context.update({
                 'client_secret': client_secret,
-                'order_number': order_instance.order_number,
+                'order': order_instance,
             })
 
             return render(request, 'checkout/success.html', context)
