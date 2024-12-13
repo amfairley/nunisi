@@ -52,6 +52,21 @@ card.addEventListener("change", function(event) {
 // Handle form submit
 // Add an event listener for when the form is submitted
 form.addEventListener("submit", function(ev) {
+    // Define the payment form and loading overlay
+    var paymentForm = document.getElementById("payment-form");
+    var loadingOverlay = document.
+    getElementById("loading-overlay");
+    // Define the info from the cache checkout data view
+    var room_id;
+    var room;
+    var total_days;
+    var check_in_date;
+    var check_out_date;
+    var adults;
+    var children;
+    var infants;
+    var total_cost;
+    var url;
     // Prevent the default form action
     ev.preventDefault();
     // Disable the card element and submit button
@@ -60,7 +75,6 @@ form.addEventListener("submit", function(ev) {
     document.getElementById("checkout-form-submit-button").disabled = true;
     document.getElementById("payment-form");
     // Fade out the payment form
-    var paymentForm = document.getElementById("payment-form");
     if (paymentForm.style.display === "none" ||
         paymentForm.style.display === "") {
         paymentForm.style.display = "block";
@@ -85,8 +99,6 @@ form.addEventListener("submit", function(ev) {
         }, 10);
     }
     // Fade out loading overlay
-    var loadingOverlay = document.
-        getElementById("loading-overlay");
     if (loadingOverlay.style.display === "none" ||
         loadingOverlay.style.display === "") {
         loadingOverlay.style.display = "block";
@@ -113,15 +125,17 @@ form.addEventListener("submit", function(ev) {
 
     // Getting form post information for the cache_checkout_data view
     saveInfo = Boolean(document.getElementById("id-save-info").checked);
-    room_id = document.querySelector('input[name="room_id"]').value;
-    room = document.querySelector('input[name="room"]').value;
-    total_days = document.querySelector('input[name="total_days"]').value;
-    check_in_date = document.querySelector('input[name="check_in_date"]').value;
-    check_out_date = document.querySelector('input[name="check_out_date"]').value;
-    adults = document.querySelector('input[name="adults"]').value;
-    children = document.querySelector('input[name="children"]').value;
-    infants = document.querySelector('input[name="infants"]').value;
-    total_cost = document.querySelector('input[name="total_cost"]').value;
+    room_id = document.querySelector("input[name='room_id']").value;
+    room = document.querySelector("input[name='room']").value;
+    total_days = document.querySelector("input[name='total_days']").value;
+    check_in_date = document.querySelector("input[name='check_in_date']").value;
+    check_out_date = document.querySelector(
+        "input[name='check_out_date']"
+    ).value;
+    adults = document.querySelector("input[name='adults']").value;
+    children = document.querySelector("input[name='children']").value;
+    infants = document.querySelector("input[name='infants']").value;
+    total_cost = document.querySelector("input[name='total_cost']").value;
     csrfToken = document
         .querySelector("input[name='csrfmiddlewaretoken']")
         .value;
@@ -137,9 +151,9 @@ form.addEventListener("submit", function(ev) {
         "adults": adults,
         "children": children,
         "infants": infants,
-        "total_cost": total_cost,
+        "total_cost": total_cost
     };
-    var url = "/checkout/cache_checkout_data/";
+    url = "/checkout/cache_checkout_data/";
 
     $.post(url, postData).done(function() {
         // Send card information securely to stripe
@@ -179,12 +193,14 @@ form.addEventListener("submit", function(ev) {
             }
         // Then execute this function on result
         }).then(function(result) {
+            var errorDiv;
+            var html;
             // If there is an error display the error message
             // in the card error div
             if (result.error) {
                 // Get the error div, define the inner html and apply it
-                var errorDiv = document.getElementById("card-errors");
-                var html = `
+                errorDiv = document.getElementById("card-errors");
+                html = `
                     <span class="icon" role="alert">
                     <i class="fas fa-times"></i>
                     </span>
