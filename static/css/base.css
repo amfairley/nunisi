@@ -112,6 +112,7 @@ main {
     background-color: red;
     color:#F5F5F5;
 }
+
 .back-button-container {
     width: fit-content;
     height: fit-content;
@@ -1265,29 +1266,37 @@ main {
 }
 
 /* ---------- Checkout ---------- */
-#booking-page-title {
-    text-align: center;
-    color:#b88c26;
-    font-weight: bolder;
-    margin-top: 10px;
+/* Page layout */
+.checkout-container {
+    border: 3px solid #b88c26;
+    border-radius: 0.75rem;
+    background-color: #FDD67C;
+    margin: 1rem auto;
+    max-width: 1400px;
 }
 
 .checkout-page-block {
-    border: 5px double #b88c26;
-    max-width: 95%;
-    margin: 20px auto;
+    padding: 0;
 }
 
-.checkout-page-block h2 {
+.checkout-section-title {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color:#FDD67C;
     text-align: center;
-    color: #b88c26;
+    background-color: #3A6B35;
+    border: 3px solid #3A6B35;
+    border-radius: 8px 0 0 0;
+    padding-top: 0.5rem;
+    border-right: 3px solid #b88c26;
+}
+
+.checkout-section-content {
+    padding: 1rem;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #333A3F;
 }
 
 /* Payment form */
-#payment-text {
-    color:#333A3F;
-}
-
 #payment-form label {
     color: #333A3F;
     text-align: left;
@@ -1295,78 +1304,73 @@ main {
     font-weight: bolder;
 }
 
-#payment-form input {
-    background-color: #FDD67C;
-    width: 65%;
-    color: #3A6B35;
+#payment-form input,
+#payment-form select {
+    color: #FDD67C;
+    background-color: #3A6B35;
     font-weight: bolder;
+    width: 65%;
 }
 
-#save-info-div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    font-family: Roboto, Arial, Helvetica, sans-serif;
-    margin-top: 5px;
+#save-info-div input {
+    left: 1rem;
+    width: fit-content;
 }
 
-#save-info-label {
-    width: 70% !important;
-}
-
-#save-info {
-    width: 25% !important;
-}
-
-#checkout-form-submit-button-div {
-    width: 100%;
-    display: flex;
-}
-
-#checkout-form-submit-button {
-    margin: 5px auto 10px auto;
-    text-align: center;
-    padding-left: 5px;
-    padding-right: 5px;
+#card-element {
+    border: 1px solid #b88c26;
 }
 
 /* Order summary */
+.order-summary-section-title {
+    border-radius: 0 8px 0 0 !important;
+    border-right: none;
+}
+
+.order-summary-image-div {
+    text-align: center;
+    padding: 1rem;
+}
+
+.order-summary-image-div img {
+    width: 95%;
+}
+
+.order-summary-info {
+    padding: 5px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#333A3F;
+}
+
 .order-summary-p {
     font-weight: bolder;
 }
 
 .order-summary-data {
-    font-weight: 400;
-}
-
-.order-summary-image-div {
-    display: flex;
-    justify-content: center;
-}
-
-.order-summary-image {
-    width: 60%;
-    margin-bottom: 10px;
-}
-
-/* Checkout success */
-#checkout-success-message {
-    text-align: center;
+    font-weight: lighter;
 }
 
 /* ---------- Stripe CSS ---------- */
 /* Card element */
 #card-element {
-    background-color: #FDD67C;
-    color: #3A6B35;
+    background-color: #f5f5f5;
     font-family: Roboto, Arial, Helvetica, sans-serif;
-    border: 1px solid #333A3F;
-    border-radius: 3%;
+    border: 3px solid #333A3F;
     padding: 0;
     max-width: 90%;
     margin: 10px auto;
-    height: 1.5rem;
+    height: fit-content;
+}
+
+#card-errors {
+    border-radius: 8px;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    background-color: red;
+    color:#F5F5F5;
+}
+
+#card-errors span {
+    margin: 5px;
 }
 
 /* Loading overlay */
@@ -1387,6 +1391,37 @@ main {
     justify-content: center;
     margin: 0;
     height: 100%;
+}
+
+.stripe-comment {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    font-size: 0.75rem;
+    color:#333A3F;
+}
+
+.stripe-comment a {
+    font-weight: bolder;
+}
+
+/* ---------- Checkout success ---------- */
+#checkout-success-div {
+    width: 1200px;
+    max-width: 95%;
+    margin: 2rem auto;
+    border: 3px solid #b88c26;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #FDD67C;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#333A3F;
+    overflow-wrap: break-word;
+}
+
+.home-button-container {
+    width: fit-content;
+    height: fit-content;
+    overflow: visible;
+    margin: 1rem auto;
 }
 
 /* ---------- User Profile ---------- */
@@ -1594,6 +1629,16 @@ main {
     /* Add edit room show horizontal rule */
     .add-edit-room-hr {
         display: inline-block;
+    }
+
+    /*Change section title borders on checkout page */
+    .checkout-section-title {
+        border-radius: 8px 8px 0 0;
+        border-right: none;
+    }
+
+    .order-summary-section-title {
+        border-radius: 0 0 0 0 !important;
     }
 }
 
