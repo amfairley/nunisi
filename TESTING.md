@@ -154,6 +154,17 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Edit a new room with unavailability | Search availability to see if it does not appear | It does not appear in available rooms | Y | N/A |
 | **delete_room.html** | | | | |
 | Delete room | Confirm deleteion | Room instance is deleted, success toast alerts the user, and user is redirected to superuser rooms page | Y | N/A |
+| **checkout.html** | | | | |
+| Load page | N/A | Form is pre-filled with profile data | Y | N/A |
+| Load page | N/A | Correct trip details appear on the page | Y | N/A |
+| Checkout form | Leave name input empty | Alert appears informing user to provide name | Y | N/A |
+| Checkout form | Leave email input empty | Alert appears informing user to provide email | Y | N/A |
+| Checkout form | Leave phone number input empty | Alert appears informing user to provide phone number | Y | N/A |
+| Checkout form | Leave street address 1 input empty | Alert appears informing user to provide street address | Y | N/A |
+| Checkout form | Leave town or city input empty | Alert appears informing user to provide town or city | Y | N/A |
+| Checkout form | Leave country input empty | Alert appears informing user to provide country | Y | N/A |
+| Checkout form | Provide incorrect credit card information | Alerts appear informing user to credit card errors | Y | N/A |
+| Checkout form | Provide correct data and submit | The form is submitted, order created, trip created, and confirmation email sent | | |
 | **success.html** | | | | |
 | Success page | N/A | Correct order data is displayed | Y | N/A |
 | Home button | Click | User redirected to homepage | Y | N/A |
@@ -204,17 +215,7 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 
 
 
-| **checkout.html** | | | | |
-| Load page | N/A | Form is pre-filled with profile data | Y | N/A |
-| Load page | N/A | Correct trip details appear on the page | Y | N/A |
-| Checkout form | Leave name input empty | Alert appears informing user to provide name | Y | N/A |
-| Checkout form | Leave email input empty | Alert appears informing user to provide email | Y | N/A |
-| Checkout form | Leave phone number input empty | Alert appears informing user to provide phone number | Y | N/A |
-| Checkout form | Leave street address 1 input empty | Alert appears informing user to provide street address | Y | N/A |
-| Checkout form | Leave town or city input empty | Alert appears informing user to provide town or city | Y | N/A |
-| Checkout form | Leave country input empty | Alert appears informing user to provide country | Y | N/A |
-| Checkout form | Provide incorrect credit card information | Alerts appear informing user to credit card errors | Y | N/A |
-| Checkout form | Provide correct data and submit | The form is submitted, order created, trip created, and confirmation email sent | | |
+
 | **checkout_success.html** | | | | |
 | Page | Submit a booking request | Page loads and displays order number | Y | Y | Y | Y |
 | Checkout form | Hover Pay Now button | Button colour inverts | Y | N/A |
@@ -317,6 +318,14 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <details>
 <summary>Delete room results</summary>
 <img src="/documentation/testing/wave/rooms_delete_room.png">
+</details><br>
+
+**Checkout: checkout.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+- 1 alert for a JavaScript jump menu. The wave validator reads the country select as a JavaScript jump menu, which would make the page unusable using only a keyboard. However there is no onchange functionality assigned to this dropdown, making it perfectly usable and accessible, so this alert was ignored.
+<details>
+<summary>Checkout results</summary>
+<img src="/documentation/testing/wave/checkout_checkout.png">
 </details><br>
 
 **Checkout: success.html**<br>
@@ -431,17 +440,6 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-
-
-
-**Checkout: checkout.html**<br>
-- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
-<details>
-<summary>Checkout results</summary>
-<img src="/documentation/testing/wave/checkout_checkout.png">
-</details><br>
-
-
 **User_profile: user_profile.html**<br>
 - 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
 <details>
@@ -495,6 +493,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Rooms: add_room | None | None |
 | Rooms: edit_room | None | None |
 | Rooms: delete_room | None | None |
+| Checkout: checkout | None | None |
 | Checkout: success | None | None |
 
 

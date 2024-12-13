@@ -268,6 +268,9 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Super user all rooms: Room card background
 - Add room/edit room: Content text
 - Add room/edit room: Input background
+- Checkout: Section titles font
+- Checkout: Section backgrounds
+- Checkout: Payment input font
 - Checkout success: Success message background
 
 **Fern Green #3A6B35**
@@ -296,6 +299,9 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Add room/edit room: Content background
 - Add room/edit room: Input text
 - Delete room: Page title
+- Checkout: Page title
+- Checkout: Section title background
+- Checkout: Form input background
 - Checkout success: Page title
 
 **Gun Metal #333A3F**
@@ -307,6 +313,8 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Text of no matches
 - Super user all rooms: Room card text
 - Delete room: Page text
+- Checkout: Section content
+- Checkout: Form labels
 - Checkout success: Success message text
 
 **White Smoke #F5F5F5**
@@ -314,6 +322,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Background of amenity filter accordion symbol
 - Super user all rooms: Delete button text on hover
 - Delete room: Delete button text on hover
+- Checkout: Card error text
 
 **Dark Goldenrod #B88C26**
 - Account dropdown border
@@ -322,9 +331,11 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Pagination outline of current page
 - Super user all rooms: Room card image border
 - Add room/edit room: Input border
+- Checkout: Section border
 
 **Other colours used:**
 - Red: The delete button and confirm delete buttons become red on hover to highlight their severity
+- Red: The card error background on the checkout form
 - Facebook: Blue and white are used for the Facebook logo
 - Instagram and GitHub: Black and white are used for the Instagram and GitHub logos
 - Toasts other than success messages use the bootstrap default colours for debugging, information, warning and danger
@@ -526,6 +537,26 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The delete room functionality allows the business owner to remove an instance of a room from the database. It acts as a step of defensive programming to prevent the business owner from accidentally deleting a room by providing a new page and a confirmation check prior to deletion. The confirm button becomes red with white font on hover highlighting the seriousness of the action. |
 | **User Stories Covered:** 2, 36 |
 
+| **Checkout: Payment Form** |
+| ----- |
+| **Page: /checkout/** |
+| <details><summary>Payment form</summary><img src="/documentation/features/checkout_payment_form.png"></details> |
+| **Details:** The payment form takes the user data and uses it to charge the user, create an order and trip, and send an order confirmation email. It is handled securely via Stripe. Any errors in the card used appear before processing the payment intent. |
+| **User Stories Covered:** 2, 26, 28, 29, 31 |
+
+| **Checkout: Order Summary** |
+| ----- |
+| **Page: /checkout/** |
+| <details><summary>Order summary</summary><img src="/documentation/features/checkout_order_summary.png"></details> |
+| **Details:** The checkout order summary provides the user with a summary of their order before paying so that they can be certain of what they are paying for.  |
+| **User Stories Covered:** 2, 30 |
+
+| **Checkout: Confirmation Email** |
+| ----- |
+| **Page: /checkout/** |
+| **Details:** Once a successful trip has been booked, the user will be emailed a confirmation email with the order and trip details |
+| **User Stories Covered:** 2, 31 |
+
 | **Checkout: Success message** |
 | ----- |
 | **Page: /checkout/** |
@@ -533,7 +564,12 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** Once a successful trip has been booked, the user is redirected to a success page, highlighting key information about the order including the email address that the confirmation will be emailed to, order number, cost, and a message providing a contact phone number if any changes need to be made. |
 | **User Stories Covered:** 2 |
 
-
+| **Checkout: Home link** |
+| ----- |
+| **Page: /checkout/** |
+| <details><summary>Payment success homepage link</summary><img src="/documentation/features/checkout_success_home.png"></details> |
+| **Details:** The homepage link provides the user with a convenient way to get back to the homepage from the order confirmation page.  |
+| **User Stories Covered:** 2 |
 
 
 
@@ -611,42 +647,6 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The AllAuth Google login allows users to sign up or log in with their Google accounts. This is good for security, as it is a validated email address. |
 | **User Stories Covered:** 2, 11, 14 |
 
-
-| **Rooms: rooms_superuser.html** |
-| ----- |
-| **Page: /rooms/rooms_superuser/** |
-| <details><summary>Superuser room page</summary><img src="/documentation/features/rooms_rooms_superuser.png"></details> |
-| **Details:** The superuser rooms page allows the business owner to see the current rooms, edit and delete them, or add a new room. |
-| **User Stories Covered:** 2, 36 |
-
-| **Rooms: Add/Edit Room Form** |
-| ----- |
-| **Page: /rooms/add_room/ and /rooms/edit_room/** |
-| <details><summary>Add/Edit room form</summary><img src="/documentation/features/rooms_add_room_form.png"></details> |
-| **Details:** The add room form allows the business owner to add new rooms to the database. This feature is repeated for the edit room form where the business owner can update values to the room instances. |
-| **User Stories Covered:** 2, 36 |
-
-
-
-| **Checkout: Confirmation Email** |
-| ----- |
-| **Page: /checkout/** |
-| **Details:** Once a successful trip has been booked, the user will be emailed a confirmation email with the order and trip details |
-| **User Stories Covered:** 2, 31 |
-
-| **Checkout: Payment Form** |
-| ----- |
-| **Page: /checkout/** |
-| <details><summary>Payment form</summary><img src="/documentation/features/checkout_payment_form.png"></details> |
-| **Details:** The payment form takes the user data and uses it to charge the user, create an order and trip, and send an order confirmation email. It is handled securely via Stripe |
-| **User Stories Covered:** 2, 26, 28, 29, 31 |
-
-| **Checkout: Order Summary** |
-| ----- |
-| **Page: /checkout/** |
-| <details><summary>Order summary</summary><img src="/documentation/features/checkout_order_summary.png"></details> |
-| **Details:** The checkout order summary provides the user with a summary of their order before paying so that they can be certain of what they are paying for.  |
-| **User Stories Covered:** 2, 30 |
 
 |**User_profile: User Profile Table** |
 | ----- |
