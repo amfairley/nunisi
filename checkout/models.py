@@ -5,6 +5,7 @@ from user_profile.models import UserProfile
 
 
 class Order(models.Model):
+    '''Order model'''
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(
         UserProfile,
@@ -50,4 +51,5 @@ class Order(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
+        '''Returns the order number'''
         return self.order_number

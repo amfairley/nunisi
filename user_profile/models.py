@@ -22,10 +22,12 @@ class UserProfile(models.Model):
     newsletter = models.BooleanField(default=False)
 
     def __str__(self):
+        '''Returns the username'''
         return self.user.username
 
 
 class Trip(models.Model):
+    '''Trip model'''
     profile = models.ForeignKey(
         UserProfile,
         on_delete=models.SET_NULL,
