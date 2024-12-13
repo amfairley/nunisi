@@ -20,6 +20,7 @@ class StripeWH_Handler:
     '''Handle Stripe Webhooks'''
 
     def __init__(self, request):
+        '''Overwrite init with logger setting'''
         self.request = request
         self.logger = logging.getLogger('stripe_webhook')
 
