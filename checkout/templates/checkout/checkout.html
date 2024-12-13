@@ -7,54 +7,77 @@
 
 {% block content %}
     <div class="content">
-        <h1 class="jost-font" id="booking-page-title">Checkout</h1>
+        <!--Page title-->
+        <h1 class="page-title">Secure Checkout</h1>
         <div class="container">
-            <div class="row gx-5">
-                <div class="col-12 col-md-6 checkout-page-block" id="checkout-page-payment-block">
-                    <h2 class="jost-font">Payment Details</h2>
-                    <p class="roboto-font" id="payment-text">Complete the form below to confirm your booking:</p>
-                    <!--Checkout Form-->
-                    <form method="POST" action="{% url 'checkout' %}" id="payment-form" class="roboto-font">
-                        {% csrf_token %}
-                        {{ checkout_form.as_p }}
-                        <!-- Hidden field to identify form name -->
-                        <input type="hidden" name="payment_form" value="True">
-                        <!-- Hidden fields for trip details -->
-                        <input type="hidden" name="room_id" value="{{ room_id }}">
-                        <input type="hidden" name="room" value="{{ room }}">
-                        <input type="hidden" name="total_days" value="{{ total_days }}">
-                        <input type="hidden" name="check_in_date" value="{{ check_in_date }}">
-                        <input type="hidden" name="check_out_date" value="{{ check_out_date }}">
-                        <input type="hidden" name="adults" value = "{{ adults }}">
-                        <input type="hidden" name="children" value = "{{ children }}">
-                        <input type="hidden" name="infants" value = "{{ infants }}">
-                        <input type="hidden" name="total_cost" value="{{ total_cost }}">
-                        <div id="save-info-div">
-                            <label for="save-info" id="save-info-label">Save Information For Next Time:</label>
-                            <input type="checkbox" id="id-save-info" name="save_info">
-                        </div>
-                        <!-- Stripe Elements -->
-                        <input type="hidden" name="client_secret" value="{{ client_secret }}">
-                        <div id="card-element"></div>
-                        <div id="card-errors" role="alert"></div>
-                        <hr>
-                        <div id="checkout-form-submit-button-div">
-                            <button type="submit" id="checkout-form-submit-button" class="nunisi-button">Pay Now</button>
-                        </div>
-                    </form>
+            <!--Checkout container-->
+            <div class="row gx-5 checkout-container">
+                <!--Checkout form container-->
+                <div class="col-12 col-md-6 checkout-page-block">
+                    <!--Form title-->
+                    <div class="checkout-section-title">
+                        <h2>Payment Details</h2>
+                    </div>
+                    <!--Form content-->
+                    <div class="checkout-section-content">
+                        <!--Payment message-->
+                        <p>Complete the form below to confirm your booking:</p>
+                        <!--Payment form-->
+                        <form method="POST" action="{% url 'checkout' %}" id="payment-form">
+                            {% csrf_token %}
+                            {{ checkout_form.as_p }}
+                            <!-- Hidden field to identify form name -->
+                            <input type="hidden" name="payment_form" value="True">
+                            <!-- Hidden fields for trip details -->
+                            <input type="hidden" name="room_id" value="{{ room_id }}">
+                            <input type="hidden" name="room" value="{{ room }}">
+                            <input type="hidden" name="total_days" value="{{ total_days }}">
+                            <input type="hidden" name="check_in_date" value="{{ check_in_date }}">
+                            <input type="hidden" name="check_out_date" value="{{ check_out_date }}">
+                            <input type="hidden" name="adults" value = "{{ adults }}">
+                            <input type="hidden" name="children" value = "{{ children }}">
+                            <input type="hidden" name="infants" value = "{{ infants }}">
+                            <input type="hidden" name="total_cost" value="{{ total_cost }}">
+                            <!--Save info-->
+                            <div id="save-info-div">
+                                <label for="id-save-info" id="save-info-label">Save Info:</label>
+                                <input type="checkbox" id="id-save-info" name="save_info">
+                            </div>
+                            <!-- Stripe Elements -->
+                            <input type="hidden" name="client_secret" value="{{ client_secret }}">
+                            <div id="card-element"></div>
+                            <div id="card-errors" role="alert"></div>
+                            <hr>
+                            <p class="stripe-comment">
+                                Payment is handled safely and securely through 
+                                <a href="https://stripe.com/" target="_blank" rel="noopener" aria-label="Go to the Stripe website">Stripe</a>
+                            </p>
+                            <!--Payment button-->
+                            <div id="checkout-form-submit-button-div">
+                                <button type="submit" id="checkout-form-submit-button" class="nunisi-button">Pay Now</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 checkout-page-block" id="checkout-page-order-summary-block">
                 <!-- Order Summary -->
-                    <h2 class="jost-font">Order Summary</h2>
+                    <!--Order summary title-->
+                    <div class="checkout-section-title order-summary-section-title">
+                        <h2>Order Summary</h2>
+                    </div>
+                    <!--Order Image-->
                     <div class="order-summary-image-div">
                         <img src="{{ room.image.url }}" alt="{{ room.name }}" class="order-summary-image">
                     </div>
-                    <p class="roboto-font order-summary-p">Room Name: <span class="order-summary-data">{{ room.sanitised_name }}</span></p>
-                    <p class="roboto-font order-summary-p">Check in: <span class="order-summary-data">{{ sanitised_check_in_date }}</span></p>
-                    <p class="roboto-font order-summary-p">Check out: <span class="order-summary-data">{{ sanitised_check_out_date }}</span></p>
-                    <p class="roboto-font order-summary-p">Trip length: <span class="order-summary-data">{{ total_days }} nights</span></p>
-                    <p class="roboto-font order-summary-p">Guests: <span class="order-summary-data">{{ total_guests }} ({{ adults }} adults, {{ children }} children, {{ infants }} infants)</span></p>
-                    <p class="roboto-font order-summary-p">Total Cost: £<span class="order-summary-data">{{ total_cost }}</span></p>
+                    <!--Order information-->
+                    <div class="order-summary-info">
+                        <p class="order-summary-p">Room Name: <span class="order-summary-data">{{ room.sanitised_name }}</span></p>
+                        <p class="order-summary-p">Check in: <span class="order-summary-data">{{ sanitised_check_in_date }}</span></p>
+                        <p class="order-summary-p">Check out: <span class="order-summary-data">{{ sanitised_check_out_date }}</span></p>
+                        <p class="order-summary-p">Trip length: <span class="order-summary-data">{{ total_days }} nights</span></p>
+                        <p class="order-summary-p">Guests: <span class="order-summary-data">{{ total_guests }} ({{ adults }} adults, {{ children }} children, {{ infants }} infants)</span></p>
+                        <p class="order-summary-p">Total Cost: <span class="order-summary-data">£{{ total_cost }}</span></p>
+                    </div>
                 </div>
             </div>
         </div>
