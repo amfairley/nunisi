@@ -7,9 +7,23 @@
 
 {% block content %}
     <div class="content">
-        <div id="checkout-success-message">
-            <h1 class="jost-font font-nunisi-green">Payment success!</h1>
-            <p class="roboto-font font-off-black">Oder number: <span>{{ order_number }}</span></p>
+        <!--Page title-->
+        <h1 class="page-title">Payment success!</h1>
+        <!--Information div-->
+        <div id="checkout-success-div">
+            <!--Success message-->
+            <p>Your payment was successful, the details of you upcoming trip have been emailed to: <span class="font-weight-bolder">{{ order.email }}</span>. Please keep a record of your order number for you records.</p>
+            <!--Order number-->
+            <p><span class="font-weight-bolder">Order number:</span> {{ order.order_number }}</p>
+            <!--Order cost-->
+            <p><span class="font-weight-bolder">Total cost:</span> £{{ order.order_total|floatformat:2 }}</p>
+            <!--Contact information-->
+            <p>For any other enquiries or to make changes to your order, please contact us on: <span class="font-weight-bolder">555-555-1234</span>.</p>
+        </div>
+        <!--Home button-->
+        <div class="home-button-container">
+            <a href="{% url 'home' %}" class="nunisi-button">Homepage</a>
         </div>
     </div>
+    
 {% endblock %}
