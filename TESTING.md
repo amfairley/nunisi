@@ -685,28 +685,11 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/rooms_urls.png">
 </details><br>
 
-
-
-
-
-
-
-
-
-
-
 **Checkout: admin.py**<br>
 - No errors or alerts
 <details>
 <summary>Admin results</summary>
 <img src="/documentation/testing/python/checkout_admin.png">
-</details><br>
-
-**Checkout: forms.py**<br>
-- No errors or alerts
-<details>
-<summary>Forms results</summary>
-<img src="/documentation/testing/python/checkout_forms.png">
 </details><br>
 
 **Checkout: models.py**<br>
@@ -716,20 +699,19 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/checkout_models.png">
 </details><br>
 
-**Checkout: views.py**<br>
+**Checkout: test_models.py**<br>
 - No errors or alerts
 <details>
-<summary>Views results</summary>
-<img src="/documentation/testing/python/checkout_views.png">
+<summary>Test models results</summary>
+<img src="/documentation/testing/python/checkout_test_models.png">
 </details><br>
 
-**Checkout: urls.py**<br>
+**Checkout: forms.py**<br>
 - No errors or alerts
 <details>
-<summary>URLs results</summary>
-<img src="/documentation/testing/python/checkout_urls.png">
+<summary>Forms results</summary>
+<img src="/documentation/testing/python/checkout_forms.png">
 </details><br>
-
 
 **Checkout: test_forms.py**<br>
 - No errors or alerts
@@ -738,20 +720,25 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/checkout_test_forms.png">
 </details><br>
 
-
-**Checkout: test_models.py**<br>
+**Checkout: views.py**<br>
 - No errors or alerts
 <details>
-<summary>Test models results</summary>
-<img src="/documentation/testing/python/checkout_test_models.png">
+<summary>Views results</summary>
+<img src="/documentation/testing/python/checkout_views.png">
 </details><br>
-
 
 **Checkout: test_views.py**<br>
 - No errors or alerts
 <details>
 <summary>Test views results</summary>
 <img src="/documentation/testing/python/checkout_test_views.png">
+</details><br>
+
+**Checkout: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>URLs results</summary>
+<img src="/documentation/testing/python/checkout_urls.png">
 </details><br>
 
 **Checkout: webhooks.py**<br>
@@ -767,6 +754,19 @@ The Python code for this project was written in strict accordance with the [PEP 
 <summary>Webhook handler results</summary>
 <img src="/documentation/testing/python/checkout_webhook_handler.png">
 </details><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 **User_profile: admin.py**<br>
 - No errors or alerts
