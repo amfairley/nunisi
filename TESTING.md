@@ -154,7 +154,9 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Edit a new room with unavailability | Search availability to see if it does not appear | It does not appear in available rooms | Y | N/A |
 | **delete_room.html** | | | | |
 | Delete room | Confirm deleteion | Room instance is deleted, success toast alerts the user, and user is redirected to superuser rooms page | Y | N/A |
-
+| **success.html** | | | | |
+| Success page | N/A | Correct order data is displayed | Y | N/A |
+| Home button | Click | User redirected to homepage | Y | N/A |
 
 
 
@@ -317,7 +319,12 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave/rooms_delete_room.png">
 </details><br>
 
-
+**Checkout: success.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Checkout success results</summary>
+<img src="/documentation/testing/wave/checkout_success.png">
+</details><br>
 
 
 
@@ -488,6 +495,7 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Rooms: add_room | None | None |
 | Rooms: edit_room | None | None |
 | Rooms: delete_room | None | None |
+| Checkout: success | None | None |
 
 
 

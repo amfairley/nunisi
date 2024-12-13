@@ -268,6 +268,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Super user all rooms: Room card background
 - Add room/edit room: Content text
 - Add room/edit room: Input background
+- Checkout success: Success message background
 
 **Fern Green #3A6B35**
 - Font colour on Jasmine backgrounds
@@ -295,6 +296,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Add room/edit room: Content background
 - Add room/edit room: Input text
 - Delete room: Page title
+- Checkout success: Page title
 
 **Gun Metal #333A3F**
 - Border for the account menu
@@ -305,6 +307,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Available rooms: Text of no matches
 - Super user all rooms: Room card text
 - Delete room: Page text
+- Checkout success: Success message text
 
 **White Smoke #F5F5F5**
 - Home: Hero text colour
@@ -522,6 +525,21 @@ This is my selection for block text across the website. Roboto is the most popul
 | <details><summary>Delete room functionality</summary><img src="/documentation/features/rooms_delete_room.png"></details> |
 | **Details:** The delete room functionality allows the business owner to remove an instance of a room from the database. It acts as a step of defensive programming to prevent the business owner from accidentally deleting a room by providing a new page and a confirmation check prior to deletion. The confirm button becomes red with white font on hover highlighting the seriousness of the action. |
 | **User Stories Covered:** 2, 36 |
+
+| **Checkout: Success message** |
+| ----- |
+| **Page: /checkout/** |
+| <details><summary>Payment success message</summary><img src="/documentation/features/checkout_success.png"></details> |
+| **Details:** Once a successful trip has been booked, the user is redirected to a success page, highlighting key information about the order including the email address that the confirmation will be emailed to, order number, cost, and a message providing a contact phone number if any changes need to be made. |
+| **User Stories Covered:** 2 |
+
+
+
+
+
+
+
+
 
 
 
