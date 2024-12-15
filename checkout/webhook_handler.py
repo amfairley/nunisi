@@ -5,7 +5,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 
 from .models import Order
-from user_profile.models import UserProfile, Trip
+from user_profile.models import UserProfile
+from trips.models import Trip
 from rooms.models import Room
 import stripe
 import time
