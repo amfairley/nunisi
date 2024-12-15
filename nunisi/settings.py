@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'checkout',
     'user_profile.apps.UserProfileConfig',
     'back_button',
+    'trips',
     # Storage
     'storages',
 ]
