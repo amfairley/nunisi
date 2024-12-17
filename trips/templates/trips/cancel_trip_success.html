@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}
+ - Cancellation processing
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <h1 class="page-title">
+            Cancellation Requested
+        </h1>
+        <div class="cancellation-request-message">
+            <p>We have received your request for cancellation and are processing your refund.</p>
+        </div>
+        <!--Home button-->
+        <div class="home-button-container">
+            <a href="{% url 'home' %}" class="nunisi-button">Homepage</a>
+        </div>
+    </div>
+{% endblock %}
