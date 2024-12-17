@@ -10,136 +10,169 @@
         <h1 class="page-title">Your Trips</h1>
         <!--If Trips-->
         {% if trips %}
-        <div class="trips-page-container">
-            <!--Upcoming trips-->
-            <div class="row upcoming-trips-row">
-                <div class="col-12 trips-section-title">
-                    <h2>Upcoming Trips</h2>
-                </div>
-                {% for trip in upcoming_trips %}
-                    <div class="trips-container">
-                        <div class="trip-card">
-                            <div class="row trips-header">
-                                <div class="col-6 trips-header-left">
-                                    <p><span class="trips-label">Check-in:</span> {{ trip.start_date }}</p>
-                                    <p><span class="trips-label">Check-out:</span> {{ trip.end_date }}</p>
+            <div class="trips-page-container"> 
+                <!--Upcoming trips-->
+                <div class="row upcoming-trips-row">
+                    <div class="col-12 trips-section-title">
+                        <h2>Upcoming Trips</h2>
+                    </div>
+                    {% for trip in upcoming_trips %}
+                        <div class="trips-container">
+                            <div class="trip-card">
+                                <div class="row trips-header">
+                                    <div class="col-6 trips-header-left">
+                                        <p><span class="trips-label">Check-in:</span> {{ trip.start_date }}</p>
+                                        <p><span class="trips-label">Check-out:</span> {{ trip.end_date }}</p>
+                                    </div>
+                                    <div class="col-6 trips-header-right">
+                                        <p><span class="trips-label">Cost:</span> £{{ trip.cost }}</p>
+                                    </div>
                                 </div>
-                                <div class="col-6 trips-header-right">
-                                    <p><span class="trips-label">Cost:</span> £{{ trip.cost }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <p class="trip-room-name">{{ trip.room.sanitised_name }}</p>
-                                    <p class="trip-description">{{ trip.room.description }}</p>
-                                    <div class="trip-amenities">
-                                        <p class="trips-label">Amenities:</p>
-                                        <ul>
-                                            {% for amenity_id in trip.room.amenities %}
-                                                {% for amenity in amenities %}
-                                                    {% if amenity.id == amenity_id %}
-                                                        <li>{{ amenity.icon|safe }} {{ amenity.sanitised_name }}</li>
-                                                    {% endif %}
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+                                        <p class="trip-room-name">{{ trip.room.sanitised_name }}</p>
+                                        <p class="trip-description">{{ trip.room.description }}</p>
+                                        <div class="trip-amenities">
+                                            <p class="trips-label">Amenities:</p>
+                                            <ul>
+                                                {% for amenity_id in trip.room.amenities %}
+                                                    {% for amenity in amenities %}
+                                                        {% if amenity.id == amenity_id %}
+                                                            <li>{{ amenity.icon|safe }} {{ amenity.sanitised_name }}</li>
+                                                        {% endif %}
+                                                    {% endfor %}
                                                 {% endfor %}
-                                            {% endfor %}
-                                        </ul>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    {% if trip.room.image %}
-                                        <img src="{{ trip.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
-                                    {% endif %}
-                                    <div class="trip-guests-div">
-                                        <p class="trips-label">Guests:</p>
-                                        <ul>
-                                            <li>
-                                                {{ trip.adults }} Adults
-                                            </li>
-                                            <li>
-                                                {{ trip.children }} Children
-                                            </li>
-                                            <li>
-                                                {{ trip.infants }} Infants
-                                            </li>
-                                        </ul>
+                                    <div class="col-12 col-md-6">
+                                        {% if trip.room.image %}
+                                            <img src="{{ trip.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
+                                        {% endif %}
+                                        <div class="trip-guests-div">
+                                            <p class="trips-label">Guests:</p>
+                                            <ul>
+                                                <li>
+                                                    {{ trip.adults }} Adults
+                                                </li>
+                                                <li>
+                                                    {{ trip.children }} Children
+                                                </li>
+                                                <li>
+                                                    {{ trip.infants }} Infants
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="trip-cancel-div">
-                                    {% if not trip.cancelled %}
-                                        <a href="{% url 'cancel_trip' trip.id %}" class="trip-cancel-button">Cancel</a>
-                                    {% endif %}
+                                    <div class="trip-cancel-div">
+                                        {% if not trip.cancelled %}
+                                            <a href="{% url 'cancel_trip' trip.id %}" class="trip-cancel-button">Cancel</a>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-            <!--Past trips-->
-            <div class="row past-trips-row">
-                <div class="col-12 trips-section-title">
-                    <h2>Past Trips</h2>
+                    {% endfor %}
                 </div>
-                {% for trip in past_trips %}
-                    <div class="trips-container">
-                        <div class="trip-card">
-                            <div class="row trips-header">
-                                <div class="col-6 trips-header-left">
-                                    <p><span class="trips-label">Check-in:</span> {{ trip.start_date }}</p>
-                                    <p><span class="trips-label">Check-out:</span> {{ trip.end_date }}</p>
-                                </div>
-                                <div class="col-6 trips-header-right">
-                                    <p><span class="trips-label">Cost:</span> £{{ trip.cost }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <p class="trip-room-name">{{ trip.room.sanitised_name }}</p>
-                                    <p class="trip-description">{{ trip.room.description }}</p>
-                                    <div class="trip-amenities">
-                                        <p class="trips-label">Amenities:</p>
-                                        <ul>
-                                            {% for amenity_id in trip.room.amenities %}
-                                                {% for amenity in amenities %}
-                                                    {% if amenity.id == amenity_id %}
-                                                        <li>{{ amenity.icon|safe }} {{ amenity.sanitised_name }}</li>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    {% if trip.room.image %}
-                                        <img src="{{ trip.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
-                                    {% endif %}
-                                    <div class="trip-guests-div">
-                                        <p class="trips-label">Guests:</p>
-                                        <ul>
-                                            <li>
-                                                {{ trip.adults }} Adults
-                                            </li>
-                                            <li>
-                                                {{ trip.children }} Children
-                                            </li>
-                                            <li>
-                                                {{ trip.infants }} Infants
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="trip-cancel-div">
-                                    {% if not trip.cancelled %}
-                                        <a href="{% url 'cancel_trip' trip.id %}" class="trip-cancel-button">Cancel</a>
-                                    {% endif %}
-                                </div>
-                            </div>
+                <!--Past trips-->
+                {% if past_trips %}
+                    <div class="row past-trips-row">
+                        <div class="col-12 trips-section-title">
+                            <h2>Past Trips</h2>
                         </div>
+                        {% for trip in page_obj.object_list %}
+                            <div class="trips-container">
+                                <div class="trip-card">
+                                    <div class="row trips-header">
+                                        <div class="col-6 trips-header-left">
+                                            <p><span class="trips-label">Check-in:</span> {{ trip.start_date }}</p>
+                                            <p><span class="trips-label">Check-out:</span> {{ trip.end_date }}</p>
+                                        </div>
+                                        <div class="col-6 trips-header-right">
+                                            <p><span class="trips-label">Cost:</span> £{{ trip.cost }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <p class="trip-room-name">{{ trip.room.sanitised_name }}</p>
+                                            <p class="trip-description">{{ trip.room.description }}</p>
+                                            <div class="trip-amenities">
+                                                <p class="trips-label">Amenities:</p>
+                                                <ul>
+                                                    {% for amenity_id in trip.room.amenities %}
+                                                        {% for amenity in amenities %}
+                                                            {% if amenity.id == amenity_id %}
+                                                                <li>{{ amenity.icon|safe }} {{ amenity.sanitised_name }}</li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            {% if trip.room.image %}
+                                                <img src="{{ trip.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
+                                            {% endif %}
+                                            <div class="trip-guests-div">
+                                                <p class="trips-label">Guests:</p>
+                                                <ul>
+                                                    <li>
+                                                        {{ trip.adults }} Adults
+                                                    </li>
+                                                    <li>
+                                                        {{ trip.children }} Children
+                                                    </li>
+                                                    <li>
+                                                        {{ trip.infants }} Infants
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="trip-cancel-div">
+                                            {% if not trip.cancelled %}
+                                                <a href="{% url 'cancel_trip' trip.id %}" class="trip-cancel-button">Cancel</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <!--Pagination block-->
+                        <nav aria-label="Page navigation" id="past-trips-pagination">
+                            <ul class="pagination justify-content-center" data-action="pagination">
+                                <!--Previous and disable if on first page-->
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" data-action="pagination" data-page="{{ page_obj.previous_page_number }}">Previous</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="?page={{ num }}" tabindex="-1">Previous</a>
+                                    </li>
+                                {% endif %}
+                                
+                                <!--Numbered pages-->
+                                {% for num in page_obj.paginator.page_range %}
+                                    <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                                        <a class="page-link" href="?page={{ num }}" data-action="pagination" data-page="{{ num }}">{{ num }}</a>
+                                    </li>
+                                {% endfor %}
+                                
+                                <!--Next and disable if on last page-->
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" data-action="pagination" data-page="{{ page_obj.next_page_number }}">Next</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">Next</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
                     </div>
-                {% endfor %}
+                {% endif %}
             </div>
-        </div>
-
-
         {% else %}
             <p class="font-off-black roboto-font font-weight-bolder" id="no-trips-message">
                 You have no trips booked with us yet.

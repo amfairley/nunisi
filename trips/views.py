@@ -8,6 +8,7 @@ from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.core.paginator import Paginator
 
 
 @login_required
@@ -30,12 +31,19 @@ def trips_user(request):
     # Get amenities
     amenities = Amenities.objects.all()
 
+    # Handle pagination
+    page_obj = None
+    paginator = Paginator(past_trips, 1)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'user_profile': user_profile,
         'trips': trips,
         'upcoming_trips': upcoming_trips,
         'past_trips': past_trips,
         'amenities': amenities,
+        'page_obj': page_obj,
     }
     return render(request, 'trips/trips.html', context)
 
