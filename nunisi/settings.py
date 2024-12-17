@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'user_profile.apps.UserProfileConfig',
     'back_button',
     'trips',
+    'reviews',
     # Storage
     'storages',
 ]
