@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}
+ - Trips
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <h1 class="page-title">Your Trips</h1>
+        <!--If Trips-->
+        {% if trips %}
+        <div class="trips-page-container">
+            <!--Upcoming trips-->
+            <div class="row upcoming-trips-row">
+                <div class="col-12 trips-section-title">
+                    <h2>Upcoming Trips</h2>
+                </div>
+                {% for trip in upcoming_trips %}
+                    <div class="trips-container">
+                        <div class="trip-card">
+                            <div class="row trips-header">
+                                <div class="col-6 trips-header-left">
+                                    <p><span class="trips-label">Check-in:</span> {{ trip.start_date }}</p>
+                                    <p><span class="trips-label">Check-out:</span> {{ trip.end_date }}</p>
+                                </div>
+                                <div class="col-6 trips-header-right">
+                                    <p><span class="trips-label">Cost:</span> £{{ trip.cost }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <p class="trip-room-name">{{ trip.room.sanitised_name }}</p>
+                                    <p class="trip-description">{{ trip.room.description }}</p>
+                                    <div class="trip-amenities">
+                                        <p class="trips-label">Amenities:</p>
+                                        <ul>
+                                            {% for amenity_id in trip.room.amenities %}
+                                                {% for amenity in amenities %}
+                                                    {% if amenity.id == amenity_id %}
+                                                        <li>{{ amenity.icon|safe }} {{ amenity.sanitised_name }}</li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    {% if trip.room.image %}
+                                        <img src="{{ trip.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
+                                    {% endif %}
+                                    <div class="trip-guests-div">
+                                        <p class="trips-label">Guests:</p>
+                                        <ul>
+                                            <li>
+                                                {{ trip.adults }} Adults
+                                            </li>
+                                            <li>
+                                                {{ trip.children }} Children
+                                            </li>
+                                            <li>
+                                                {{ trip.infants }} Infants
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="trip-cancel-div">
+                                    {% if not trip.cancelled %}
+                                        <a href="{% url 'cancel_trip' trip.id %}" class="trip-cancel-button">Cancel</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!--Past trips-->
+            <div class="row past-trips-row">
+                <div class="col-12 trips-section-title">
+                    <h2>Past Trips</h2>
+                </div>
+                {% for trip in past_trips %}
+                    <div class="trips-container">
+                        <div class="trip-card">
+                            <div class="row trips-header">
+                                <div class="col-6 trips-header-left">
+                                    <p><span class="trips-label">Check-in:</span> {{ trip.start_date }}</p>
+                                    <p><span class="trips-label">Check-out:</span> {{ trip.end_date }}</p>
+                                </div>
+                                <div class="col-6 trips-header-right">
+                                    <p><span class="trips-label">Cost:</span> £{{ trip.cost }}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <p class="trip-room-name">{{ trip.room.sanitised_name }}</p>
+                                    <p class="trip-description">{{ trip.room.description }}</p>
+                                    <div class="trip-amenities">
+                                        <p class="trips-label">Amenities:</p>
+                                        <ul>
+                                            {% for amenity_id in trip.room.amenities %}
+                                                {% for amenity in amenities %}
+                                                    {% if amenity.id == amenity_id %}
+                                                        <li>{{ amenity.icon|safe }} {{ amenity.sanitised_name }}</li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    {% if trip.room.image %}
+                                        <img src="{{ trip.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
+                                    {% endif %}
+                                    <div class="trip-guests-div">
+                                        <p class="trips-label">Guests:</p>
+                                        <ul>
+                                            <li>
+                                                {{ trip.adults }} Adults
+                                            </li>
+                                            <li>
+                                                {{ trip.children }} Children
+                                            </li>
+                                            <li>
+                                                {{ trip.infants }} Infants
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="trip-cancel-div">
+                                    {% if not trip.cancelled %}
+                                        <a href="{% url 'cancel_trip' trip.id %}" class="trip-cancel-button">Cancel</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        {% else %}
+            <p class="font-off-black roboto-font font-weight-bolder" id="no-trips-message">
+                You have no trips booked with us yet.
+            </p>
+        {% endif %}
+        <div class="home-buttom-container">
+            <div class="home-button-div">
+                <a href="{% url 'home' %}" class="home-button nunisi-button">Return to Homepage</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
