@@ -31,11 +31,29 @@ def trips_user(request):
     # Get amenities
     amenities = Amenities.objects.all()
 
+    # Handle sorting
+    current_sorting = 'None_None'
+    sort = request.GET.get('sort')
+    # If it is price_asc, order the rooms by price
+    # and update current_sorting to display correctly
+    if sort == 'oldest_first':
+        past_trips.sort(key=lambda x: x.start_date)
+        current_sorting = 'oldest_first'
+    # If it is price_desc, reverse order the rooms by price
+    # and update current_sorting to display correctly
+    elif sort == 'newest_first':
+        past_trips.sort(key=lambda x: x.start_date, reverse=True)
+        current_sorting = 'newest_first'
+
     # Handle pagination
     page_obj = None
     paginator = Paginator(past_trips, 1)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+
+    # Include the sort value in the pagination
+    def add_sort_to_url(page_num):
+        return f"?page={page_num}&sort={sort}"
 
     context = {
         'user_profile': user_profile,
@@ -43,7 +61,9 @@ def trips_user(request):
         'upcoming_trips': upcoming_trips,
         'past_trips': past_trips,
         'amenities': amenities,
+        'current-sorting': current_sorting,
         'page_obj': page_obj,
+        'add_sort_to_url': add_sort_to_url,
     }
     return render(request, 'trips/trips.html', context)
 

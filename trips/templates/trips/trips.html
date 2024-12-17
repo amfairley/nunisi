@@ -77,9 +77,20 @@
                 <!--Past trips-->
                 {% if past_trips %}
                     <div class="row past-trips-row">
-                        <div class="col-12 trips-section-title">
-                            <h2>Past Trips</h2>
+                        <div class="col-12 past-trips-section-title">
+                            <h2 class="col-12 col-md-6">Past Trips</h2>
+                            <!--Sorting block-->
+                            <div class="past-trips-sort col-12 col-md-6">
+                                <label for="sort-selector" class="nunisi-button" data-action="sort" id="sort-label">Sort By:</label>
+                                <select id="sort-selector" class="nunisi-dropdown">
+                                    <!--Sorting choices-->
+                                    <option value="?sort=None_None" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                                    <option value="?sort=oldest_first" {% if current_sorting == 'oldest_first' %}selected{% endif %}>Oldest First</option>
+                                    <option value="?sort=latest_first" {% if current_sorting == 'latest_first' %}selected{% endif %}>Latest First</option>
+                                </select>
+                            </div>
                         </div>
+
                         {% for trip in page_obj.object_list %}
                             <div class="trips-container">
                                 <div class="trip-card">
@@ -143,7 +154,7 @@
                                 <!--Previous and disable if on first page-->
                                 {% if page_obj.has_previous %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" data-action="pagination" data-page="{{ page_obj.previous_page_number }}">Previous</a>
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}&sort={{ current_sorting }}" data-action="pagination" data-page="{{ page_obj.previous_page_number }}">Previous</a>
                                     </li>
                                 {% else %}
                                     <li class="page-item disabled">
@@ -154,14 +165,14 @@
                                 <!--Numbered pages-->
                                 {% for num in page_obj.paginator.page_range %}
                                     <li class="page-item {% if page_obj.number == num %}active{% endif %}">
-                                        <a class="page-link" href="?page={{ num }}" data-action="pagination" data-page="{{ num }}">{{ num }}</a>
+                                        <a class="page-link" href="?page={{ num }}&sort={{ current_sorting }}" data-action="pagination" data-page="{{ num }}">{{ num }}</a>
                                     </li>
                                 {% endfor %}
                                 
                                 <!--Next and disable if on last page-->
                                 {% if page_obj.has_next %}
                                     <li class="page-item">
-                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" data-action="pagination" data-page="{{ page_obj.next_page_number }}">Next</a>
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}&sort={{ current_sorting }}" data-action="pagination" data-page="{{ page_obj.next_page_number }}">Next</a>
                                     </li>
                                 {% else %}
                                     <li class="page-item disabled">
@@ -184,4 +195,15 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block postloadjs %}
+    <script>
+        document.getElementById('sort-label').addEventListener('click', function() {
+            const dropdown = document.getElementById('sort-selector');
+            const selectedValue = dropdown.value;
+            if (selectedValue) {
+                location.href = selectedValue; // Redirect to the selected sort URL
+            }
+        });
+    </script>
 {% endblock %}
