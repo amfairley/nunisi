@@ -328,6 +328,13 @@
                 </div>
             </div>
         </div>
+        <!--Reviews-->
+        {% if reviews %}
+            <hr class="index-horizontal-rule">
+            <div class="home-reviews-container">
+                {% include "reviews/review_carousel.html" with reviews=reviews %}
+            </div>
+        {% endif %}
     </main>
 
 {% endblock %}
