@@ -28,4 +28,5 @@ urlpatterns = [
     path('user_profile/', include('user_profile.urls')),
     path('back-button/', include('back_button.urls')),
     path('trips/', include('trips.urls')),
+    path('reviews/', include('reviews.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
