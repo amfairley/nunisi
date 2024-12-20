@@ -280,6 +280,8 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Cancel trip success: Message background
 - Add/edit review: Form labels and messages
 - Edit review: delete modal title text and message background
+- Edit profile: label text
+- Edit profile: input background
 
 **Fern Green #3A6B35**
 - Font colour on Jasmine backgrounds
@@ -325,6 +327,12 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Add/edit review: Review background
 - Edit review: Delete modal background and message text
 - Superuser trips: Page title
+- User profile: Page title
+- Edit profile: Page title
+- Edit profile: Form background
+- Edit profile: Input text
+- Delete profile: Page title
+- Delete profile success: Page title
 
 **Gun Metal #333A3F**
 - Border for the account menu
@@ -343,6 +351,8 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Cancel trip: Trip card text
 - Cancel trip success: Message font
 - Superuser trips: Table font
+- User profile: Table font
+
 
 **White Smoke #F5F5F5**
 - Home: Hero text colour
@@ -351,7 +361,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Delete room: Delete button text on hover
 - Checkout: Card error text
 - Trips: Cancelled trip text
-- Superuser trips: cancel/uncancel trip text
+- Superuser trips: Cancel/uncancel trip text
 
 **Dark Goldenrod #B88C26**
 - Account dropdown border
@@ -364,6 +374,8 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Trips: Outline of cancel-trip for upcoming trip
 - Trips: Outline for leave a review on past trips
 - Cancel trip success: Message border
+- User profile: Table border
+- Edit profile: Form border
 
 **Other colours used:**
 - Red: The delete button and confirm delete buttons become red on hover to highlight their severity
@@ -674,10 +686,34 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The superuser trips table is only accessible by the site admin. It allows the admin to cancel or uncancel a trip, which updates the database as well. |
 | **User Stories Covered:** 2, 33 |
 
+|**User_profile: User Profile Table** |
+| ----- |
+| **Page: /user_profile/** |
+| <details><summary>User Profile</summary><img src="/documentation/features/user_profile_profile.png"></details> |
+| **Details:** The user profile table displays to the user their saved data. This allows the user to see their data and make a decision on what, if anything, they need to change. They can add/change email address, update their password or edit their details using the buttons provided. |
+| **User Stories Covered:** 2, 17, 18, 19, 20 |
 
+|**User_profile: Edit profile form** |
+| ----- |
+| **Page: /user_profile/edit_profile** |
+| <details><summary>Edit Profile</summary><img src="/documentation/features/user_profile_edit_profile_form.png"></details> |
+| **Details:** The edit profile form allows the user to update their account details and signup/un-signup for the newsletter. |
+| **User Stories Covered:** 2, 20 |
 
+|**User_profile: Delete User** |
+| ----- |
+| **Page: /user_profile/delete_user** |
+| <details><summary>Delete User Button</summary><img src="/documentation/features/user_profile_delete_user_button.png"></details> |
+| <details><summary>Delete User Page</summary><img src="/documentation/features/user_profile_delete_user.png"></details> |
+| **Details:** The delete user page allows the user to confirm the deletion of their account removing the chance of them accidentally doing so. |
+| **User Stories Covered:** 2, 19 |
 
-
+|**User_profile: Delete User Success** |
+| ----- |
+| **Page: /user_profile/delete_successful_** |
+| <details><summary>Delete User Success</summary><img src="/documentation/features/user_profile_delete_user_success.png"></details> |
+| **Details:** The delete user success page allows the user see that their profile has been deleted. There is a button prompting users to go back to the homepage. |
+| **User Stories Covered:** 2, 19 |
 
 
 
@@ -747,19 +783,9 @@ This is my selection for block text across the website. Roboto is the most popul
 | **User Stories Covered:** 2, 11, 14 |
 
 
-|**User_profile: User Profile Table** |
-| ----- |
-| **Page: /user_profile/** |
-| <details><summary>User Profile</summary><img src="/documentation/features/user_profile_profile.png"></details> |
-| **Details:** The user profile table displays to the user their saved data. This allows the user to see their data and make a decision on what, if anything, they need to change. |
-| **User Stories Covered:** 2, 17, 19, 20 |
 
-|**User_profile: Edit profile form** |
-| ----- |
-| **Page: /user_profile/edit_profile** |
-| <details><summary>Edit Profile</summary><img src="/documentation/features/user_profile_edit_profile_form.png"></details> |
-| **Details:** The edit profile form allows the user to update their account details and signup/un-signup for the newsletter. |
-| **User Stories Covered:** 2, 20 |
+
+
 
 |**User_profile: Delete User** |
 | ----- |
