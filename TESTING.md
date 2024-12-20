@@ -103,6 +103,9 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Location | Manipulate Google Map | Works as expected | Y | N/A |
 | Location | Reduce screen size | Map is put under the text | Y | N/A |
 | FAQs | Reduce screen size | Columns go from 3 to 1 | Y | N/A |
+| Reviews | Have no verified reviews | Section is missing | Y | N/A |
+| Reviews | Verify some reviews | These reviews are showin the reviews section on the homepage | Y | N/A |
+| Reviews | Click through the carousel | The carousel turns to show each new review | Y | N/A |
 | **available_rooms.html** | | | | |
 | Booking form - header | Submit form with values | The available rooms page loads with the header booking form pre-filled with the user choices | Y | N/A |
 | Booking form - header | Submit form with check in date after check out date | The form submits and provides the user with the correct error message | Y | N/A |
@@ -168,6 +171,23 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | **success.html** | | | | |
 | Success page | N/A | Correct order data is displayed | Y | N/A |
 | Home button | Click | User redirected to homepage | Y | N/A |
+| **trips.html** | | | | |
+| Review - unverified | N/A | The review has no verified tick on it | Y | N/A |
+| Review | Verify the review as an admin | The review has a verified tick on it and will appear on the homepage | Y | N/A |
+| Verified tick | Hover over | A title descibes the review as verified | Y | N/A |
+| Edit review button | Click | User is taken to the edit review page | Y | N/A |
+| **add_review.html** | | | | |
+| Review content | Leave blank and submit review | An alert indicates that the section needs to be filled out | Y | N/A |
+| Review rating | Leave blank and submit review | An alert indicates that the section needs to be filled out | Y | N/A |
+| Review | Fill out and submit | A toast appears telling the user that the review was submitted. A toast appears telling the user that the review has been sent to the business owner for review. The user is redirected to their trips page. The review appears under the correct trip with the correct information | Y | N/A |
+| Review | Fill out and submit | An email is sent to the business owner describing the review and inviting them to verify it | | |
+| **edit_review.html** | | | | |
+| Review content | Delete content, leave blank, and submit review | An alert indicates that the section needs to be filled out | Y | N/A |
+| Review | Change values and submit | A toast appears telling the user that the review was updated. A toast appears telling the user that the review has been sent to the business owner for review. The user is redirected to their trips page. The review appears under the correct trip with the correct information. If the review was verfied, the verification has been removed. | Y | N/A |
+| Delete review button | Hover | Colour turns to red with halo hover effect | Y | N/A |
+| Delete review button | Click | Confirm delete modal opens | Y | N/A |
+| Delete review modal | Click "close" or "x" | Modal closes | Y | N/A |
+| Delete review modal | Click "delete" | Toast appears telling the user that the review has been deleted, review is deleted, user is redirected back to trips page | Y | N/A |
 
 
 
@@ -277,7 +297,7 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 **Homepage**<br>
 - Contrast error 1 and 2: From the date widgets in the base template.
 - Contrast error 3 and 4: Wave reads the Hero Image as a white background creating a contrast error with the white text despite the black shadow effect added to the text. This is not the case and has no impact on the user.
-- Contrast error 5, 6, 7, 8: From the bootstrap carousel buttons. Bootstrap has "next" or "previous" as text the same colour as the background. This has no effect on the website usability, as the arrows use colours shown to have good contrast.
+- Contrast error 5, 6, 7, 8, 9, 10: From the bootstrap carousel buttons. Bootstrap has "next" or "previous" as text the same colour as the background. This has no effect on the website usability, as the arrows use colours shown to have good contrast.
 <details>
 <summary>Homepage results</summary>
 <img src="/documentation/testing/wave/homepage.png">
@@ -335,7 +355,21 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave/checkout_success.png">
 </details><br>
 
+**Reviews: add_review.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+- 2 alerts. For an orphaned form label and missing fieldset. These are both for the rating field, which is defined in the form. Works as expected and has no impact on accessibility so these alerts were considered and then ignored.
+<details>
+<summary>Add review results</summary>
+<img src="/documentation/testing/wave/reviews_add_review.png">
+</details><br>
 
+**Reviews: edit_review.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+- 2 alerts. For an orphaned form label and missing fieldset. These are both for the rating field, which is defined in the form. Works as expected and has no impact on accessibility so these alerts were considered and then ignored.
+<details>
+<summary>Edit review results</summary>
+<img src="/documentation/testing/wave/reviews_edit_review.png">
+</details><br>
 
 
 
@@ -495,7 +529,8 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Rooms: delete_room | None | None |
 | Checkout: checkout | None | None |
 | Checkout: success | None | None |
-
+| Reviews: add review | None | None |
+| Reviews: edit review | None | None |
 
 
 
@@ -755,9 +790,61 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/checkout_webhook_handler.png">
 </details><br>
 
+**Reviews: admin.py**<br>
+- No errors or alerts
+<details>
+<summary>Reviews admin results</summary>
+<img src="/documentation/testing/python/reviews_admin.png">
+</details><br>
 
+**Reviews: models.py**<br>
+- No errors or alerts
+<details>
+<summary>Reviews models results</summary>
+<img src="/documentation/testing/python/reviews_models.png">
+</details><br>
 
+**Reviews: test_models.py**<br>
+- No errors or alerts
+<details>
+<summary>Reviews test_models results</summary>
+<img src="/documentation/testing/python/reviews_test_models.png">
+</details><br>
 
+**Reviews: forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Reviews forms results</summary>
+<img src="/documentation/testing/python/reviews_forms.png">
+</details><br>
+
+**Reviews: test_forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Reviews test_forms results</summary>
+<img src="/documentation/testing/python/reviews_test_forms.png">
+</details><br>
+
+**Reviews: views.py**<br>
+- No errors or alerts
+<details>
+<summary>Reviews views results</summary>
+<img src="/documentation/testing/python/reviews_views.png">
+</details><br>
+
+**Reviews: test_views.py**<br>
+- No errors or alerts
+<details>
+<summary>Reviews test_views results</summary>
+<img src="/documentation/testing/python/reviews_test_views.png">
+</details><br>
+
+**Reviews: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>Reviews urls results</summary>
+<img src="/documentation/testing/python/reviews_urls.png">
+</details><br>
 
 
 
