@@ -7,21 +7,27 @@
 
 {% block content %}
     <div class="content">
+        <!--Page title-->
         <h1 class="page-title">Trip Cancellation</h1>
         <div class="cancel-trip-card">
             <div class="row trips-header">
+                <!--Check in/out dates-->
                 <div class="col-6 trips-header-left">
                     <p><span class="trips-label">Check-in:</span> {{ trip.start_date }}</p>
                     <p><span class="trips-label">Check-out:</span> {{ trip.end_date }}</p>
                 </div>
+                <!--Trip cost-->
                 <div class="col-6 trips-header-right">
                     <p><span class="trips-label">Cost:</span> £{{ trip.cost }}</p>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <p class="trip-room-name">{{ trip.room.sanitised_name }}</p>
+                    <!--Room name-->
+                    <h2 class="trip-room-name">{{ trip.room.sanitised_name }}</h2>
+                    <!--Room description-->
                     <p class="trip-description">{{ trip.room.description }}</p>
+                    <!--Amenities-->
                     <div class="trip-amenities">
                         <p class="trips-label">Amenities:</p>
                         <ul>
@@ -36,9 +42,11 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
+                    <!--Image-->
                     {% if trip.room.image %}
                         <img src="{{ trip.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
                     {% endif %}
+                    <!--Guests-->
                     <div class="trip-guests-div">
                         <p class="trips-label">Guests:</p>
                         <ul>
@@ -56,9 +64,11 @@
                 </div>
             </div>
             <div>
+                <!--Cancellation form-->
                 <form method="post" action="{% url 'send_cancellation_email' trip.id %}" class="trip-cancellation-form">
                     {% csrf_token %}
                     <div class="mb-3">
+                        <!--Reason-->
                         <label for="explanation" class="trips-label">Reason for Cancellation*</label>
                         <textarea 
                             id="explanation" 
@@ -67,11 +77,13 @@
                             rows="4" 
                             placeholder="Please provide a brief explanation for the cancellation."
                         ></textarea>
+                        <!--Refund policy-->
                         <p class="trip-cancel-boilerplate">
                             *Cancelling 7 or more days ahead of the stay results in a full refund. 10% deposit fee if cancelled within a week of the stay and 20% deposit fee if cancelled within a day of the stay.
                             Submitting a cancellation request agrees to these terms.
                         </p>
                     </div>
+                    <!--Buttons-->
                     <div class="row">
                         <div class="col-6">
                             {% include "back_button/back_button.html" %}
@@ -85,6 +97,3 @@
         </div>
     </div>
 {% endblock %}
-<p>Cancel trip?</p>
-
-<p>{{ trip }}</p>
