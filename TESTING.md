@@ -172,10 +172,20 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Success page | N/A | Correct order data is displayed | Y | N/A |
 | Home button | Click | User redirected to homepage | Y | N/A |
 | **trips.html** | | | | |
+| Cancel upcoming trips | Click | User redirected to cancel trip page | Y | N/A |
+| Sort past trips | Change the sort parameter | Past trips are sorted correctly | Y | N/A |
+| Past trips pagination | Click through the pages | They work as expected and the sort parameter is kept | Y | N/A |
+| Past trips leave a review | Click | User is redirected to add review page | Y | N/A |
+| Past trips edit review | Click | User is redirected to edit review page | Y | N/A |
 | Review - unverified | N/A | The review has no verified tick on it | Y | N/A |
 | Review | Verify the review as an admin | The review has a verified tick on it and will appear on the homepage | Y | N/A |
 | Verified tick | Hover over | A title descibes the review as verified | Y | N/A |
 | Edit review button | Click | User is taken to the edit review page | Y | N/A |
+| **cancel_trip.html** | | | | |
+| Cancel trip form | Submit | A toast appears telling the user that the cancellation was submitted and the user is redirect tot he cancellation request successful page. | Y | N/A |
+| Cancel trip form | Submit | An email is sent to the hotel owner with the information about the trip and reason for cancellation |  |  |
+| **cancel_trip_success.html** | | | | |
+| Homepage button | Click | Redirected to homepage | Y | N/A |
 | **add_review.html** | | | | |
 | Review content | Leave blank and submit review | An alert indicates that the section needs to be filled out | Y | N/A |
 | Review rating | Leave blank and submit review | An alert indicates that the section needs to be filled out | Y | N/A |
@@ -188,6 +198,12 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Delete review button | Click | Confirm delete modal opens | Y | N/A |
 | Delete review modal | Click "close" or "x" | Modal closes | Y | N/A |
 | Delete review modal | Click "delete" | Toast appears telling the user that the review has been deleted, review is deleted, user is redirected back to trips page | Y | N/A |
+| **trips_superuser.html** | | | | |
+| Screen size warning | Resize the screen | On smaller screen where the table is not displayed correctly, a prompt appears tell the admin to access the page on a larger screen | Y | N/A |
+| Cancel trip | Click | The trip is cancelled, the trip instance is updated in the backend, the room unavailablity is updated in the backend, the table column displays "Cancelled", the cancel button becomes the un-cancel trip button, and a toast appears telling the user that the action was successful | Y | N/A |
+| Un-Cancel trip | Click | The trip is un-cancelled, the trip instance is updated in the backend, the room unavailablity is updated in the backend, the table column displays "Confirmed", the un-cancel button becomes the cancel trip button, and a toast appears telling the user that the action was successful | Y | N/A |
+| Un-Cancel trip | Make the room unavailable and uncancel the trip | The trip is not uncancelled, a toast appears informing the user that the room is not available anymore for those dates | Y | N/A |
+| Homepage button | Click | Redirected to homepage | Y | N/A |
 
 
 
@@ -355,6 +371,36 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave/checkout_success.png">
 </details><br>
 
+**Trips: trips.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+- 2 alerts for redundant links. These are the next/previous in the past trip pagination that go to the same pages as some of the numbers in the pagination. This is by design for a better user experience so was left in.
+<details>
+<summary>Trips results</summary>
+<img src="/documentation/testing/wave/trips_trips.png">
+</details><br>
+
+**Trips: cancel_trip.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Cancel trip results</summary>
+<img src="/documentation/testing/wave/trips_cancel_trip.png">
+</details><br>
+
+**Trips: cancel_trip_success.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Cancel trip success results</summary>
+<img src="/documentation/testing/wave/trips_cancel_trip_success.png">
+</details><br>
+
+**Trips: trips_superuser.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Trips superuser results</summary>
+<img src="/documentation/testing/wave/trips_superuser.png">
+</details><br>
+
+
 **Reviews: add_review.html**<br>
 - 2 contrast errors from the date widgets in the base template.
 - 2 alerts. For an orphaned form label and missing fieldset. These are both for the rating field, which is defined in the form. Works as expected and has no impact on accessibility so these alerts were considered and then ignored.
@@ -370,6 +416,8 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <summary>Edit review results</summary>
 <img src="/documentation/testing/wave/reviews_edit_review.png">
 </details><br>
+
+
 
 
 
@@ -529,6 +577,10 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Rooms: delete_room | None | None |
 | Checkout: checkout | None | None |
 | Checkout: success | None | None |
+| Trips: trips | None | None |
+| Trips: cancel trip | None | None |
+| Trips: cancel trip success | None | None |
+| Trips: trips superuser | None | None |
 | Reviews: add review | None | None |
 | Reviews: edit review | None | None |
 
@@ -594,6 +646,12 @@ The custom JavaScript code was testing using the JavaScript linter [JSLint](http
 - The following variables were added: $ (for JQuery)
 - 1 warning: Unexpected ':card' when defining the card for confirming the card payment. The code works as expected with no errors, so this was left in.
 - Full results can be seen [here](/documentation/testing/jslint/available_rooms.pdf)
+
+**Trips: trips.html**
+- The script at the bottom of the trips.html page was copied into the linter.
+- The following linter settings were selected: browser
+- No warnings.
+- Full results can be seen [here](/documentation/testing/jslint/trips.pdf)
 
 
 
@@ -788,6 +846,48 @@ The Python code for this project was written in strict accordance with the [PEP 
 <details>
 <summary>Webhook handler results</summary>
 <img src="/documentation/testing/python/checkout_webhook_handler.png">
+</details><br>
+
+**Trips: admin.py**<br>
+- No errors or alerts
+<details>
+<summary>Trips admin results</summary>
+<img src="/documentation/testing/python/trips_admin.png">
+</details><br>
+
+**Trips: models.py**<br>
+- No errors or alerts
+<details>
+<summary>Trips models results</summary>
+<img src="/documentation/testing/python/trips_models.png">
+</details><br>
+
+**Trips: test_models.py**<br>
+- No errors or alerts
+<details>
+<summary>Trips test_models results</summary>
+<img src="/documentation/testing/python/trips_test_models.png">
+</details><br>
+
+**Trips: views.py**<br>
+- No errors or alerts
+<details>
+<summary>Trips views results</summary>
+<img src="/documentation/testing/python/trips_views.png">
+</details><br>
+
+**Trips: test_views.py**<br>
+- No errors or alerts
+<details>
+<summary>Trips test_views results</summary>
+<img src="/documentation/testing/python/trips_test_views.png">
+</details><br>
+
+**Trips: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>Trips urls results</summary>
+<img src="/documentation/testing/python/trips_urls.png">
 </details><br>
 
 **Reviews: admin.py**<br>
