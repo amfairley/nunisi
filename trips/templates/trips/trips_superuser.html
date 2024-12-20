@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}
+ - All Trips
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <!--Page title-->
+        <h1 class="page-title">All trips</h1>
+        <!--Screen size warning-->
+        <p class="d-none screen-size-warning">For a better experience, please access this page on a larger screen.</p>
+        <!--Trips table-->
+        <table class="table table-hover master-trips-table">
+            <!--Column names-->
+            <thead>
+                <tr>
+                    <th class="table-title">Trip ID</th>
+                    <th class="table-title">Room</th>
+                    <th class="table-title">Start Date</th>
+                    <th class="table-title">End Date</th>
+                    <th class="table-title">Adults</th>
+                    <th class="table-title">Children</th>
+                    <th class="table-title">Infants</th>
+                    <th class="table-title">Price</th>
+                    <th class="table-title">Confirmed/Cancelled</th>
+                    <th class="table-title">Actions</th>
+                </tr>
+            </thead>
+            <!--Trip data-->
+            <tbody>
+                {% for trip in trips %}
+                    <tr>
+                        <td>{{ trip.id }}</td>
+                        <td>{{ trip.room.name }}</td>
+                        <td>{{ trip.start_date }}</td>
+                        <td>{{ trip.end_date }}</td>
+                        <td>{{ trip.adults }}</td>
+                        <td>{{ trip.children }}</td>
+                        <td>{{ trip.infants }}</td>
+                        <td>£{{ trip.cost }}</td>
+                        <td>
+                            {% if trip.cancelled %}
+                                Cancelled
+                            {% else %}
+                                Confirmed
+                            {% endif %}
+                        </td>
+                        <!--Cancel/uncancel toggle-->
+                        <td>
+                            <form action="{% url 'toggle_trip_status' trip.id %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                {% if trip.cancelled %}
+                                    <button type="submit" class="btn btn-success btn-sm">Un-cancel Trip</button>
+                                {% else %}
+                                    <button type="submit" class="btn btn-danger btn-sm">Cancel Trip</button>
+                                {% endif %}
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <!--Home button-->
+        <div class="home-button-container">
+            <a href="{% url 'home' %}" class="nunisi-button">Homepage</a>
+        </div>
+    </div>
+{% endblock %}
