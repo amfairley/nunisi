@@ -3,6 +3,7 @@ from . models import UserProfile
 
 
 class UserProfileAdmin(admin.ModelAdmin):
+    '''Display the user profiles in admin'''
     readonly_fields = (
         'user',
     )
