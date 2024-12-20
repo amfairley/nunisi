@@ -7,12 +7,23 @@
 
 {% block content %}
     <div class="content">
-        <h1 class="edit-profile-title jost-font font-nunisi-green">Edit profile page</h1>
+        <!--Page title-->
+        <h1 class="page-title">Edit profile</h1>
         <div class="edit-profile-div">
-            <form method="POST" action="{% url 'edit_profile' %}" id="edit-profile-form" class="roboto-font">
+            <!--Edit profile form-->
+            <form method="POST" action="{% url 'edit_profile' %}" id="edit-profile-form">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="nunisi-button">Update</button>
+                <div class="row">
+                    <!--Back button-->
+                    <div class="col-6">
+                        {% include "back_button/back_button.html" %}
+                    </div>
+                    <!--Submit-->
+                    <div class="col-6">
+                        <button type="submit" class="nunisi-button">Update</button>
+                    </div>
+                </div>
             </form>
         </div>
     </div>

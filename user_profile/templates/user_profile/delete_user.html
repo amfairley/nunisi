@@ -7,12 +7,21 @@
 
 {% block content %}
     <div class="content">
-        <h1 class="confirm-deletion-title jost-font font-nunisi-green">You are about to delete your account, are you sure?</h1>
-        <div class="delete-account-form">
-            <form method="POST" action="{% url 'delete_user' user.id %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Delete Account</button>
-            </form>
+        <!--Page title-->
+        <h1 class="page-title">You are about to delete your account, are you sure?</h1>
+        <!--Buttons-->
+        <div class="row confirm-delete-profile-buttons">
+            <!--Back button-->
+            <div class="col-6">
+                {% include "back_button/back_button.html" %}
+            </div>
+            <!--Delete button-->
+            <div class="col-6">
+                <form method="POST" action="{% url 'delete_user' user.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="nunisi-button delete-button">Delete Account</button>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}
