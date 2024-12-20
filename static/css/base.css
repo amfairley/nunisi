@@ -112,7 +112,7 @@ main {
 .delete-button:hover,
 .trip-cancel-button:hover {
     background-color: red;
-    color:#F5F5F5;
+    color: #F5F5F5;
 }
 
 .back-button-container {
@@ -1555,7 +1555,8 @@ main {
     list-style-type: none;
 }
 
-.trip-cancel-div {
+.trip-cancel-div,
+.trip-add-review-div {
     background-color: #b88c26;
     width: 50%;
     text-align: center;
@@ -1568,8 +1569,56 @@ main {
     width: fit-content;
 }
 
+.cancelled-trip {
+    color: #f5f5f5;
+    background-color: #CF1020;
+    border-radius: 8px;
+    border: 1px solid #333A3F;
+    margin: 0.5rem auto;
+    width: 80%;
+    text-align: center;
+}
+
 .home-button {
     margin-bottom: 1rem;
+}
+
+.past-trips-section-title {
+    background-color: #3A6B35;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: auto;
+    padding: 1.5rem 0;
+}
+
+.past-trips-section-title h2 {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    color:#FDD67C;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.past-trips-sort {
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    right: 10px;
+}
+
+.past-trips-sort label{
+    margin-bottom: 0.5rem;
+}
+
+.leave-review-button {
+    width: fit-content;
+    margin-bottom: 0.5rem;
+}
+
+#past-trips-pagination {
+    margin-top: 1rem;
 }
 
 /* ---------- Cancel Trip ---------- */
@@ -1621,14 +1670,175 @@ main {
     color:#333A3F;
 }
 
-/* ---------- Superuser Trips ---------- */
-.master-trips-table {
-    width: 95%;
-    margin: 0 auto;
-    max-width: 1500px;
+/* ---------- Review ---------- */
+.review {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    border-radius: 8px;
+    background-color: #3A6B35;
+    color: #FDD67C;
+    margin: 0.5rem auto;
+    padding: 0.5rem;
+    width: 80%;
+    height: auto;
 }
 
-.table-title {
+.review-header {
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-verified {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    background-color: #FDD67C;
+    color: #3A6B35;
+    border-radius: 50%;
+}
+
+.edit-review-button {
+    height: fit-content;
+    width: 30%;
+    min-width: fit-content;
+}
+
+/* ---------- Add/edit review ---------- */
+.add-edit-review-content {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #FDD67C;
+    text-align: center;
+    width: 1000px;
+    max-width: 95%;
+    margin: 1rem auto;
+    background-color: #3A6B35;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.add-edit-review-form label {
+    font-weight: bolder;
+}
+
+#id_content {
+    display: block;
+    width: 90%;
+    margin: 0.5rem auto;
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
+#id_rating {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.review-rating {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.delete-review-button {
+    position: absolute;
+    right: 15px;
+    display: flex;
+    gap: 5px;
+    top: 178px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#deleteReviewModal {
+    border: 3px solid #333A3F;
+    border-radius: 8px;
+}
+
+#deleteReviewModal .modal-content {
+    background-color: #3A6B35;
+}
+
+#deleteReviewModal .modal-header {
+    font-family: Jost, Arial, Helvetica, sans-serif;
+    text-align: center;
+    background-color: #3A6B35;
+    color: #FDD67C;
+    border: 1px solid #3A6B35;
+}
+
+#deleteReviewModal .modal-header button {
+    background-color: #FDD67C;
+}
+
+#deleteReviewModal .modal-body {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    background-color: #FDD67C;
+    color: #3A6B35;
+    text-align: center;
+    margin: 0 1rem;
+    border-radius: 8px;
+}
+
+#deleteReviewModal .modal-footer {
+    background-color: #3A6B35;
+    border: 1px solid #3A6B35;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#deleteReviewModal .nunisi-button {
+    margin: 0;
+}
+
+/* Reviews carousel */
+#reviewCarousel {
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+.review-carousel-text {
+    text-align: center;
+    padding: 20px;
+    background-color: #3A6B35;
+    border: 1px solid #b88c26;
+    border-radius: 8px;
+    margin: 10px auto;
+    max-width: 600px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.review-carousel-text h3 {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #FDD67C !important;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+}
+.review-carousel-text h4 {
+    margin: 0;
+    font-family: Caveat, "Brush Script MT", cursive;
+    color: #FDD67C !important;
+    font-size: 1.75rem;
+    overflow: auto;
+    height: 150px;
+    max-height: 150px;
+}
+
+/* ---------- Superuser Trips ---------- */
+.master-trips-table {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    width: 95%;
+    margin: 0.5rem auto;
+    max-width: 1500px;
+    border: 1px solid #333A3F;
+}
+
+.master-trips-table .table-title {
+    text-align: center;
+}
+
+.master-trips-table tbody {
     text-align: center;
 }
 
@@ -1716,13 +1926,19 @@ main {
 @media (max-width: 800px) {
     /*Move sort box below title on available rooms*/
     /*2.15rem is the size of the h1 text*/
-    .room-sort-container {
+    /*Same for delete review button */
+    .room-sort-container,
+    .delete-review-button {
         top: calc(190px + 2.15rem);
     }
 
     /*Move the amenity filter down*/
     #amenity-accordion {
-        margin-top: calc(22px + 2.15rem)
+        margin-top: calc(22px + 2.15rem);
+    }
+
+    .edit-review-content {
+        margin-top: calc(22px + 2.15rem);
     }
 }
 
@@ -1790,5 +2006,36 @@ main {
     /* Reduce text size in the user profile table */
     #user-profile-table {
         font-size: smaller;
+    }
+
+    /*Move past trips sort filter to next line*/
+    .past-trips-sort {
+        display: inline-block;
+        right: 10px;
+    }
+
+    .past-trips-section-title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .past-trips-section-title h2 {
+        position: static;
+        transform: none;
+        margin-bottom: 10px; /* Add spacing between title and dropdown */
+    }
+
+    .past-trips-sort {
+        position: static;
+        transform: none;
+        width: fit-content;
+        left: 0px;
+    }
+
+    .past-trips-sort label {
+        right: 0;
+        height: fit-content;
     }
 }
