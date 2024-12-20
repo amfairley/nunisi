@@ -14,7 +14,7 @@ class TripModelTest(TestCase):
     '''Test the Trip model'''
     def test_trip_model_exists(self):
         '''Check that the app is installed and model defined'''
-        self.assertTrue(apps.is_installed('user_profile'))
+        self.assertTrue(apps.is_installed('trips'))
         self.assertIn(
             'Trip', [model.__name__ for model in apps.get_models()]
         )
