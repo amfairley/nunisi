@@ -1,0 +1,35 @@
+<!--Review carousel for homepage-->
+<!--Review section title-->
+<h2 class="section-title">Reviews</h2>
+<div id="reviewCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!--Carousel indicators (bottom of carousel)-->
+    <div class="carousel-indicators">
+        {% for review in reviews %}
+            <button type="button" data-bs-target="#reviewCarousel" data-bs-slide-to="{{ forloop.counter0 }}" 
+                {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+        {% endfor %}
+    </div>
+    <!--Carousel content-->
+    <div class="carousel-inner">
+        {% for review in reviews %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="review-carousel-text">
+                    <!--Rating-->
+                    <h3>{{ review.rating }}/5 Stars</h3>
+                    <!--Review content-->
+                    <h4>{{ review.content }}</h4>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!--Carousel buttons-->
+    <button class="carousel-control-prev" type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
