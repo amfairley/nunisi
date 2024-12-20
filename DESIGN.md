@@ -261,10 +261,10 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Home: Carousel arrow gold halo when hovered
 - Home: Service carousel background
 - Home: Review carousel text
-- Available rooms: Text colour of sort options
+- Available rooms / Trips: Text colour of sort options
 - Available rooms: Amenity filter title text, body background, title focus shadow
 - Available rooms: Room card background, summary text
-- Available rooms: Pagination background of current page, text of other options, faded background of disabled options
+- Available rooms / Trips: Pagination background of current page, text of other options, faded background of disabled options
 - Super user all rooms: Room card title text
 - Super user all rooms: Room card background
 - Add room/edit room: Content text
@@ -273,7 +273,11 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Checkout: Section backgrounds
 - Checkout: Payment input font
 - Checkout success: Success message background
+- Trips: Upcoming/past trips section title font
+- Trips: Trip card background
 - Trips: Review text
+- Cancel trip: Trip card background
+- Cancel trip success: Message background
 - Add/edit review: Form labels and messages
 - Edit review: delete modal title text and message background
 
@@ -293,10 +297,10 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Home: Carousel arrow backgrounds
 - Home: Section title font colour
 - Home: Review carousel background
-- Available rooms: Background colour of the sort options
+- Available rooms / Trips: Background colour of the sort options
 - Available rooms: Amenity filter title background, body text, button background
 - Available rooms: Room name text, amenitiy symbols, summary background, image border
-- Available rooms: Pagination text of disabled and active pages, background of other options
+- Available rooms / Trips: Pagination text of disabled and active pages, background of other options
 - Super user all rooms: Page title
 - Super user all rooms: Room card title background
 - Super user all rooms: Room card buttons background
@@ -308,10 +312,19 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Checkout: Section title background
 - Checkout: Form input background
 - Checkout success: Page title
+- Trips: Page title
+- Trips: Upcoming/past trips section background
+- Trips: Trip card header border
+- Trips: Trip card image border
 - Trips: Review background
+- Cancel trip: Page title
+- Cancel trip: Trip card header border
+- Cancel trip: Trip card image border
+- Cancel trip success: Page title
 - Add/edit review: Page title
 - Add/edit review: Review background
 - Edit review: Delete modal background and message text
+- Superuser trips: Page title
 
 **Gun Metal #333A3F**
 - Border for the account menu
@@ -325,6 +338,11 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Checkout: Section content
 - Checkout: Form labels
 - Checkout success: Success message text
+- Trips: Trip card text
+- Trips: Cancelled trip outline
+- Cancel trip: Trip card text
+- Cancel trip success: Message font
+- Superuser trips: Table font
 
 **White Smoke #F5F5F5**
 - Home: Hero text colour
@@ -332,6 +350,8 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Super user all rooms: Delete button text on hover
 - Delete room: Delete button text on hover
 - Checkout: Card error text
+- Trips: Cancelled trip text
+- Superuser trips: cancel/uncancel trip text
 
 **Dark Goldenrod #B88C26**
 - Account dropdown border
@@ -341,10 +361,16 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Super user all rooms: Room card image border
 - Add room/edit room: Input border
 - Checkout: Section border
+- Trips: Outline of cancel-trip for upcoming trip
+- Trips: Outline for leave a review on past trips
+- Cancel trip success: Message border
 
 **Other colours used:**
 - Red: The delete button and confirm delete buttons become red on hover to highlight their severity
 - Red: The card error background on the checkout form
+- Red: The cancelled trip message background on the trips page
+- Red: Cancel trip button on all trips page
+- Green: Uncancel trip button on all trips page
 - Facebook: Blue and white are used for the Facebook logo
 - Instagram and GitHub: Black and white are used for the Instagram and GitHub logos
 - Toasts other than success messages use the bootstrap default colours for debugging, information, warning and danger
@@ -587,6 +613,22 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The homepage link provides the user with a convenient way to get back to the homepage from the order confirmation page.  |
 | **User Stories Covered:** 2 |
 
+| **Trips: Upcoming Trips** |
+| ----- |
+| **Page: /trips/trips** |
+| <details><summary>Upcoming Trips</summary><img src="/documentation/features/trips_upcoming_trip.png"></details> |
+| **Details:** The upcoming trip section on the user trips page shows the user their impending booked trips. It shows all information about the trip and has a button leading to the cancel trip page if they wish to cancel the trip. |
+| **User Stories Covered:** 2 |
+
+| **Trips: Past Trips** |
+| ----- |
+| **Page: /trips/trips** |
+| <details><summary>Past Trips</summary><img src="/documentation/features/trips_past_trips.png"></details> |
+| <details><summary>Past Trips - Leave a review </summary><img src="/documentation/features/trips_past_trips_leave_a_review.png"></details> |
+| <details><summary>Past Trips - Cancelled</summary><img src="/documentation/features/trips_past_trips_trip_cancelled.png"></details> |
+| **Details:** The past trips sections displays all of the user's past trips. There is pagination to prevent too many being shown on a single page and there is also a sort function to sort the trips by date. If a trip has been cancelled, it is displayed with the cancelled note. If not, it displays a prompt for the user to leave a review or the review if the user has already left one. |
+| **User Stories Covered:** 2, 21, 25|
+
 | **Trips: Review** |
 | ----- |
 | **Page: /trips/trips** |
@@ -594,13 +636,27 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The trip review (if provided) is shown under the trips on the user trips page. It consists of a rating, review content and tick if it is verified. There is a button taking the user to the edit review page where they can update or delete the review. When hovered, the tick indicates to the user that the review is verified by using the title attribute.  |
 | **User Stories Covered:** 21, 25 |
 
+| **Trips: Cancel trip form** |
+| ----- |
+| **Page: /trips/cancel/trip_id** |
+| <details><summary>Cancel trip form</summary><img src="/documentation/features/trips_cancel_trip.png"></details> |
+| **Details:** The cancel trip allows the user to submit a cancellation request supplying a reason. This is then sent by email alerting the hotel owner. |
+| **User Stories Covered:** 2 |
+
+| **Trips: Cancel trip success** |
+| ----- |
+| **Page: /trips/cancel/success** |
+| <details><summary>Cancel trip success</summary><img src="/documentation/features/trips_cancel_trip_success.png"></details> |
+| **Details:** The cancel trip success page alerts the user that the refund is being processed and provides them with a link back to the homepage. |
+| **User Stories Covered:** 2, 8 |
+
 | **Reviews: Review form** |
 | ----- |
 | **Page: /reviews/add/review_id and /reviews/edit_review/review_id** |
 | <details><summary>Add review form</summary><img src="/documentation/features/reviews_add_review.png"></details> |
 | <details><summary>Edit review form</summary><img src="/documentation/features/reviews_edit_review.png"></details> |
 | **Details:** The add review form allows the user to upload a review of their stay, informing the business owner of what they do well and what they could improve upon. The review content allows them to describe their experience and a rating of 1-5 allows for easy identification of if the stay was good or bad. The edit review form is pre-populated with their original review and allows the user to update their description and rating. This also resets the verfied filter to false and emails the hotel owners in order to prevent fake reviews from replacing valid reviews. |
-| **User Stories Covered:** 2, 21 |
+| **User Stories Covered:** 2, 21, 37 |
 
 | **Reviews: Delete Review** |
 | ----- |
@@ -611,8 +667,12 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The delete review feature on the edit review page allows the user to delete their review. The button shows a red background and off-white text when hovered to show it's severity. When clicked it opens a modal for the user to confirm the deletion or cancel the deletion. This step is some defensive programming to prevent the user from accidentally deleting their review with one mouse click. |
 | **User Stories Covered:** 2, 21 |
 
-
-
+| **Trips: Superuser table** |
+| ----- |
+| **Page: /trips/trips_superuser** |
+| <details><summary>Superuser trips table</summary><img src="/documentation/features/trips_superuser.png"></details> |
+| **Details:** The superuser trips table is only accessible by the site admin. It allows the admin to cancel or uncancel a trip, which updates the database as well. |
+| **User Stories Covered:** 2, 33 |
 
 
 
