@@ -204,9 +204,18 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Un-Cancel trip | Click | The trip is un-cancelled, the trip instance is updated in the backend, the room unavailablity is updated in the backend, the table column displays "Confirmed", the un-cancel button becomes the cancel trip button, and a toast appears telling the user that the action was successful | Y | N/A |
 | Un-Cancel trip | Make the room unavailable and uncancel the trip | The trip is not uncancelled, a toast appears informing the user that the room is not available anymore for those dates | Y | N/A |
 | Homepage button | Click | Redirected to homepage | Y | N/A |
-
-
-
+| **user_profile.html** | | | | |
+| Email addresses button | Hover | Text appears informing user that clicking will redirect them to the email management page | Y | N/A |
+| Email addresses button | Click | Redirected to email management page | Y | N/A |
+| Profile data table | Hover each cell | Hovered row is highlighted | Y | N/A |
+| Edit profile button and change password buttons | Click | Redirected to edit profile page and change password page | Y | N/A |
+| Delete profile button | Click | Redirected to confirm deletion page | Y | N/A |
+| **edit_profile.html** | | | | |
+| Edit profile form | Fill and submit | Values updated, toast appears confiming changes, and user redirected to profile page | Y | N/A |
+| **delete_user.html** | | | | |
+| Delete account | Click delete | User redirected to delete_successful.html, toast appears informing the user that their account has been deleted, and user account deleted | Y | N/A |
+| **delete_successful.html** | | | | |
+| Homepage button | Click | Redirected to homepage | Y | N/A |
 
 
 
@@ -255,17 +264,8 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | **checkout_success.html** | | | | |
 | Page | Submit a booking request | Page loads and displays order number | Y | Y | Y | Y |
 | Checkout form | Hover Pay Now button | Button colour inverts | Y | N/A |
-| **user_profile.html** | | | | |
-| Email addresses button | Hover | Text appears informing user that clicking will redirect them to the email management page | Y | N/A |
-| Email addresses button | Click | Redirected to email management page | Y | N/A |
-| Profile data table | Hover each cell | Hovered row is highlighted | Y | N/A |
-| Edit profile and change password buttons | Hover | Button colours invert | Y | N/A |
-| Edit profile button and change password buttons | Click | Redirected to edit profile page and change password page | Y | N/A |
-| **edit_profile.html** | | | | |
-| Update button | Hover | Button colours invert | Y | N/A |
-| Edit profile form | Fill and submit | Values updated and user redirected to profile page | Y | N/A |
-| **delete_user.html** | | | | |
-| Delete account | Click button | User redirected to delete_successful.html and user account deleted | Y | N/A |
+
+
 | **delete_successful.html** | | | | |
 | Homepage button | Hover and click | Colours inverted on hover and redirected to homepage on click | Y | N/A |
 
@@ -417,10 +417,34 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave/reviews_edit_review.png">
 </details><br>
 
+**User_profile: user_profile.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>User profile page results</summary>
+<img src="/documentation/testing/wave/user_profile_user_profile.png">
+</details><br>
 
+**User_profile: edit_profile.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+- 1 alert for a JavaScript jump menu. The wave validator reads the country select as a JavaScript jump menu, which would make the page unusable using only a keyboard. However there is no onchange functionality assigned to this dropdown, making it perfectly usable and accessible, so this alert was ignored.
+<details>
+<summary>Edit profile results</summary>
+<img src="/documentation/testing/wave/user_profile_edit_profile.png">
+</details><br>
 
+**User_profile: delete_user.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Delete user results</summary>
+<img src="/documentation/testing/wave/user_profile_delete_profile.png">
+</details><br>
 
-
+**User_profile: delete_successful.html**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Profile delete successful results</summary>
+<img src="/documentation/testing/wave/user_profile_delete_successful.png">
+</details><br>
 
 
 
@@ -522,21 +546,6 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 
-**User_profile: user_profile.html**<br>
-- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
-<details>
-<summary>User profile page results</summary>
-<img src="/documentation/testing/wave/user_profile_user_profile.png">
-</details><br>
-
-
-**User_profile: edit_profile.html**<br>
-- 2 contrast errors where wave mistakes the font colour and background colour in the check in/out inputs in the navigation bar booking form, present on every page. This is not the case and has no impact on the user.
-<details>
-<summary>Edit profile results</summary>
-<img src="/documentation/testing/wave/user_profile_edit_profile.png">
-</details><br>
-
 
 ****<br>
 - No errors or alerts
@@ -583,6 +592,10 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Trips: trips superuser | None | None |
 | Reviews: add review | None | None |
 | Reviews: edit review | None | None |
+| User profile page | None | None |
+| User profile edit profile | None | None |
+| User profile delete user | None | None |
+| User profile delete successful | None | None |
 
 
 
@@ -946,27 +959,11 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/reviews_urls.png">
 </details><br>
 
-
-
-
-
-
-
-
-
-
 **User_profile: admin.py**<br>
 - No errors or alerts
 <details>
 <summary>Admin results</summary>
 <img src="/documentation/testing/python/user_profile_admin.png">
-</details><br>
-
-**User_profile: forms.py**<br>
-- No errors or alerts
-<details>
-<summary>Forms results</summary>
-<img src="/documentation/testing/python/user_profile_forms.png">
 </details><br>
 
 **User_profile: models.py**<br>
@@ -976,18 +973,46 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/user_profile_models.png">
 </details><br>
 
-**User_profile: signals.py**<br>
-- No errors or alerts
-<details>
-<summary>Signals results</summary>
-<img src="/documentation/testing/python/user_profile_signals.png">
-</details><br>
-
 **User_profile: test_models.py**<br>
 - No errors or alerts
 <details>
 <summary>Test models results</summary>
 <img src="/documentation/testing/python/user_profile_test_models.png">
+</details><br>
+
+**User_profile: forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Forms results</summary>
+<img src="/documentation/testing/python/user_profile_forms.png">
+</details><br>
+
+**User_profile: test_forms.py**<br>
+- No errors or alerts
+<details>
+<summary>Test_forms results</summary>
+<img src="/documentation/testing/python/user_profile_test_forms.png">
+</details><br>
+
+**User_profile: views.py**<br>
+- No errors or alerts
+<details>
+<summary>Views results</summary>
+<img src="/documentation/testing/python/user_profile_views.png">
+</details><br>
+
+**User_profile: test_views.py**<br>
+- No errors or alerts
+<details>
+<summary>Test_views results</summary>
+<img src="/documentation/testing/python/user_profile_test_views.png">
+</details><br>
+
+**User_profile: signals.py**<br>
+- No errors or alerts
+<details>
+<summary>Signals results</summary>
+<img src="/documentation/testing/python/user_profile_signals.png">
 </details><br>
 
 **User_profile: urls.py**<br>
@@ -997,12 +1022,15 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/user_profile_urls.png">
 </details><br>
 
-**User_profile: views.py**<br>
-- No errors or alerts
-<details>
-<summary>Viewss results</summary>
-<img src="/documentation/testing/python/user_profile_views.png">
-</details><br>
+
+
+
+
+
+
+
+
+
 
 The env.py file was also linted showing no errors but the screenshot has been omitted for security issues as it contains sensitive information.
 
