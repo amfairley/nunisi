@@ -1,5 +1,5 @@
 from django.contrib import admin
-from . models import UserProfile, Trip
+from . models import UserProfile
 
 
 class UserProfileAdmin(admin.ModelAdmin):
@@ -23,21 +23,5 @@ class UserProfileAdmin(admin.ModelAdmin):
     ordering = ('user',)
 
 
-class TripAdmin(admin.ModelAdmin):
-    list_display = (
-        'profile',
-        'room',
-        'start_date',
-        'end_date',
-        'adults',
-        'children',
-        'cost',
-        'cancelled',
-    )
-
-    ordering = ('profile',)
-
-
 # Register your models here.
 admin.site.register(UserProfile, UserProfileAdmin)
-admin.site.register(Trip, TripAdmin)
