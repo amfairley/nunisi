@@ -1428,54 +1428,106 @@ main {
 
 /* ---------- User Profile ---------- */
 /* user_profile.html */
-#account-title {
-    text-align: center;
-}
-
 #user-profile-table {
-    max-width: 600px;
-    width: 90%;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#333A3F;
+    max-width: 90%;
+    width: fit-content;
     margin: 0 auto;
     display: flex;
+    border: 2px solid #b88c26;
+    border-radius: 8px;
 }
 
-.profile-button-div {
-    width: 100%;
+.user-profile-table-top-row th{
+    border-radius: 8px 0 0 0;
+}
+
+.user-profile-table-top-row td {
+    border-radius: 0 8px 0 0;
+}
+
+.user-profile-table-bottom-row th{
+    border-radius: 0 0 0 8px;
+}
+
+.user-profile-table-bottom-row td {
+    border-radius: 0 0 8px 0;
+}
+
+.user-profile-button-div {
+    max-width: min(600px, 95%);
+    margin: 0.5rem auto;
+}
+
+.user-profile-button-div a {
+    width: fit-content;
+}
+
+.delete-profile-button a {
+    width: fit-content;
+}
+
+.delete-profile-button {
+    position: absolute;
+    right: 15px;
     display: flex;
+    gap: 5px;
+    top: 178px;
+    width: fit-content;
+    height: fit-content;
 }
 
-.profile-button {
-    margin: 5px auto 10px auto;
-    text-align: center;
-    padding-left: 5px;
-    padding-right: 5px;
+.account-page-spacer {
+    height: 0.5rem;
 }
 
 /* edit profile */
-.edit-profile-title {
-    text-align: center;
-}
-
 .edit-profile-div {
     max-width: 600px;
     width: 90%;
-    margin: 0 auto;
+    margin: 1rem auto;
+    border: 1px solid #b88c26;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background-color: #3A6B35;
+}
+
+#edit-profile-form {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+#edit-profile-form label {
+    width: 30%;
+    color: #FDD67C;
+}
+
+#edit-profile-form input,
+#edit-profile-form select {
+    width: 65%;
+    background-color: #FDD67C;
+    color: #3A6B35;
+}
+#edit-profile-form #id_newsletter {
+    width: fit-content;
+    margin-left: 0.5rem;
+    box-shadow:#F5F5F5;
 }
 
 /* Delete user */
-.confirm-deletion-title,
-.account-deleted-title {
-    text-align: center;
-}
-
-.home-button-div,
-.delete-account-form {
+.confirm-delete-profile-buttons {
+    width: 500px;
+    max-width: 80%;
+    height: fit-content;
     display: flex;
     justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    margin-top: 2rem;
 }
 
 /* ---------- Trips ---------- */
-
 #no-trips-message {
     text-align: center;
 }
@@ -1927,8 +1979,10 @@ main {
     /*Move sort box below title on available rooms*/
     /*2.15rem is the size of the h1 text*/
     /*Same for delete review button */
+    /*Same for delete profile button */
     .room-sort-container,
-    .delete-review-button {
+    .delete-review-button,
+    .delete-profile-button {
         top: calc(190px + 2.15rem);
     }
 
@@ -1937,9 +1991,15 @@ main {
         margin-top: calc(22px + 2.15rem);
     }
 
+    /*Move edit review content down*/
     .edit-review-content {
         margin-top: calc(22px + 2.15rem);
     }
+    
+    /*Move the profile table down*/
+    #user-profile-table {
+        margin-top: calc(22px + 2.15rem);
+    }   
 }
 
 @media (max-width: 760px) {
@@ -1985,6 +2045,14 @@ main {
 
     .order-summary-section-title {
         border-radius: 0 0 0 0 !important;
+    }
+
+    /*Add screen size warning to all trips page*/
+    .screen-size-warning {
+        display: block !important;
+        font-family: Roboto, Arial, Helvetica, sans-serif;
+        color: #333A3F;
+        font-weight: bolder;
     }
 }
 
