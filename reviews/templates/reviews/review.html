@@ -1,0 +1,17 @@
+<!--Trip review section-->
+<div class="review">
+    <div class="review-header">
+        <!--Rating-->
+        <p>{{ review.rating }} / 5 Stars</p>
+        <!--Verified status-->
+        {% if review.verified %}
+            <p class="review-verified" title="Review Verified"><i class="fa-solid fa-check"></i></p>
+        {% endif %}
+    </div>
+    <!--Review content-->
+    <div class="review-content">
+        <p>{{ review.content }}</p>
+    </div>
+    <!--Edit review button-->
+    <a href="{% url 'edit_review' review.id %}" class="nunisi-button edit-review-button">Edit review</a>
+</div>
