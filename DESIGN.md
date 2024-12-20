@@ -260,6 +260,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Home: Navigation background
 - Home: Carousel arrow gold halo when hovered
 - Home: Service carousel background
+- Home: Review carousel text
 - Available rooms: Text colour of sort options
 - Available rooms: Amenity filter title text, body background, title focus shadow
 - Available rooms: Room card background, summary text
@@ -272,6 +273,9 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Checkout: Section backgrounds
 - Checkout: Payment input font
 - Checkout success: Success message background
+- Trips: Review text
+- Add/edit review: Form labels and messages
+- Edit review: delete modal title text and message background
 
 **Fern Green #3A6B35**
 - Font colour on Jasmine backgrounds
@@ -288,6 +292,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Home: Horizontal rules between sections
 - Home: Carousel arrow backgrounds
 - Home: Section title font colour
+- Home: Review carousel background
 - Available rooms: Background colour of the sort options
 - Available rooms: Amenity filter title background, body text, button background
 - Available rooms: Room name text, amenitiy symbols, summary background, image border
@@ -303,6 +308,10 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Checkout: Section title background
 - Checkout: Form input background
 - Checkout success: Page title
+- Trips: Review background
+- Add/edit review: Page title
+- Add/edit review: Review background
+- Edit review: Delete modal background and message text
 
 **Gun Metal #333A3F**
 - Border for the account menu
@@ -326,7 +335,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 
 **Dark Goldenrod #B88C26**
 - Account dropdown border
-- Home: Service carousel border
+- Home: Service and review carousel border
 - Available rooms: Room card middle border
 - Available rooms: Pagination outline of current page
 - Super user all rooms: Room card image border
@@ -466,6 +475,13 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The FAQ section provides the user with answers to frequently asked questions, hopefully answering them clearly and reducing the need of the user to reach out for clarification. On larger screens this is split into three columns and on smaller screens; one column. |
 | **User Stories Covered:** 2, 5 |
 
+| **Homepage: Reviews** |
+| ----- |
+| **Page: /** |
+| <details><summary>Reviews</summary><img src="/documentation/features/homepage_reviews.png"></details> |
+| **Details:** The reviews section on the homepage consists of a carousel showing verified user reviews. This allows users to see other peoples experiences and judge whether they would want a similar experience. |
+| **User Stories Covered:** 2, 7 |
+
 | **Rooms: form errors** |
 | ----- |
 | **Page: /rooms/** |
@@ -571,6 +587,29 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The homepage link provides the user with a convenient way to get back to the homepage from the order confirmation page.  |
 | **User Stories Covered:** 2 |
 
+| **Trips: Review** |
+| ----- |
+| **Page: /trips/trips** |
+| <details><summary>Trip review</summary><img src="/documentation/features/trips_review.png"></details> |
+| **Details:** The trip review (if provided) is shown under the trips on the user trips page. It consists of a rating, review content and tick if it is verified. There is a button taking the user to the edit review page where they can update or delete the review. When hovered, the tick indicates to the user that the review is verified by using the title attribute.  |
+| **User Stories Covered:** 21, 25 |
+
+| **Reviews: Review form** |
+| ----- |
+| **Page: /reviews/add/review_id and /reviews/edit_review/review_id** |
+| <details><summary>Add review form</summary><img src="/documentation/features/reviews_add_review.png"></details> |
+| <details><summary>Edit review form</summary><img src="/documentation/features/reviews_edit_review.png"></details> |
+| **Details:** The add review form allows the user to upload a review of their stay, informing the business owner of what they do well and what they could improve upon. The review content allows them to describe their experience and a rating of 1-5 allows for easy identification of if the stay was good or bad. The edit review form is pre-populated with their original review and allows the user to update their description and rating. This also resets the verfied filter to false and emails the hotel owners in order to prevent fake reviews from replacing valid reviews. |
+| **User Stories Covered:** 2, 21 |
+
+| **Reviews: Delete Review** |
+| ----- |
+| **Page: /reviews/edit_review/review_id** |
+| <details><summary>Delete review button</summary><img src="/documentation/features/reviews_edit_review_delete_review_button.png"></details> |
+| <details><summary>Delete review button hover</summary><img src="/documentation/features/reviews_edit_review_delete_review_button_hover.png"></details> |
+| <details><summary>Delete review modal</summary><img src="/documentation/features/reviews_edit_review_delete_review_modal.png"></details> |
+| **Details:** The delete review feature on the edit review page allows the user to delete their review. The button shows a red background and off-white text when hovered to show it's severity. When clicked it opens a modal for the user to confirm the deletion or cancel the deletion. This step is some defensive programming to prevent the user from accidentally deleting their review with one mouse click. |
+| **User Stories Covered:** 2, 21 |
 
 
 
