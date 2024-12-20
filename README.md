@@ -179,6 +179,9 @@ Forms throughout the site are defined with required fields when necessary. These
 **Delete room/user**<br>
 The delete room/user functionality redirects the user to a confirmation page to remove the chance of accidentally deleting a room or account.
 
+**Delete review modal**<br>
+The delete review modal pops up to make the user confirm a deletion, preventing them from accidentally deleting thier review with one mouse click.
+
 ## Future Development
 - Footer
     * Facebook and Instagram links will be updated with the real profiles when the website is ready to go live.
