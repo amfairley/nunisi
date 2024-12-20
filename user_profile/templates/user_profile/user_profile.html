@@ -6,12 +6,13 @@
 {% endblock %}
 
 {% block content %}
+
     <div class="content">
-        <h1 class="jost-font font-weight-bolder font-nunisi-green" id="account-title">My Account</h1>
+        <h1 class="page-title">My Account</h1>
         <!--Profile Information Table-->
-        <table class="table table-striped table-hover table-borderless roboto-font" id="user-profile-table">
+        <table class="table table-striped table-hover table-borderless" id="user-profile-table">
             <!--Email-->
-            <tr>
+            <tr class="user-profile-table-top-row">
                 <th class="account-detail">
                     <!--Email management link-->
                     <a href="{% url 'account_email' %}" aria-label="Link to email address management" title="Update email setttings"><i class="fa-solid fa-pen-to-square"></i> Email Address(es)</a>
@@ -106,9 +107,9 @@
                 </td>
             </tr>
         <!--Newsletter-->
-            <tr>
+            <tr class="user-profile-table-bottom-row">
                 <th class="account-detail">
-                    Sign up to Newsletter?
+                    Signed up to Newsletter?
                 </th>
                 <td class="account-detail-value">
                     {% if user_profile.newsletter %}
@@ -119,14 +120,19 @@
                 </td>
             </tr>
         </table>
-        <div class="profile-button-div">
-            <a href="{% url 'edit_profile' %}" class="nunisi-button profile-button">Edit profile</a>
+        <!--Buttons-->
+        <div class="user-profile-button-div row">
+            <div class="col-6">
+                <a href="{% url 'edit_profile' %}" class="nunisi-button">Edit profile</a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'account_change_password' %}" class="nunisi-button">Change password</a>
+            </div>
         </div>
-        <div class="profile-button-div">
-            <a href="{% url 'account_change_password' %}" class="nunisi-button profile-button">Change password</a>
+        <div class="delete-profile-button">
+            <a href="{% url 'delete_user' user.id %}" class="nunisi-button delete-button">Delete Account</a>
         </div>
-        <div class="profile-button-div">
-            <a href="{% url 'delete_user' user.id %}" class="nunisi-button profile-button">Delete Account</a>
-        </div>
+        {% include "back_button/back_button.html" %}
+        <div class="account-page-spacer"></div>
     </div>
 {% endblock %}
