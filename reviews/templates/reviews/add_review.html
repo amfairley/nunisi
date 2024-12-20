@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}
+ - Leave a Review
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <!--Page title-->
+        <h1 class="page-title">Add Review</h1>
+        <!--Form-->
+        <div class="add-edit-review-content">
+            <form method="POST" class="add-edit-review-form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <p>Please rate the experience on a scale of 1(poor) to 5(excellent)</p>
+                <hr>
+                <!--Back button and submit button-->
+                <div class="add-edit-review-button-div row">
+                    <div class="col-6">
+                        {% include "back_button/back_button.html" %}
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" class="nunisi-button">Add review</button>
+                    </div>
+                </div>
+            </form>
+            <!--Errors-->
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}
+                                <li>{{ field }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+{% endblock %}
