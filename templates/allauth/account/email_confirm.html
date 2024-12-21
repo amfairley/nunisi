@@ -10,12 +10,14 @@
 {% endblock head_title %}
 {% block content %}
     <div class="content allauth-content">
-        <h1 class="allauth-title">
+        <!--Page title-->
+        <h1 class="page-title">
             {% trans "Confirm Email Address" %}
         </h1>
         {% if confirmation %}
             {% user_display confirmation.email_address.user as user_display %}
             {% if can_confirm %}
+                <!--Message-->
                 <p class="allauth-message">
                     {% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an email address for user {{ user_display }}.{% endblocktrans %}
                 </p>
@@ -32,12 +34,14 @@
                     {% endslot %}
                 {% endelement %}
             {% else %}
+                <!--Email already in use message-->
                 <p class="allauth-message">
                     {% blocktrans %}Unable to confirm {{ email }} because it is already confirmed by a different account.{% endblocktrans %}
                 </p>
             {% endif %}
         {% else %}
             {% url 'account_email' as email_url %}
+            <!--Expired link message-->
             <p class="allauth-message"></p>
                 {% blocktrans %}<p class="allauth-message">This email confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new email confirmation request</a>.</p>{% endblocktrans %}
             </p>

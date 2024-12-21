@@ -9,9 +9,11 @@
 {% endblock head_title %}
 {% block content %}
     <div class="content allauth-content">
-        <h1 class="allauth-title">
+        <!--Page title-->
+        <h1 class="page-title">
             {% trans "Verify Your Email Address" %}
         </h1>
+        <!--Message-->
         <p class="allauth-message">
             {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
         </p>
