@@ -8,7 +8,8 @@
 {% endblock head_title %}
 {% block content %}
     <div class="content allauth-content">
-        <h1 class="allauth-title">
+        <!--Page title-->
+        <h1 class="page-title">
             {% trans "Sign Up" %}
         </h1>
         {% setvar link %}
@@ -17,15 +18,17 @@
             {% setvar end_link %}
             </a>
         {% endsetvar %}
+        <!--Message-->
         <p class="allauth-message">
             {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
         </p>
         {% if not SOCIALACCOUNT_ONLY %}
             {% url 'account_signup' as action_url %}
             <div class="allauth-form-container">
+                <!--Sign up form-->
                 {% element form form=form method="post" action=action_url tags="entrance,signup" %}
                     {% slot body %}
-                        <div class="allauth-form">
+                        <div class="allauth-form sign-up-form">
                             {% csrf_token %}
                             {% element fields form=form unlabeled=True %}
                             {% endelement %}
@@ -49,6 +52,7 @@
                 {% trans "Sign up using a passkey" %}
             {% endelement %}
         {% endif %}
+        <!--Social accounts-->
         {% if SOCIALACCOUNT_ENABLED %}
             {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
         {% endif %}

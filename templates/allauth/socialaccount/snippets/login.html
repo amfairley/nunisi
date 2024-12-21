@@ -4,9 +4,8 @@
 {% get_providers as socialaccount_providers %}
 {% if socialaccount_providers %}
     {% if not SOCIALACCOUNT_ONLY %}
-        {% element hr %}
-        {% endelement %}
-        <h2 class="allauth-title">
+        <hr class="social-account-hr">
+        <h2 class="page-title">
             {% translate "Or use a third-party" %}
         </h2>
     {% endif %}
