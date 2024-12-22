@@ -249,6 +249,11 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Reset Password | Enter valid email address and submit | Email sent with password reset link and user redirected to /password/reset/done page | Y | N/A |
 | Google login | Click continue | Redirected to Google access page | Y | N/A |
 | Google login | Sign up with Google | Allows login with the Google account | Y | N/A |
+| **Error Pages** | | | | |
+| 400 | Click homepage link | Redirected to homepage | Y | N/A |
+| 403 | Click homepage link | Redirected to homepage | Y | N/A |
+| 404 | Click homepage link | Redirected to homepage | Y | N/A |
+| 500 | Click homepage link | Redirected to homepage | Y | N/A |
 
 ## Device and Browser Testing
 I tested the responsiveness of the website using Google Chrome Devtools to simulate 17 screen sizes; ranging from large desktops to the iPhone 5/SE and am happy to report that the website appears and functions as intended across the large screen size range. Additionally the website was tested on the Google Chrome, Mozzila Firefox, Microsoft Edge, and Brave browsers and no issues were encountered. I also tested the website on my 17.5" Laptop, 14" Laptop, and smart phone, noticing that it worked well in each case.
@@ -512,6 +517,15 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave/allauth_inactive.png">
 </details><br>
 
+**Error pages**
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Error results</summary>
+<img src="/documentation/testing/wave/error_page_400.png">
+<img src="/documentation/testing/wave/error_page_403.png">
+<img src="/documentation/testing/wave/error_page_404.png">
+<img src="/documentation/testing/wave/error_page_500.png">
+</details><br>
 
 
 
@@ -584,7 +598,10 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | Allauth - 3rd party login | None | None |
 | Allauth - 3rd party login cancelled | None | None |
 | Allauth - 3rd party login error | None | None |
-
+| Error pages - 400 | None | None |
+| Error pages - 403 | None | None |
+| Error pages - 404 | None | None |
+| Error pages - 500 | None | None |
 
 ### CSS Validation
 CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no errors in the CSS code.
