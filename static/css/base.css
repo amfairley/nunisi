@@ -111,7 +111,7 @@ main {
 
 .delete-button:hover,
 .trip-cancel-button:hover {
-    background-color: red;
+    background-color: #CF1020;
     color: #F5F5F5;
 }
 
@@ -507,21 +507,17 @@ main {
 }
 
 /* ---------- AllAuth Pages ---------- */
+/* Sign up */
 .allauth-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-
-.allauth-title {
-    text-align: center;
-    font-family: Jost, Arial, Helvetica, sans-serif;
-    color: #3A6B35;
-}
-
 .allauth-message {
     text-align: center;
+    max-width: max(90%, 600px);
+    margin: 0 auto;
     color: #333A3F;
     font-family: Roboto, Arial, Helvetica, sans-serif;
     width: 100%;
@@ -532,16 +528,46 @@ main {
     text-align: center;
 }
 
-.allauth-form ul{
-    list-style-type: none;
-    text-align: center;
-    padding: 0;
-    color: #CF1020;
+.sign-up-form,
+.login-form {
+    width: fit-content;
+    margin: 0 auto;
 }
 
-.allauth-form span {
-    display: block;
-    padding-top: 15px;
+.sign-up-form label,
+.login-form label {
+    width: 30%;
+    text-align: right;
+}
+
+.sign-up-form input,
+.login-form input {
+    width: 65%;
+}
+
+.login-form #id_remember {
+    width: fit-content;
+    margin-left: 1rem;
+}
+
+.sign-up-form ul{
+    border: 1px solid #b88c26;
+    border-radius: 8px;
+    width: fit-content;
+    max-width: 90%;
+    margin: 0 auto;
+    font-size: smaller;
+    padding: 1rem;
+    list-style-type: none;
+    text-align: left;
+    color: #333A3F;
+}
+
+.social-account-hr {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    border: 2px solid #3A6B35;
 }
 
 .allauth-form span a:hover {
@@ -549,6 +575,7 @@ main {
 }
 
 .allauth-button-div {
+    margin: 1rem 0;
     text-align: center;
 }
 
@@ -557,21 +584,30 @@ main {
     font-weight: 800;
     color: #3A6B35;
     background-color: #FDD67C;
-    border-color: #333A3F;
-    border-radius: 10%;
-    padding-left: 7px;
-    padding-right: 7px;
+    border: 1px solid #333A3F;
+    border-radius: 8px;
+    padding: 5px 10px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .allauth-button-div button:hover {
     border-color: #333A3F;
     color:#FDD67C;
     background-color: #3A6B35;
+    box-shadow: 0 0 0 .25rem rgba(253, 214, 142, .75);
+    border: 1px solid #333A3F;
 }
 
 .allauth-socials {
     text-align: center;
     font-family: Roboto, Arial, Helvetica, sans-serif;
+    color: #333A3F;
 }
 
 .allauth-socials ul {
@@ -583,20 +619,40 @@ main {
     font-weight: bolder;
 }
 
-.allauth-email-button {
-    margin-top: 10px;
-}
-
-#allauth-add-email {
-    margin-top: 10px;
-}
-
-#allauth-add-email-submit {
-    margin-bottom: 10px;
-}
-
 .allauth-message a:hover {
     font-weight: bolder;
+}
+
+#id_password_helptext {
+    display: block;
+}
+
+.reauthenticate-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reauthenticate-form form div ul {
+    color: #CF1020 !important;
+    list-style-type: none;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0;
+}
+
+.email-button-div {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.remove-email-button button:hover {
+    background-color: #CF1020 !important;
+    color: #F5F5F5 !important;
+}
+
+.forgot-password-button {
+    width: fit-content;
 }
 
 /* ---------- index.html ---------- */
@@ -1367,7 +1423,7 @@ main {
 #card-errors {
     border-radius: 8px;
     font-family: Roboto, Arial, Helvetica, sans-serif;
-    background-color: red;
+    background-color: #CF1020;
     color:#F5F5F5;
 }
 
@@ -1891,6 +1947,15 @@ main {
 }
 
 .master-trips-table tbody {
+    text-align: center;
+}
+
+/* ---------- Page errors ---------- */
+.page-error-message {
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+    color:#333A3F;
+    margin: 0 auto;
+    max-width: min(500px, 90%);
     text-align: center;
 }
 
