@@ -118,7 +118,7 @@ You can also fork the GitHub repository to collaborate by once logged into GitHu
 
 ## Apps
 Each section of functionality for the website were sequestered into their own apps in order to maximise the readability and reusablity of the code. The apps are:<br>
-**Templates**: Though not technically an app, the base template of the app and Django AllAuth templates are stored here for reusability throughout the apps. The static folder holds the base CSS and JavaScript that are also reused across the app.<br>
+**Templates**: Though not technically an app, the base template of the app and Django AllAuth templates are stored here for reusability throughout the apps. The static folder holds the base CSS and JavaScript that are also reused across the app. Also included here are the error pages: 400, 403, 404, and 500.<br>
 **back_button**: The back button app holds the functionality for the back button that is used across the site. It holds the view that handles the redirection to the previous page or 404 page if the page is not found, the url for the back button, and the HTML template for the button to be included in other templates.<br>
 **home**: The home app contains all the functionality for the homepage including the room availability search form that is shared site wide with a context processor and used in the site header and on the homepage. There are no models for the homepage and the only view and url renders the index.html page.<br>
 **rooms**: The rooms app contains the functionality for the hotel rooms. It holds the models for the rooms and amenities, the views to display available rooms to the user and rooms/edit rooms/delete rooms to a superuser. It also houses the form for editing the rooms. <br>
