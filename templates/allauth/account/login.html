@@ -9,8 +9,9 @@
 {% endblock head_title %}
 {% block content %}
     <div class="content allauth-content">
-        <h1 class="allauth-title">
-            {% trans "Sign In" %}
+        <!--Page title-->
+        <h1 class="page-title">
+            {% trans "Login" %}
         </h1>
         {% if not SOCIALACCOUNT_ONLY %}
             {% setvar link %}
@@ -19,11 +20,13 @@
                 {% setvar end_link %}
                 </a>
             {% endsetvar %}
+            <!--Message-->
             <p class="allauth-message">
                 {% blocktranslate %}If you have not created an account yet, then please {{ link }}sign up{{ end_link }} first.{% endblocktranslate %}
             </p>
             {% url 'account_login' as login_url %}
-            <div class="allauth-form-container">
+            <!--Login form-->
+            <div class="allauth-form-container login-form">
                 {% element form form=form method="post" action=login_url tags="entrance,login" %}
                     {% slot body %}
                         <div class="allauth-form">
