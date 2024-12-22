@@ -46,8 +46,8 @@ Outlined here is the design process for this webapp. Building up the webapp usin
 ### Strategy
 
 - **What value does the project provide?** From the business perspective; this project provides a website to display and rent out their rooms to potential guests. It allows the business owner to track trends in booking, see feedback from guests, and edit/update information about their rooms. From a customer perspective it provides a website where they can securely and safely book a room for their visit, find out more about the hotel and resort, and track previous trips that they have taken.
-- **What are the business needs?** The business needs are to provide an intuitive, pleasant looking, and accessible website to entice more users to book rooms at their resort. They business also requires agency over the information they give out, being able to update specifications to rooms to reflect renovations. With enough use, the website will be able to provide information about trends in trips (time of year/amount of guests) and feedback in the form of reviews so that the business can continue to grow and match public demand.
-- **Who is the target audience?** The target audience will primarily be potential travellers. This will be split into sub sections of international travellers to Georgia who are looking for more of a nature focussed holiday that a city break, and domestic travellers seeking a break from city life. The business owners are another target audience, as they will need to have faith that the website will provide all the functionality that they need and that the website meets their standards for how they wish to portray the hotel. 
+- **What are the business needs?** The business needs are to provide an intuitive, pleasant looking, and accessible website to entice more users to book rooms at their resort. The business also requires agency over the information they give out, being able to update specifications to rooms to reflect renovations. With enough use, the website will be able to provide information about trends in trips (time of year/amount of guests) and feedback in the form of reviews so that the business can continue to grow and match public demand.
+- **Who is the target audience?** The target audience will primarily be potential travellers. This will be split into sub sections of international travellers to Georgia who are looking for more of a nature focussed holiday than a city break, and domestic travellers seeking a break from city life. The business owners are another target audience, as they will need to have faith that the website will provide all the functionality that they need and that the website meets their standards for how they wish to portray the hotel. 
 - **What are the user requirements and expectations?** The users can make their own profile in order to save their personal details and track previous trips. They also expect to be able to Create, Read, Update, and Delete their own profile, personal data, and reviews whenever they want. It is expected that they can search for available rooms to rent and to safely and securely pay for the rooms.
 
 #### Viability And Feasibility
@@ -75,7 +75,7 @@ Followed is an analysis of the user stories and above user and business needs ra
 | Allow users to view previous trips | 4 | 4 |
 | Allow users to book through the website | 5 | 3 |
 
-Overall, most of the targets meets a ranking of at least 4 in either importance or viability. Extra effort will be given to those with higher importance but lower viability (due to currently not knowing how to implement the features required) and those with low importance and higher viability will be included due to their ease of inclusion.<br>
+Overall, most of the targets meets a ranking of at least 4 in either importance or viability. Extra effort will be given to those with higher importance but lower viability (due to currently not knowing how to implement the features required) and those with low importance and higher viability will be included due to their relative ease.<br>
 Showing reviews of the hotel has been rated a 3/3, as this will depend on the availability of reviews on websites such as TripAdvisor and whether they can be accessed via API if you are not the resort owner. Should this prove not possible, showing reviews will be added to "future development" once reviews have been received through this website, giving a resource of reviews to display. <br>
 The "safe and secure user authentication" will be achieved by using Django AllAuth, this will also meet the user story requirements for signing in via social media, email validation, easy login/logout, password updating, and password recovery.
 Stripe will be used for payment and booking, meeting the further user stories of seeing an order confirmation and saving their details for future.
@@ -85,16 +85,17 @@ Stripe will be used for payment and booking, meeting the further user stories of
 Multiple tables in a relational database will be required to meet all of the targets for this project. These models will be:
 - **User**: A Django model that will be updated using Django AllAuth and consisting of a number of fields that will not be queried or used in the project. The fields of note will be: ID, email, password, is_superuser (for admin privileges on the site).
 - **Profile**: This will handle the user profile data. The fields will be: ID, User (foreign key; one to one), newsletter (True if signed up to a newsletter), and the information fields required for stripe such as first and last names, address information and contact details etc.
-- **Room**: This will hold all the information about the specific rooms. The fields will be: ID, name, sanitised_name (for display on the website), amenities (a JSON list of amenity IDs), description, image, price, unavailability (a JSON list of book dates).
+- **Room**: This will hold all the information about the specific rooms. The fields will be: ID, name, sanitised_name (for display on the website), amenities (a JSON list of amenity IDs), description, image, price, unavailability (a JSON list of booked dates).
+- **Order**: This will have the information pertinent to each order including a unique order number, name, email, phone number of the customer, the total cost, the time of the order and a unique payment intent id to connect with Stripe to process payments.
 - **Amenities**: This will have the amenity information for rooms such as air conditioning, balcony, bed size etc. The fields will be: ID, name, sanitised_name (for display on the website), icon (a string of the html for a fontawesome icon).
-- **Trip**: This will hold the information of a trip that has been booked. It will have: ID, Profile (foreign key, many to one), Room (foreign key, one to one), start_date, end_date, cancelled (boolean field with defautl to False).
-- **Review**: This will have the information for a review of a trip. The fields will be: ID, Trip (foreign key, one to one), clean_rating (rating cleanliness 1-5), food_rating (rating the food 1-5), service_rating (rating the service received 1-5), staff_rating (rating the staff attitude/helpfulness etc 1-5), overall_rating (1-5), review_content (text). 
+- **Trip**: This will hold the information of a trip that has been booked. It will have: ID, Profile (foreign key, many to one), Room (foreign key, one to one), start_date, end_date, number of guests, cost, and cancelled (boolean field with default to False).
+- **Review**: This will have the information for a review of a trip. The fields will be: ID, Trip (foreign key, one to one), content (a text field), rating from 1-5, and a verified tag. In the future, futher fields can be added to help the user submit a review that is more useful to the hotel owner. These fields could be clean_rating (rating cleanliness 1-5), food_rating (rating the food 1-5), service_rating (rating the service received 1-5), staff_rating (rating the staff attitude/helpfulness etc 1-5).
 
 #### Front-end
-The website will be built using Django, allowing for template inheritance and partitions functionality into different apps, resulting in less duplicate code written and quicker load times for the user.
+The website will be built using Django, allowing for template inheritance and partitioning functionality into different apps, resulting in less duplicate code written and quicker load times for the user.
 
 **Templates**
-- **base.html**: This will be the base template that the others call from to ensure a cohesive structure across the website. Present here will be:
+- **base.html**: This will be the base template that the others call from to ensure a cohesive structure across the website. It will have:
     - All the header meta information
     - Links to styling and JavaScript scripts
     - The header with the site logo, a booking form, and account navigation links
@@ -223,7 +224,7 @@ Below is a proposed ERD for the tables to be modelled for the database that meet
 - The User model will use the Django user model and AllAuth to store authentication data including the email address and password.
 - The UserProfile model will have a foreign key to the User model set up in a way as to delete the Profile when the User is deleted. It also has a boolean field for the user to sign up to a newsletter and will have all the contact information required by stripe to complete the booking reservation form.
 - The Trip model will house the information for each trip. It will be linked with the UserProfile model and Room model via foreign keys in many to one relationships. It will have the data for the start date, end date, number of each guest type, cost, and a Boolean field to notify whether the user will cancel the trip. This will be set to False by default.
-- The Room model will have all the information for the Rooms, this includes the room name, a sanitised room name for display on the website, a description of the room, a list of amentities as a list of integers referring to the ids in the Amenities model, an image of the room, the nightly price, a list of dates in which the room is unavailable.
+- The Room model will have all the information for the Rooms, this includes the room name, a sanitised room name for display on the website, a description of the room, a list of amenities as a list of integers referring to the ids in the Amenities model, an image of the room, the nightly price, a list of dates in which the room is unavailable.
 - The Amenities model will hold information of the amenities. It is referenced from the Room model but set up in a simple easy to understand way rather than a many to many relationship. Each amenity has an ID, name, sanitised name, and an icon which will consist of the HTML for the Font Awesome icon. These amenities can be accessed by looping through the is numbers in the Room model amenities field.
 - The Order model will hold the information for the orders. It has a foreign key relationship to the UserProfile model in a one to many relationship, allowing multiple orders by the same user. It houses all the information required by stripe to process the order including address information and a stripe payment ID. 
 
@@ -242,7 +243,7 @@ Where there were major differences, Mobile Wireframes were mocked up and can be 
 ### Surface
 
 #### Colour Scheme
-The colour scheme started as an idea for gold and green to portray the natural aspects of the resort and nature, whilst also conveying sophistication and prestige.
+The colour scheme started as an idea for gold and green to portray the natural aspects of the resort and nature, whilst also conveying sophistication and prestige. An off-white and off-black were used in the place of white and black to be easier to read and more pleasant for the reader. For this reason, fire engine red, which is slightly muted red, was used in place of red for delete buttons and error messages.
 
 ![Colour Scheme](/documentation/colour_palette.png)
 
@@ -301,7 +302,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Home: Review carousel background
 - Available rooms / Trips: Background colour of the sort options
 - Available rooms: Amenity filter title background, body text, button background
-- Available rooms: Room name text, amenitiy symbols, summary background, image border
+- Available rooms: Room name text, amenity symbols, summary background, image border
 - Available rooms / Trips: Pagination text of disabled and active pages, background of other options
 - Super user all rooms: Page title
 - Super user all rooms: Room card title background
@@ -357,7 +358,6 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Allauth: Form text
 - Allauth: Message text
 
-
 **White Smoke #F5F5F5**
 - Home: Hero text colour
 - Available rooms: Background of amenity filter accordion symbol
@@ -382,7 +382,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - User profile: Table border
 - Edit profile: Form border
 
-**Lava: #CF1020**
+**Fire Engine Red: #CF1020**
 - Buttons: Delete, confirm delete button background on hover
 - Checkout: Card error background
 - Trips: Cancelled trip message background
@@ -413,6 +413,7 @@ This is my selection for block text across the website. Roboto is the most popul
 #### Images
 - The site logo was created using [Logo Design AI](https://logodesign.ai/) to create a simple and usable logo throughout the website.
 - The icons used across the site were from [Font Awesome](https://fontawesome.com/).
+- Images of the hotel and rooms were used with permission from the hotel owners.
 
 ## Features
 
@@ -427,7 +428,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | ----- |
 | **Page: All - Header / Homepage** |
 | <details><summary>Booking Form</summary><img src="/documentation/features/booking_form.png"></details> |
-| **Details:** The booking form is available on all large screens in the header, prompting the user to search for rooms. On smaller screens it appears as it's own section on the homepage. |
+| **Details:** The booking form is available on all large screens in the header, prompting the user to search for rooms. On smaller screens it appears as its own section on the homepage. |
 | **User Stories Covered:** 2, 22 |
 
 | **Buttons** |
@@ -442,7 +443,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | ----- |
 | **Page: All - Header** |
 | <details><summary>Account Menu</summary><img src="/documentation/features/account_menu.png"></details> |
-| **Details:** The account menu allows the user to access their Trips, Account details and Log out functionality. When logged out it only displays links to sign up / login and when signed in as an admin, displays links to view all Rooms and Trips in the database. Hovering over the links in the menu illicits a hover animation that elegantly draws a line under the hovered item from left to right. |
+| **Details:** The account menu allows the user to access their Trips, Account details and Log out functionality. When logged out it only displays links to sign up / login and when signed in as an admin, displays links to view all Rooms and Trips in the database. Hovering over the links in the menu elicits a hover animation that elegantly draws a line under the hovered item from left to right. |
 | **User Stories Covered:** 2, 11, 12, 16, 29, 36 |
 
 | **Footer Hotel Contact Information** |
@@ -456,7 +457,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | ----- |
 | **Page: All - Footer** |
 | <details><summary>Developer Information</summary><img src="/documentation/features/developer_information.png"></details> |
-| **Details:** The developer name is proudly displayed on the website along with a link the developer's GitHub profile. |
+| **Details:** The developer's name is proudly displayed on the website along with a link the developer's GitHub profile. |
 | **User Stories Covered:** 2, 10 |
 
 | **Back Button** |
@@ -560,7 +561,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | ----- |
 | **Page: /rooms/** |
 | <details><summary>Rooms Pagination</summary><img src="/documentation/features/rooms_pagination.png"></details> |
-| **Details:** The available room cards are split over many pages. This is not as useful currently but will provide good user experience when more rooms are added for a live website and will decrease page load times. Selecting the page number keeps the amenity and sort filter choices. The current page is displayed as larger than the others with an inverse colour. The disabled pages (e.g previous on page 1 and next on the lage page) have a lower opacity to show their status. Hovering over clickable options increases their size. |
+| **Details:** The available room cards are split over many pages. This is not as useful currently but will provide good user experience when more rooms are added for a live website and will decrease page load times. Selecting the page number keeps the amenity and sort filter choices. The current page is displayed as larger than the others with an inverse colour. The disabled pages (e.g. previous on page 1 and next on the large page) have a lower opacity to show their status. Hovering over clickable options increases their size. |
 | **User Stories Covered:** 2. 22 |
 
 | **Rooms: All rooms cards** |
@@ -581,7 +582,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | ----- |
 | **Page: /rooms/add_room/ and rooms/edit_room/room_id/** |
 | <details><summary>Sign Up</summary><img src="/documentation/features/rooms_add_room_form.png"></details> |
-| **Details:** The add/edit room form allows the site owner or anyone with admin privilages to add a new room to the database or update existing room instances. The format is more user friendly than uploading a JSON file allowing employees without much technical knowledge to complete the task. Alert toasts appear if any fields are incorrectly completed along with a list of the errors that appears below the form. Upon successful form submission a success toast indicates the success and the user is redirected back to the all rooms page. |
+| **Details:** The add/edit room form allows the site owner or anyone with admin privileges to add a new room to the database or update existing room instances. The format is more user friendly than uploading a JSON file allowing employees without much technical knowledge to complete the task. Alert toasts appear if any fields are incorrectly completed along with a list of the errors that appears below the form. Upon successful form submission a success toast indicates the success and the user is redirected back to the all rooms page. |
 | **User Stories Covered:** 36 |
 
 | **Rooms: add/edit room form how-to** |
@@ -674,7 +675,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Page: /reviews/add/review_id and /reviews/edit_review/review_id** |
 | <details><summary>Add review form</summary><img src="/documentation/features/reviews_add_review.png"></details> |
 | <details><summary>Edit review form</summary><img src="/documentation/features/reviews_edit_review.png"></details> |
-| **Details:** The add review form allows the user to upload a review of their stay, informing the business owner of what they do well and what they could improve upon. The review content allows them to describe their experience and a rating of 1-5 allows for easy identification of if the stay was good or bad. The edit review form is pre-populated with their original review and allows the user to update their description and rating. This also resets the verfied filter to false and emails the hotel owners in order to prevent fake reviews from replacing valid reviews. |
+| **Details:** The add review form allows the user to upload a review of their stay, informing the business owner of what they do well and what they could improve upon. The review content allows them to describe their experience and a rating of 1-5 allows for easy identification of if the stay was good or bad. The edit review form is pre-populated with their original review and allows the user to update their description and rating. This also resets the verified filter to false and emails the hotel owners in order to prevent fake reviews from replacing valid reviews. |
 | **User Stories Covered:** 2, 21, 37 |
 
 | **Reviews: Delete Review** |
@@ -785,7 +786,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Page: /accounts/password/reset** |
 | <details><summary>Reset password</summary><img src="/documentation/features/allauth_password_reset.png"></details> |
 | <details><summary>Reset password done</summary><img src="/documentation/features/allauth_password_reset_done.png"></details> |
-| **Details:** The AllAuth reset password page allows users to reset their password if they have forgotten it by enetering their email addresses and receiving a link to reset their password. |
+| **Details:** The AllAuth reset password page allows users to reset their password if they have forgotten it by entering their email addresses and receiving a link to reset their password. |
 | **User Stories Covered:** 2, 11, 18 |
 
 | **Error Pages** |
