@@ -648,6 +648,20 @@ The custom JavaScript code was testing using the JavaScript linter [JSLint](http
 ### Python Validation
 The Python code for this project was written in strict accordance with the [PEP 8](https://peps.python.org/pep-0008/) style guide for Python code. These include using correct indentations, maximum line lengths of 79 characters, and adhering to naming conventions for variables, functions, and classes. The [Code Institue python linter](https://pep8ci.herokuapp.com/) was used to validate the written code.
 
+**Project: settings.py**<br>
+- No errors or alerts
+<details>
+<summary>Settings results</summary>
+<img src="/documentation/testing/python/project_settings.png">
+</details><br>
+
+**Project: urls.py**<br>
+- No errors or alerts
+<details>
+<summary>Urls results</summary>
+<img src="/documentation/testing/python/project_urls.png">
+</details><br>
+
 **Back Button: views.py**<br>
 - No errors or alerts
 <details>
