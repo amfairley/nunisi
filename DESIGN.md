@@ -333,6 +333,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Edit profile: Input text
 - Delete profile: Page title
 - Delete profile success: Page title
+- Allauth: Page title
 
 **Gun Metal #333A3F**
 - Border for the account menu
@@ -352,6 +353,8 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Cancel trip success: Message font
 - Superuser trips: Table font
 - User profile: Table font
+- Allauth: Form text
+- Allauth: Message text
 
 
 **White Smoke #F5F5F5**
@@ -362,6 +365,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Checkout: Card error text
 - Trips: Cancelled trip text
 - Superuser trips: Cancel/uncancel trip text
+- Allauth signup: Password requirements border
 
 **Dark Goldenrod #B88C26**
 - Account dropdown border
@@ -377,11 +381,13 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - User profile: Table border
 - Edit profile: Form border
 
+**Lava: #CF1020**
+- Buttons: Delete, confirm delete button background on hover
+- Checkout: Card error background
+- Trips: Cancelled trip message background
+- Superuser trips: Cancel trip button
+
 **Other colours used:**
-- Red: The delete button and confirm delete buttons become red on hover to highlight their severity
-- Red: The card error background on the checkout form
-- Red: The cancelled trip message background on the trips page
-- Red: Cancel trip button on all trips page
 - Green: Uncancel trip button on all trips page
 - Facebook: Blue and white are used for the Facebook logo
 - Instagram and GitHub: Black and white are used for the Instagram and GitHub logos
@@ -726,18 +732,27 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The AllAuth sign up form handles all user authentication and allows the user to create an account with their email or through their google account. |
 | **User Stories Covered:** 2, 11, 13, 14, 15 |
 
+| **Allauth: Google Signup and Login** |
+| ----- |
+| **Page: /accounts/signup /accounts/google/login** |
+| <details><summary>Google Signup</summary><img src="/documentation/features/allauth_third_party_signup.png"></details> |
+| <details><summary>Google Login</summary><img src="/documentation/features/allauth_google.png"></details> |
+| **Details:** The AllAuth Google login allows users to sign up or log in with their Google accounts. This is good for security, as it uses Google's checks for a validated email address. |
+| **User Stories Covered:** 2, 11, 14 |
+
 | **Allauth: Email Validation** |
 | ----- |
 | **Page: /accounts/^confirm-email/(?P<key>[-:\w]+)/$** |
-| <details><summary>Email Validation</summary><img src="/documentation/features/allauth_sign_up.png"></details> |
+| <details><summary>Email Validation</summary><img src="/documentation/features/allauth_email_validation.png"></details> |
+| <details><summary>Email Validation Confirmation</summary><img src="/documentation/features/allauth_email_validation_confirm.png"></details> |
 | **Details:** The AllAuth email validation page allows users to confirm their email. This increases the security of the website having real email addresses used for signing up and only allowing one account per email address. |
 | **User Stories Covered:** 2, 11, 15 |
 
-| **Allauth: Sign In** |
+| **Allauth: Login** |
 | ----- |
 | **Page: /accounts/login** |
-| <details><summary>Sign In</summary><img src="/documentation/features/allauth_sign_in.png"></details> |
-| **Details:** The AllAuth sign in form handles all user authentication and allows the user to sign in with google. |
+| <details><summary>Sign In</summary><img src="/documentation/features/allauth_login.png"></details> |
+| **Details:** The AllAuth login form handles all user authentication and allows the user to sign in with google. |
 | **User Stories Covered:** 2, 11, 14, 16 |
 
 | **Allauth: Log out** |
@@ -758,7 +773,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | ----- |
 | **Page: /accounts/email** |
 | <details><summary>Account Emails</summary><img src="/documentation/features/allauth_emails.png"></details> |
-| **Details:** The AllAuth emails page allows users to add and remove emails from their account. |
+| **Details:** The AllAuth emails page allows users to add and remove emails from their account. It does not allow the user to remove their primary email address. |
 | **User Stories Covered:** 2, 11 |
 
 | **Allauth: Change Password** |
@@ -772,25 +787,12 @@ This is my selection for block text across the website. Roboto is the most popul
 | ----- |
 | **Page: /accounts/password/reset** |
 | <details><summary>Reset password</summary><img src="/documentation/features/allauth_password_reset.png"></details> |
+| <details><summary>Reset password done</summary><img src="/documentation/features/allauth_password_reset_done.png"></details> |
 | **Details:** The AllAuth reset password page allows users to reset their password if they have forgotten it by enetering their email addresses and receiving a link to reset their password. |
 | **User Stories Covered:** 2, 11, 18 |
 
-| **Allauth: Google Login** |
-| ----- |
-| **Page: /accounts/google/login** |
-| <details><summary>Google Login</summary><img src="/documentation/features/allauth_google.png"></details> |
-| **Details:** The AllAuth Google login allows users to sign up or log in with their Google accounts. This is good for security, as it is a validated email address. |
-| **User Stories Covered:** 2, 11, 14 |
 
 
 
 
-
-
-|**User_profile: Delete User** |
-| ----- |
-| **Page: /user_profile/delete_user** |
-| <details><summary>Delete User</summary><img src="/documentation/features/user_profile_delete_user.png"></details> |
-| **Details:** The delete user page allows the user to confirm the deletion of their account removing the chance of them accidentally doing so. |
-| **User Stories Covered:** 2, 19 |
 
