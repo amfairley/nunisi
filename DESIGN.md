@@ -334,6 +334,7 @@ The colour scheme started as an idea for gold and green to portray the natural a
 - Delete profile: Page title
 - Delete profile success: Page title
 - Allauth: Page title
+- Error pages: Page title
 
 **Gun Metal #333A3F**
 - Border for the account menu
@@ -721,10 +722,6 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The delete user success page allows the user see that their profile has been deleted. There is a button prompting users to go back to the homepage. |
 | **User Stories Covered:** 2, 19 |
 
-
-
-
-
 | **Allauth: Sign Up** |
 | ----- |
 | **Page: /accounts/signup** |
@@ -791,7 +788,15 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Details:** The AllAuth reset password page allows users to reset their password if they have forgotten it by enetering their email addresses and receiving a link to reset their password. |
 | **User Stories Covered:** 2, 11, 18 |
 
-
+| **Error Pages** |
+| ----- |
+| **Page: /400 /403 /404 /500** |
+| <details><summary>Error 400</summary><img src="/documentation/features/error_page_400.png"></details> |
+| <details><summary>Error 403</summary><img src="/documentation/features/error_page_403.png"></details> |
+| <details><summary>Error 404</summary><img src="/documentation/features/error_page_404.png"></details> |
+| <details><summary>Error 500</summary><img src="/documentation/features/error_page_500.png"></details> |
+| **Details:** The error pages allow the user to see what has gone wrong, with a description, and invites them to go back to the homepage. |
+| **User Stories Covered:** 2, 9 |
 
 
 
