@@ -8,14 +8,17 @@
 {% endblock head_title %}
 {% block content %}
     <div class="content allauth-content">
-        <h1 class="allauth-title">
+        <!--Page title-->
+        <h1 class="page-title">
             {% trans "Email Addresses" %}
         </h1>
         {% if emailaddresses %}
+            <!--Message-->
             <p class="allauth-message">
                 {% trans 'The following email addresses are associated with your account:' %}
             </p>
             {% url 'account_email' as email_url %}
+            <!--Add emails-->
             <div class="allauth-form-container">
                 {% element form form=form action=email_url method="post" tags="email,list" %}
                     {% slot body %}
@@ -47,20 +50,25 @@
                         </div>
                     {% endslot %}
                     {% slot actions %}
-                        <div class="allauth-button-div">
-                            {% element button type="submit" name="action_primary" %}
-                                {% trans 'Make Primary' %}
-                            {% endelement %}
-                        </div>
-                        <div class="allauth-button-div allauth-email-button">
-                            {% element button tags="secondary" type="submit" name="action_send" %}
-                                {% trans 'Re-send Verification' %}
-                            {% endelement %}
-                        </div>
-                        <div class="allauth-button-div allauth-email-button">
-                            {% element button tags="danger,delete" type="submit" name="action_remove" %}
-                                {% trans 'Remove' %}
-                            {% endelement %}
+                        <div class="email-button-div row">
+                            <!--Make Primary-->
+                            <div class="allauth-button-div col-12 col-md-4">
+                                {% element button type="submit" name="action_primary" %}
+                                    {% trans 'Make Primary' %}
+                                {% endelement %}
+                            </div>
+                            <!--Resend verification-->
+                            <div class="allauth-button-div col-12 col-md-4">
+                                {% element button tags="secondary" type="submit" name="action_send" %}
+                                    {% trans 'Re-send Verification' %}
+                                {% endelement %}
+                            </div>
+                            <!--Remove-->
+                            <div class="allauth-button-div col-12 col-md-4 remove-email-button">
+                                {% element button tags="danger,delete" type="submit" name="action_remove" %}
+                                    {% trans 'Remove' %}
+                                {% endelement %}
+                            </div>
                         </div>
                     {% endslot %}
                 {% endelement %}
@@ -69,9 +77,11 @@
             {% include "account/snippets/warn_no_email.html" %}
         {% endif %}
         {% if can_add_email %}
-            <h2 class="allauth-title" id="allauth-add-email">
+            <!--Add email title-->
+            <h2 class="page-title">
                 {% trans "Add Email Address" %}
             </h2>
+            <!--Add email form-->
             {% url 'account_email' as action_url %}
             <div class="allauth-form-container">
                 {% element form form=form method="post" action=action_url tags="email,add" %}
@@ -83,6 +93,7 @@
                         </div>
                     {% endslot %}
                     {% slot actions %}
+                        <!--Button-->
                         <div class="allauth-button-div" id="allauth-add-email-submit">
                             {% element button name="action_add" type="submit" %}
                                 {% trans "Add Email" %}
