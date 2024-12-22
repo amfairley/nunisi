@@ -2,13 +2,15 @@
 {% load allauth %}
 {% load i18n %}
 {% block reauthenticate_content %}
+    <!--Enter password-->
     <p class="allauth-message">
         {% blocktranslate %}Enter your password:{% endblocktranslate %}
     </p>
     {% url 'account_reauthenticate' as action_url %}
-    <div class="allauth-form-container">
+    <div class="allauth-form-container reauthenticate-form">
         {% element form form=form method="post" action=action_url %}
             {% slot body %}
+                <!--Enter password form-->
                 <div class="allauth-form">
                     {% csrf_token %}
                     {% element fields form=form unlabeled=True %}
@@ -17,6 +19,7 @@
                 </div>
             {% endslot %}
             {% slot actions %}
+                <!--Submit button-->
                 <div class="allauth-button-div">
                     {% element button type="submit" tags="primary,reauthenticate" %}
                         {% trans "Confirm" %}

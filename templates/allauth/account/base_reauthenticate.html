@@ -9,9 +9,11 @@
 {% endblock head_title %}
 {% block content %}
     <div class="content allauth-content">
-        <h1 class="allauth-title">
+        <!--Title-->
+        <h1 class="page-title">
             {% trans "Confirm Access" %}
         </h1>
+        <!--Message-->
         <p class="allauth-message">
             {% blocktranslate %}Please reauthenticate to safeguard your account.{% endblocktranslate %}
         </p>
@@ -19,7 +21,8 @@
         {% if reauthentication_alternatives %}
             {% element hr %}
             {% endelement %}
-            <h2 class="allauth-title">
+            <!---Alternative options-->
+            <h2 class="page-title">
                 {% translate "Alternative options" %}
             </h2>
             {% element button_group %}
