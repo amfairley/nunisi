@@ -26,7 +26,6 @@ See [TESTING.md](/TESTING.md) for information on the test driven development of 
 The philosophy of continuous integration and continuous deployment was at the forefront of my mind during the development of this project.<br>
 Version control was achieved using Git and all the information for this project has been stored in this repository on GitHub. Though not strictly continuous integration, version control and continuous integration are synergistic and have a large overlap in terms of project management. The repository was not shared with any other developers for this single developer project, so a shared repository and necessary continuous integration practices such as automated builds were not require, although automated tests were implemented as part of the Test Driven Development of this website and would be a key part of CI/CD for a team of developers.<br>
 Please see my [GitHub Project](https://github.com/users/amfairley/projects/9) for the tracking of tasks across the project. GitHub projects was used to track the development of this website, allowing tasks to be created, converted to an issue to link them to the GitHub repository and to assign a member of the team the task. As this project was completed as a single developer team, I assigned all of the tasks to myself. In a multi-developer team, this software would allow the scrum leader to assign tasks and ensure that no two developers are working on the same aspect of the project in isolation. <br>
-To create a GitHub project, you will need a [GitHub](https://github.com/) account. From your profile page you can access your projects from the taskbar at the top. It is the third selection after “Overview” and “Repositories”. Help with creating a project can be found [here](https://docs.github.com/en/issues/planning-and-tracking-with-projects/creating-projects/creating-a-project). When assigning tasks in my project I used the [MoSCoW](https://www.marketing-logic.com/salesforce/the-moscow-method/) method; a way of prioritising tasks by assigning them Must, Should, Could, or Would. This allowed me to concentrate on core components of the project and build up from there.
 
 ## Development Environment
 Here are the steps that I took to set up my local development environment in order to provided guidance to unfamiliar users with how to set up their own local development environment. 
@@ -117,14 +116,42 @@ You can also fork the GitHub repository to collaborate by once logged into GitHu
 - Click the Fork button in the top right corner and create a new fork.
 
 ## Apps
-Each section of functionality for the website were sequestered into their own apps in order to maximise the readability and reusablity of the code. The apps are:<br>
+Each section of functionality for the website were sequestered into their own apps in order to maximise the readability and reusablity of the code. To ensure that the correct guidelines were continuously being met throughout the project, I adopted some checklists for each file I added. For HTML pages, this looked like: <br>
+| HTML Page | Tick |
+|-----|-----|
+| Has a page title | |
+| Has a browser tab title | |
+| Is responsive to all screen sizes | |
+| Links have hover/click animations | |
+| DESIGN.md colour palette updated | |
+| DESIGN.md features updated | |
+| TESTING.md manual testing completed and recored | |
+| TESTING.md WAVE accessibility testing completed and recorded | |
+| HTML code contains useful comments | |
+| TESTING.md HTML validation completed and recorded | |
+| CSS code contains useful comments | |
+| TESTING.md WAVE CSS validation completed and recorded | |
+| If JavaScript: Add comments and docstrings | |
+| If JavaScript: Ensure no commented out code | |
+| If JavaScript: TESTING.md JSLint testing completed and recorded | |
+
+For my python code: <br>
+| Python File | Tick |
+|-----|-----|
+| Automated tests are as comprehensive as possible | |
+| Comments and docstrings are included to help explain code | |
+| Ensure no commented out code | |
+| TESTING.md python pep8 validation completed and recorded | |
+| Models.py: admin.py displays information correctly in the admin page | |
+
+The apps in my project are:<br>
 **Templates**: Though not technically an app, the base template of the app and Django AllAuth templates are stored here for reusability throughout the apps. The static folder holds the base CSS and JavaScript that are also reused across the app. Also included here are the error pages: 400, 403, 404, and 500.<br>
 **back_button**: The back button app holds the functionality for the back button that is used across the site. It holds the view that handles the redirection to the previous page or 404 page if the page is not found, the url for the back button, and the HTML template for the button to be included in other templates.<br>
 **home**: The home app contains all the functionality for the homepage including the room availability search form that is shared site wide with a context processor and used in the site header and on the homepage. There are no models for the homepage and the only view and url renders the index.html page.<br>
 **rooms**: The rooms app contains the functionality for the hotel rooms. It holds the models for the rooms and amenities, the views to display available rooms to the user and rooms/edit rooms/delete rooms to a superuser. It also houses the form for editing the rooms. <br>
 **checkout**: The checkout app handles the checkout functionality. This includes populating the checkout form with the submitted values processing the payment, creating orders and trips, updating room instances, and sending the user a confirmation email. User details can be saved to their account if they choose. It holds the checkout form and the model for the order along with the webhandler to handle the logic for processing payment and order/trip creation and adding unavailable dates to the room instances. <br>
 **trips**: The trips app handles the trip functionality across the site. It allows users to see their trips and request a cancellation. It also allows the site owner to see all the trips and cancel/uncancel them. It has templates for the user trips, cancel trip, cancel trip success, and superuser trips pages. It has the model for the Trip instances. In the view it has the logic for updating the room instances unavailability when trips are cancelled or uncancelled.
-**reviews**: The reviews app handles the review functionality across the site. It has the template for the trip reviews (included in the user trips html page), a carousel of verified reviews (included in the hompage html) and the templates for the add/edit review forms. It has the model of the review along with the form for adding/editing the review instances. The views handle the adding/editing of the reviews including sending an email to alert the site owner, and the review deletion.
+**reviews**: The reviews app handles the review functionality across the site. It has the template for the trip reviews (included in the user trips html page), a carousel of verified reviews (included in the homepage html) and the templates for the add/edit review forms. It has the model of the review along with the form for adding/editing the review instances. The views handle the adding/editing of the reviews including sending an email to alert the site owner, and the review deletion.
 **user_profile**: The user profile app was named due to the pre-existing Django default apps of user and profile to avoid any complication with the code. It holds the code for the user profile data including the models for the UserProfile, the form for updating the user profile information, and a signal to create a user profile for users when the sign up or update the profile if they make changes. There are links on the user_profile.html that link to allauth functionality for changing/adding email addresses or changing the user password.
 
 
