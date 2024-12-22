@@ -216,62 +216,39 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Delete account | Click delete | User redirected to delete_successful.html, toast appears informing the user that their account has been deleted, and user account deleted | Y | N/A |
 | **delete_successful.html** | | | | |
 | Homepage button | Click | Redirected to homepage | Y | N/A |
-
-
-
 | **AllAuth Pages** | | | | |
+| Sign up message | Hover "sign in" | Text boldens | Y | N/A |
+| Sign up message | Click "sign in" | User redirected to login page | Y | N/A |
 | Sign up form | Enter an incorrect email address | Prompt appears telling the user to enter a valid email | Y | N/A |
 | Sign up form | Do not enter the password again | Prompt appears telling the user to fill out that field | Y | N/A |
 | Sign up form | Incorrectly confirm the password | Error appears informing the user that the passwords do not match | Y | N/A |
 | Sign up form | Enter invalid passwords | Errors appear informing users on why the password failed to meet specifications | Y | N/A |
-| Sign up form | Hover submit button | Button colours invert | Y | N/A |
 | Sign up form | Click sign up with google | Redirected to Sign in via Google page | Y | N/A |
-| Sign in form | Enter incorrect email | Error appears saying The email address and/or password you specified are not correct | Y | N/A |
-| Sign in form | Enter incorrect password | Error appears saying The email address and/or password you specified are not correct | Y | N/A |
-| Sign in form | Hover submit button | Colours invert | Y | N/A |
-| Sign in form | Successfully sign in | User redirected to home page | Y | N/A |
-| Sign in page | Click sign in with google | User redirected to Sign In Via Google Page | Y | N/A |
-| Log out page | Hover the sign out button | Button colours invert | Y | N/A |
-| Log out page | Click the sign out button | User signed out and redirected to the home screen | Y | N/A |
-| Reauthenticate page | Hover the confirm button | Button colours are inverted | Y | N/A |
-| Reauthenticate page | Submit an incorrect password | An incorrect password error appears | Y | N/A |
-| Reauthenticate page | Submit correct password | User is redirected to the homepage | Y | N/A |
-| Emails page | Hover buttons | Button colours invert | Y | N/A |
-| Emails page | Add a new email | New unverified email is added to the list | Y | N/A |
-| Emails page | Select unverified email and click resend verification | Verification email resent | Y | N/A |
-| Emails page | GO through email verification | Email is tagged as verfied | Y | N/A |
-| Emails page | Change primary email | Primary email tag is moved to new email | Y | N/A |
-| Emails page | Remove an email | Email is deleted | Y | N/A |
-| Email validation | Hover confirm button | Button colours invert | Y | N/A |
 | Email validation | Click confirm | Email becomes verified and redirected to sign in page | Y | N/A |
 | Email validation | Go on page when already verified and hover and click the email confirmation request | Text is boldened on hover and new verification sent and redirected to sign in page | Y | N/A |
+| Login message | Hover "sign up" | Text bolds | Y | N/A |
+| Login message | Click "sign up" | User redirected to signup page | Y | N/A |
+| Login form | Enter incorrect email | Error appears saying The email address and/or password you specified are not correct | Y | N/A |
+| Login form | Enter incorrect password | Error appears saying The email address and/or password you specified are not correct | Y | N/A |
+| Login form | Successfully sign in | User redirected to home page and success toast appears | Y | N/A |
+| Login page | Click sign in with google | User redirected to Sign In Via Google Page | Y | N/A |
+| Logout page | Click sign out | User signed out and redirected to homepage | Y | N/A |
+| Reauthenticate page | Submit an incorrect password | An incorrect password error appears | Y | N/A |
+| Reauthenticate page | Submit correct password | User is redirected to the homepage | Y | N/A |
+| Emails page | Add a new email | New unverified email is added to the list | Y | N/A |
+| Emails page | Select unverified email and click resend verification | Verification email resent | Y | N/A |
+| Emails page | Go through email verification | Email is tagged as verfied | Y | N/A |
+| Emails page | Change primary email | Primary email tag is moved to new email | Y | N/A |
+| Emails page | Remove an email | Email is deleted | Y | N/A |
+| Emails page | Try to remove primary email | Toast appears indicating that the primary email cannot be removed | Y | N/A |
 | Change password | Change password with invalid current password | Alert shows that the current password is incorrect | Y | N/A |
 | Change password | Change password with invalid new password | Specific alerts show the user what is wrong with the new password | Y | N/A |
 | Change password | Change password with valid password | Page refreshes and password updated | Y | N/A |
-| Change password | Click "Forgot password?" | Text bolds on hover and redirects user to reset password page on click | Y | N/A |
+| Change password | Click "Forgot password?" | Redirects user to reset password page on click | Y | N/A |
 | Reset Password | Enter an invalid email address (no @ sign) | Error appears informing user to use a valid email address | Y | N/A |
-| Reset Password | Hover reset password button | Button colours invert | Y | N/A |
 | Reset Password | Enter valid email address and submit | Email sent with password reset link and user redirected to /password/reset/done page | Y | N/A |
-| Google login | Hover continue button | Button colours invert | Y | N/A |
 | Google login | Click continue | Redirected to Google access page | Y | N/A |
 | Google login | Sign up with Google | Allows login with the Google account | Y | N/A |
-
-
-
-
-
-
-| **checkout_success.html** | | | | |
-| Page | Submit a booking request | Page loads and displays order number | Y | Y | Y | Y |
-| Checkout form | Hover Pay Now button | Button colour inverts | Y | N/A |
-
-
-| **delete_successful.html** | | | | |
-| Homepage button | Hover and click | Colours inverted on hover and redirected to homepage on click | Y | N/A |
-
-
-
-
 
 ## Device and Browser Testing
 I tested the responsiveness of the website using Google Chrome Devtools to simulate 17 screen sizes; ranging from large desktops to the iPhone 5/SE and am happy to report that the website appears and functions as intended across the large screen size range. Additionally the website was tested on the Google Chrome, Mozzila Firefox, Microsoft Edge, and Brave browsers and no issues were encountered. I also tested the website on my 17.5" Laptop, 14" Laptop, and smart phone, noticing that it worked well in each case.
@@ -446,84 +423,68 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave/user_profile_delete_successful.png">
 </details><br>
 
+**Allauth: Signup**<br>
+- 2 contrast errors from the date widgets in the base template.
+- 2 alerts. One for a redundant text title of "Google" on the link for 3rd party login. This is required for good user experience so the alert was ignored. Another for redundant link to signup page being in the text under the title and the navbar. This was done by design for good user experience so was left in.
+<details>
+<summary>Signup results</summary>
+<img src="/documentation/testing/wave/allauth_signup.png">
+</details><br>
 
-
-
-
-
+**Allauth: Email verification**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Confirm email results</summary>
+<img src="/documentation/testing/wave/allauth_email_verification.png">
+<img src="/documentation/testing/wave/allauth_email_verification_confirm.png">
+</details><br>
 
 **Allauth: Login**<br>
-- Alert: Redundant text title of "Google" on the link for 3rd party login. This is required for good user experience so the alert was ignored.
+- 2 contrast errors from the date widgets in the base template.
+- 1 alert for redundant title text on the Google login, but considering that it does not negatively impact accessibility and is a built in feature of allauth, this is left in.
 <details>
 <summary>Login results</summary>
 <img src="/documentation/testing/wave/allauth_login.png">
 </details><br>
 
 **Allauth: Logout**<br>
-- No errors or alerts
+- 2 contrast errors from the date widgets in the base template.
 <details>
 <summary>Logout results</summary>
 <img src="/documentation/testing/wave/allauth_logout.png">
 </details><br>
 
-**Allauth: Inactive**<br>
-- No errors or alerts
-<details>
-<summary>Inactive results</summary>
-<img src="/documentation/testing/wave/allauth_inactive.png">
-</details><br>
-
-**Allauth: Signup**<br>
-- Alert: Redundant link for "sign up" but it is required below the title to redirect the user if they already have an account as well as in the navigation bar so was ignored.
-- Alert: Redundant text title of "Google" on the link for 3rd party login. This is required for good user experience so the alert was ignored.
-<details>
-<summary>Signup results</summary>
-<img src="/documentation/testing/wave/allauth_signup.png">
-</details><br>
-
 **Allauth: Reauthenticate**<br>
-- No errors or alerts
+- 2 contrast errors from the date widgets in the base template.
 <details>
 <summary>Reauthenticate results</summary>
 <img src="/documentation/testing/wave/allauth_reauthenticate.png">
 </details><br>
 
 **Allauth: Emails**<br>
-- No errors or alerts
+- 2 contrast errors from the date widgets in the base template.
 <details>
 <summary>Emails results</summary>
 <img src="/documentation/testing/wave/allauth_emails.png">
 </details><br>
 
-**Allauth: Confirm Email**<br>
-- No errors or alerts
-<details>
-<summary>Confirm email results</summary>
-<img src="/documentation/testing/wave/allauth_confirm_email.png">
-</details><br>
-
 **Allauth: Change Password**<br>
-- No errors or alerts
+- 2 contrast errors from the date widgets in the base template.
 <details>
 <summary>Change password results</summary>
 <img src="/documentation/testing/wave/allauth_change_password.png">
 </details><br>
 
 **Allauth: Password Reset**<br>
-- No errors or alerts
+- 2 contrast errors from the date widgets in the base template.
 <details>
 <summary>Password reset results</summary>
 <img src="/documentation/testing/wave/allauth_password_reset.png">
-</details><br>
-
-**Allauth: Password Reset Done**<br>
-- No errors or alerts
-<details>
-<summary>Password reset done results</summary>
 <img src="/documentation/testing/wave/allauth_password_reset_done.png">
 </details><br>
 
 **Allauth: 3rd party login cancelled**<br>
+- 2 contrast errors from the date widgets in the base template.
 - Alert: redundant link for redirect sign up button, but this is required to explain to the user the purpose of the page and redirect them back to the sign up page.
 <details>
 <summary>3rd party login cancelled results</summary>
@@ -531,19 +492,33 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 </details><br>
 
 **Allauth: 3rd party login error**<br>
-- No errors or alerts
+- 2 contrast errors from the date widgets in the base template.
 <details>
 <summary>3rd party login results</summary>
 <img src="/documentation/testing/wave/allauth_3rd_party_login_error.png">
 </details><br>
 
-
 **Allauth: Google signup**<br>
-- No errors or alerts
+- 2 contrast errors from the date widgets in the base template.
 <details>
 <summary>Google signup results</summary>
 <img src="/documentation/testing/wave/allauth_google_signup.png">
 </details><br>
+
+**Allauth: Inactive**<br>
+- 2 contrast errors from the date widgets in the base template.
+<details>
+<summary>Inactive results</summary>
+<img src="/documentation/testing/wave/allauth_inactive.png">
+</details><br>
+
+
+
+
+
+
+
+
 
 
 
@@ -596,36 +571,20 @@ The [W3C markup validation service](https://validator.w3.org/) was used to valid
 | User profile edit profile | None | None |
 | User profile delete user | None | None |
 | User profile delete successful | None | None |
-
-
-
-| Allauth - login | None | None |
-| Allauth - logout | None | None |
-| Allauth - inactive | None | None |
 | Allauth - signup | None | None |
+| Allauth - confirm-email | None | None |
+| Allauth - login | None | None |
+| Allauth - Google signup | None | None |
+| Allauth - logout | None | None |
 | Allauth - reauthenticate | None | None |
 | Allauth - emails | None | None |
-| Allauth - confirm-email | None | None |
 | Allauth - change password | None | None |
 | Allauth - reset password | None | None |
 | Allauth - password reset done | None | None |
+| Allauth - 3rd party login | None | None |
 | Allauth - 3rd party login cancelled | None | None |
 | Allauth - 3rd party login error | None | None |
-| Allauth - Google signup | None | None |
 
-
-| All rooms - superuser | None | None |
-| Add room | None | None |
-| Edit room | None | None |
-| Delete room | None | None |
-| Checkout page | None | None |
-| Checkout success page | None | None |
-| User profile page | None | None |
-| User edit profile page | None | None |
-| User delete profile page | None | None |
-| User delete profile successful page | None | None |
-| Trips | None | None |
-| Trips superuser | None | None |
 
 ### CSS Validation
 CSS validation was completed using the [W3C Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/). It showed no errors in the CSS code.
