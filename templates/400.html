@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_title %}
+ - 400
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <!--Page Title-->
+        <h1 class="page-title">
+            Error: 400
+        </h1>
+        <!--Error message-->
+        <p class="page-error-message">
+            Error 400: bad request. Please return to the homepage.
+        </p>
+        <!--Home button-->
+        <div class="home-button-container">
+            <a href="{% url 'home' %}" class="home-button nunisi-button">Return to Homepage</a>
+        </div>
+    </div>
+{% endblock %}
