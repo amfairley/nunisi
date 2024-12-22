@@ -1,16 +1,18 @@
 {% extends "account/base_manage.html" %}
 {% load allauth i18n %}
 {% block extra_title %}
-    - Logout
+    - Sign out
 {% endblock %}
 {% block head_title %}
     {% trans "Sign Out" %}
 {% endblock head_title %}
 {% block content %}
     <div class="content allauth-content">
-        <h1 class="allauth-title">
+        <!--Page title-->
+        <h1 class="page-title">
             {% trans "Sign Out" %}
         </h1>
+        <!--Message-->
         <p class="allauth-message">
             {% trans 'Are you sure you want to sign out?' %}
         </p>
@@ -21,6 +23,7 @@
                 {{ redirect_field }}
             {% endslot %}
             {% slot actions %}
+            <!--Button-->
                 <div class="allauth-button-div">
                     {% element button type="submit" %}
                         {% trans 'Sign Out' %}
