@@ -1,16 +1,13 @@
 from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import redirect
 
 
 def go_back_or_404(request):
     '''
     View for diverting the user back a page using the back button
     '''
-    referer = request.META.get('HTTP_REFERER')
+    referer = request.GET.get('referer')
     if referer:
-        print("REFERER:")
-        print(referer)
-        return HttpResponseRedirect(referer)
+        return redirect(referer)
     else:
-        print("REFERER")
-        print("no previous page found")
         raise Http404("No previous page found.")
