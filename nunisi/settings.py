@@ -142,6 +142,7 @@ AUTHENTICATION_BACKENDS = [
 # Amazon Web Services
 
 
+
 if 'USE_AWS' in os.environ:
     # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
@@ -157,8 +158,8 @@ if 'USE_AWS' in os.environ:
 
     # File storage for AWS
     # Custom locations for media and static files
-    # AWS_MEDIA_LOCATION = 'media'
-    # AWS_STATIC_LOCATION = 'static'
+    AWS_MEDIA_LOCATION = 'media'
+    AWS_STATIC_LOCATION = 'static'
 
     STORAGES = {
         # Media files
@@ -178,10 +179,6 @@ if 'USE_AWS' in os.environ:
         },
     }
 
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATICFILES_LOCATION = 'static'
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    MEDIAFILES_LOCATION = 'media'
     # Override static and media URLs in production
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
