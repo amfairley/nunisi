@@ -25,10 +25,10 @@
             <!--Static CSS file-->
             <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
             <!--Favicon-->
-            <link rel="apple-touch-icon" sizes="180x180" href="/media/favicon/apple-touch-icon.png">
-            <link rel="icon" type="image/png" sizes="32x32" href="/media/favicon/favicon-32x32.png">
-            <link rel="icon" type="image/png" sizes="16x16" href="/media/favicon/favicon-16x16.png">
-            <link rel="manifest" href="/media/favicon/site.webmanifest">
+            <link rel="apple-touch-icon" sizes="180x180" href="{{ MEDIA_URL }}favicon/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="{{ MEDIA_URL }}favicon/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="{{ MEDIA_URL }}favicon/favicon-16x16.png">
+            <link rel="manifest" href="{{ MEDIA_URL }}favicon/site.webmanifest">
         {% endblock %}
         {% block extra_css %}
         {% endblock %}
@@ -260,7 +260,7 @@
                     <!--Site logo information-->
                     <div class="col-4 footer-logo-div d-none d-lg-flex">
                         <a class="footer-logo" href="{% url 'home' %}">
-                            <img src="/media/nunisi-site-logo.png" alt="Nunisi Forest Hotel and Spa Logo">
+                            <img src="{{ MEDIA_URL }}nunisi-site-logo.png" alt="Nunisi Forest Hotel and Spa Logo">
                         </a>
                     </div>  
                     <!--Developer contact information-->
