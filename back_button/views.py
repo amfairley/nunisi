@@ -8,8 +8,13 @@ def go_back_or_404(request):
     '''
     # Get the referer
     referer = request.META.get('HTTP_REFERER')
+    print("Referer:")
+    print(referer)
     # Get current url
     current_url = request.build_absolute_uri()
+    print("Current URL:")
+    print(current_url)
+    print(referer == current_url)
     if referer:
         # If referer bug get it from GET
         if referer == current_url:
