@@ -236,4 +236,12 @@ else:
     EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASS')
     DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
 ```
+- Another change was required in the settings.py file to not show any debug messages. This was done by changing:
+```python
+MESSAGE_LEVEL = messages.DEBUG
+```
+To:
+```python
+MESSAGE_LEVEL = messages.WARNING
+```
 All these steps resulted in the website being deployed successfully.
