@@ -40,7 +40,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
 6. [Analytics](#analytics)
 
 ## Testing User Stories
-The [user stories](/README.md#user-stories) have been a driving force for the development of this project. More information on each user story and how the features implemented in this web app meet their criteria can be seen [here](/DESIGN.md#features). Most user stories were met to create a MVP, however future development will address the user stories to leave reviews and cancel bookings.
+The [user stories](/README.md#user-stories) have been a driving force for the development of this project. More information on each user story and how the features implemented in this web app meet their criteria can be seen [here](/DESIGN.md#features). Most user stories were met to create a MVP, however future development will include adding form elements to the checkout to allow users without an account create one and save their order.
 
 ## Manual Testing
 
@@ -211,7 +211,7 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Edit profile button and change password buttons | Click | Redirected to edit profile page and change password page | Y | N/A |
 | Delete profile button | Click | Redirected to confirm deletion page | Y | N/A |
 | **edit_profile.html** | | | | |
-| Edit profile form | Fill and submit | Values updated, toast appears confiming changes, and user redirected to profile page | Y | N/A |
+| Edit profile form | Fill and submit | Values updated, toast appears confirming changes, and user redirected to profile page | Y | N/A |
 | **delete_user.html** | | | | |
 | Delete account | Click delete | User redirected to delete_successful.html, toast appears informing the user that their account has been deleted, and user account deleted | Y | N/A |
 | **delete_successful.html** | | | | |
@@ -256,7 +256,24 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | 500 | Click homepage link | Redirected to homepage | Y | N/A |
 
 ## Device and Browser Testing
-I tested the responsiveness of the website using Google Chrome Devtools to simulate 17 screen sizes; ranging from large desktops to the iPhone 5/SE and am happy to report that the website appears and functions as intended across the large screen size range. Additionally the website was tested on the Google Chrome, Mozzila Firefox, Microsoft Edge, and Brave browsers and no issues were encountered. I also tested the website on my 17.5" Laptop, 14" Laptop, and smart phone, noticing that it worked well in each case.
+I tested the responsiveness of the website using my 14" laptop screen and 17.5" desktop screen. I also used Google Chrome Devtools to simulate 17 additional screen sizes for a range of mobile devices. I am happy to report that the website appears and functions as intended across the large screen size range. The screen sizes checked were:
+- iPhone SE (375px x 667px)
+- iPhone XR (414px x 896px)
+- iPhone 12 Pro (390px x 844px)
+- Pixel 7 (412px x 915px)
+- Samsung Galaxy Galaxy S8+ (360px x 740px)
+- Samsung Galaxy S20 Ultra (412px x 915px)
+- iPad mini (768px x 1024px)
+- iPad air (820px x 1180px)
+- iPad pro (1024px x 1366px)
+- Surface Pro 7 (912px x 1368px)
+- Surface Duo (540px x 720px)
+- Galaxy Z fold 5 (344px x 882px)
+- ASUS Zenbook fold (853px x 1280px)
+- Samsung Galaxy A51/71 (412px x 914px)
+- Nest Hub (1024px x 600px)
+- Nest Hub Max (1280px x 800px)
+- iPhone 5/SE (320px x 568px)
 
 ## Automated Testing
 
@@ -275,7 +292,7 @@ A report can be compiled with:
 coverage report
 ```
 
-The coverage report can be seen [here](/documentation/testing/coverage_report.txt). Overall a coverage of 80% was achieved with all automated tests passing. The number was reduced from 100 due to the complexity of the webhook_handler and webook files and the Django project files such as manage.py and the settings.py file which did not require TDD.
+The coverage report can be seen [here](/documentation/testing/coverage_report.txt). Overall a coverage of 87% was achieved with all 156 automated tests passing. The number was reduced from 100 largely due to the complexity of the webhook_handler and webook files and the Django project files such as settings.py which did not require TDD.
 
 **Errors**:
 - When doing TDD for the available_rooms view, the commits were added at the end of the process, obscuring the order of the testing, however these were done following the TDD philosophy.
@@ -332,7 +349,7 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 
 **Rooms: delete_room.html**<br>
 - 2 contrast errors from the date widgets in the base template.
-- 1 possible heading alert for the confimation message, but as this is a paragraph appearing below a h1 heading, this alert was ignored.
+- 1 possible heading alert for the confirmation message, but as this is a paragraph appearing below a h1 heading, this alert was ignored.
 <details>
 <summary>Delete room results</summary>
 <img src="/documentation/testing/wave/rooms_delete_room.png">
@@ -381,7 +398,6 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <summary>Trips superuser results</summary>
 <img src="/documentation/testing/wave/trips_superuser.png">
 </details><br>
-
 
 **Reviews: add_review.html**<br>
 - 2 contrast errors from the date widgets in the base template.
@@ -527,30 +543,6 @@ Accessibility testing was performed using the [Wave](https://wave.webaim.org/) v
 <img src="/documentation/testing/wave/error_page_500.png">
 </details><br>
 
-
-
-
-
-
-
-
-
-
-****<br>
-- No errors or alerts
-<details>
-<summary> results</summary>
-<img src="/documentation/testing/wave">
-</details><br>
-
-
-****<br>
-- No errors or alerts
-<details>
-<summary> results</summary>
-<img src="/documentation/testing/wave">
-</details><br>
-
 ### Performance Testing
 The performance of the webpage was tested using Lighthouse within the Google Chrome Devtools to confirm that the site was performing well, is accessible, follows best practices, and follows basic SEO (search engine optimisation) advice. 
 During development, care was taking to provide the best performing website that could be provided. These efforts include:
@@ -558,7 +550,7 @@ During development, care was taking to provide the best performing website that 
 - Code minification: Complete code minification was avoided in this project to allow easier assessment upon submission. That being said, code has been written to meet the highest standards, repetition had been removed, and short, elegant solutions have been used wherever possible in order to reduce the code size. In future minification will be used. For example [Python Minifier](https://python-minifier.com/) reduces the size of the python files from X to Y.
 - Caching files. AWS will cache the media files, as they do not update often, allowing better performance on repeat visits to the website.
 
-The performance was tested for normal internet speed, fast 3G, and slow 3G to test the performance in a majority of scenarios and locations. This was done by setting the performance network throttling in Google Chrome Devtools. The testing was also run on Google Chrome incognito mode to avoid any complications with plugins or extensions. On normal internet speed, the perfomance never dropped below 87%, that being on the homepage with the majority of the site content.
+The performance was tested for normal internet speed, fast 3G, and slow 3G to test the performance in a majority of scenarios and locations. This was done by setting the performance network throttling in Google Chrome Devtools. The testing was also run on Google Chrome incognito mode to avoid any complications with plugins or extensions. On normal internet speed, the performance never dropped below 87%, that being on the homepage with the majority of the site content.
 
 
 ### HTML Validation
@@ -641,9 +633,6 @@ The custom JavaScript code was testing using the JavaScript linter [JSLint](http
 - The following linter settings were selected: browser
 - No warnings.
 - Full results can be seen [here](/documentation/testing/jslint/trips.pdf)
-
-
-
 
 ### Python Validation
 The Python code for this project was written in strict accordance with the [PEP 8](https://peps.python.org/pep-0008/) style guide for Python code. These include using correct indentations, maximum line lengths of 79 characters, and adhering to naming conventions for variables, functions, and classes. The [Code Institue python linter](https://pep8ci.herokuapp.com/) was used to validate the written code.
@@ -1012,17 +1001,7 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/user_profile_urls.png">
 </details><br>
 
-
-
-
-
-
-
-
-
-
-
-The env.py file was also linted showing no errors but the screenshot has been omitted for security issues as it contains sensitive information.
+The env.py file was also linted showing no errors but the screenshot has been omitted for security issues as it contains sensitive information. An example of the env.py file can be found [here](/env_example.txt).
 
 ## Bugs
 
