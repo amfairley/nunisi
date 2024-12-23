@@ -48,6 +48,15 @@
         {% endblock %}
         {% block extra_js %}
         {% endblock %}
+        <!-- Google Analytics Tag -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-SVQFZ5LHY4"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-SVQFZ5LHY4');
+        </script>
     </head>
     <body>
         <!--Navigation Bar-->
