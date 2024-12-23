@@ -140,48 +140,76 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 # Amazon Web Services
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 if 'USE_AWS' in os.environ:
-    AWS_STORAGE_BUCKET_NAME = 'nunisi-hotel-and-spa'
-    AWS_S3_REGION_NAME = 'eu-north-1'
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-    AWS_S3_FILE_OVERWRITE = False
-
-    # File storage for AWS
-    # Custom locations for media and static files
-    AWS_MEDIA_LOCATION = 'media'
-    AWS_STATIC_LOCATION = 'static'
-
-    STORAGES = {
-        # Media files
-        'default': {
-            'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
-            'OPTIONS': {
-                'location': AWS_MEDIA_LOCATION,
-            },
-        },
-
-        # Static files
-        'staticfiles': {
-            'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
-            'OPTIONS': {
-                'location': AWS_STATIC_LOCATION,
-            },
-        },
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
     }
 
-    # Override static and media URLs in production
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
-else:
-    # For local development - remove for deployment:
-    STATIC_URL = 'static/'
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-    MEDIA_URL = '/media/'
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    # Bucket Config
+    AWS_STORAGE_BUCKET_NAME = 'nunisi-hotel-and-spa'
+    AWS_S3_REGION_NAME = 'eu-north-1'
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+    # Static and media files
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+
+# if 'USE_AWS' in os.environ:
+#     AWS_STORAGE_BUCKET_NAME = 'nunisi-hotel-and-spa'
+#     AWS_S3_REGION_NAME = 'eu-north-1'
+#     AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+#     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+#     AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+#     AWS_S3_FILE_OVERWRITE = False
+
+#     # File storage for AWS
+#     # Custom locations for media and static files
+#     AWS_MEDIA_LOCATION = 'media'
+#     AWS_STATIC_LOCATION = 'static'
+
+#     STORAGES = {
+#         # Media files
+#         'default': {
+#             'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+#             'OPTIONS': {
+#                 'location': AWS_MEDIA_LOCATION,
+#             },
+#         },
+
+#         # Static files
+#         'staticfiles': {
+#             'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
+#             'OPTIONS': {
+#                 'location': AWS_STATIC_LOCATION,
+#             },
+#         },
+#     }
+
+#     # Override static and media URLs in production
+#     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
+#     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
+# else:
+#     # For local development - remove for deployment:
+#     STATIC_URL = 'static/'
+#     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+#     MEDIA_URL = '/media/'
+#     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
