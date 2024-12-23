@@ -30,8 +30,10 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
     2. [Frameworks](#frameworks)
     3. [Libraries and Packages](#libraries-and-packages)
     4. [Tools](#tools)
-6. [Credits](#credits)
+6. [User Feedback](#user-feedback)
+7. [Credits](#credits)
     1. [Images](#images)
+8. [Acknowledgements](#acknowledgements)
 
 
 
@@ -207,6 +209,9 @@ The delete review modal pops up to make the user confirm a deletion, preventing 
     * Add column filtering
 - documentation
     * fix multi mock up bug
+- user_profile
+    * An admin only page allowing them to send an email to everyone signed up to the newsletter
+    * An admin only page to show trends in booking and graphical representations of booking trends over the year
 
 ## Technologies Used
 
@@ -298,6 +303,19 @@ The delete review modal pops up to make the user confirm a deletion, preventing 
 - [CodeInstitute Pep8 Validator](https://pep8ci.herokuapp.com/)
     - For validating python code
 
+
+## User Feedback
+The website was reviewed by friends and family during development. This allowed me to ensure that the highest standards were continuously met by providing feedback on this that did not work well or that were missing. These can be seen during the commits at around halfway through the development, where changes to previously completed apps and issues were revisited the key changes made due to the feedback were:
+- Moving trips to its own app for clearer code management
+- Adding "back" buttons to pages that needed them for a better user experience
+- Allowing the hotel owner to cancel trips using a user interface instead of the admin page
+- Adding pagination to available room results and past trips
+- Add sorting and filtering to available rooms
+- Add sorting to past trips
+- Add CRUD for reviews
+
+Additionally, this provided feedback from different screen sizes that I had tested and other browsers that I did not have access to (Safari and Opera). There were no complaints with the working of the website.
+
 ## Credits
 [Cloud With Django](https://www.youtube.com/watch?v=JQVQcNN0cXE) for correct syntax and setup for linking AWS static files to a deployed django project.
 
@@ -307,3 +325,8 @@ The delete review modal pops up to make the user confirm a deletion, preventing 
 - Homepage cave hike image: [Roberto Lee Cortes](https://www.pexels.com/photo/trees-behind-cave-entrance-17652141/)
 - Homepage forest river: [Manuela Alder](https://www.pexels.com/photo/body-of-water-across-forest-949194/)
 - Homepage location map image: [Waldir Felix Chirinos](https://www.istockphoto.com/photo/georgia-imereti-region-map-administrative-divisions-of-georgia-3d-isometric-map-gm2175464797-595023374)
+
+## Acknowledgements
+- The remaining members of my Code Institute learning cohort for their support and comradery
+- My friends and relatives who provided keen insights and constructive criticism during development
+- My wife who did her very best impression of a rubber duck to help debug the more complex code
