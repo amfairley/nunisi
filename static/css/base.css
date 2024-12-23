@@ -1564,10 +1564,10 @@ main {
     background-color: #FDD67C;
     color: #3A6B35;
 }
+
 #edit-profile-form #id_newsletter {
     width: fit-content;
     margin-left: 0.5rem;
-    box-shadow:#F5F5F5;
 }
 
 /* Delete user */
