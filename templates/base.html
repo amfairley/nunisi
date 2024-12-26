@@ -174,7 +174,7 @@
                                         {% endif %}
                                         <!--User Account-->
                                         <li class="account-link font-nunisi-gold jost-font">
-                                            <a href="{% url 'user_profile' %}">
+                                            <a href="{% url 'user_profile' %}?referer={{ request.META.HTTP_REFERER }}">
                                                  Account Settings
                                             </a>
                                         </li>

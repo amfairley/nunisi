@@ -74,7 +74,7 @@
                                     <!--Cancel trip button-->
                                     {% if not trip.cancelled %}
                                         <div class="trip-cancel-div">
-                                            <a href="{% url 'cancel_trip' trip.id %}" class="trip-cancel-button">Cancel</a>
+                                            <a href="{% url 'cancel_trip' trip.id %}?referer={{ request.META.HTTP_REFERER }}" class="trip-cancel-button">Cancel</a>
                                         </div>
                                     {% else %}
                                         <p class="cancelled-trip">This trip was cancelled.</p>
@@ -167,7 +167,7 @@
                                             {% else %}
                                                 <!--Add review button-->
                                                 <div class="trip-add-review-div">
-                                                    <a href="{% url 'add_review' trip_dict.trip.id %}" class="nunisi-button leave-review-button">Leave a review</a>
+                                                    <a href="{% url 'add_review' trip_dict.trip.id %}?referer={{ request.META.HTTP_REFERER }}" class="nunisi-button leave-review-button">Leave a review</a>
                                                 </div>
                                             {% endif %}
                                         {% endif %}

@@ -11,7 +11,7 @@
         <h1 class="page-title">Room Management</h1>
         <!--Add room button-->
         <div id="add-room-button-div">
-            <a href="{% url 'add_room' %}" class="nunisi-button" id="add-room-button">Add new room</a>
+            <a href="{% url 'add_room' %}?referer={{ request.META.HTTP_REFERER }}" class="nunisi-button" id="add-room-button">Add new room</a>
         </div>
         <!--All rooms-->
         <div class="row" id="all-rooms-div">
@@ -74,11 +74,11 @@
                         <div class="row all-rooms-button-container">
                             <!--Edit room button-->
                             <div class="col-6">
-                                <a class="nunisi-button" href="{% url 'edit_room' room.id %}">Edit Room</a>
+                                <a class="nunisi-button" href="{% url 'edit_room' room.id %}?referer={{ request.META.HTTP_REFERER }}">Edit Room</a>
                             </div>
                             <!--Delete room button-->
                             <div class="col-6">
-                                <a class="nunisi-button delete-button" href="{% url 'delete_room' room.id %}">Delete Room</a>
+                                <a class="nunisi-button delete-button" href="{% url 'delete_room' room.id %}?referer={{ request.META.HTTP_REFERER }}">Delete Room</a>
                             </div>
                         </div>
                     </div>

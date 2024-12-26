@@ -123,7 +123,7 @@
         <!--Buttons-->
         <div class="user-profile-button-div row">
             <div class="col-6">
-                <a href="{% url 'edit_profile' %}" class="nunisi-button">Edit profile</a>
+                <a href="{% url 'edit_profile' %}?referer={{ request.META.HTTP_REFERER }}" class="nunisi-button">Edit profile</a>
             </div>
             <div class="col-6">
                 <a href="{% url 'account_change_password' %}" class="nunisi-button">Change password</a>

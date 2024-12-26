@@ -13,5 +13,5 @@
         <p>{{ review.content }}</p>
     </div>
     <!--Edit review button-->
-    <a href="{% url 'edit_review' review.id %}" class="nunisi-button edit-review-button">Edit review</a>
+    <a href="{% url 'edit_review' review.id %}?referer={{ request.META.HTTP_REFERER }}" class="nunisi-button edit-review-button">Edit review</a>
 </div>
