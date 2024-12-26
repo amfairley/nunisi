@@ -1,6 +1,6 @@
 <!-- Include in other pages with: curly bracket percentage include "back_button/back_button.html"-->
 <div class="back-button-container">
-    <a class="back-button" href="{%url 'go_back' %}?referer={{ request.GET.referer }}">
+    <a class="back-button" href="{% if request.GET.referer %}{{ request.GET.referer }}{% else %}{% url '404' %}{% endif %}">
         <i class="fa-solid fa-caret-left"></i>
         Back
     </a>

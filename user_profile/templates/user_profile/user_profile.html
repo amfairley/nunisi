@@ -130,7 +130,7 @@
             </div>
         </div>
         <div class="delete-profile-button">
-            <a href="{% url 'delete_user' user.id %}?referer={{ request.path }}" class="nunisi-button delete-button">Delete Account</a>
+            <a href="{% url 'delete_user' user.id %}" class="nunisi-button delete-button">Delete Account</a>
         </div>
         {% include "back_button/back_button.html" %}
         <div class="account-page-spacer"></div>
