@@ -103,9 +103,11 @@ class StripeWH_Handler:
         # Get check in/out dates
         start_date = start_date
         end_date = end_date
+
         # Convert dates to date objects
-        start_date = datetime.strptime(start_date, '%Y-%m-%d')
-        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        # start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        # end_date = datetime.strptime(end_date, '%Y-%m-%d')
+
         # List for the new dates
         new_dates = []
         # < so that the check out date is not added
