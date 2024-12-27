@@ -974,6 +974,7 @@ main {
 
 .room-sort-container label {
     padding: 0 5px;
+    cursor: pointer;
 }
 
 /* Amenity Filter */
@@ -1689,6 +1690,7 @@ main {
 
 .home-button {
     margin-bottom: 1rem;
+    width: fit-content;
 }
 
 .past-trips-section-title {

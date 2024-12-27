@@ -571,7 +571,7 @@ During development, care was taking to provide the best performing website that 
 - Caching files. AWS will cache the media files, as they do not update often, allowing better performance on repeat visits to the website.
 - Lazy loading: This allows images that are off-screen to load when inside the viewport, letting the page load faster and provide a better user experience.
 
-The performance was tested on Google Chrome incognito mode to avoid any complications with plugins or extensions. The performance dipped to a lower value of 63, which was almost entirely due to the render blocking resources of Bootstrap CDN, FontAwesome CDN, Stripe, Google Fonts CDN, and Amazon web services. Accessibility, best practices, and SEO ratings never dipped below 100.
+The performance was tested on Google Chrome incognito mode to avoid any complications with plugins or extensions. The performance dipped to a lower value of 63, which was almost entirely due to the render blocking resources of Bootstrap CDN, FontAwesome CDN, Stripe, Google Fonts CDN, and Amazon web services, which were all out of my control. Accessibility, best practices, and SEO ratings never dipped below 100.
 
 ### HTML Validation
 The [W3C markup validation service](https://validator.w3.org/) was used to validate the HTML of each page of this website. As each page including some Django templating language that threw errors in the validator; the HTML was validated after deployment. Each page was accessed and the source code (CTRL+U or right click > View Page Source) was copied and pasted into the validator to validate by direct input.<br>
