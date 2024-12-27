@@ -179,12 +179,6 @@ STORAGES = {
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
 STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
 
-# For local development - remove for deployment:
-# STATIC_URL = 'static/'
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Password validation
@@ -228,15 +222,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-# STATIC_URL = 'static/'
-# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
