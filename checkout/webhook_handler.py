@@ -103,11 +103,14 @@ class StripeWH_Handler:
         # Get check in/out dates
         start_date = start_date
         end_date = end_date
-
+        print("Format one")
+        print(start_date)
         # Convert dates to date objects
-        # start_date = datetime.strptime(start_date, '%Y-%m-%d')
-        # end_date = datetime.strptime(end_date, '%Y-%m-%d')
-
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        print("Format 2")
+        print(start_date)
+        
         # List for the new dates
         new_dates = []
         # < so that the check out date is not added
@@ -116,6 +119,8 @@ class StripeWH_Handler:
         while start_date < end_date:
             # String the date
             date_str = start_date.strftime('%Y-%m-%d')
+            print("Date string")
+            print(date_str)
             # Check if it's not already in unavaiable dates
             if date_str not in room_booked_unavailable_dates:
                 # Add to new date
@@ -124,8 +129,12 @@ class StripeWH_Handler:
             start_date += timedelta(days=1)
         # Combine old and new dates
         updated_dates = room_booked_unavailable_dates + new_dates
+        print("updated dates")
+        print(updated_dates)
         # Add combined to the room unavailability
-        room_booked.unavailability = json.dumps(updated_dates)
+        room_booked.unavailability = updated_dates
+        print("Final unavailability")
+        print(room_booked_unavailable_dates)
         # Save the room
         room_booked.save()
 
