@@ -1689,6 +1689,7 @@ main {
 
 .home-button {
     margin-bottom: 1rem;
+    width: fit-content;
 }
 
 .past-trips-section-title {

@@ -672,27 +672,6 @@ The Python code for this project was written in strict accordance with the [PEP 
 <img src="/documentation/testing/python/project_urls.png">
 </details><br>
 
-**Back Button: views.py**<br>
-- No errors or alerts
-<details>
-<summary>Back button views results</summary>
-<img src="/documentation/testing/python/back_button_views.png">
-</details><br>
-
-**Back Button: test_views.py**<br>
-- No errors or alerts
-<details>
-<summary>Back button test views results</summary>
-<img src="/documentation/testing/python/back_button_test_views.png">
-</details><br>
-
-**Back Button: urls.py**<br>
-- No errors or alerts
-<details>
-<summary>Back button urls results</summary>
-<img src="/documentation/testing/python/back_button_urls.png">
-</details><br>
-
 **Home: forms.py**<br>
 - No errors or alerts
 <details>
