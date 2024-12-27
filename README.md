@@ -188,27 +188,13 @@ The delete review modal pops up to make the user confirm a deletion, preventing 
 - Footer
     * Facebook and Instagram links will be updated with the real profiles when the website is ready to go live.
 - Allauth updates
-    * display success messages to alert the user that their actions were successful.
-    * move content block to base template to encapsulate the messages
     * redirect user to profile page after updating password
-    * make password requirements look less like error messages
-    * password reset email input needs to be wider to show full email
-    * password/reset/done "contact us" link to contact details page
-    * sign up with google correction
 - index.html
     * better carousel transitions
-- Update the booking form to a new, slender design.
-- available_rooms.html
-    * Add filtering to rooms
 - rooms_superuser.html
     * Add carousel for multiple room images
-- trips.html
-    * A way for users to add a review 
-    * A way for users to cancel the reservation
 - trips_superuser.html
     * Add column filtering
-- documentation
-    * fix multi mock up bug
 - user_profile
     * An admin only page allowing them to send an email to everyone signed up to the newsletter
     * An admin only page to show trends in booking and graphical representations of booking trends over the year
