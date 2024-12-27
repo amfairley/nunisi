@@ -399,15 +399,15 @@ The colour scheme started as an idea for gold and green to portray the natural a
 I wanted the typefaces used in this project to reflect the prestige of the hotel and resort as well as highlighting that it is family run.
 
 **[Jost Regular](https://fonts.google.com/specimen/Jost?query=jost)**<br>
-![Jost Regular](/documentation/typography_jost.png)
+![Jost Regular](/documentation/typography_jost.png)<br>
 This is my selection for headings across the website. Inspired by the 1920’s German sans-serif; Jost is an elegant and legible font that portrays history and excellence. This makes it a great choice for headings and titles across the website. As a sans-serif font, the backup fonts were Arial, Helvetica, and sans-serif.
 
 **[Caveat Regular](https://fonts.google.com/specimen/Caveat?query=caveat)**<br>
-![Caveat Regular](/documentation/typography_caveat.png)
+![Caveat Regular](/documentation/typography_caveat.png)<br>
 This is my selection for small notes across the website. Caveat is an elegant handwriting font that makes text seem personal and handwritten by giving the letters variations dependent on their placing in a word. This makes it excellent for use for small annotations on the website that give the site a feeling of being family run and personable. As a handwriting font, the backup fonts used were Brush Script MT and cursive.
 
 **[Roboto](https://fonts.google.com/specimen/Roboto?query=roboto)**<br>
-![Roboto](/documentation/typography_roboto.png)
+![Roboto](/documentation/typography_roboto.png)<br>
 This is my selection for block text across the website. Roboto is the most popular google font with high legibility and nice curves. It is used for the bulk text of the website to be easy on user's eyes and not cause strain when reading longer reviews. As a sans serif font, the backup fonts were Arial, Helvetica, and sans-serif.
 
 #### Images
@@ -462,7 +462,7 @@ This is my selection for block text across the website. Roboto is the most popul
 
 | **Back Button** |
 | ----- |
-| **Page: ** |
+| **Page: Most** |
 | <details><summary>Back Button</summary><img src="/documentation/features/back_button.png"></details> |
 | <details><summary>Back Button Hover</summary><img src="/documentation/features/back_button_hover.png"></details> |
 | **Details:** The back button is used on pages to allow the user to go back to the previous page without using the browser back button such as if they find themselves on the delete user page and they do not wish to delete the user. If there is no previous page, it directs the user to a 404 page. |
@@ -546,7 +546,7 @@ This is my selection for block text across the website. Roboto is the most popul
 | **Rooms: Amenity filter** |
 | ----- |
 | **Page: /rooms/** |
-| <details><summary>Amenity Filter</summary><img src="/documentation/features/rooms_amenity_filter.png.png"></details> |
+| <details><summary>Amenity Filter</summary><img src="/documentation/features/rooms_amenity_filter.png"></details> |
 | **Details:** The amenity filter allows users to filter the available rooms by amenity to find the one that suits their requirements. These choices are saved when a user sorts by price after selecting them, allowing further functionality and a good user experience. On large screens the choices are spread over 4 columns, on medium screens they are spread over 3 columns, on small screens; 2 columns, and on mobile screens; 1 column. |
 | **User Stories Covered:** 2, 23|
 
