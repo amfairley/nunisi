@@ -5,10 +5,8 @@ back_button\admin.py                                                         1  
 back_button\apps.py                                                          4      0   100%
 back_button\migrations\__init__.py                                           0      0   100%
 back_button\models.py                                                        1      0   100%
-back_button\test_views.py                                                   16      0   100%
+back_button\test_views.py                                                    0      0   100%
 back_button\tests.py                                                         1      0   100%
-back_button\urls.py                                                          3      0   100%
-back_button\views.py                                                         6      0   100%
 checkout\__init__.py                                                         0      0   100%
 checkout\admin.py                                                            7      0   100%
 checkout\apps.py                                                             4      0   100%
@@ -24,9 +22,9 @@ checkout\test_models.py                                                    113  
 checkout\test_views.py                                                      93      0   100%
 checkout\urls.py                                                             4      0   100%
 checkout\views.py                                                          104      6    94%
-checkout\webhook_handler.py                                                125    103    18%
+checkout\webhook_handler.py                                                135    113    16%
 checkout\webhooks.py                                                        28     19    32%
-env.py                                                                       9      0   100%
+env.py                                                                      11      0   100%
 home\__init__.py                                                             0      0   100%
 home\admin.py                                                                1      0   100%
 home\apps.py                                                                 4      0   100%
@@ -40,7 +38,7 @@ home\urls.py                                                                 3  
 home\views.py                                                               12      0   100%
 manage.py                                                                   11      2    82%
 nunisi\__init__.py                                                           0      0   100%
-nunisi\settings.py                                                          71     20    72%
+nunisi\settings.py                                                          64      9    86%
 nunisi\urls.py                                                               5      0   100%
 reviews\__init__.py                                                          0      0   100%
 reviews\admin.py                                                             7      0   100%
@@ -106,4 +104,4 @@ user_profile\test_views.py                                                  40  
 user_profile\urls.py                                                         3      0   100%
 user_profile\views.py                                                       33      0   100%
 --------------------------------------------------------------------------------------------
-TOTAL                                                                     2263    284    87%
+TOTAL                                                                     2243    283    87%
