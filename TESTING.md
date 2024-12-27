@@ -83,6 +83,24 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Responsivity | Reduce screen size to below 992px | Footer logo disappears | Y | N/A |
 | **Back Button** | | | | |
 | Back button | Hover | Colours invert and gold halo appears | Y | N/A |
+| Back button - Account settings| Access from header and click | User redirected back to the previous page| Y | N/A |
+| Back button - Account settings | Access from URL and click | User redirected to 404 page | Y | N/A |
+| Back button - Delete account | Access from user account page and click | User redirected back to the user account page | Y | N/A |
+| Back button - Delete account | Access from URL and click | User redirected to 404 page | Y | N/A |
+| Back button - Edit account | Access from user account page and click | User redirected back to the user account page | Y | N/A |
+| Back button - Edit account | Access from URL and click | User redirected to 404 page | Y | N/A |
+| Back button - Add room | Access from rooms page and click | User redirected back to the rooms page | Y | N/A |
+| Back button - Add room | Access from URL and click | User redirected to 404 page | Y | N/A |
+| Back button - Edit room | Access from rooms page and click | User redirected back to the rooms page | Y | N/A |
+| Back button - Edit room | Access from URL and click | User redirected to 404 page | Y | N/A |
+| Back button - Delete room | Access from rooms page and click | User redirected back to the rooms page | Y | N/A |
+| Back button - Delete room | Access from URL and click | User redirected to 404 page | Y | N/A |
+| Back button - Cancel trip | Access from trips page and click | User redirected back to the trips page | Y | N/A |
+| Back button - Cancel trip | Access from URL and click | User redirected to 404 page | Y | N/A |
+| Back button - Add review | Access from trips page and click | User redirected back to the trips page | Y | N/A |
+| Back button - Add review | Access from URL and click | User redirected to 404 page | Y | N/A |
+| Back button - Edit review | Access from trips page and click | User redirected back to the trips page | Y | N/A |
+| Back button - Edit review | Access from URL and click | User redirected to 404 page | Y | N/A |
 | **Homepage** | | | | |
 | Header- Desktop | Hover links | Underline effect occurs | Y | N/A |
 | Header- Desktop | Click links | Page scrolls to respective section | Y | N/A |
@@ -108,13 +126,16 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Reviews | Click through the carousel | The carousel turns to show each new review | Y | N/A |
 | **available_rooms.html** | | | | |
 | Booking form - header | Submit form with values | The available rooms page loads with the header booking form pre-filled with the user choices | Y | N/A |
-| Booking form - header | Submit form with check in date after check out date | The form submits and provides the user with the correct error message | Y | N/A |
-| Booking form - header | Submit form with a check in date of today | The form submits and provides the user with the correct error message | Y | N/A |
+| Booking form - header | Submit form with check in date after check out date | The form submits and provides the user with the correct error message and a link back to the homepage | Y | N/A |
+| Booking form - header | Submit form with check in date after check out date and click the homepage link | The user is redirected back to the homepage | Y | N/A |
+| Booking form - header | Submit form with a check in date of today | The form submits and provides the user with the correct error message and a button back to the homepage | Y | N/A |
+| Booking form - header | Submit form with a check in date of today and click the homepage link | The user is redirected back to the homepage | Y | N/A |
 | Booking form - header | Submit correct data | The form submits and redirects the user to a page showing the available rooms | Y | N/A |
 | Booking form - homepage body | Submit form with values | The available rooms page loads with the header booking form pre-filled with the user choices | Y | N/A |
-| Booking form - homepage body | Submit form with check in date after check out date | The form submits and provides the user with the correct error message | Y | N/A |
-| Booking form - homepage body | Submit form with a check in date of today | The form submits and provides the user with the correct error message | Y | N/A |
-| Booking form - homepage body | Submit correct data | The form submits and redirects the user to a page showing the available rooms | Y | N/A |
+| Booking form - homepage body | Submit form with check in date after check out date | The form submits and provides the user with the correct error message and a link back to the homepage | Y | N/A |
+| Booking form - homepage body | Submit form with check in date after check out date and click the homepage link | The user is redirected back to the homepage | Y | N/A |
+| Booking form - homepage body | Submit form with a check in date of today | The form submits and provides the user with the correct error message and a button back to the homepage | Y | N/A |
+| Booking form - homepage body | Submit form with a check in date of today and click the homepage link | The user is redirected back to the homepage | Y | N/A |
 | Amenity filter accordion | Click the accordion title when closed | Accordion opens, the title gets a gold focus halo and the accordion icon becomes an up arrow. | Y | N/A |
 | Amenity filter accordion | Resize the screen | The number of columns go from 4 to 3 to 2 to 1 as screen size is reduced | Y | N/A |
 | Amenity filter accordion | Click the accordion title when open | Accordion closes and the accordion icon becomes a down arrow | Y | N/A |
