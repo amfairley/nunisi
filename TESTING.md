@@ -312,7 +312,7 @@ A report can be compiled with:
 coverage report
 ```
 
-The coverage report can be seen [here](/documentation/testing/coverage_report.txt). Overall a coverage of 87% was achieved with all 156 automated tests passing. The number was reduced from 100 largely due to the complexity of the webhook_handler and webook files and the Django project files such as settings.py which did not require TDD.
+The coverage report can be seen [here](/documentation/testing/coverage_report.txt). Overall a coverage of 87% was achieved with all 154 automated tests passing. The number was reduced from 100 largely due to the complexity of the webhook_handler and webook files and the Django project files such as settings.py which did not require TDD.
 
 **Errors**:
 - When doing TDD for the available_rooms view, the commits were added at the end of the process, obscuring the order of the testing, however these were done following the TDD philosophy.
