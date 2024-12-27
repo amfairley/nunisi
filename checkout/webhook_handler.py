@@ -110,7 +110,6 @@ class StripeWH_Handler:
         end_date = datetime.strptime(end_date, '%Y-%m-%d')
         print("Format 2")
         print(start_date)
-        
         # List for the new dates
         new_dates = []
         # < so that the check out date is not added
