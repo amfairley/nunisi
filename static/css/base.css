@@ -974,6 +974,7 @@ main {
 
 .room-sort-container label {
     padding: 0 5px;
+    cursor: pointer;
 }
 
 /* Amenity Filter */

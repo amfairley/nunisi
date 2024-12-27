@@ -65,7 +65,6 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Account menu - log in link | Click | Redirected to the log in page | Y | N/A |
 | Account menu | Click when logged in | Displays Trips/Account Settings/Log out links | Y | N/A |
 | Account menu - Trips link | Click | Redirected to Trips page | Y | N/A |
-| Account menu - Rooms link | Click | Redirected to the Rooms page | Y | N/A |
 | Account menu - Account Settings link | Click | Redirected to account settings page | Y | N/A |
 | Account menu - Logout | Click | Redirected to log out page | Y | N/A |
 | Account menu | Click when logged in as Admin | See an extra link for Rooms | Y | N/A |
@@ -101,6 +100,11 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Back button - Add review | Access from URL and click | User redirected to 404 page | Y | N/A |
 | Back button - Edit review | Access from trips page and click | User redirected back to the trips page | Y | N/A |
 | Back button - Edit review | Access from URL and click | User redirected to 404 page | Y | N/A |
+
+
+
+
+
 | **Homepage** | | | | |
 | Header- Desktop | Hover links | Underline effect occurs | Y | N/A |
 | Header- Desktop | Click links | Page scrolls to respective section | Y | N/A |
@@ -124,6 +128,11 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Reviews | Have no verified reviews | Section is missing | Y | N/A |
 | Reviews | Verify some reviews | These reviews are showin the reviews section on the homepage | Y | N/A |
 | Reviews | Click through the carousel | The carousel turns to show each new review | Y | N/A |
+
+
+
+
+
 | **available_rooms.html** | | | | |
 | Booking form - header | Submit form with values | The available rooms page loads with the header booking form pre-filled with the user choices | Y | N/A |
 | Booking form - header | Submit form with check in date after check out date | The form submits and provides the user with the correct error message and a link back to the homepage | Y | N/A |
@@ -154,12 +163,22 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Room card | Hover book now button | Cursor changes and button colour inverts | Y | N/A |
 | Room card | Resize page | Image drops below room information on smaller screens | Y | N/A |
 | Room card | Click "Book Now" | User is redirect to checkout page with correct order summary | Y | N/A |
+
+
+
+
+
 | **rooms_superuser.html** | | | | |
 | Room cards | Resize the page | Rows go from 3 cards, to 2 cards, to 1 card as the screen size decreases | Y | N/A |
 | Add room button | Click | Redirected to add room page | Y | N/A |
 | Edit room link | Click | Redirected to edit room page | Y | N/A |
 | Delete room link | Hover | Button shows a red background with white font as opposed to the site-wide button hover effect | Y | N/A |
 | Delete room link | Click | Redirected to edit room page | Y | N/A |
+
+
+
+
+
 | **add_room.html** | | | | |
 | Add room form | Submit the form without a name | Form scrolls up and the name section is focused | Y | N/A |
 | Add room form | Submit the form without a sanitised name | Form scrolls up and the sanitised name section is focused | Y | N/A |
@@ -169,6 +188,11 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Add room form | Submit a full form | A toast appears indicating success and user is redirected to all rooms where the new room has been added | Y | N/A |
 | Add a new room | Search availability to see if it appears | It appears in available rooms | Y | N/A |
 | Add a new room with unavailability | Search availability to see if it does not appear | It does not appear in available rooms | Y | N/A |
+
+
+
+
+
 | **edit_room.html** | | | | |
 | Edit room form | Submit the form without a price | An alert indicates to the user to fill this field | Y | N/A |
 | Edit room form | Submit the form without amenities | A toast appears indicating an error and the error is listed below the form | Y | N/A |
@@ -176,8 +200,19 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Edit room form | Submit a full form | A toast appears indicating success and user is redirected to all rooms where the room has been updated | Y | N/A |
 | Edit a new room | Search availability to see if it appears | It appears in available rooms | Y | N/A |
 | Edit a new room with unavailability | Search availability to see if it does not appear | It does not appear in available rooms | Y | N/A |
+
+
+
+
+
 | **delete_room.html** | | | | |
 | Delete room | Confirm deleteion | Room instance is deleted, success toast alerts the user, and user is redirected to superuser rooms page | Y | N/A |
+
+
+
+
+
+
 | **checkout.html** | | | | |
 | Load page | N/A | Form is pre-filled with profile data | Y | N/A |
 | Load page | N/A | Correct trip details appear on the page | Y | N/A |
@@ -189,9 +224,19 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Checkout form | Leave country input empty | Alert appears informing user to provide country | Y | N/A |
 | Checkout form | Provide incorrect credit card information | Alerts appear informing user to credit card errors | Y | N/A |
 | Checkout form | Provide correct data and submit | The form is submitted, order created, trip created, and confirmation email sent | | |
+
+
+
+
+
 | **success.html** | | | | |
 | Success page | N/A | Correct order data is displayed | Y | N/A |
 | Home button | Click | User redirected to homepage | Y | N/A |
+
+
+
+
+
 | **trips.html** | | | | |
 | Cancel upcoming trips | Click | User redirected to cancel trip page | Y | N/A |
 | Sort past trips | Change the sort parameter | Past trips are sorted correctly | Y | N/A |
@@ -202,16 +247,36 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Review | Verify the review as an admin | The review has a verified tick on it and will appear on the homepage | Y | N/A |
 | Verified tick | Hover over | A title descibes the review as verified | Y | N/A |
 | Edit review button | Click | User is taken to the edit review page | Y | N/A |
+
+
+
+
+
 | **cancel_trip.html** | | | | |
 | Cancel trip form | Submit | A toast appears telling the user that the cancellation was submitted and the user is redirect tot he cancellation request successful page. | Y | N/A |
 | Cancel trip form | Submit | An email is sent to the hotel owner with the information about the trip and reason for cancellation |  |  |
+
+
+
+
+
 | **cancel_trip_success.html** | | | | |
 | Homepage button | Click | Redirected to homepage | Y | N/A |
+
+
+
+
+
 | **add_review.html** | | | | |
 | Review content | Leave blank and submit review | An alert indicates that the section needs to be filled out | Y | N/A |
 | Review rating | Leave blank and submit review | An alert indicates that the section needs to be filled out | Y | N/A |
 | Review | Fill out and submit | A toast appears telling the user that the review was submitted. A toast appears telling the user that the review has been sent to the business owner for review. The user is redirected to their trips page. The review appears under the correct trip with the correct information | Y | N/A |
 | Review | Fill out and submit | An email is sent to the business owner describing the review and inviting them to verify it | | |
+
+
+
+
+
 | **edit_review.html** | | | | |
 | Review content | Delete content, leave blank, and submit review | An alert indicates that the section needs to be filled out | Y | N/A |
 | Review | Change values and submit | A toast appears telling the user that the review was updated. A toast appears telling the user that the review has been sent to the business owner for review. The user is redirected to their trips page. The review appears under the correct trip with the correct information. If the review was verfied, the verification has been removed. | Y | N/A |
@@ -219,24 +284,54 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Delete review button | Click | Confirm delete modal opens | Y | N/A |
 | Delete review modal | Click "close" or "x" | Modal closes | Y | N/A |
 | Delete review modal | Click "delete" | Toast appears telling the user that the review has been deleted, review is deleted, user is redirected back to trips page | Y | N/A |
+
+
+
+
+
 | **trips_superuser.html** | | | | |
 | Screen size warning | Resize the screen | On smaller screen where the table is not displayed correctly, a prompt appears tell the admin to access the page on a larger screen | Y | N/A |
 | Cancel trip | Click | The trip is cancelled, the trip instance is updated in the backend, the room unavailablity is updated in the backend, the table column displays "Cancelled", the cancel button becomes the un-cancel trip button, and a toast appears telling the user that the action was successful | Y | N/A |
 | Un-Cancel trip | Click | The trip is un-cancelled, the trip instance is updated in the backend, the room unavailablity is updated in the backend, the table column displays "Confirmed", the un-cancel button becomes the cancel trip button, and a toast appears telling the user that the action was successful | Y | N/A |
 | Un-Cancel trip | Make the room unavailable and uncancel the trip | The trip is not uncancelled, a toast appears informing the user that the room is not available anymore for those dates | Y | N/A |
 | Homepage button | Click | Redirected to homepage | Y | N/A |
+
+
+
+
+
 | **user_profile.html** | | | | |
 | Email addresses button | Hover | Text appears informing user that clicking will redirect them to the email management page | Y | N/A |
 | Email addresses button | Click | Redirected to email management page | Y | N/A |
 | Profile data table | Hover each cell | Hovered row is highlighted | Y | N/A |
 | Edit profile button and change password buttons | Click | Redirected to edit profile page and change password page | Y | N/A |
 | Delete profile button | Click | Redirected to confirm deletion page | Y | N/A |
+
+
+
+
+
 | **edit_profile.html** | | | | |
 | Edit profile form | Fill and submit | Values updated, toast appears confirming changes, and user redirected to profile page | Y | N/A |
+
+
+
+
+
 | **delete_user.html** | | | | |
 | Delete account | Click delete | User redirected to delete_successful.html, toast appears informing the user that their account has been deleted, and user account deleted | Y | N/A |
+
+
+
+
+
 | **delete_successful.html** | | | | |
 | Homepage button | Click | Redirected to homepage | Y | N/A |
+
+
+
+
+
 | **AllAuth Pages** | | | | |
 | Sign up message | Hover "sign in" | Text boldens | Y | N/A |
 | Sign up message | Click "sign in" | User redirected to login page | Y | N/A |
@@ -270,6 +365,11 @@ The [user stories](/README.md#user-stories) have been a driving force for the de
 | Reset Password | Enter valid email address and submit | Email sent with password reset link and user redirected to /password/reset/done page | Y | N/A |
 | Google login | Click continue | Redirected to Google access page | Y | N/A |
 | Google login | Sign up with Google | Allows login with the Google account | Y | N/A |
+
+
+
+
+
 | **Error Pages** | | | | |
 | 400 | Click homepage link | Redirected to homepage | Y | N/A |
 | 403 | Click homepage link | Redirected to homepage | Y | N/A |
