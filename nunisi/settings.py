@@ -106,7 +106,7 @@ WSGI_APPLICATION = 'nunisi.wsgi.application'
 
 # Messages for toasts to match bootstrap classes
 # Have MESSAGE_LEVEL = messages.DEBUG for local environment
-MESSAGE_LEVEL = messages.WARNING
+MESSAGE_LEVEL = messages.INFO
 MESSAGE_TAGS = {
     messages.DEBUG: 'secondary',
     messages.INFO: 'info',
