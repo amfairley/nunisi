@@ -22,9 +22,10 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        user_email = None
         if request.user.is_authenticated:
             user_email = request.user.email
+        else:
+            user_email = request.POST.get('email')
         stripe.PaymentIntent.modify(
             pid,
             metadata={
