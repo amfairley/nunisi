@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.views.decorators.http import require_POST
 from django.conf import settings
 from django.contrib import messages
@@ -22,9 +22,9 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
-        user = request.user
-        if user:
-            user_email = user.email
+        user_email = None
+        if request.user.is_authenticated:
+            user_email = request.user.email
         stripe.PaymentIntent.modify(
             pid,
             metadata={
@@ -115,10 +115,28 @@ def checkout(request):
             # stripe requires total to be an integer
             stripe_total = int(round(total_cost * 100))
             stripe.api_key = stripe_secret_key
-            intent = stripe.PaymentIntent.create(
-                amount=stripe_total,
-                currency=settings.STRIPE_CURRENCY,
-            )
+
+
+
+            # intent = stripe.PaymentIntent.create(
+            #     amount=stripe_total,
+            #     currency=settings.STRIPE_CURRENCY,
+            # )
+
+            try:
+                intent = stripe.PaymentIntent.create(
+                    amount=stripe_total,
+                    currency=settings.STRIPE_CURRENCY,
+                )
+                client_secret = intent['client_secret']
+            except stripe.error.CardError as e:
+                messages.error(
+                    request,
+                    f"Payment failed: {e.user_message}. Please try again."
+                )
+                return redirect('checkout') 
+
+
             client_secret = intent['client_secret']
             # Helpful message to display if the public key has not been set
             if not stripe_public_key:
