@@ -8,9 +8,18 @@ var clientSecret = document
 
 // Set up stripe
 var Stripe = new Stripe(stripePublicKey);
+// Create instances of stripe elements
+var elements = Stripe.elements();
+// Create a stripe card element
+var card = elements.create("card");
+// Add this element to our card-element div
+card.mount("#card-element");
 
-// Set the form to a variable
+// Define the elements
 var form = document.getElementById("payment-form");
+var errorDiv = document.getElementById("card-errors");
+var submitButton = document.getElementById("checkout-form-submit-button");
+var loadingOverlay = document.getElementById("loading-overlay");
 
 // Set up an opacity variable
 var opacity = 0;
@@ -20,19 +29,10 @@ var saveInfo = false;
 var csrfToken;
 var postData;
 
-
-// Create instances of stripe elements
-var elements = Stripe.elements();
-// Create a stripe card element
-var card = elements.create("card");
-// Add this element to our card-element div
-card.mount("#card-element");
-
 // Handle real-time validation errors on the card element
 card.addEventListener("change", function(event) {
-    // Set my error div to a variable using id
-    var errorDiv = document.getElementById("card-errors");
-    var submitButton = document.getElementById("checkout-form-submit-button");
+    // Default the submit button to being enabled
+    submitButton.disabled = false;
     // If there is an error
     if (event.error) {
         // Log the error
@@ -58,10 +58,6 @@ card.addEventListener("change", function(event) {
 // Handle form submit
 // Add an event listener for when the form is submitted
 form.addEventListener("submit", function(ev) {
-    // Define the payment form and loading overlay
-    var paymentForm = document.getElementById("payment-form");
-    var loadingOverlay = document.
-    getElementById("loading-overlay");
     // Define the info from the cache checkout data view
     var room_id;
     var room;
@@ -78,57 +74,9 @@ form.addEventListener("submit", function(ev) {
     // Disable the card element and submit button
     // to prevent multiple submissions
     card.update({ "disabled": true});
-    document.getElementById("checkout-form-submit-button").disabled = true;
-    document.getElementById("payment-form");
-    // Fade out the payment form
-    if (paymentForm.style.display === "none" ||
-        paymentForm.style.display === "") {
-        paymentForm.style.display = "block";
-        paymentForm.style.opacity = 0;
-        opacity = 0;
-        const fadeIn = setInterval(function () {
-            opacity += 0.1;
-            paymentForm.style.opacity = opacity;
-            if (opacity >= 1) {
-                clearInterval(fadeIn);
-            }
-        }, 10);
-    } else {
-        opacity = 1;
-        const fadeOut = setInterval(function () {
-            opacity -= 0.1;
-            paymentForm.style.opacity = opacity;
-            if (opacity <= 0) {
-                paymentForm.style.display = "none";
-                clearInterval(fadeOut);
-            }
-        }, 10);
-    }
-    // Fade out loading overlay
-    if (loadingOverlay.style.display === "none" ||
-        loadingOverlay.style.display === "") {
-        loadingOverlay.style.display = "block";
-        loadingOverlay.style.opacity = 0;
-        opacity = 0;
-        const fadeInOverlay = setInterval(function () {
-            opacity += 0.1;
-            paymentForm.style.opacity = opacity;
-            if (opacity >= 1) {
-                clearInterval(fadeInOverlay);
-            }
-        }, 10);
-    } else {
-        opacity = 1;
-        const fadeOutOverlay = setInterval(function () {
-            opacity -= 0.1;
-            paymentForm.style.opacity = opacity;
-            if (opacity <= 0) {
-                paymentForm.style.display = "none";
-                clearInterval(fadeOutOverlay);
-            }
-        }, 10);
-    }
-
+    submitButton.disabled = true;
+    // Show loading overlay
+    $('#loading-overlay').fadeToggle(100);
     // Getting form post information for the cache_checkout_data view
     saveInfo = Boolean(document.getElementById("id-save-info").checked);
     room_id = document.querySelector("input[name='room_id']").value;
@@ -184,7 +132,7 @@ form.addEventListener("submit", function(ev) {
                     }
                 }
             },
-            // In case customes have different billing and shipping addresses
+            // In case customers have different billing and shipping addresses
             shipping: {
                 name: form.full_name.value.trim(),
                 phone: form.phone_number.value.trim(),
@@ -199,73 +147,27 @@ form.addEventListener("submit", function(ev) {
             }
         // Then execute this function on result
         }).then(function(result) {
-            var errorDiv;
-            var html;
+            card.update({ "disabled": false});
+            submitButton.disabled = false;
+            form.disabled=false;
             // If there is an error display the error message
-            // in the card error div
+            // in the card error div and cancel loading overlay
             if (result.error) {
-                // Get the error div, define the inner html and apply it
-                errorDiv = document.getElementById("card-errors");
-                html = `
-                    <span class="icon" role="alert">
-                    <i class="fas fa-times"></i>
-                    </span>
-                    <span>${result.error.message}</span>`;
-                $(errorDiv).html(html);
-                // Fade out the payment form
-                paymentForm = document.getElementById("payment-form");
-                if (paymentForm.style.display === "none" ||
-                    paymentForm.style.display === "") {
-                    paymentForm.style.display = "block";
-                    paymentForm.style.opacity = 0;
-                    opacity = 0;
-                    const fadeInPayment = setInterval(function () {
-                        opacity += 0.1;
-                        paymentForm.style.opacity = opacity;
-                        if (opacity >= 1) {
-                            clearInterval(fadeInPayment);
-                        }
-                    }, 10);
-                } else {
-                    opacity = 1;
-                    const fadeOutPayment = setInterval(function () {
-                        opacity -= 0.1;
-                        paymentForm.style.opacity = opacity;
-                        if (opacity <= 0) {
-                            paymentForm.style.display = "none";
-                            clearInterval(fadeOutPayment);
-                        }
-                    }, 10);
-                }
-                // Fade out loading overlay
-                loadingOverlay = document.getElementById("loading-overlay");
-                if (loadingOverlay.style.display === "none" ||
-                    loadingOverlay.style.display === "") {
-                    loadingOverlay.style.display = "block";
-                    loadingOverlay.style.opacity = 0;
-                    opacity = 0;
-                    const fadeInLoading = setInterval(function () {
-                        opacity += 0.1;
-                        paymentForm.style.opacity = opacity;
-                        if (opacity >= 1) {
-                            clearInterval(fadeInLoading);
-                        }
-                    }, 10);
-                } else {
-                    opacity = 1;
-                    const fadeOutLoading = setInterval(function () {
-                        opacity -= 0.1;
-                        paymentForm.style.opacity = opacity;
-                        if (opacity <= 0) {
-                            paymentForm.style.display = "none";
-                            clearInterval(fadeOutLoading);
-                        }
-                    }, 10);
-                }
-
+                // Cancel loading overlay
+                $('#loading-overlay').fadeToggle(100);
+                // Define the inner html of the errors
+                errorDiv.innerHTML = `
+                    <div>
+                        <span class="icon" role="alert">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span>${result.error.message}</span>
+                    </div>
+                `;
                 // If there is an error enable card and submit button to fix it
                 card.update({ "disabled": false});
-                $("#submit-button").attr("disabled", false);
+                form.disabled = false
+                submitButton.disabled = false;
             } else {
                 // If payment intent is succsessful, submit the form
                 if (result.paymentIntent.status === "succeeded") {
@@ -274,7 +176,7 @@ form.addEventListener("submit", function(ev) {
             }
         });
     }).fail(function() {
-        // Reload the page, the error will be in django messages
-        location.reload();
+        // Show the error
+        alert("There was a problem with our servers. Please try again later.");
     });
 });
