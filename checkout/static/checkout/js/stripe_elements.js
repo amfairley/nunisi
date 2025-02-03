@@ -107,7 +107,11 @@ form.addEventListener("submit", function(ev) {
         "infants": infants,
         "total_cost": total_cost
     };
+
+    //Local development
     url = "/checkout/cache_checkout_data/";
+    //Deployment
+    // url = "https://nunisi-hotel-and-spa-39411ddf3dfa.herokuapp.com/checkout/cache_checkout_data/"
 
     $.post(url, postData).done(function() {
         // Send card information securely to stripe
