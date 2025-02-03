@@ -123,13 +123,6 @@ def checkout(request):
             stripe_total = int(round(total_cost * 100))
             stripe.api_key = stripe_secret_key
 
-
-
-            # intent = stripe.PaymentIntent.create(
-            #     amount=stripe_total,
-            #     currency=settings.STRIPE_CURRENCY,
-            # )
-
             try:
                 intent = stripe.PaymentIntent.create(
                     amount=stripe_total,
@@ -141,8 +134,7 @@ def checkout(request):
                     request,
                     f"Payment failed: {e.user_message}. Please try again."
                 )
-                return redirect('checkout') 
-
+                return redirect('checkout')
 
             client_secret = intent['client_secret']
             # Helpful message to display if the public key has not been set
