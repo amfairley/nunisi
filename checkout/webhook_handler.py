@@ -29,6 +29,7 @@ class StripeWH_Handler:
         '''Send the user a confirmation email'''
         # Get the customer email from the order
         customer_email = order.email
+        print(customer_email)
         # Render the email subject as a string and pass the order
         subject = render_to_string(
             'checkout/confirmation_emails/confirmation_email_subject.txt',
