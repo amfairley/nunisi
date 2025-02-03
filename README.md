@@ -6,7 +6,7 @@
 
 *A hotel management system for a forest retreat hotel*
 
-This full stack hotel management system is built for use of taking bookings and payment for a forest retreat hotel in the region of Nunisi in Georgia. The business audience is the hotel owners and the target audience for the site are travellers who are seeking a relaxing getaway, either travelling domestically or internationally. The website was created using custom code written in HTML, CSS, Python, and JavaScript , utilising the full stack framework Django. It is hosted on Heroku with static files hosted by Amazon Web Services (AWS), has a connected PostgreSQL relational database and provides the users full CRUD functionality.
+This full stack hotel management system is built for use of taking bookings and payment for a forest retreat hotel in the region of Nunisi in Georgia. The business audience is the hotel owners and the target audience for the site are travellers who are seeking a relaxing getaway, either travelling domestically or internationally. The website was created using custom code written in HTML, CSS, Python, and JavaScript , utilising the full stack framework Django. It is hosted on Heroku with static files hosted by Amazon Web Services (AWS), has a connected PostgreSQL relational database and provides the users full CRUD functionality. It provides users with the ability to create and log into a user profile in order to track their previous and upcoming trips and leave reviews. This allows for easier administration by users in the lead up to their trip and a way of verifying reviews so that the business owner can know that recieved reviews are genuine.
 
 The live site can be viewed [here](https://nunisi-hotel-and-spa-39411ddf3dfa.herokuapp.com/)
 
@@ -24,6 +24,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
 2. [User Stories](#user-stories)
 3. [Security](#security)
     1. [Defensive Programming](#defensive-programming)
+    2. [Form Validation](#form-validation)
 4. [Future Development](#future-development)
 5. [Technologies Used](#technologies-used)
     1. [Languages](#languages)
@@ -183,6 +184,9 @@ The delete room/user functionality redirects the user to a confirmation page to 
 
 **Delete review modal**<br>
 The delete review modal pops up to make the user confirm a deletion, preventing them from accidentally deleting thier review with one mouse click.
+
+### Form validation
+Form validation is handled throughout the website. When needing more than the built in validation tools, these are included in the forms when a model is accessed or in the view for accessing the database (e.g. searching for available rooms). A good example of this is in the review forms.py file, where there are defined cleaning steps to ensure that the content is a certain length, all sections are present and that the trip being reviewed is in the past.
 
 ## Future Development
 - Footer
