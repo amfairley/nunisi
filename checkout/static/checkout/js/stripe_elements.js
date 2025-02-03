@@ -32,8 +32,10 @@ card.mount("#card-element");
 card.addEventListener("change", function(event) {
     // Set my error div to a variable using id
     var errorDiv = document.getElementById("card-errors");
+    var submitButton = document.getElementById("checkout-form-submit-button");
     // If there is an error
     if (event.error) {
+        // Log the error
         // Set the internal html to:
         errorDiv.innerHTML = `
             <div>
@@ -43,9 +45,13 @@ card.addEventListener("change", function(event) {
                 <span>${event.error.message}</span>
             </div>
         `;
+        // Diable the submit button when there is an error
+        submitButton.disabled = true;
     // Otherwise make the error div empty
     } else {
         errorDiv.textContent = "";
+        // Enable the submit button when there is no error
+        submitButton.disabled = false;
     }
 });
 
