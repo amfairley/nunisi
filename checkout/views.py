@@ -22,10 +22,16 @@ def cache_checkout_data(request):
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
+
+        user_email = None
         if request.user.is_authenticated:
             user_email = request.user.email
+            save_info = request.POST.get('save_info')
         else:
             user_email = request.POST.get('email')
+            print(user_email)
+            save_info = False
+
         stripe.PaymentIntent.modify(
             pid,
             metadata={
@@ -38,7 +44,7 @@ def cache_checkout_data(request):
                     'infants': request.POST.get('infants'),
                     'cost': request.POST.get('total_cost'),
                 }),
-                'save_info': request.POST.get('save_info'),
+                'save_info': save_info,
                 'user_email': user_email,
             }
         )
@@ -186,8 +192,17 @@ def checkout(request):
             # Get save info status
             save_info = request.POST.get('save_info')
             # Set form values as a dictionary
+            if request.user.is_authenticated:
+                try:
+                    user_profile_submit = UserProfile.objects.get(
+                        user=request.user
+                    )
+                except UserProfile.DoesNotExist:
+                    user_profile_submit = None
+            else:
+                user_profile_submit = None
             order_form_data = {
-                'user_profile': UserProfile.objects.get(user=request.user),
+                'user_profile': user_profile_submit,
                 'full_name': request.POST.get('full_name'),
                 'email': request.POST.get('email'),
                 'phone_number': request.POST.get('phone_number'),
