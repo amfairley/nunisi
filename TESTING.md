@@ -30,14 +30,15 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
     - [CSS Validation](#css-validation)
     - [JavaScript Validation](#javascript-validation)
     - [Python Validation](#python-validation)
-5. [Bugs](#bugs)
+5. [Stripe Testing](#stripe-testing)
+6. [Bugs](#bugs)
     - [Bug 1](#bug-1)
     - [Bug 2](#bug-2)
     - [Bug 3](#bug-3)
     - [Bug 4](#bug-4)
     - [Bug 5](#bug-5)
     - [Known Bugs](#known-bugs)
-6. [Analytics](#analytics)
+7. [Analytics](#analytics)
 
 ## Testing User Stories
 The [user stories](/README.md#user-stories) have been a driving force for the development of this project. More information on each user story and how the features implemented in this web app meet their criteria can be seen [here](/DESIGN.md#features). Most user stories were met to create a MVP, however future development will include adding form elements to the checkout to allow users without an account create one and save their order.
@@ -1001,6 +1002,22 @@ The Python code for this project was written in strict accordance with the [PEP 
 </details><br>
 
 The env.py file was also linted showing no errors but the screenshot has been omitted for security issues as it contains sensitive information. An example of the env.py file can be found [here](/env_example.txt).
+
+## Stripe Testing
+As the Stripe functionality used on the website is the developer version we cannot use real credit cards to check the functionality. However Stripe provides a host of different test card numbers to test out different functionality. A full list can be found [here](https://docs.stripe.com/testing#cards). The ones that I used when troubleshooting Stripe were:
+
+| Card Number | CVC | Date | Feature to test | Outcome | Worked as expected |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| 4242 4242 4242 4242 | Any 3 digits | Any future date | Payment successful | Loading icon whilst Stripe process, redirected to payment success page | Y |
+| 4000 0000 0000 0002 | Any 3 digits | Any future date | Generic card declined | Loading icon whilst Stripe process, loading icon disappears, error appears "Your card has been declined." and user can submit the form again | Y |
+| 4000 0000 0000 9995 | Any 3 digits | Any future date | Card declined: insufficient funds | Loading icon whilst Stripe process, loading icon disappears, error appears "Your card has insufficient funds. Try a different card" and user can submit the form again | Y |
+| 4000 0000 0000 9987 | Any 3 digits | Any future date | Card declined: lost card | Loading icon whilst Stripe process, loading icon disappears, error appears "Your card was declined. Please contact your card issuer." and user can submit the form again | Y |
+| 4000 0000 0000 9979 | Any 3 digits | Any future date | Card declined: stolen card | Loading icon whilst Stripe process, loading icon disappears, error appears "Your card has been declined." and user can submit the form again | Y |
+| 4000 0000 0000 0069 | Any 3 digits | Any future date | Expired card | Loading icon whilst Stripe process, loading icon disappears, error appears "Your card has expired. Try a different card." and user can submit the form again | Y |
+| 4000 0000 0000 0127 | Any 3 digits | Any future date | Incorrect CV | Loading icon whilst Stripe process, loading icon disappears, error appears "Your card’s CVC is incorrect." and user can submit the form again | Y |
+| 4000 0000 0000 0119 | Any 3 digits | Any future date | Processing error | Loading icon whilst Stripe process, loading icon disappears, error appears "An error occurred while processing your card. Try again." and user can submit the form again | Y |
+| 4000 000 000 3220 | Any 3 digits | Any future date | Test 3D Secure authentication | Loading icon whilst Stripe process, the £D secure widget appears | Y |
+
 
 ## Bugs
 
