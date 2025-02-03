@@ -147,6 +147,8 @@ class StripeWH_Handler:
 
     def handle_payment_intent_succeeded(self, event):
         '''Handle the payment_intent.succeeded webhook event'''
+        # Set user profile
+        user_profile = None
         # Log the event
         self.logger.info(f"Received Stripe webhook: {self.request.body}")
         # Get the payment intent and all meta data
@@ -177,27 +179,31 @@ class StripeWH_Handler:
             if value == "":
                 shipping_details.address[field] = None
 
-        # Update profile information if save_info was checked
-        if user:
-            user_profile = None
-            if user.is_authenticated:
+        # Check if the user and profile exists
+        if user and user.is_authenticated:
+            try:
                 user_profile = UserProfile.objects.get(user=user)
-                if save_info:
-                    user_profile.full_name = shipping_details.name
-                    user_profile.phone_number = shipping_details.phone
-                    user_profile.country = shipping_details.address.country
-                    user_profile.postcode = (
-                        shipping_details.address.postal_code
-                    )
-                    user_profile.town_or_city = shipping_details.address.city
-                    user_profile.street_address1 = (
-                        shipping_details.address.line1
-                    )
-                    user_profile.street_address2 = (
-                        shipping_details.address.line2
-                    )
-                    user_profile.county = shipping_details.address.state
-                    user_profile.save()
+            except UserProfile.DoesNotExist:
+                user_profile = None
+
+        # Update profile information if save_info was checked
+        if user_profile:
+            if save_info:
+                user_profile.full_name = shipping_details.name
+                user_profile.phone_number = shipping_details.phone
+                user_profile.country = shipping_details.address.country
+                user_profile.postcode = (
+                    shipping_details.address.postal_code
+                )
+                user_profile.town_or_city = shipping_details.address.city
+                user_profile.street_address1 = (
+                    shipping_details.address.line1
+                )
+                user_profile.street_address2 = (
+                    shipping_details.address.line2
+                )
+                user_profile.county = shipping_details.address.state
+                user_profile.save()
         # Check if order exists, if it does, it's fine, if not, make it
         order_exists = False
         attempt = 1
@@ -227,11 +233,6 @@ class StripeWH_Handler:
                 time.sleep(1)
                 # Create the order if it does not exist
         if order_exists:
-            # Check if there is a user profile
-            if user:
-                user_profile = UserProfile.objects.get(user=user)
-            else:
-                user_profile = None
             # Create a trip instance
             trip_instance = self.create_trip(
                 user,
