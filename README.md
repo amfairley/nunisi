@@ -49,7 +49,7 @@ See [DEV.md](/DEV.md) for an overview of the continuous integration and deployme
 - Able to opt in/out to promotional emails.
 - Full CRUD (Create Read Update Delete) functionality on my user account.
 - Ability to book a room.
-- Full CRUD functionality on my planned trip.
+- Partial CRUD functionality for the user to create and read their Trip, request cancellation and edit/remove a review on a previous trip. With full update capability for admins via the admin portal and cancel/uncancel capability for the admins via the webapp..
 - Ability to leave a review.
 - Full CRUD functionality on my review.
 - Security in place to stop others accessing my account and trip.
