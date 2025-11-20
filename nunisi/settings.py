@@ -63,10 +63,13 @@ INSTALLED_APPS = [
     'reviews',
     # Storage
     'storages',
+    'whitenoise',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # Whitenoise
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -277,29 +280,37 @@ AWS_S3_FILE_OVERWRITE = False
 
 # File storage for AWS
 # Custom locations for media and static files
-AWS_MEDIA_LOCATION = 'media'
-AWS_STATIC_LOCATION = 'static'
 
-STORAGES = {
+# Old AWS
+# AWS_MEDIA_LOCATION = 'media'
+# AWS_STATIC_LOCATION = 'static'
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+# STORAGES = {
     # Media files
-    'default': {
-        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
-        'OPTIONS': {
-            'location': AWS_MEDIA_LOCATION,
-        },
-    },
+#    'default': {
+#        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+#        'OPTIONS': {
+#            'location': AWS_MEDIA_LOCATION,
+#        },
+#    },
 
     # Static files
-    'staticfiles': {
-        'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
-        'OPTIONS': {
-            'location': AWS_STATIC_LOCATION,
-        },
-    },
-}
+#    'staticfiles': {
+#        'BACKEND': 'storages.backends.s3boto3.S3StaticStorage',
+#        'OPTIONS': {
+#            'location': AWS_STATIC_LOCATION,
+#        },
+#    },
+#}
 
 # Override static and media URLs in production
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
+# AWS Ones
+# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_MEDIA_LOCATION}/'
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_STATIC_LOCATION}/'
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
