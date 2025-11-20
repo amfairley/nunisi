@@ -212,7 +212,7 @@
                             <div class="col-12 col-lg-6 room-image-booking-column">
                                 <!--Room image-->
                                 {% if valid_room.room.image %}
-                                    <img src="{{ valid_room.room.image.url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
+                                    <img src="{{ valid_room.room.image_url }}" alt="{{ valid_room.room.sanitised.name }}" class="available-room-image">
                                 {% else %}
                                     <p>No image available</p>
                                 {% endif %}
