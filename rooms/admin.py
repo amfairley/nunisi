@@ -17,6 +17,7 @@ class RoomAdmin(admin.ModelAdmin):
     )
 
     ordering = ('id',)
+    list_editable = ('image_url',)
 
 
 class AmenitiesAdmin(admin.ModelAdmin):
